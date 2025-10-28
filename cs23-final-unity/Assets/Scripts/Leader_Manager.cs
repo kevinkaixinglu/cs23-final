@@ -58,7 +58,7 @@ public class Leader_Manager : MonoBehaviour
     {
         // Wait for 8.0 seconds before setting startNextSequence to true
         Debug.Log($"[{Time.time:F2}] Waiting 8.0 seconds before starting game loop...");
-        yield return new WaitForSeconds(8.0f);
+        yield return new WaitForSeconds(7.75f);
         
         songStartTime = Time.time; // Record when the song/game actually starts
         startNextSequence = true;
