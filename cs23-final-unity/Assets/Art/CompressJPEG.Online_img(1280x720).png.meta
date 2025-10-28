@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      CompressJPEG.Online_img(1280x720)_0: 3800179035099812209
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
