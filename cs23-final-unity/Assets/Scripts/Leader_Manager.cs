@@ -33,7 +33,7 @@ public class Leader_Manager : MonoBehaviour
 
     // Song duration tracking
     private float songStartTime = 0f;
-    private const float SONG_DURATION = 50f; // Song lasts 55 seconds
+    private const float SONG_DURATION = 45f; // Song lasts 55 seconds
     private bool songEnded = false;
 
     // Expose current sequence for Player to read when leader hands off
@@ -58,7 +58,7 @@ public class Leader_Manager : MonoBehaviour
     {
         // Wait for 8.0 seconds before setting startNextSequence to true
         Debug.Log($"[{Time.time:F2}] Waiting 8.0 seconds before starting game loop...");
-        yield return new WaitForSeconds(7.75f);
+        yield return new WaitForSeconds(7.47f);
         
         songStartTime = Time.time; // Record when the song/game actually starts
         startNextSequence = true;

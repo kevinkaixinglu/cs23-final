@@ -23,6 +23,22 @@ public class PauseMenuHandler : MonoBehaviour
         {
             sliderVolumeCtrl = sliderTemp.GetComponent<Slider>();
             sliderVolumeCtrl.value = volumeLevel;
+            
+            // Connect the slider to the SetLevel method
+            sliderVolumeCtrl.onValueChanged.AddListener(SetLevel);
+        }
+        else
+        {
+            Debug.LogWarning("Volume slider not found! Make sure your slider has the tag 'PauseMenuSlider'");
+        }
+    }
+
+    void OnDestroy()
+    {
+        // Clean up the listener when this object is destroyed
+        if (sliderVolumeCtrl != null)
+        {
+            sliderVolumeCtrl.onValueChanged.RemoveListener(SetLevel);
         }
     }
 
@@ -62,8 +78,17 @@ public class PauseMenuHandler : MonoBehaviour
 
     public void SetLevel(float sliderValue)
     {
-        mixer.SetFloat("MusicVolume", Mathf.Log10(sliderValue) * 20);
-        volumeLevel = sliderValue;
+        if (mixer != null)
+        {
+            // Clamp the value to avoid Log10(0) which is undefined
+            float clampedValue = Mathf.Clamp(sliderValue, 0.0001f, 1f);
+            mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
+            volumeLevel = sliderValue;
+        }
+        else
+        {
+            Debug.LogWarning("AudioMixer is not assigned in PauseMenuHandler! Please assign it in the Inspector.");
+        }
     }
 
     public void RestartGame()
