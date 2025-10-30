@@ -440,7 +440,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PUASED
+  m_text: PAUSED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1207,9 +1207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3240989312049449761, guid: c752efd6df03e934496edead318f26d0, type: 3}
       propertyPath: m_text
-      value: 'QUIT
-
-'
+      value: MENU
       objectReference: {fileID: 0}
     - target: {fileID: 3240989312049449761, guid: c752efd6df03e934496edead318f26d0, type: 3}
       propertyPath: m_fontSize
@@ -1225,7 +1223,7 @@ PrefabInstance:
       objectReference: {fileID: 4596717028321378488}
     - target: {fileID: 8217981516633900672, guid: c752efd6df03e934496edead318f26d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: QuitGame
+      value: BackToMainMenu
       objectReference: {fileID: 0}
     - target: {fileID: 8217981516633900672, guid: c752efd6df03e934496edead318f26d0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
