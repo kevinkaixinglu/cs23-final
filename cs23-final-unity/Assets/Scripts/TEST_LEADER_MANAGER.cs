@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TEST_LEADER_MANAGER : MonoBehaviour
 {
+
+    public GameObject playerCue;
+
     //Assign all Sprites + Gameobjects
     [Header("Arrow GameObjects")]
     public GameObject arrowUp;
@@ -24,7 +27,7 @@ public class TEST_LEADER_MANAGER : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerCue.SetActive(false);
     }
 
     // Update is called once per frame
@@ -84,6 +87,7 @@ public class TEST_LEADER_MANAGER : MonoBehaviour
 
             yield return new WaitForSeconds(60 / bpm - FLASH_DURATION);
         }
+        playerCue.SetActive(true);
     }
 
     void ResetArrows()
