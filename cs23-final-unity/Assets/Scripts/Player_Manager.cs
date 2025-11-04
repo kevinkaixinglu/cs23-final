@@ -46,6 +46,9 @@ public class Player_Manager : MonoBehaviour
 
     void Update()
     {
+        // Always update visual feedback for key presses
+        activateKeys();
+
         // If leader manager tells us it's player turn, start
         if (leaderManager.playerTurn == true)
         {
@@ -112,13 +115,9 @@ public class Player_Manager : MonoBehaviour
         // Run the input loop for the duration of the sequence (2.0s)
         while (timer < SEQUENCE_DURATION) 
         {
-            // turn on any keys being pressed (including WASD)
-            activateKeys();
-
             // Check each of the 4 input windows
             for (int i = 0; i < 4; i++)
             {
-
                 //play miss sound if missed
                 if (timer > windowEnds[i] && !inputScored[i] && !missPlayed[i])
                 {
@@ -126,7 +125,6 @@ public class Player_Manager : MonoBehaviour
                     missPlayed[i] = true;
                     Debug.Log($"[{Time.time:F2}] Player Seq0: MISSED Input {i + 1} at timer {timer:F3}s");
                 }
-
 
                 if (timer >= windowStarts[i] && timer <= windowEnds[i] && !inputScored[i])
                 {
@@ -187,7 +185,8 @@ public class Player_Manager : MonoBehaviour
         Debug.Log($"[{Time.time:F2}] PLAYER SEQUENCE 0 ENDED. FINAL SCORE: {score}\n");
     }
 
-    void activateKeys() {
+    void activateKeys() 
+    {
         SpriteRenderer sr;
 
         // Activate/deactivate up key (Up Arrow or W)
@@ -195,7 +194,9 @@ public class Player_Manager : MonoBehaviour
         {
             sr = arrowUp.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowUpOn;
-        } else {
+        } 
+        else 
+        {
             sr = arrowUp.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowUpOff;
         }
@@ -205,7 +206,9 @@ public class Player_Manager : MonoBehaviour
         {
             sr = arrowDown.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowDownOn;
-        } else {
+        } 
+        else 
+        {
             sr = arrowDown.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowDownOff;
         }
@@ -215,7 +218,9 @@ public class Player_Manager : MonoBehaviour
         {
             sr = arrowLeft.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowLeftOn;
-        } else {
+        } 
+        else 
+        {
             sr = arrowLeft.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowLeftOff;
         }
@@ -225,7 +230,9 @@ public class Player_Manager : MonoBehaviour
         {
             sr = arrowRight.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowRightOn;
-        } else {
+        } 
+        else 
+        {
             sr = arrowRight.GetComponentInChildren<SpriteRenderer>();
             sr.sprite = arrowRightOff;
         }
@@ -239,5 +246,3 @@ public class Player_Manager : MonoBehaviour
         }
     }
 }
-
-
