@@ -23,9 +23,9 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene("EndLevelScreen");
     }
 
-    public void to_Tutorial()
+    public void to_Levels()
     {
-        SceneManager.LoadScene("Tutorial Level");
+        SceneManager.LoadScene("LevelSelect");
     }
 
     public void restart_level()
