@@ -23,6 +23,10 @@ public class Player_Manager : MonoBehaviour
     public Sprite arrowRightOff;
     public Sprite arrowRightOn;
 
+    public AudioClip hitSound;    
+    public AudioClip missSound;     
+    private AudioSource audioSource;
+
     // Define the base beat duration for 120 BPM (0.5 seconds per beat)
     private const float beatDuration = 0.5f;
 
@@ -32,6 +36,12 @@ public class Player_Manager : MonoBehaviour
     void Start()
     {
         ResetArrows();
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     void Update()
@@ -77,6 +87,7 @@ public class Player_Manager : MonoBehaviour
     {
         float timer = 0f;
         bool[] inputScored = new bool[4]; // Track which inputs have been scored
+        bool[] missPlayed = new bool[4];  // Track which misses have been played
         int score = 0;
         
         // Get the random sequence from the leader (0=Up, 1=Down, 2=Left, 3=Right)
@@ -107,6 +118,16 @@ public class Player_Manager : MonoBehaviour
             // Check each of the 4 input windows
             for (int i = 0; i < 4; i++)
             {
+
+                //play miss sound if missed
+                if (timer > windowEnds[i] && !inputScored[i] && !missPlayed[i])
+                {
+                    PlaySound(missSound);
+                    missPlayed[i] = true;
+                    Debug.Log($"[{Time.time:F2}] Player Seq0: MISSED Input {i + 1} at timer {timer:F3}s");
+                }
+
+
                 if (timer >= windowStarts[i] && timer <= windowEnds[i] && !inputScored[i])
                 {
                     bool correctInput = false;
@@ -149,6 +170,7 @@ public class Player_Manager : MonoBehaviour
                     {
                         gameHandler.addScore();
                         score++;
+                        PlaySound(hitSound);
                         Debug.Log($"[{Time.time:F2}] Player Seq0: Scored Input {i + 1} ({arrowName}) at timer {timer:F3}s");
                         inputScored[i] = true;
                     }
@@ -208,4 +230,14 @@ public class Player_Manager : MonoBehaviour
             sr.sprite = arrowRightOff;
         }
     }
+
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
 }
+
+

@@ -1085,6 +1085,8 @@ MonoBehaviour:
   arrowLeftOn: {fileID: -8926181356164690812, guid: f8351412353dc4392bfb3fd92a4c3f34, type: 3}
   arrowRightOff: {fileID: 6658592013580433600, guid: 660a2f9a1cbc14044b5a7470690f34a0, type: 3}
   arrowRightOn: {fileID: 905634454378689739, guid: 84fe489a815b24048a6dbe32062a43b7, type: 3}
+  hitSound: {fileID: 8300000, guid: 88ea27cbde084471380ba091e26da576, type: 3}
+  missSound: {fileID: 8300000, guid: 5e6d2689514d04a33a4256ee6039bfbe, type: 3}
   leaderManager: {fileID: 1492621167}
 --- !u!4 &999275580
 Transform:
