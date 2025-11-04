@@ -22,8 +22,7 @@ public class GameHandler : MonoBehaviour
     public void Awake()
     {
         SetVolume();
-        pauseMenuUI.SetActive(false);
-        GameisPaused = false;
+        Resume();
         score.SetActive(true);
     }
 

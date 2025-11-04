@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -14,15 +16,16 @@ public class LevelManager : MonoBehaviour
     private bool isPlaying = false;
     private double pausedTimeOffset = 0;
 
-    public Leader_Manager leaderManager;
-    public Player_Manager playerManager;
+    public TEST_LEADER_MANAGER leaderManager;
+    public TEST_PLAYER_MANAGER playerManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-        musicSource.Play();
-        nextSeqTime = AudioSettings.dspTime + init_delay; // slight delay to be safe
+        double startTime = AudioSettings.dspTime + 2;
+        //musicSource.Play();
+        musicSource.PlayScheduled(startTime);
+        nextSeqTime = startTime + init_delay; // slight delay to be safe
         isPlaying = true;
 
     }
@@ -41,12 +44,18 @@ public class LevelManager : MonoBehaviour
             Debug.Log($"[{Time.time:F2}] Sequence trigger");
             nextSeqTime += (60 / bpm) * beats_per_seq;
 
-            // CALL LEADER/PLAYER FUNCTIONS HERE. Perhaps we can call leader,
-            //  retreive the sequence, then call player afterwards, passing
-            //  the sequence over.
+            //TESTING NEW LEADER MANAGER
+            int beats = 4;
+            int[] seq = leaderManager.StartSequence((float)(bpm), beats);
+            StartCoroutine(Wait_and_Call_Player((float)((60 / bpm) * beats), beats, seq));
 
         }
+    }
 
+    IEnumerator Wait_and_Call_Player(float wait_time, int beats, int[] seq)
+    {
+        yield return new WaitForSeconds(wait_time);
+        StartCoroutine(playerManager.StartSequence((float)bpm, beats, seq));
     }
     public void PauseMusic()
     {
