@@ -4,6 +4,8 @@ using System.Collections;
 
 public class Player_Manager : MonoBehaviour
 {
+    public GameHandler gameHandler;
+
     //Assign sprites/gameobjects
     [Header("Arrow GameObjects")]
     public GameObject arrowUp;
@@ -83,8 +85,10 @@ public class Player_Manager : MonoBehaviour
         Debug.Log($"[{Time.time:F2}] Player: Starting Player Sequence (Seq 0). Expected: " +
                   $"[{expectedSequence[0]}, {expectedSequence[1]}, {expectedSequence[2]}, {expectedSequence[3]}]\n");
 
+        leaderManager.playerCue.SetActive(true);
         // 1. Wait for the prep time set in Leader_Manager
         yield return new WaitForSeconds(leaderManager.playerPrepTime); 
+        
 
         // 2. Player's action time is 4 beats (4 * 0.5s = 2.0s)
         const float SEQUENCE_DURATION = beatDuration * 4; // 2.0s
@@ -92,6 +96,7 @@ public class Player_Manager : MonoBehaviour
         // Define 4 CONSECUTIVE input windows
         float[] windowStarts = new float[] { -0.05f, beatDuration, beatDuration * 2, beatDuration * 3 };
         float[] windowEnds = new float[] { beatDuration, beatDuration * 2, beatDuration * 3, SEQUENCE_DURATION };
+
 
         // Run the input loop for the duration of the sequence (2.0s)
         while (timer < SEQUENCE_DURATION) 
@@ -142,6 +147,7 @@ public class Player_Manager : MonoBehaviour
                     
                     if (correctInput)
                     {
+                        gameHandler.addScore();
                         score++;
                         Debug.Log($"[{Time.time:F2}] Player Seq0: Scored Input {i + 1} ({arrowName}) at timer {timer:F3}s");
                         inputScored[i] = true;
@@ -154,7 +160,7 @@ public class Player_Manager : MonoBehaviour
             // Increment time AFTER all checks have run. This guarantees the 0.0s window is checked.
             timer += Time.deltaTime; 
         }
-        
+        leaderManager.playerCue.SetActive(false);
         // 3. Score is counted immediately after the 2.0s window closes.
         Debug.Log($"[{Time.time:F2}] PLAYER SEQUENCE 0 ENDED. FINAL SCORE: {score}\n");
     }

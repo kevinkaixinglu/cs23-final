@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class GameHandler : MonoBehaviour
 {
@@ -11,11 +13,16 @@ public class GameHandler : MonoBehaviour
     public static float volumeLevel = 1.0f;
     public Slider volumeSlider;
 
+    public GameObject score;
+    public TextMeshProUGUI scoreText;
+    public int currScore = 0;  
+
     public void Awake()
     {
         SetVolume();
         pauseMenuUI.SetActive(false);
         GameisPaused = false;
+        score.SetActive(true);
     }
 
     void OnDestroy()
@@ -30,6 +37,7 @@ public class GameHandler : MonoBehaviour
             pauseMenuUI.SetActive(true);
             Time.timeScale = 0f;
             GameisPaused = true;
+            //score.SetActive(true);
         }
         else { Resume(); }
     }
@@ -39,6 +47,7 @@ public class GameHandler : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameisPaused = false;
+        //score.SetActive(false);
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -71,6 +80,12 @@ public class GameHandler : MonoBehaviour
         {
             Debug.LogWarning("AudioMixer is not assigned in PauseMenuHandler! Please assign it in the Inspector.");
         }
+    }
+
+    public void addScore()
+    {
+        currScore++;
+        scoreText.text = "SCORE: " + currScore.ToString();
     }
 }
 

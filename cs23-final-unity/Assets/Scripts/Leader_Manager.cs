@@ -3,6 +3,9 @@ using System.Collections;
 
 public class Leader_Manager : MonoBehaviour
 {
+
+    public GameObject playerCue;
+
     //Assign all Sprites + Gameobjects
     [Header("Arrow GameObjects")]
     public GameObject arrowUp;
@@ -48,7 +51,7 @@ public class Leader_Manager : MonoBehaviour
     void Start()
     {
         ResetArrows();
-        
+        playerCue.SetActive(false);
         // Start a coroutine to handle the initial 8-second delay
         StartCoroutine(InitialDelayAndStart());
     }
@@ -186,7 +189,7 @@ public class Leader_Manager : MonoBehaviour
                 yield return new WaitForSeconds(GAP_DURATION);
             }
         }
-
+        playerCue.SetActive(true);
         Debug.Log($"[{Time.time:F2}] Leader Seq0 complete.");
     }
 }
