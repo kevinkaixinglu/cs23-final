@@ -15,7 +15,9 @@ public class GameHandler : MonoBehaviour
 
     public GameObject score;
     public TextMeshProUGUI scoreText;
-    public int currScore = 0;  
+    public int currScore = 0;
+
+    public LevelManager levelManager;
 
     public void Awake()
     {
@@ -35,19 +37,24 @@ public class GameHandler : MonoBehaviour
         if (!GameisPaused)
         {
             pauseMenuUI.SetActive(true);
-            Time.timeScale = 0f;
+            //Time.timeScale = 0f;
             GameisPaused = true;
             //score.SetActive(true);
+            Debug.Log("Pausing...");
+            levelManager.Pause();
         }
         else { Resume(); }
     }
 
     public void Resume()
     {
+        Debug.Log("Resuming...");
+        levelManager.Resume();
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
         GameisPaused = false;
         //score.SetActive(false);
+        //levelHandler.Resume();
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
