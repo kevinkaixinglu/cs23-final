@@ -8,6 +8,7 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
     private const float beatDuration = 0.5f;
 
     public GameHandler gameHandler;
+    public Leader_Manager leaderManager;
 
     //Assign sprites/gameobjects
     [Header("Arrow GameObjects")]
@@ -60,7 +61,7 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
         float[] windowStarts = new float[] { -0.05f, beatDuration, beatDuration * 2, beatDuration * 3 };
         float[] windowEnds = new float[] { beatDuration, beatDuration * 2, beatDuration * 3, SEQUENCE_DURATION };
 
-
+        leaderManager.playerCue.SetActive(true);
         // Run the input loop for the duration of the sequence (2.0s)
         while (timer < SEQUENCE_DURATION)
         {
@@ -129,6 +130,7 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
             // Increment time AFTER all checks have run. This guarantees the 0.0s window is checked.
             timer += Time.deltaTime;
         }
+        leaderManager.playerCue.SetActive(false);
         // 3. Score is counted immediately after the 2.0s window closes.
         Debug.Log($"[{Time.time:F2}] PLAYER SEQUENCE 0 ENDED. FINAL SCORE: {score}\n");
     }
