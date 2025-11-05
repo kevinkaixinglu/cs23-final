@@ -6,6 +6,7 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
     private const float beatDuration = 0.5f;
 
     public GameHandler gameHandler;
+    public Leader_Manager leaderManager;
 
     [Header("Direction GameObjects (all at same position)")]
     public GameObject idleSprite;
