@@ -6,7 +6,7 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
     public GameHandler gameHandler;
     public Leader_Manager leaderManager;
 
-    [Header("Direction GameObjects (all at same position)")]
+    [Header("Direction GameObjects")]
     public GameObject idleSprite;
     public GameObject arrowUp;
     public GameObject arrowDown;
