@@ -143,8 +143,12 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
 
     void ShowOnlyOneArrow(GameObject arrowToShow)
     {
-        // Hide all first (including idle)
-        HideAll();
+        // Hide idle and all arrows first
+        if (idleSprite != null) idleSprite.SetActive(false);
+        if (arrowUp != null) arrowUp.SetActive(false);
+        if (arrowDown != null) arrowDown.SetActive(false);
+        if (arrowLeft != null) arrowLeft.SetActive(false);
+        if (arrowRight != null) arrowRight.SetActive(false);
         
         // Show only the specified direction
         if (arrowToShow != null)
@@ -155,23 +159,17 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
 
     void ShowIdle()
     {
-        // Hide all directions
-        HideAll();
-        
-        // Show only idle
-        if (idleSprite != null)
-        {
-            idleSprite.SetActive(true);
-        }
-    }
-
-    void HideAll()
-    {
-        if (idleSprite != null) idleSprite.SetActive(false);
+        // Hide ONLY the directional arrows, not the idle sprite
         if (arrowUp != null) arrowUp.SetActive(false);
         if (arrowDown != null) arrowDown.SetActive(false);
         if (arrowLeft != null) arrowLeft.SetActive(false);
         if (arrowRight != null) arrowRight.SetActive(false);
+        
+        // Show idle (only if not already active)
+        if (idleSprite != null && !idleSprite.activeSelf)
+        {
+            idleSprite.SetActive(true);
+        }
     }
 
     void PlaySound(AudioClip clip)
