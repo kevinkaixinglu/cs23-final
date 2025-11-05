@@ -41,6 +41,7 @@ public class GameHandler : MonoBehaviour
             //score.SetActive(true);
             Debug.Log("Pausing...");
             levelManager.Pause();
+            Time.timeScale = 0f;
         }
         else { Resume(); }
     }
@@ -50,6 +51,7 @@ public class GameHandler : MonoBehaviour
         Debug.Log("Resuming...");
         levelManager.Resume();
         pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
         //Time.timeScale = 1f;
         GameisPaused = false;
         //score.SetActive(false);
