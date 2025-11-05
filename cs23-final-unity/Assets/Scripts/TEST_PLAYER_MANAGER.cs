@@ -3,8 +3,6 @@ using System.Collections;
 
 public class TEST_PLAYER_MANAGER : MonoBehaviour
 {
-    private const float beatDuration = 0.5f;
-
     public GameHandler gameHandler;
     public Leader_Manager leaderManager;
 
@@ -43,8 +41,11 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
         bool[] missPlayed = new bool[4];
         int score = 0;
 
-        float SEQUENCE_DURATION = (60 / bpm) * beats;
+        // Calculate beat duration from BPM
+        float beatDuration = 60f / bpm;
+        float SEQUENCE_DURATION = beatDuration * beats;
 
+        // Define 4 CONSECUTIVE input windows based on actual BPM
         float[] windowStarts = new float[] { -0.05f, beatDuration, beatDuration * 2, beatDuration * 3 };
         float[] windowEnds = new float[] { beatDuration, beatDuration * 2, beatDuration * 3, SEQUENCE_DURATION };
 

@@ -922,6 +922,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameHandler: {fileID: 1359720770}
+  leaderManager: {fileID: 0}
   idleSprite: {fileID: 1354444358}
   arrowUp: {fileID: 1810012923}
   arrowDown: {fileID: 1340152764}
@@ -1490,6 +1491,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1354444359}
+  - component: {fileID: 1354444360}
   m_Layer: 0
   m_Name: Player_Idle
   m_TagString: Leader_Tag
@@ -1513,6 +1515,22 @@ Transform:
   - {fileID: 385208897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1354444360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354444358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2fd84fb4ba84ee5bf2f5c765c5edf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frame1: {fileID: -2352293529851434348, guid: 351a63c53859dcd429f4eff5047d9740, type: 3}
+  frame2: {fileID: 7653478643158771912, guid: d7ac7aea53598744f9f2cbb2e792731b, type: 3}
+  switchEveryBeat: 1
+  levelManager: {fileID: 1193123012}
 --- !u!114 &1359720770 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3624472310106039908, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
