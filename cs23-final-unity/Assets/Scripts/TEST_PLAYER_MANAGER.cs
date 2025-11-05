@@ -1,73 +1,56 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.Rendering.Universal;
 
 public class TEST_PLAYER_MANAGER : MonoBehaviour
 {
-
     private const float beatDuration = 0.5f;
 
     public GameHandler gameHandler;
 
-    //Assign sprites/gameobjects
-    [Header("Arrow GameObjects")]
+    [Header("Direction GameObjects (all at same position)")]
+    public GameObject idleSprite;
     public GameObject arrowUp;
     public GameObject arrowDown;
     public GameObject arrowLeft;
     public GameObject arrowRight;
 
-    [Header("Arrow Sprites")]
-    public Sprite arrowUpOff;
-    public Sprite arrowUpOn;
-    public Sprite arrowDownOff;
-    public Sprite arrowDownOn;
-    public Sprite arrowLeftOff;
-    public Sprite arrowLeftOn;
-    public Sprite arrowRightOff;
-    public Sprite arrowRightOn;
-
+    [Header("Audio")]
     public AudioClip hitSound;
     public AudioClip missSound;
     private AudioSource audioSource;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        ShowIdle();
         
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        activateKeys();
+        HandleVisibility();
     }
 
     public IEnumerator StartSequence(float bpm, int beats, int[] arr)
     {
         float timer = 0f;
-        bool[] inputScored = new bool[4]; // Track which inputs have been scored
-        bool[] missPlayed = new bool[4];  // Track which misses have been played
+        bool[] inputScored = new bool[4];
+        bool[] missPlayed = new bool[4];
         int score = 0;
 
-        //Debug.Log($"[{Time.time:F2}] Player: Starting Player Sequence (Seq 0). Expected: " +
-        //          $"[{expectedSequence[0]}, {expectedSequence[1]}, {expectedSequence[2]}, {expectedSequence[3]}]\n");
+        float SEQUENCE_DURATION = (60 / bpm) * beats;
 
-
-        // 2. Player's action time is 4 beats (4 * 0.5s = 2.0s)
-        float SEQUENCE_DURATION = (60 / bpm) * beats; // 2.0s
-
-        // Define 4 CONSECUTIVE input windows
         float[] windowStarts = new float[] { -0.05f, beatDuration, beatDuration * 2, beatDuration * 3 };
         float[] windowEnds = new float[] { beatDuration, beatDuration * 2, beatDuration * 3, SEQUENCE_DURATION };
 
-
-        // Run the input loop for the duration of the sequence (2.0s)
         while (timer < SEQUENCE_DURATION)
         {
-            // Check each of the 4 input windows
             for (int i = 0; i < 4; i++)
             {
-                //play miss sound if missed
                 if (timer > windowEnds[i] && !inputScored[i] && !missPlayed[i])
                 {
                     PlaySound(missSound);
@@ -80,31 +63,30 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
                     bool correctInput = false;
                     string arrowName = "";
 
-                    // Check if the correct arrow for this beat was pressed
                     switch (arr[i])
                     {
-                        case 0: // Expected UP
+                        case 0:
                             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
                             {
                                 correctInput = true;
                                 arrowName = "UP";
                             }
                             break;
-                        case 1: // Expected DOWN
+                        case 1:
                             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
                             {
                                 correctInput = true;
                                 arrowName = "DOWN";
                             }
                             break;
-                        case 2: // Expected LEFT
+                        case 2:
                             if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
                             {
                                 correctInput = true;
                                 arrowName = "LEFT";
                             }
                             break;
-                        case 3: // Expected RIGHT
+                        case 3:
                             if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
                             {
                                 correctInput = true;
@@ -124,74 +106,71 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
                 }
             }
 
-            yield return null; // wait for next frame
-
-            // Increment time AFTER all checks have run. This guarantees the 0.0s window is checked.
+            yield return null;
             timer += Time.deltaTime;
         }
-        // 3. Score is counted immediately after the 2.0s window closes.
+        
         Debug.Log($"[{Time.time:F2}] PLAYER SEQUENCE 0 ENDED. FINAL SCORE: {score}\n");
     }
 
-    void ResetArrows()
+    void HandleVisibility()
     {
-        arrowUp.GetComponentInChildren<SpriteRenderer>().sprite = arrowUpOff;
-        arrowDown.GetComponentInChildren<SpriteRenderer>().sprite = arrowDownOff;
-        arrowLeft.GetComponentInChildren<SpriteRenderer>().sprite = arrowLeftOff;
-        arrowRight.GetComponentInChildren<SpriteRenderer>().sprite = arrowRightOff;
-    }
-
-    void activateKeys()
-    {
-        SpriteRenderer sr;
-
-        // Activate/deactivate up key (Up Arrow or W)
+        // Check keys with priority: Up > Down > Left > Right
+        // Only ONE direction shows at a time
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
-            sr = arrowUp.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowUpOn;
+            ShowOnlyOneArrow(arrowUp);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+        {
+            ShowOnlyOneArrow(arrowDown);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+        {
+            ShowOnlyOneArrow(arrowLeft);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        {
+            ShowOnlyOneArrow(arrowRight);
         }
         else
         {
-            sr = arrowUp.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowUpOff;
+            // No keys pressed - show idle
+            ShowIdle();
         }
+    }
 
-        // Activate/deactivate down key (Down Arrow or S)
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+    void ShowOnlyOneArrow(GameObject arrowToShow)
+    {
+        // Hide all first (including idle)
+        HideAll();
+        
+        // Show only the specified direction
+        if (arrowToShow != null)
         {
-            sr = arrowDown.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowDownOn;
+            arrowToShow.SetActive(true);
         }
-        else
-        {
-            sr = arrowDown.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowDownOff;
-        }
+    }
 
-        // Activate/deactivate left key (Left Arrow or A)
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+    void ShowIdle()
+    {
+        // Hide all directions
+        HideAll();
+        
+        // Show only idle
+        if (idleSprite != null)
         {
-            sr = arrowLeft.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowLeftOn;
+            idleSprite.SetActive(true);
         }
-        else
-        {
-            sr = arrowLeft.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowLeftOff;
-        }
+    }
 
-        // Activate/deactivate right key (Right Arrow or D)
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            sr = arrowRight.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowRightOn;
-        }
-        else
-        {
-            sr = arrowRight.GetComponentInChildren<SpriteRenderer>();
-            sr.sprite = arrowRightOff;
-        }
+    void HideAll()
+    {
+        if (idleSprite != null) idleSprite.SetActive(false);
+        if (arrowUp != null) arrowUp.SetActive(false);
+        if (arrowDown != null) arrowDown.SetActive(false);
+        if (arrowLeft != null) arrowLeft.SetActive(false);
+        if (arrowRight != null) arrowRight.SetActive(false);
     }
 
     void PlaySound(AudioClip clip)
@@ -201,5 +180,4 @@ public class TEST_PLAYER_MANAGER : MonoBehaviour
             audioSource.PlayOneShot(clip);
         }
     }
-
 }
