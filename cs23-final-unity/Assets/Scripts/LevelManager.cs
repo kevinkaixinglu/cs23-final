@@ -22,7 +22,7 @@ public class LevelManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        double startTime = AudioSettings.dspTime + 2;
+        double startTime = AudioSettings.dspTime;
         //musicSource.Play();
         musicSource.PlayScheduled(startTime);
         nextSeqTime = startTime + init_delay; // slight delay to be safe
