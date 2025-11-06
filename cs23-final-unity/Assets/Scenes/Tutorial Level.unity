@@ -942,7 +942,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameHandler: {fileID: 1359720770}
-  leaderManager: {fileID: 0}
+  leaderManager: {fileID: 1492621167}
   idleSprite: {fileID: 1354444358}
   arrowUp: {fileID: 1810012923}
   arrowDown: {fileID: 1340152764}
