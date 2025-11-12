@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class Beat
 {
-    public bool[] notes = new bool[4];
+    public int[] notes = new int[4]; // Elements must range from 0-4
 }
 
 [System.Serializable]
