@@ -8,6 +8,7 @@ TagManager:
   - PauseMenuSlider
   - GameHandler
   - SettingsMenuSlider
+  - ConveyorBeat1
   layers:
   - Default
   - TransparentFX

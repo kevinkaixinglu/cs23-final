@@ -2,28 +2,57 @@ using UnityEngine;
 
 public class ConveyorPlayer : MonoBehaviour
 {
-    public Collider2D bird;
-    public Collider2D beat;
-    public float margin = 0.02f;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private Collider2D currBeat; // Stores the beat in the zone
 
-    // Update is called once per frame
-    void Update()
-    {
-        Debug.Log("running");
-        if (fullyInside(bird, beat)) {
-            Debug.Log("hit");
+    void OnTriggerEnter2D(Collider2D other) {
+        if (other.CompareTag("ConveyorBeat1")) {
+            Debug.Log("in zone");
+            currBeat = other;
         }
     }
 
-    bool fullyInside(Collider2D bird, Collider2D beat) {
-        Bounds birdBounds = bird.bounds;
-        Bounds beatBounds = beat.bounds;
-        return birdBounds.Contains(beatBounds.min + Vector3.one * margin) &&
-               birdBounds.Contains(beatBounds.max - Vector3.one * margin);
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("ConveyorBeat1")) {
+            currBeat = other;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("ConveyorBeat1"))
+        {
+            Debug.Log("out of zone");
+            if (currBeat == other) {
+                currBeat = null;
+            }
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) // Player pressed hit key
+        {
+            if (currBeat != null)
+            {
+                float distanceToCenter = Mathf.Abs(currBeat.transform.position.x - transform.position.x);
+
+                if (distanceToCenter < 0.1f)
+                    Debug.Log("Perfect!");
+                else if (distanceToCenter < 0.3f)
+                    Debug.Log("Good!");
+                else if (distanceToCenter < 0.5f)
+                    Debug.Log("Okay");
+                else
+                    Debug.Log("Miss");
+
+                Destroy(currBeat.gameObject); // Remove beat once hit
+                currBeat = null;
+            }
+            else
+            {
+                Debug.Log("Miss — no beat in zone!");
+            }
+        }
     }
 }
