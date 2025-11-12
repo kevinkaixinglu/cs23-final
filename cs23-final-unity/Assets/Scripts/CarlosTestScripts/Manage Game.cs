@@ -17,6 +17,17 @@ public class ManageGame : MonoBehaviour
     public AudioSource musicSource;
     public Measure[] beat_map;
 
+    [Header("Input Keys")]
+    public KeyCode key1 = KeyCode.Space;
+    public KeyCode key2 = KeyCode.LeftArrow;
+    public KeyCode key3 = KeyCode.RightArrow;
+    public KeyCode key4 = KeyCode.DownArrow;
+
+    private bool key1_pressed = false;
+    private bool key2_pressed = false;
+    private bool key3_pressed = false;
+    private bool key4_pressed = false;
+
     private double last_pause; // Track the dsp time we last paused at
     private double total_time_paused = 0; // To follow how behind dspTime we are
     private bool isPlaying = false;
@@ -38,29 +49,43 @@ public class ManageGame : MonoBehaviour
     {
         if (isPlaying)
         {
-            if(Input.GetKey(KeyCode.Space) && waiting_for_input)
+            if (Input.GetKey(key1))
             {
-                Debug.Log("YAY!"); // Hit our window
-                waiting_for_input = false;
+                if (!key1_pressed) // First occurence of key 1
+                {
+                    Debug.Log($"[{Time.time:F2}] Key 1 hit");
+                    if (waiting_for_input)
+                    {
+                        Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
+                        waiting_for_input = false;
+                    }
+                    key1_pressed = true;
+                }
+            }
+            else
+            {
+                key1_pressed = false;
             }
 
             double offset = 60 / bpm / 4; // So window opens slightly early
-            double time_in_song = AudioSettings.dspTime - total_time_paused + offset;
-            int curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 4; // tick = note relative to whole song
+            //double time_in_song = AudioSettings.dspTime - total_time_paused + offset;
+            double time_in_song = musicSource.time;
+            int curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
             int curr_meas = (curr_tick) / 16;
             int curr_beat = ((curr_tick % 16) / 4);
             int curr_note = curr_tick % 4;
+
             if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
             {
 
-                if (curr_beat == 0 && curr_note == 0)
+                if (curr_note == 0)
                 {
-                    Debug.Log("Time: " + time_in_song + " Measure: " + curr_meas + ", Beat: " + curr_beat + ", Note: " + curr_note);
+                    //Debug.Log("Time: " + time_in_song + " Measure: " + curr_meas + ", Beat: " + curr_beat + ", Note: " + curr_note);
                 }
 
                 if (waiting_for_input)
                 {
-                    Debug.Log("BOO!"); // Missed our window
+                    Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
                     waiting_for_input = false;
                 }
 
