@@ -18,21 +18,16 @@ public class NoteSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        beat_map = gameManager.beat_map;
-        musicSource = gameManager.musicSource;
-        bpm = gameManager.bpm;
     }
 
     // Update is called once per frame
     void Update()
     {
-        double time_in_song = musicSource.time + seconds_in_future;
-
-        //REPLACED WITH KALEN'S CODE RIGHT BELOW
-        // int curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
-        // int curr_meas = (curr_tick) / 16;
-        // int curr_beat = ((curr_tick % 16) / 4);
-        // int curr_note = curr_tick % 4;
+        double time_in_song = gameManager.time_in_song + seconds_in_future;
+        int curr_tick = ((int)(time_in_song * (gameManager.bpm / 60) * 4)) - 1; // tick = note relative to whole song
+        int curr_meas = (curr_tick) / 16;
+        int curr_beat = ((curr_tick % 16) / 4);
+        int curr_note = curr_tick % 4;
 
         int currMeas = gameManager.curr_meas;
         int currBeat = gameManager.curr_beat;
@@ -42,7 +37,7 @@ public class NoteSpawner : MonoBehaviour
 
         if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
         {
-            int next_input = beat_map[curr_meas].beats[curr_beat].notes[curr_note];
+            int next_input = gameManager.beat_map[curr_meas].beats[curr_beat].notes[curr_note];
             if (next_input != 0)
             {
                 //Get note position
