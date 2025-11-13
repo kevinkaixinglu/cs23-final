@@ -1,12 +1,12 @@
-using UnityEngine;
+// using UnityEngine;
 
-public class WinTextBounceTrigger : MonoBehaviour
-{
-    private Animator animator;
+// public class WinTextBounceTrigger : MonoBehaviour
+// {
+//     private Animator animator;
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        animator.Play("WinTextBounce");
-    }
-}
+//     void Start()
+//     {
+//         animator = GetComponent<Animator>();
+//         animator.Play("WinTextBounce");
+//     }
+// }
