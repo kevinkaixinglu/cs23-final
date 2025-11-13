@@ -7,33 +7,38 @@ public class NoteSpawner : MonoBehaviour
     public GameObject line;
     public GameObject note_prefab;
 
-    [Header("Link to Game Manager:")]
-    public ManageGame manage_game;
+    [Header("Game Manager:")]
+    public ManageGame gameManager;
 
     [Header("Timing for spawning notes:")]
     public double seconds_in_future = 2;
 
-    private AudioSource musicSource;
-    private Measure[] beat_map;
-    private double bpm;
     private int last_tick = -1;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        beat_map = manage_game.beat_map;
-        musicSource = manage_game.musicSource;
-        bpm = manage_game.bpm;
+        beat_map = gameManager.beat_map;
+        musicSource = gameManager.musicSource;
+        bpm = gameManager.bpm;
     }
 
     // Update is called once per frame
     void Update()
     {
         double time_in_song = musicSource.time + seconds_in_future;
-        int curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
-        int curr_meas = (curr_tick) / 16;
-        int curr_beat = ((curr_tick % 16) / 4);
-        int curr_note = curr_tick % 4;
+
+        //REPLACED WITH KALEN'S CODE RIGHT BELOW
+        // int curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
+        // int curr_meas = (curr_tick) / 16;
+        // int curr_beat = ((curr_tick % 16) / 4);
+        // int curr_note = curr_tick % 4;
+
+        int currMeas = gameManager.curr_meas;
+        int currBeat = gameManager.curr_beat;
+        int currNote = gameManager.curr_note;
+
+        //END OF KALEN'S NEW CODE
 
         if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
         {
