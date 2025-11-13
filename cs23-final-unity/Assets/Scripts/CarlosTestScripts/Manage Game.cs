@@ -23,7 +23,14 @@ public class ManageGame : MonoBehaviour
     [Header("Input Keys:")]
     public KeyCode[] key = new KeyCode[4];
 
-    private bool isPlaying = false;
+    [Header("Song Status (FOR ACCESS ONLY)")]
+    public double time_in_song;
+    public int curr_tick;
+    public int curr_meas;
+    public int curr_beat;
+    public int curr_note;
+    public bool isPlaying = false;
+    
     private bool[] key_pressed = new bool[4]; // Used to stop player from holding down button
     private bool[] waiting_for_input = new bool[4];
 
@@ -63,11 +70,11 @@ public class ManageGame : MonoBehaviour
                 }
             }
 
-            double time_in_song = musicSource.time;
-            int curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
-            int curr_meas = (curr_tick) / 16;
-            int curr_beat = ((curr_tick % 16) / 4);
-            int curr_note = curr_tick % 4;
+            time_in_song = musicSource.time;
+            curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
+            curr_meas = (curr_tick) / 16;
+            curr_beat = ((curr_tick % 16) / 4);
+            curr_note = curr_tick % 4;
 
             if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
             {
