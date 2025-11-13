@@ -29,8 +29,8 @@ public class ManageGame : MonoBehaviour
     public int curr_meas;
     public int curr_beat;
     public int curr_note;
-
-    private bool isPlaying = false;
+    public bool isPlaying = false;
+    
     private bool[] key_pressed = new bool[4]; // Used to stop player from holding down button
     private bool[] waiting_for_input = new bool[4];
 
