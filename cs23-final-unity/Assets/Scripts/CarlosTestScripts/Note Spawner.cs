@@ -7,8 +7,8 @@ public class NoteSpawner : MonoBehaviour
     public GameObject line;
     public GameObject note_prefab;
 
-    [Header("Game Handler:")]
-    public GameObject game_handler;
+    [Header("Link to Game Manager:")]
+    public ManageGame manage_game;
 
     [Header("Timing for spawning notes:")]
     public double seconds_in_future = 2;
@@ -21,10 +21,9 @@ public class NoteSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        ManageGame script = game_handler.GetComponent<ManageGame>();
-        beat_map = script.beat_map;
-        musicSource = script.musicSource;
-        bpm = script.bpm;
+        beat_map = manage_game.beat_map;
+        musicSource = manage_game.musicSource;
+        bpm = manage_game.bpm;
     }
 
     // Update is called once per frame
