@@ -61,6 +61,10 @@ public class ManageGame : MonoBehaviour
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
                             waiting_for_input[i] = false;
                         }
+                        else
+                        {
+                            Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
+                        }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
                     }
                 }
@@ -70,13 +74,14 @@ public class ManageGame : MonoBehaviour
                 }
             }
 
-            time_in_song = musicSource.time;
-            curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
+            double sec_per_tick = 60 / bpm / 4;
+            time_in_song = musicSource.time - sec_per_tick / 4; // This subtraction allows for slightly early inputs
+            curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song
             curr_meas = (curr_tick) / 16;
             curr_beat = ((curr_tick % 16) / 4);
             curr_note = curr_tick % 4;
 
-            if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
+            if (curr_tick != last_tick && curr_beat >= 0 && curr_note >= 0 && curr_meas >= 0)
             {
 
                 //if (curr_note == 0) // Testing
