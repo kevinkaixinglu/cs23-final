@@ -128,7 +128,7 @@ public class beatmapBuilder
         {
             for (int i = 0; i < 4; i++)
             {
-                beatMap[m].beats[b].notes[i] = 0;
+                beatMap[m].qNotes[b].sNotes[i] = 0;
             }
         }
         return this;

@@ -26,18 +26,18 @@ public class NoteSpawner : MonoBehaviour
         double time_in_song = gameManager.time_in_song + seconds_in_future;
         int curr_tick = ((int)(time_in_song * (gameManager.bpm / 60) * 4)) - 1; // tick = note relative to whole song
         int curr_meas = (curr_tick) / 16;
-        int curr_beat = ((curr_tick % 16) / 4);
-        int curr_note = curr_tick % 4;
+        int curr_qNote = ((curr_tick % 16) / 4);
+        int curr_sNote = curr_tick % 4;
 
         int currMeas = gameManager.curr_meas;
-        int currBeat = gameManager.curr_beat;
-        int currNote = gameManager.curr_note;
+        int currBeat = gameManager.curr_qNote;
+        int currNote = gameManager.curr_sNote;
 
         //END OF KALEN'S NEW CODE
 
-        if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
+        if (curr_tick != last_tick && curr_sNote >= 0 && curr_qNote >= 0 && curr_meas >= 0)
         {
-            int next_input = gameManager.beat_map[curr_meas].beats[curr_beat].notes[curr_note];
+            int next_input = gameManager.beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
             if (next_input != 0)
             {
                 //Get note position

@@ -27,8 +27,8 @@ public class ManageGame : MonoBehaviour
     public double time_in_song;
     public int curr_tick;
     public int curr_meas;
-    public int curr_beat;
-    public int curr_note;
+    public int curr_qNote;
+    public int curr_sNote;
     public bool isPlaying = false;
     
     private bool[] key_pressed = new bool[4]; // Used to stop player from holding down button
@@ -78,10 +78,10 @@ public class ManageGame : MonoBehaviour
             time_in_song = musicSource.time - sec_per_tick / 4; // This subtraction allows for slightly early inputs
             curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song
             curr_meas = (curr_tick) / 16;
-            curr_beat = ((curr_tick % 16) / 4);
-            curr_note = curr_tick % 4;
+            curr_qNote = ((curr_tick % 16) / 4);
+            curr_sNote = curr_tick % 4;
 
-            if (curr_tick != last_tick && curr_beat >= 0 && curr_note >= 0 && curr_meas >= 0)
+            if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
 
                 //if (curr_note == 0) // Testing
@@ -98,7 +98,7 @@ public class ManageGame : MonoBehaviour
                     }
                 }
 
-                int next_input = beat_map[curr_meas].beats[curr_beat].notes[curr_note];
+                int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
                 if (next_input != 0)
                 {
                     waiting_for_input[next_input - 1] = true; // Make window for input

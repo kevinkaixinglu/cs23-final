@@ -14,11 +14,11 @@ public class AutoStartGame : MonoBehaviour
             for (int i = 0; i < gameManager.beat_map.Length; i++)
             {
                 gameManager.beat_map[i] = new Measure();
-                gameManager.beat_map[i].beats = new Beat[4];
+                gameManager.beat_map[i].qNotes = new QNote[4];
                 for (int j = 0; j < 4; j++)
                 {
-                    gameManager.beat_map[i].beats[j] = new Beat();
-                    gameManager.beat_map[i].beats[j].notes = new int[4]; // All zeros
+                    gameManager.beat_map[i].qNotes[j] = new QNote();
+                    gameManager.beat_map[i].qNotes[j].sNotes = new int[4]; // All zeros
                 }
             }
 

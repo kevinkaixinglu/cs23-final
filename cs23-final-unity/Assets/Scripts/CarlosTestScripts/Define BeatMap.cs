@@ -1,13 +1,13 @@
 using UnityEngine;
 
 [System.Serializable]
-public class Beat
+public class QNote
 {
-    public int[] notes = new int[4]; // Elements must range from 0-4
+    public int[] sNotes = new int[4]; // Elements must range from 0-4
 }
 
 [System.Serializable]
 public class Measure
 {
-    public Beat[] beats = new Beat[4];
+    public QNote[] qNotes = new QNote[4];
 }

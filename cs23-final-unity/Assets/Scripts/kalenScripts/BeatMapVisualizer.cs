@@ -16,15 +16,15 @@ public abstract class BeatmapVisualizer : MonoBehaviour
             return;
 
         int currMeas = gameManager.curr_meas;
-        int currBeat = gameManager.curr_beat;
-        int currNote = gameManager.curr_note;
+        int curr_qNote = gameManager.curr_qNote;
+        int curr_sNote = gameManager.curr_sNote;
 
         // Only trigger once per tick
         if (gameManager.curr_tick != lastTick &&
-            currMeas >= 0 && currBeat >= 0 && currNote >= 0 &&
+            currMeas >= 0 && curr_qNote >= 0 && curr_sNote >= 0 &&
             currMeas < npcBeatMap.Length)
         {
-            int noteValue = npcBeatMap[currMeas].beats[currBeat].notes[currNote];
+            int noteValue = npcBeatMap[currMeas].qNotes[curr_qNote].sNotes[curr_sNote];
             OnBeatTriggered(noteValue);
             lastTick = gameManager.curr_tick;
         }

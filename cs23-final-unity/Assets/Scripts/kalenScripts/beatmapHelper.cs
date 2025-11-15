@@ -22,12 +22,12 @@ public static class beatmapHelper
         
         for (int i = 0; i < duration && totalPosition < 16; i++)
         {
-            int currBeat = totalPosition / 4;
+            int curr_qNote = totalPosition / 4;
             int currNote = totalPosition % 4;
             
-            if (currBeat < 4 && currNote < 4)
+            if (curr_qNote < 4 && currNote < 4)
             {
-                measure.beats[currBeat].notes[currNote] = value;
+                measure.qNotes[curr_qNote].sNotes[currNote] = value;
             }
             totalPosition++;
         }
@@ -46,7 +46,7 @@ public static class beatmapHelper
         {
             for (int j = 0; j < 4; j++)
             {
-                measure.beats[i].notes[j] = 0;
+                measure.qNotes[i].sNotes[j] = 0;
             }
         }
     }
@@ -56,12 +56,12 @@ public static class beatmapHelper
     public static Measure CreateEmptyMeasure()
     {
         Measure measure = new Measure();
-        measure.beats = new Beat[4];
+        measure.qNotes = new QNote[4];
         
         for (int i = 0; i < 4; i++)
         {
-            measure.beats[i] = new Beat();
-            measure.beats[i].notes = new int[4];
+            measure.qNotes[i] = new QNote();
+            measure.qNotes[i].sNotes = new int[4];
         }
         
         return measure;

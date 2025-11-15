@@ -10,8 +10,8 @@ public class RhythmTimer : MonoBehaviour
     public double time_in_song;
     public int curr_tick;
     public int curr_meas;
-    public int curr_beat;
-    public int curr_note;
+    public int curr_qNote;
+    public int curr_sNote;
     public bool isPlaying = true;
 
     void Start()
@@ -30,8 +30,8 @@ public class RhythmTimer : MonoBehaviour
             time_in_song = musicSource.time;
             curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1;
             curr_meas = (curr_tick) / 16;
-            curr_beat = ((curr_tick % 16) / 4);
-            curr_note = curr_tick % 4;
+            curr_qNote = ((curr_tick % 16) / 4);
+            curr_sNote = curr_tick % 4;
         }
     }
 
