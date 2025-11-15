@@ -931,7 +931,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   line: {fileID: 989221960}
   note_prefab: {fileID: 4713172018705252912, guid: df2100e0654931645bcfc31a2eb6ae57, type: 3}
-  game_handler: {fileID: 6280632067165696642}
+  gameManager: {fileID: 6280632067165696643}
   seconds_in_future: 2
 --- !u!4 &1336053254
 Transform:
@@ -1636,6 +1636,12 @@ MonoBehaviour:
   bpm: 120
   musicSource: {fileID: 6280632067165696645}
   key: 61000000640000006a0000006c000000
+  time_in_song: 0
+  curr_tick: 0
+  curr_meas: 0
+  curr_beat: 0
+  curr_note: 0
+  isPlaying: 0
 --- !u!114 &6280632067165696644
 MonoBehaviour:
   m_ObjectHideFlags: 0
