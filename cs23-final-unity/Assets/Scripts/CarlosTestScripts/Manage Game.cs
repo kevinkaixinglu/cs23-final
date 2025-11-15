@@ -10,6 +10,7 @@ public class ManageGame : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
+    public MakeBeatmap special_beatmap; // Special script pertaining to this level
 
     [Header("Score Keeping:")]
     public GameObject score;
@@ -30,7 +31,7 @@ public class ManageGame : MonoBehaviour
     public int curr_qNote;
     public int curr_sNote;
     public bool isPlaying = false;
-    
+
     private bool[] key_pressed = new bool[4]; // Used to stop player from holding down button
     private bool[] waiting_for_input = new bool[4];
 
@@ -41,6 +42,7 @@ public class ManageGame : MonoBehaviour
     {
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
+        beat_map = special_beatmap.SpecialBeatMap();
         isPlaying = true;
     }
 
