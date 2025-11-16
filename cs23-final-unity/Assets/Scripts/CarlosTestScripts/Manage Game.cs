@@ -68,6 +68,7 @@ public class ManageGame : MonoBehaviour
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
                         }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
+                        break;
                     }
                 }
                 else
@@ -103,7 +104,10 @@ public class ManageGame : MonoBehaviour
                 int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
                 if (next_input != 0)
                 {
-                    waiting_for_input[next_input - 1] = true; // Make window for input
+                    //Note the "%4". This allows user to record any positive number, which
+                    //  can allow differenciation between numbers like 4 and 8, which will
+                    //  map to the same input key, but may pertain to different animations.
+                    waiting_for_input[(next_input - 1) % 4] = true; // Make window for input
                 }
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)

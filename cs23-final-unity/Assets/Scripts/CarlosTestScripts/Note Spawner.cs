@@ -57,7 +57,7 @@ public class NoteSpawner : MonoBehaviour
                 rb.linearVelocity = vel; // Send it down
 
                 //Call its destruction
-                note.GetComponent<Destroy_Note>().callDestruction(seconds_in_future + 1);
+                note.GetComponent<Destroy_Note>().callDestruction(seconds_in_future + .04);
             }
 
             last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)

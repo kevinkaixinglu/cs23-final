@@ -22,9 +22,9 @@ public class MuchoLoco_BeatMap : MakeBeatmap
         }
         for (int i = 9; i < num_measures + 1; i = i + 1)
         {
-            builder.PlaceSixteenthNote(i, 2, 1, 1);
+            builder.PlaceSixteenthNote(i, 2, 1, 5);
             builder.PlaceSixteenthNote(i, 3, 1, 1);
-            builder.PlaceSixteenthNote(i, 4, 1, 1);
+            builder.PlaceSixteenthNote(i, 4, 1, 5);
         }
 
         return builder.GetBeatMap();
