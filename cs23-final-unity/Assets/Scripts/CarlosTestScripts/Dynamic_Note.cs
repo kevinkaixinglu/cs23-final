@@ -16,8 +16,8 @@ public class Dynamic_Note : MonoBehaviour
     {
         if (sent)
         {
-            double time_in_song = gameManager.time_in_song;
-            int curr_tick = ((int)(time_in_song * (gameManager.bpm / 60) * 4)) - 1;
+            double time_in_song = gameManager.musicSource.time - .11f;
+            int curr_tick = (int)(time_in_song * (gameManager.bpm / 60) * 4 - 1);
             int curr_qNote = (curr_tick / 4); // Relative to song, not meas
             int curr_beat = curr_qNote / qNotes_per_beat;
             if (curr_beat != last_beat)

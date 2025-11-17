@@ -35,10 +35,11 @@ public class NoteSpawner2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time_in_song[0] = gameManager.time_in_song + upNote_SpawnTime;
-        time_in_song[1] = gameManager.time_in_song + downNote_SpawnTime;
-        time_in_song[2] = gameManager.time_in_song + leftNote_SpawnBeat * 60 / gameManager.bpm;
-        time_in_song[3] = gameManager.time_in_song + rightNote_SpawnBeat * 2 * 60 / gameManager.bpm;
+        float offset = .11f;
+        time_in_song[0] = gameManager.musicSource.time + upNote_SpawnTime;
+        time_in_song[1] = gameManager.musicSource.time + downNote_SpawnTime;
+        time_in_song[2] = gameManager.musicSource.time + leftNote_SpawnBeat * 60 / gameManager.bpm - offset;
+        time_in_song[3] = gameManager.musicSource.time + rightNote_SpawnBeat * 2 * 60 / gameManager.bpm - offset;
 
         for (int i = 0; i < 4; i++)
         {

@@ -16,10 +16,13 @@ public class MuchoLoco_BeatMap : MakeBeatmap
         int meas = 1;
 
         meas += 4;
-        duration = 4;
+        duration = 20;
         for (int i = meas; i < meas + duration; i++)
         {
-            builder.PlaceSixteenthNote(i, 1, 1, 1 + 4 * ((i + 1) % 4));
+            for (int j = 1; j < 5; j += 2)
+            {
+                builder.PlaceSixteenthNote(i, j, 1, 9);
+            }
         }
 
         return builder.GetBeatMap();
