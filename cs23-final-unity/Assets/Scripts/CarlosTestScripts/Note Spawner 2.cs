@@ -4,10 +4,8 @@ using static UnityEngine.GraphicsBuffer;
 public class NoteSpawner2 : MonoBehaviour
 {
     [Header("Visuals:")]
-    public GameObject note_up;
-    public GameObject note_down;
-    public GameObject note_left;
-    public GameObject note_right;
+    public GameObject static_note;
+    public GameObject dynamic_note;
 
     [Header("Game Manager:")]
     public ManageGame gameManager;
@@ -40,7 +38,7 @@ public class NoteSpawner2 : MonoBehaviour
         time_in_song[0] = gameManager.time_in_song + upNote_SpawnTime;
         time_in_song[1] = gameManager.time_in_song + downNote_SpawnTime;
         time_in_song[2] = gameManager.time_in_song + leftNote_SpawnBeat * 60 / gameManager.bpm;
-        time_in_song[3] = gameManager.time_in_song + rightNote_SpawnBeat * 60 / gameManager.bpm;
+        time_in_song[3] = gameManager.time_in_song + rightNote_SpawnBeat * 2 * 60 / gameManager.bpm;
 
         for (int i = 0; i < 4; i++)
         {
@@ -58,7 +56,7 @@ public class NoteSpawner2 : MonoBehaviour
                 int next_input = gameManager.beat_map[curr_meas[i]].qNotes[curr_qNote[i]].sNotes[curr_sNote[i]];
                 if (next_input == 1 + 4 * i)
                 {
-                    SpawnNote(i + 1, time_in_song[i] - gameManager.time_in_song);
+                    SpawnNote(i + 1);
                 }
 
                 last_tick[i] = curr_tick[i]; // Wait until we get to the next tick (tick defined above)
@@ -66,40 +64,61 @@ public class NoteSpawner2 : MonoBehaviour
         }
     }
 
-    void SpawnNote(int note, double time)
+    void SpawnNote(int note)
     {
 
         Vector3 dest = transform.position; // Go towards NoteSpawner
+        float edge_of_screen = 9.5f;
 
         if (note == 1) // UpNote
         {
             //Create Note
-            Vector3 start = transform.position + (transform.up * 9.5f);
-            GameObject note_obj = Instantiate(note_up, start, Quaternion.identity);
+            Vector3 start = transform.position + (transform.up * edge_of_screen);
+            GameObject note_obj = Instantiate(static_note, start, Quaternion.identity);
 
-            //Give it info and call its destruction
-            note_obj.GetComponent<UpNote>().time = time;
-            note_obj.GetComponent<UpNote>().dest = dest - start;
-            Destroy(note_obj, (float)time + .04f);
+            //Send it and call its destructor
+            note_obj.GetComponent<StaticNote>().Send(upNote_SpawnTime, dest - start);
+            Destroy(note_obj, (float)upNote_SpawnTime + .04f);
         }
         else if (note == 2) // DownNote
         {
             //Create Note
-            Vector3 start = transform.position + (-transform.up * 9.5f);
-            GameObject note_obj = Instantiate(note_up, start, Quaternion.identity);
+            Vector3 start = transform.position - (transform.up * edge_of_screen);
+            GameObject note_obj = Instantiate(static_note, start, Quaternion.identity);
 
-            //Give it info and call its destruction
-            note_obj.GetComponent<UpNote>().time = time;
-            note_obj.GetComponent<UpNote>().dest = dest - start;
-            Destroy(note_obj, (float)time + .04f);
+            //Send it and call its destructor
+            note_obj.GetComponent<StaticNote>().Send(downNote_SpawnTime, dest - start);
+            Destroy(note_obj, (float)downNote_SpawnTime + .04f);
         }
         else if (note == 3) // LeftNote
         {
+            //Create Note
+            Vector3 start = transform.position - (transform.right * edge_of_screen);
+            GameObject note_obj = Instantiate(dynamic_note, start, Quaternion.identity);
 
+            //Send it and call its destructor
+            int qNotes_per_beat = 1;
+            note_obj.GetComponent<Dynamic_Note>().qNotes_per_beat = qNotes_per_beat; // beats = 1 qNote
+            note_obj.GetComponent<Dynamic_Note>().beats = leftNote_SpawnBeat;
+            note_obj.GetComponent<Dynamic_Note>().dest = dest - start;
+            note_obj.GetComponent<Dynamic_Note>().gameManager = gameManager;
+            note_obj.GetComponent<Dynamic_Note>().sent = true;
+            Destroy(note_obj, (float)leftNote_SpawnBeat * qNotes_per_beat * 60 / (float)gameManager.bpm);
         }
         else if (note == 4) // RightNote
         {
+            //Create Note
+            Vector3 start = transform.position + (transform.right * edge_of_screen);
+            GameObject note_obj = Instantiate(dynamic_note, start, Quaternion.identity);
 
+            //Send it and call its destructor
+            int qNotes_per_beat = 2;
+            note_obj.GetComponent<Dynamic_Note>().qNotes_per_beat = qNotes_per_beat; // beats = 2 qNote
+            note_obj.GetComponent<Dynamic_Note>().beats = rightNote_SpawnBeat;
+            note_obj.GetComponent<Dynamic_Note>().dest = dest - start;
+            note_obj.GetComponent<Dynamic_Note>().gameManager = gameManager;
+            note_obj.GetComponent<Dynamic_Note>().sent = true;
+            Destroy(note_obj, (float)rightNote_SpawnBeat * qNotes_per_beat * 60 / (float)gameManager.bpm);
         }
     }
 
