@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
-public class ManageGame : MonoBehaviour
+public class ManageGame2 : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
@@ -77,14 +77,15 @@ public class ManageGame : MonoBehaviour
                 }
             }
 
-            double sec_per_tick = 60 / bpm / 4;
+            double sec_per_tick = 60 / bpm / 2; // CHANGE FROM OG SCRIPT
             time_in_song = musicSource.time - sec_per_tick / 4; // This subtraction allows for slightly early inputs
             curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song
             curr_meas = (curr_tick) / 16;
             curr_qNote = ((curr_tick % 16) / 4);
             curr_sNote = curr_tick % 4;
 
-            if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
+            if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0
+                && curr_sNote % 2 != 1) // CHANGE FROM OG SCRIPT
             {
 
                 //if (curr_note == 0) // Testing
