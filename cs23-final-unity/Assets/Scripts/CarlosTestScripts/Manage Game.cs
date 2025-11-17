@@ -10,6 +10,7 @@ public class ManageGame : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
+    public MakeBeatmap special_beatmap; // Special script pertaining to this level
 
     [Header("Score Keeping:")]
     public GameObject score;
@@ -27,10 +28,10 @@ public class ManageGame : MonoBehaviour
     public double time_in_song;
     public int curr_tick;
     public int curr_meas;
-    public int curr_beat;
-    public int curr_note;
+    public int curr_qNote;
+    public int curr_sNote;
     public bool isPlaying = false;
-    
+
     private bool[] key_pressed = new bool[4]; // Used to stop player from holding down button
     private bool[] waiting_for_input = new bool[4];
 
@@ -41,6 +42,7 @@ public class ManageGame : MonoBehaviour
     {
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
+        beat_map = special_beatmap.SpecialBeatMap();
         isPlaying = true;
     }
 
@@ -61,7 +63,12 @@ public class ManageGame : MonoBehaviour
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
                             waiting_for_input[i] = false;
                         }
+                        else
+                        {
+                            Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
+                        }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
+                        break;
                     }
                 }
                 else
@@ -70,13 +77,14 @@ public class ManageGame : MonoBehaviour
                 }
             }
 
-            time_in_song = musicSource.time;
-            curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = note relative to whole song
+            double sec_per_tick = 60 / bpm / 4;
+            time_in_song = musicSource.time - sec_per_tick / 4; // This subtraction allows for slightly early inputs
+            curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song
             curr_meas = (curr_tick) / 16;
-            curr_beat = ((curr_tick % 16) / 4);
-            curr_note = curr_tick % 4;
+            curr_qNote = ((curr_tick % 16) / 4);
+            curr_sNote = curr_tick % 4;
 
-            if (curr_tick != last_tick && curr_note >= 0 && curr_beat >= 0 && curr_meas >= 0)
+            if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
 
                 //if (curr_note == 0) // Testing
@@ -93,10 +101,13 @@ public class ManageGame : MonoBehaviour
                     }
                 }
 
-                int next_input = beat_map[curr_meas].beats[curr_beat].notes[curr_note];
+                int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
                 if (next_input != 0)
                 {
-                    waiting_for_input[next_input - 1] = true; // Make window for input
+                    //Note the "%4". This allows user to record any positive number, which
+                    //  can allow differenciation between numbers like 4 and 8, which will
+                    //  map to the same input key, but may pertain to different animations.
+                    waiting_for_input[(next_input - 1) % 4] = true; // Make window for input
                 }
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
