@@ -39,7 +39,7 @@ public class MuchoLoco_BeatMap : MakeBeatmap
         {
             for (int j = 2; j < 5; j += 2)
             {
-                builder.PlaceSixteenthNote(i, j, 3, 13);
+                builder.PlaceSixteenthNote(i, j, 3, 5);
             }
         }
 
@@ -48,7 +48,7 @@ public class MuchoLoco_BeatMap : MakeBeatmap
         {
             for (int j = 1; j < 5; j += 2)
             {
-                builder.PlaceSixteenthNote(i, j, 3, 13);
+                builder.PlaceSixteenthNote(i, j, 3, 1);
             }
         }
 
