@@ -10,7 +10,7 @@ public class ManageGame : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
-    public MakeBeatmap special_beatmap; // Special script pertaining to this level
+    // public MakeBeatmap special_beatmap; // COMMENTED OUT - Special script pertaining to this level
 
     [Header("Score Keeping:")]
     public GameObject score;
@@ -42,7 +42,7 @@ public class ManageGame : MonoBehaviour
     {
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
-        beat_map = special_beatmap.SpecialBeatMap();
+        // beat_map = special_beatmap.SpecialBeatMap(); // COMMENTED OUT
         isPlaying = true;
     }
 
@@ -86,12 +86,6 @@ public class ManageGame : MonoBehaviour
 
             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
-
-                //if (curr_note == 0) // Testing
-                //{
-                //    Debug.Log("Time: " + time_in_song + " Measure: " + curr_meas + ", Beat: " + curr_beat + ", Note: " + curr_note);
-                //}
-
                 for (int i = 0; i < 4; i++) //For all four input keys
                 {
                     if (waiting_for_input[i])
@@ -101,14 +95,18 @@ public class ManageGame : MonoBehaviour
                     }
                 }
 
-                int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
-                if (next_input != 0)
+                // ADD NULL CHECK for beat_map since special_beatmap is commented out
+                if (beat_map != null && curr_meas < beat_map.Length)
                 {
-                    //Note the "%4". This allows user to record any positive number, which
-                    //  can allow differenciation between numbers like 4 and 8, which will
-                    //  map to the same input key, but may pertain to different animations.
-                    waiting_for_input[(next_input - 1) % 4] = true; // Make window for input
-                    Debug.Log($"[{Time.time:F2}] WINDOW OPEN!"); // Missed our window
+                    int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
+                    if (next_input != 0)
+                    {
+                        //Note the "%4". This allows user to record any positive number, which
+                        //  can allow differenciation between numbers like 4 and 8, which will
+                        //  map to the same input key, but may pertain to different animations.
+                        waiting_for_input[(next_input - 1) % 4] = true; // Make window for input
+                        Debug.Log($"[{Time.time:F2}] WINDOW OPEN!"); // Missed our window
+                    }
                 }
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
