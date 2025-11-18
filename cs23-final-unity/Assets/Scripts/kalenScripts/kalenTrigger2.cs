@@ -10,23 +10,28 @@ public class kalenTrigger2 : BeatmapVisualizer
 
     void Start()
     {
-        Debug.Log("bird1 Start() called");
+        Debug.Log("kalenTrigger2: Start() called");
         
         if (gameManager == null)
         {
-            Debug.LogError("bird1: gameManager is NOT assigned!");
+            Debug.LogError("kalenTrigger2: gameManager is NOT assigned!");
             return;
         }
 
         if (npcBeatMap == null || npcBeatMap.Length == 0) 
         {
-            beatmapBuilder builder = new beatmapBuilder(52);
-            builder.PlaceQuarterNote(5, 3, 1)
-                .PlaceQuarterNote(5, 4, 0);
-
+            int totalMeasures = 52;
+            beatmapBuilder builder = new beatmapBuilder(totalMeasures);
+            
+            // Place note on beat 3 of every OTHER measure (1, 3, 5, 7, etc.)
+            for (int measure = 1; measure <= totalMeasures; measure += 2)
+            {
+                builder.PlaceQuarterNote(measure, 3, 1); // Beat 3: active
+                // Beat 4 is automatically 0 (idle)
+            }
             
             npcBeatMap = builder.GetBeatMap();
-            Debug.Log($"bird1: Beatmap created");
+            Debug.Log($"kalenTrigger2: Beatmap created with pattern on every other measure");
         }
 
         // Initialize to idle
