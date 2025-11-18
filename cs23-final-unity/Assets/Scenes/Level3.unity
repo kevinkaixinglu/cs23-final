@@ -249,6 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beat_map: []
+  special_beatmap: {fileID: 1912899706}
   score: {fileID: 1280294282}
   scoreText: {fileID: 1342837822}
   currScore: 0
@@ -2019,7 +2020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1912899705
 Transform:
   m_ObjectHideFlags: 0
@@ -2044,7 +2045,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1912899703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f4fdeba81f014410912ade0b35950b3, type: 3}
+  m_Script: {fileID: 11500000, guid: a4b6f8a21e03441e5a0623430776a9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1923777133
