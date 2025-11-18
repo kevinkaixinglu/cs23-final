@@ -60,6 +60,7 @@ public class ManageGame : MonoBehaviour
                         Debug.Log($"[{Time.time:F2}] Key " + (i + 1) + " hit");
                         if (waiting_for_input[i]) // Are we supposed to have hit the key?
                         {
+                            currScore++;
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
                             waiting_for_input[i] = false;
                         }
@@ -90,6 +91,7 @@ public class ManageGame : MonoBehaviour
                 {
                     if (waiting_for_input[i])
                     {
+                        currScore--;
                         Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
                         waiting_for_input[i] = false;
                     }
@@ -111,6 +113,7 @@ public class ManageGame : MonoBehaviour
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
             }
+            scoreText.SetText(currScore.ToString());
         }
     }
 
