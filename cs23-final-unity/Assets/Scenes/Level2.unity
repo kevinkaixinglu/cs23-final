@@ -198,6 +198,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 151236293}
   m_CullTransparentMesh: 1
+--- !u!1 &373944719
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 373944720}
+  - component: {fileID: 373944721}
+  m_Layer: 0
+  m_Name: SpawnHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &373944720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373944719}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &373944721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 373944719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 181e306daa381403cb1c1e1772932909, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  static_note: {fileID: 0}
+  dynamic_note: {fileID: 0}
+  gameManager: {fileID: 0}
+  upNote_SpawnTime: 2
+  downNote_SpawnTime: 2
+  leftNote_SpawnBeat: 2
+  rightNote_SpawnBeat: 2
 --- !u!1 &382945312
 GameObject:
   m_ObjectHideFlags: 0
@@ -418,7 +469,12 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 1892582372}
   mixer: {fileID: 24100000, guid: c5abe7382e87bd045aa13ad1dc8cc82f, type: 2}
   volumeSlider: {fileID: 1531691576}
---- !u!114 &419988029
+--- !u!4 &419988030 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 904959692762215207, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+  m_PrefabInstance: {fileID: 1112713647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &419988031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -427,87 +483,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 419988026}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cda0509645d1574bac6a81cf4caad6b, type: 3}
+  m_Script: {fileID: 11500000, guid: 608302f8ee3ca4032b75dee9b5cf2be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beat_map:
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  - qNotes:
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-    - sNotes: 00000000000000000000000000000000
-  score: {fileID: 2027142519}
-  scoreText: {fileID: 1316639391}
+  beat_map: []
+  special_beatmap: {fileID: 0}
+  score: {fileID: 0}
+  scoreText: {fileID: 0}
   currScore: 0
-  bpm: 150
-  musicSource: {fileID: 419988027}
-  key: 200000007f0000007f0000007f000000
+  bpm: 0
+  musicSource: {fileID: 0}
+  key: 00000000000000000000000000000000
   time_in_song: 0
   curr_tick: 0
   curr_meas: 0
   curr_qNote: 0
   curr_sNote: 0
   isPlaying: 0
---- !u!4 &419988030 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 904959692762215207, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
-  m_PrefabInstance: {fileID: 1112713647}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1050267285
 GameObject:
   m_ObjectHideFlags: 0
@@ -863,13 +855,13 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1379166016087188171, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 419988029}
-    - targetCorrespondingSourceObject: {fileID: 1379166016087188171, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 419988028}
     - targetCorrespondingSourceObject: {fileID: 1379166016087188171, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 419988027}
+    - targetCorrespondingSourceObject: {fileID: 1379166016087188171, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 419988031}
   m_SourcePrefab: {fileID: 100100000, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
 --- !u!1 &1195572333
 GameObject:
@@ -1752,6 +1744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beat_map: []
+  special_beatmap: {fileID: 0}
   score: {fileID: 0}
   scoreText: {fileID: 0}
   currScore: 0
@@ -1790,3 +1783,4 @@ SceneRoots:
   - {fileID: 382945316}
   - {fileID: 1257751926}
   - {fileID: 1112713647}
+  - {fileID: 373944720}
