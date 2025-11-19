@@ -23,12 +23,16 @@ public class kalenTrigger : BeatmapVisualizer
             int totalMeasures = 52;
             beatmapBuilder builder = new beatmapBuilder(totalMeasures);
 
-            // Place note on beat 1 of every OTHER measure (1, 3, 5, 7, etc.)
-            for (int measure = 1; measure <= totalMeasures; measure += 2)
-            {
-                builder.PlaceQuarterNote(measure, 1, 1); // Beat 1: active
-                // Beats 2, 3, 4 are automatically 0 (idle)
-            }
+            // // Place note on beat 1 of every OTHER measure (1, 3, 5, 7, etc.)
+            // for (int measure = 1; measure <= totalMeasures; measure += 2)
+            // {
+            //     builder.PlaceQuarterNote(measure, 1, 1); // Beat 1: active
+            //     // Beats 2, 3, 4 are automatically 0 (idle)
+            // }
+
+            builder.PlaceWholeNote(2, 1);
+            builder.PlaceWholeNote(3, 0);
+
             
             npcBeatMap = builder.GetBeatMap();
             Debug.Log($"kalenTrigger: Beatmap created with pattern on every other measure");
