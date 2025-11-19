@@ -690,6 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beat_map: []
+  special_beatmap: {fileID: 1738450732}
   score: {fileID: 1895305440}
   scoreText: {fileID: 1935094116}
   currScore: 0
