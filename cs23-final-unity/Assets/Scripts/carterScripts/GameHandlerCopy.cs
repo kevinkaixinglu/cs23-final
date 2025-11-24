@@ -6,7 +6,7 @@ using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
 
-public class ManageGame : MonoBehaviour
+public class GameHandlerCopy : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;

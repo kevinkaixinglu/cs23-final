@@ -25,6 +25,33 @@ public class MuchoLoco_BeatMap : MakeBeatmap
             }
         }
 
+        meas += 4;
+        for (int i = meas; i < meas + duration; i++)
+        {
+            for (int j = 2; j < 5; j += 2)
+            {
+                builder.PlaceSixteenthNote(i, j, 1, 13);
+            }
+        }
+
+        meas += 4;
+        for (int i = meas; i < meas + duration; i++)
+        {
+            for (int j = 2; j < 5; j += 2)
+            {
+                builder.PlaceSixteenthNote(i, j, 3, 5);
+            }
+        }
+
+        meas += 4;
+        for (int i = meas; i < meas + duration; i++)
+        {
+            for (int j = 1; j < 5; j += 2)
+            {
+                builder.PlaceSixteenthNote(i, j, 3, 1);
+            }
+        }
+
         return builder.GetBeatMap();
     }
 }

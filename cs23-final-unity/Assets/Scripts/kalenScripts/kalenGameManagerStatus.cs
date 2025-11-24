@@ -3,24 +3,29 @@ using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
 
-public class Manage_Game_Status : MonoBehaviour
+public class kalenGameManagerStatus : MonoBehaviour
 {
-    [Header("Puasing the Game")]
+    [Header("Pausing the Game")]
     public GameObject pauseMenuUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
     public static float volumeLevel = 1.0f;
 
-    private ManageGame gameHandler;
+    private kalenGameManager gameHandler;
     private static bool GameisPaused = false;
 
     public void Start()
     {
-        gameHandler = GetComponent<ManageGame>();
+        gameHandler = GetComponent<kalenGameManager>();
+
+        if (gameHandler == null)
+        {
+            Debug.LogError("KalenGameHandler component not found on this GameObject!");
+            return;
+        }
 
         SetVolume();
-        Debug.Log("Stating Game...");
-        pauseMenuUI.SetActive(false);
+        Debug.Log("Starting Game...");
         gameHandler.StartGame();
         GameisPaused = false;
         pauseMenuUI.SetActive(false);
@@ -72,5 +77,3 @@ public class Manage_Game_Status : MonoBehaviour
         }
     }
 }
-
-
