@@ -24,12 +24,14 @@ public class LevelFailedCinematic : MonoBehaviour
 
     [Header("Timings")]
     public float overlayFadeTime = 1.5f;
-    public float bannerDropTime = 1.4f;
+    public float bannerDropTime = 0.8f;
     public float birdSlumpAmount = 15f;
     public float birdSlumpTime = 1.0f;
     public float stepDelay = 0.5f;
     public float idleSadSwayAmount = 3f;
     public float idleSadSwaySpeed = 0.5f;
+    public float idleRockAngle = 8f; // side-to-side rocking angle
+    public float idleRockSpeed = 1.2f; // rocking speed
     public float cloudYOffset = 80f;    // cloud position above bird
     
     [Header("Effects")]
@@ -131,18 +133,16 @@ public class LevelFailedCinematic : MonoBehaviour
         yield return StartCoroutine(FadeImageAlpha(darkOverlay, 0f, 0.75f, overlayFadeTime));
         yield return new WaitForSeconds(stepDelay);
 
-        // 2. Reveal bird in desaturated colors
-        yield return StartCoroutine(RestoreBirdColorsDesaturated(ravenImages, 1.0f));
-        yield return new WaitForSeconds(stepDelay);
-
-        // 3. Rain cloud fades in above bird
+        // 2. Reveal bird and cloud together
+        StartCoroutine(RestoreBirdColorsDesaturated(ravenImages, 1.0f));
         if (rainCloud != null)
         {
-            yield return StartCoroutine(FadeRectTransform(rainCloud, 0f, 1f, 0.8f));
+            StartCoroutine(FadeRectTransform(rainCloud, 0f, 1f, 1.0f));
         }
-        yield return new WaitForSeconds(stepDelay * 0.5f);
+        yield return new WaitForSeconds(1.0f); // Wait for both to complete
+        yield return new WaitForSeconds(0.2f); // Shorter delay before banner
 
-        // 4. Banner drops heavily (no bounce, just thuds down)
+        // 3. Banner drops heavily (no bounce, just thuds down)
         banner.gameObject.SetActive(true);
         banner.localScale = bannerOriginalScale; // Ensure correct scale
         PlaySound(bannerThudSound);
@@ -183,13 +183,13 @@ public class LevelFailedCinematic : MonoBehaviour
         
         yield return new WaitForSeconds(stepDelay);
 
-        // 5. Bird slumps down disappointedly
+        // 4. Bird slumps down disappointedly
         PlaySound(birdSighSound);
         StartCoroutine(BirdSlump(raven, 0f));
         
         yield return new WaitForSeconds(birdSlumpTime + 0.5f);
 
-        // 6. Idle sad sway with cloud gently moving
+        // 5. Idle sad sway with cloud gently moving
         StartCoroutine(IdleSadSway(raven));
         StartCoroutine(CloudIdleDrift());
 
@@ -200,7 +200,7 @@ public class LevelFailedCinematic : MonoBehaviour
     IEnumerator DesaturateScene()
     {
         // Get all images in the scene to desaturate
-        Image[] allImages = FindObjectsOfType<Image>();
+        Image[] allImages = FindObjectsByType<Image>(FindObjectsSortMode.None);
         Color[] originalColors = new Color[allImages.Length];
         
         // Store original colors
@@ -280,16 +280,17 @@ public class LevelFailedCinematic : MonoBehaviour
         while (sequenceComplete)
         {
             float time = Time.time * idleSadSwaySpeed + randomOffset;
+            float rockTime = Time.time * idleRockSpeed + randomOffset;
             
-            // Very gentle, slow swaying
+            // Very gentle, slow swaying position
             float swayX = Mathf.Sin(time) * idleSadSwayAmount * 0.3f;
             float swayY = Mathf.Sin(time * 0.7f) * idleSadSwayAmount * 0.5f;
             Vector2 swayOffset = new Vector2(swayX, swayY);
             bird.anchoredPosition = basePos + swayOffset;
             
-            // Slight head movement
-            float headBob = Mathf.Sin(time * 1.2f) * 2f;
-            bird.localRotation = baseRot * Quaternion.Euler(0, 0, headBob);
+            // Prominent side-to-side rocking motion
+            float rockAngle = Mathf.Sin(rockTime) * idleRockAngle;
+            bird.localRotation = baseRot * Quaternion.Euler(0, 0, rockAngle);
             
             yield return null;
         }
