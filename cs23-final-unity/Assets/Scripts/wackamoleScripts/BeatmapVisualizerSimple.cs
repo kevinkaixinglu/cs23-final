@@ -10,7 +10,8 @@ public abstract class BeatmapVisualizerSimple : MonoBehaviour
 
     private int lastTick = -1;
 
-    void Update()
+    // Changed to protected virtual so derived classes can override it
+    protected virtual void Update()
     {
         if (rhythmTimer == null || !rhythmTimer.isPlaying)
             return;
