@@ -37,11 +37,21 @@ public class beatMap : MakeBeatmap
                
                .PlaceQuarterNote(32, 3, 1)
 
-               .PlaceEighthNote(33, 4, 1, 1)
+                //speed up
+            //    .PlaceEighthNote(33, 4, 1, 1)
+                .PlaceQuarterNote(33, 4, 1)
 
                .PlaceEighthNote(34, 4, 1, 1)
 
                .PlaceQuarterNote(36, 3, 1)
+
+               .PlaceEighthNote(38, 1, 3, 1)
+
+               .PlaceEighthNote(39, 2, 3, 1)
+
+               .PlaceEighthNote(40, 2, 3, 1)
+                
+
                
 
             //    .PlaceEighthNote(21, 4, 3, 1)
