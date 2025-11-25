@@ -13,6 +13,8 @@ public class LevelCompleteCinematic : MonoBehaviour
     public RectTransform raven;
     public ParticleSystem confetti;
     public ParticleSystem confetti1;
+    public GameObject nextButton; // Next/Continue button
+    public GameObject menuButton;  // Menu button
     
     private CanvasGroup femaleBirdCanvasGroup;
     private CanvasGroup ravenCanvasGroup;
@@ -35,11 +37,13 @@ public class LevelCompleteCinematic : MonoBehaviour
     public float stepDelay = 0.3f;
     public float idleFloatAmount = 5f;
     public float idleFloatSpeed = 2f;
+    public float buttonFadeInTime = 0.5f; // Time for buttons to fade in
 
     [Header("Events")]
     public UnityEvent onSequenceComplete;
 
     private bool sequenceComplete = false;
+    private Vector3 bannerOriginalScale;
 
     void Start()
     {
@@ -66,7 +70,11 @@ public class LevelCompleteCinematic : MonoBehaviour
         darkOverlay.color = new Color(0, 0, 0, 0);
         SetAlpha(spotlight, 0f);
         banner.gameObject.SetActive(false);
-        banner.localScale = Vector3.one;
+        bannerOriginalScale = banner.localScale;
+        
+        // Hide buttons initially
+        if (nextButton != null) nextButton.SetActive(false);
+        if (menuButton != null) menuButton.SetActive(false);
 
         StartCoroutine(LevelCompleteSequence());
     }
@@ -143,6 +151,7 @@ public class LevelCompleteCinematic : MonoBehaviour
 
         // 3. Banner drop with bounce
         banner.gameObject.SetActive(true);
+        banner.localScale = bannerOriginalScale; // Ensure correct scale
         PlaySound(bannerDropSound);
         
         // Trigger confetti bursts
@@ -152,7 +161,7 @@ public class LevelCompleteCinematic : MonoBehaviour
         Vector3 originalPos = banner.anchoredPosition;
         Vector3 startPos = originalPos + new Vector3(0, 400, 0);
         banner.anchoredPosition = startPos;
-        banner.localScale = Vector3.one * 0.8f;
+        banner.localScale = bannerOriginalScale * 0.8f;
 
         float t = 0f;
         while (t < bannerDropTime)
@@ -166,13 +175,13 @@ public class LevelCompleteCinematic : MonoBehaviour
             
             // Scale pop
             float scale = 1f + 0.2f * (1f - p) * Mathf.Sin(p * Mathf.PI * 3f);
-            banner.localScale = Vector3.one * Mathf.Clamp(scale, 0.8f, 1.2f);
+            banner.localScale = bannerOriginalScale * Mathf.Clamp(scale, 0.8f, 1.2f);
             
             yield return null;
         }
         
         banner.anchoredPosition = originalPos;
-        banner.localScale = Vector3.one;
+        banner.localScale = bannerOriginalScale;
         yield return new WaitForSeconds(stepDelay);
 
         // 4. Birds celebrate
@@ -185,6 +194,10 @@ public class LevelCompleteCinematic : MonoBehaviour
         // 5. Idle floating animation
         StartCoroutine(IdleFloat(femaleBird));
         StartCoroutine(IdleFloat(raven));
+
+        // 6. Show buttons after a brief moment
+        yield return new WaitForSeconds(0.8f);
+        yield return StartCoroutine(FadeInButtons());
 
         sequenceComplete = true;
         onSequenceComplete?.Invoke();
@@ -237,6 +250,42 @@ public class LevelCompleteCinematic : MonoBehaviour
             bird.anchoredPosition = basePos + new Vector3(0, yOffset, 0);
             yield return null;
         }
+    }
+
+    IEnumerator FadeInButtons()
+    {
+        // Activate buttons
+        if (nextButton != null) nextButton.SetActive(true);
+        if (menuButton != null) menuButton.SetActive(true);
+        
+        // Get CanvasGroup components or add them
+        CanvasGroup nextGroup = nextButton != null ? nextButton.GetComponent<CanvasGroup>() : null;
+        CanvasGroup menuGroup = menuButton != null ? menuButton.GetComponent<CanvasGroup>() : null;
+        
+        // Add CanvasGroup if missing
+        if (nextButton != null && nextGroup == null) nextGroup = nextButton.AddComponent<CanvasGroup>();
+        if (menuButton != null && menuGroup == null) menuGroup = menuButton.AddComponent<CanvasGroup>();
+        
+        // Start from transparent
+        if (nextGroup != null) nextGroup.alpha = 0f;
+        if (menuGroup != null) menuGroup.alpha = 0f;
+        
+        // Fade in
+        float t = 0f;
+        while (t < buttonFadeInTime)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, t / buttonFadeInTime);
+            
+            if (nextGroup != null) nextGroup.alpha = alpha;
+            if (menuGroup != null) menuGroup.alpha = alpha;
+            
+            yield return null;
+        }
+        
+        // Ensure fully visible
+        if (nextGroup != null) nextGroup.alpha = 1f;
+        if (menuGroup != null) menuGroup.alpha = 1f;
     }
 
     // Elastic ease-out for bouncy effect
@@ -296,5 +345,11 @@ public class LevelCompleteCinematic : MonoBehaviour
     {
         // Load next scene, show results, etc.
         Debug.Log("Proceeding to next screen...");
+    }
+    
+    public void ReturnToMenu()
+    {
+        Debug.Log("Returning to menu...");
+        // Load menu scene
     }
 }

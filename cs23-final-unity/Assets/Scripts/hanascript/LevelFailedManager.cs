@@ -12,6 +12,8 @@ public class LevelFailedCinematic : MonoBehaviour
     public RectTransform rainCloud; // sad rain cloud sprite
     public ParticleSystem rainParticles; // rain effect
     public Transform canvasRoot; // for screen shake effect (can be Canvas or any parent)
+    public GameObject retryButton; // Retry button
+    public GameObject menuButton;  // Menu button
 
     private Image[] ravenImages;
 
@@ -40,6 +42,7 @@ public class LevelFailedCinematic : MonoBehaviour
     public float screenShakeIntensity = 10f;
     public float screenShakeDuration = 0.3f;
     public float desaturationDuration = 2.0f;
+    public float buttonFadeInTime = 0.5f; // Time for buttons to fade in
 
     [Header("Events")]
     public UnityEvent onSequenceComplete;
@@ -75,6 +78,10 @@ public class LevelFailedCinematic : MonoBehaviour
         darkOverlay.color = new Color(0, 0, 0, 0);
         banner.gameObject.SetActive(false);
         bannerOriginalScale = banner.localScale; // Store original scale
+        
+        // Hide buttons initially
+        if (retryButton != null) retryButton.SetActive(false);
+        if (menuButton != null) menuButton.SetActive(false);
 
         StartCoroutine(LevelFailedSequence());
     }
@@ -189,9 +196,13 @@ public class LevelFailedCinematic : MonoBehaviour
         
         yield return new WaitForSeconds(birdSlumpTime + 0.5f);
 
-        // 5. Idle sad sway with cloud gently moving
+        // 6. Idle sad sway with cloud gently moving
         StartCoroutine(IdleSadSway(raven));
         StartCoroutine(CloudIdleDrift());
+
+        // 7. Show buttons after a brief moment
+        yield return new WaitForSeconds(0.8f);
+        yield return StartCoroutine(FadeInButtons());
 
         sequenceComplete = true;
         onSequenceComplete?.Invoke();
@@ -314,6 +325,42 @@ public class LevelFailedCinematic : MonoBehaviour
             
             yield return null;
         }
+    }
+
+    IEnumerator FadeInButtons()
+    {
+        // Activate buttons
+        if (retryButton != null) retryButton.SetActive(true);
+        if (menuButton != null) menuButton.SetActive(true);
+        
+        // Get CanvasGroup components or add them
+        CanvasGroup retryGroup = retryButton != null ? retryButton.GetComponent<CanvasGroup>() : null;
+        CanvasGroup menuGroup = menuButton != null ? menuButton.GetComponent<CanvasGroup>() : null;
+        
+        // Add CanvasGroup if missing
+        if (retryButton != null && retryGroup == null) retryGroup = retryButton.AddComponent<CanvasGroup>();
+        if (menuButton != null && menuGroup == null) menuGroup = menuButton.AddComponent<CanvasGroup>();
+        
+        // Start from transparent
+        if (retryGroup != null) retryGroup.alpha = 0f;
+        if (menuGroup != null) menuGroup.alpha = 0f;
+        
+        // Fade in
+        float t = 0f;
+        while (t < buttonFadeInTime)
+        {
+            t += Time.deltaTime;
+            float alpha = Mathf.Lerp(0f, 1f, t / buttonFadeInTime);
+            
+            if (retryGroup != null) retryGroup.alpha = alpha;
+            if (menuGroup != null) menuGroup.alpha = alpha;
+            
+            yield return null;
+        }
+        
+        // Ensure fully visible
+        if (retryGroup != null) retryGroup.alpha = 1f;
+        if (menuGroup != null) menuGroup.alpha = 1f;
     }
 
     IEnumerator ScreenShake()
