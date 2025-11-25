@@ -33,7 +33,45 @@ public class kalenTrigger2 : BeatmapVisualizer
             builder.PlaceQuarterNote(2, 2, 1)
                    .PlaceQuarterNote(2, 3, 1)
                    .PlaceQuarterNote(2, 4, 1)
-                   .PlaceQuarterNote(3, 1, 0);
+
+                   .PlaceHalfNote(5, 3, 1)
+                   .PlaceHalfNote(6, 1, 1)
+                   .PlaceHalfNote(6, 3, 1)
+
+                   .PlaceHalfNote(9, 3, 1)
+                   .PlaceWholeNote(10, 1)
+
+                   .PlaceHalfNote(12, 3, 1)
+                   .PlaceQuarterNote(13, 1, 1)
+
+                   .PlaceHalfNote(14, 3, 1)
+                   .PlaceQuarterNote(15, 1, 1)
+
+                   .PlaceEighthNote(15, 3, 4, 1)
+                   .PlaceQuarterNote(15, 4, 1)
+                   .PlaceEighthNote(16, 1, 1, 1)
+
+                   .PlaceSixteenthNote(16, 2, 4, 1)
+                   .PlaceHalfNote(16, 3, 1)
+                   .PlaceSixteenthNote(17, 1, 1, 1)
+                   
+                   .PlaceWholeNote(18, 1)
+                   .PlaceEighthNote(19, 1, 1, 1)
+
+                   .PlaceEighthNote(20, 2, 3, 1)
+                   .PlaceHalfNote(20, 3, 1)
+
+                   .PlaceEighthNote(21, 2, 3, 1)
+                   .PlaceHalfNote(21, 3, 1)
+
+                   .PlaceEighthNote(22, 3, 3, 1)
+                   .PlaceQuarterNote(22, 4, 1)
+
+
+                   
+
+                   //end marker
+                   .PlaceHalfNote(30, 1, 0);
             
             npcBeatMap = builder.GetBeatMap();
             Debug.Log($"kalenTrigger2: Beatmap created with pattern on every other measure");

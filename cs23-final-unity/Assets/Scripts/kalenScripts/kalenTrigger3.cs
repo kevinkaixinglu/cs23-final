@@ -32,7 +32,40 @@ public class kalenTrigger3 : BeatmapVisualizer
             
             builder.PlaceQuarterNote(2, 3, 1)
                    .PlaceQuarterNote(2, 4, 1)
-                   .PlaceQuarterNote(3, 1, 0);
+                   .PlaceQuarterNote(3, 1, 0)
+
+                   .PlaceHalfNote(6, 1, 1)
+                   .PlaceHalfNote(6, 3, 1)
+
+                   .PlaceWholeNote(10, 1)
+
+                   .PlaceQuarterNote(12, 4, 1)
+                   .PlaceQuarterNote(13, 1, 1)
+
+                   .PlaceQuarterNote(14, 4, 1)
+                   .PlaceQuarterNote(15, 1, 1)
+
+                   .PlaceSixteenthNote(15, 4, 2, 1)
+                   .PlaceEighthNote(15, 4, 2, 1)
+                   .PlaceEighthNote(16, 1, 1, 1)
+                   
+                   .PlaceSixteenthNote(16, 3, 4, 1)
+                   .PlaceQuarterNote(16, 4, 1)
+                   .PlaceSixteenthNote(17, 1, 1, 1)
+
+                   .PlaceHalfNote(18, 3, 1)
+                   .PlaceEighthNote(19, 1, 1, 1)
+
+                   .PlaceEighthNote(20, 3, 3, 1)
+                   .PlaceQuarterNote(20, 4, 1)
+
+                   .PlaceEighthNote(21, 2, 3, 1)
+                   .PlaceHalfNote(21, 3, 1)
+                   
+                   .PlaceQuarterNote(22, 4, 1)
+                   
+                   //end marker
+                   .PlaceHalfNote(30, 1, 0);
 
 
             npcBeatMap = builder.GetBeatMap();

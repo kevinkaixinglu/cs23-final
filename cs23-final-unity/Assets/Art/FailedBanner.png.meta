@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      FailedBanner_0: 1816657451649218366
+      FailedBanner_1: 3414615146671834097
+      FailedBanner_2: -4718162445581528105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

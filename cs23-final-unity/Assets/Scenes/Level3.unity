@@ -199,8 +199,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c5abe7382e87bd045aa13ad1dc8cc82f, type: 2}
-  m_audioClip: {fileID: 8300000, guid: ee9d0fe381d73425c85975e4e53d85af, type: 3}
-  m_Resource: {fileID: 8300000, guid: ee9d0fe381d73425c85975e4e53d85af, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 8115bf83c9a2e41b7beb9cd588b5e056, type: 3}
+  m_Resource: {fileID: 8300000, guid: 8115bf83c9a2e41b7beb9cd588b5e056, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -323,8 +323,12 @@ MonoBehaviour:
   score: {fileID: 1280294282}
   scoreText: {fileID: 1342837822}
   currScore: 0
+  winningScore: 5
+  victorySceneName: LevelCompleteScene
+  failureSceneName: LevelFailed
   bpm: 140
   musicSource: {fileID: 244423258}
+  songDuration: 90
   singleInputKey: 97
   playerIdleSprite: {fileID: 92606352}
   playerActiveSprite: {fileID: 1363374192}
@@ -601,8 +605,12 @@ MonoBehaviour:
   score: {fileID: 1280294282}
   scoreText: {fileID: 1342837822}
   currScore: 0
+  winningScore: 5
+  victorySceneName: LevelCompleteScreen
+  failureSceneName: LevelFailed
   bpm: 140
   musicSource: {fileID: 405860655}
+  songDuration: 90
   singleInputKey: 97
   playerIdleSprite: {fileID: 0}
   playerActiveSprite: {fileID: 0}
@@ -2128,7 +2136,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SCORE: 0'
+  m_text: 'SCORE: 0
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
