@@ -76,9 +76,12 @@ public class kalenTrigger : BeatmapVisualizer
                    .PlaceHalfNote(32, 1, 1)
                    .PlaceQuarterNote(32, 3, 1)
 
-                   .PlaceHalfNote(33, 1, 1)
-                   .PlaceQuarterNote(33, 3, 1)
-                   .PlaceEighthNote(33, 4, 1, 1)
+                    //speed up
+                //    .PlaceHalfNote(33, 1, 1)
+                //    .PlaceQuarterNote(33, 3, 1)
+                //    .PlaceEighthNote(33, 4, 1, 1)
+                   .PlaceWholeNote(33, 1)
+
 
                    .PlaceHalfNote(34, 1, 1)
                    .PlaceQuarterNote(34, 3, 1)
@@ -87,6 +90,23 @@ public class kalenTrigger : BeatmapVisualizer
                    .PlaceWholeNote(35, 1)
                    .PlaceHalfNote(36, 1, 1)
                    .PlaceQuarterNote(36, 3, 1)
+
+                   .PlaceEighthNote(37, 2, 3, 1)
+                   .PlaceHalfNote(37, 3, 1)
+                   .PlaceQuarterNote(38, 1, 1)
+
+                   .PlaceEighthNote(38, 4, 3, 1)
+                   .PlaceQuarterNote(39, 1, 1)
+                   .PlaceQuarterNote(39, 2, 1)
+                   .PlaceQuarterNote(39, 3, 1)
+
+                   .PlaceEighthNote(39, 4, 3, 1)
+                   .PlaceQuarterNote(40, 1, 1)
+                   .PlaceQuarterNote(40, 2, 1)
+                   .PlaceQuarterNote(40, 3, 1)
+
+
+
 
 
 
