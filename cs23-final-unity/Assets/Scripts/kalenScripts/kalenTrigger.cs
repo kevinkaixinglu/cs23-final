@@ -23,12 +23,62 @@ public class kalenTrigger : BeatmapVisualizer
             int totalMeasures = 52;
             beatmapBuilder builder = new beatmapBuilder(totalMeasures);
 
-            // Place note on beat 1 of every OTHER measure (1, 3, 5, 7, etc.)
-            for (int measure = 1; measure <= totalMeasures; measure += 2)
-            {
-                builder.PlaceQuarterNote(measure, 1, 1); // Beat 1: active
-                // Beats 2, 3, 4 are automatically 0 (idle)
-            }
+
+
+            builder
+                   .PlaceWholeNote(2, 1)
+                   .PlaceWholeNote(3, 0)
+
+                   .PlaceWholeNote(5, 1)
+                   .PlaceWholeNote(6, 1)
+            
+                   .PlaceWholeNote(9, 1)
+                   .PlaceWholeNote(10, 1)
+
+                   .PlaceHalfNote(12, 2, 1)
+                   .PlaceQuarterNote(12, 4, 1)
+                   .PlaceQuarterNote(13, 1, 1)
+
+                   .PlaceHalfNote(14, 2, 1)
+                   .PlaceQuarterNote(14, 4, 1)
+                   .PlaceQuarterNote(15, 1, 1)
+
+                   .PlaceSixteenthNote(15, 3, 2, 1)
+                   .PlaceEighthNote(15, 3, 2, 1)
+                   .PlaceQuarterNote(15, 4, 1)
+                   .PlaceEighthNote(16, 1, 1, 1)
+
+                   .PlaceSixteenthNote(16, 1, 4, 1)
+                   .PlaceQuarterNote(16, 2, 1)
+                   .PlaceHalfNote(16, 3, 1)
+                   .PlaceSixteenthNote(17, 1, 1, 1)
+
+                   .PlaceHalfNote(17, 3, 1)
+                   .PlaceWholeNote(18, 1)
+                   .PlaceEighthNote(19, 1, 1, 1)
+
+                   .PlaceEighthNote(20, 1, 3, 1)
+                   .PlaceQuarterNote(20, 2, 1)
+                   .PlaceHalfNote(20, 3, 1)
+
+                   .PlaceEighthNote(21, 1, 3, 1)
+                   .PlaceQuarterNote(21, 2, 1)
+                   .PlaceHalfNote(21, 3, 1)
+
+                   .PlaceHalfNote(22, 3, 1)
+                   
+
+
+                   
+
+            //end marker
+                   .PlaceWholeNote(30, 0);
+
+
+
+
+
+
             
             npcBeatMap = builder.GetBeatMap();
             Debug.Log($"kalenTrigger: Beatmap created with pattern on every other measure");
