@@ -472,7 +472,21 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Confetti_0: 937378224477805318
+      Confetti_1: -4599421453053134942
+      Confetti_10: -6056575351058298794
+      Confetti_11: -6707792463982290581
+      Confetti_12: -3505954218553922284
+      Confetti_13: 8283650895672783967
+      Confetti_2: -5228546747263550749
+      Confetti_3: -7892613797298954417
+      Confetti_4: 4453259405313168773
+      Confetti_5: -1507654668627130707
+      Confetti_6: -5541445324538127805
+      Confetti_7: -3256549148840580737
+      Confetti_8: 3775241871696698313
+      Confetti_9: 4246735193584171732
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

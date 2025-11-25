@@ -5,6 +5,11 @@ using UnityEngine.UIElements;
 
 public class MuchoLoco_BeatMap : MakeBeatmap
 {
+
+    private int up = 1;
+    private int down = 5;
+    private int left = 9;
+    private int right = 13;
     public override Measure[] SpecialBeatMap()
     {
         Debug.Log("MuchoLoco beatmap made");
@@ -12,45 +17,196 @@ public class MuchoLoco_BeatMap : MakeBeatmap
         
         beatmapBuilder builder = new beatmapBuilder(num_measures);
 
-        int duration;
         int meas = 1;
 
-        meas += 4;
-        duration = 20;
-        for (int i = meas; i < meas + duration; i++)
-        {
-            for (int j = 1; j < 5; j += 2)
-            {
-                builder.PlaceSixteenthNote(i, j, 1, 9);
-            }
-        }
+        meas = 5;
+        builder.PlaceSixteenthNote(meas, 1, 1, left);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, up);
+        builder.PlaceSixteenthNote(meas, 1, 3, up);
+        builder.PlaceSixteenthNote(meas, 4, 3, up);
 
-        meas += 4;
-        for (int i = meas; i < meas + duration; i++)
-        {
-            for (int j = 2; j < 5; j += 2)
-            {
-                builder.PlaceSixteenthNote(i, j, 1, 13);
-            }
-        }
+        meas = 13;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, up);
+        builder.PlaceSixteenthNote(meas, 1, 3, up);
+        builder.PlaceSixteenthNote(meas, 2, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, up);
+        builder.PlaceSixteenthNote(meas, 1, 3, up);
+        builder.PlaceSixteenthNote(meas, 2, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, up);
+        builder.PlaceSixteenthNote(meas, 1, 3, up);
+        builder.PlaceSixteenthNote(meas, 2, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas, 4, 3, up);
 
-        meas += 4;
-        for (int i = meas; i < meas + duration; i++)
-        {
-            for (int j = 2; j < 5; j += 2)
-            {
-                builder.PlaceSixteenthNote(i, j, 3, 5);
-            }
-        }
+        meas = 22;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, down);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, left);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, down);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, left);
 
-        meas += 4;
-        for (int i = meas; i < meas + duration; i++)
-        {
-            for (int j = 1; j < 5; j += 2)
-            {
-                builder.PlaceSixteenthNote(i, j, 3, 1);
-            }
-        }
+        meas = 30;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        builder.PlaceSixteenthNote(meas, 2, 3, up);
+        builder.PlaceSixteenthNote(meas, 3, 1, up);
+        builder.PlaceSixteenthNote(meas, 3, 3, up);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        builder.PlaceSixteenthNote(meas, 2, 3, up);
+        builder.PlaceSixteenthNote(meas, 3, 1, up);
+        builder.PlaceSixteenthNote(meas, 3, 3, up);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+
+        meas = 34;
+        builder.PlaceSixteenthNote(meas, 1, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, left);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, left);
+        builder.PlaceSixteenthNote(meas, 3, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+
+        meas = 42;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 3, 3, down);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 3, 3, down);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 3, 3, down);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, right);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 3, 3, down);
+        builder.PlaceSixteenthNote(meas, 4, 3, down);
+        builder.PlaceSixteenthNote(meas + 1, 2, 3, up);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 4, 3, up);
+        builder.PlaceSixteenthNote(meas + 2, 1, 1, right);
+
+        meas = 51;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, down);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, left);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, up);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, down);
+        meas += 2;
+        builder.PlaceSixteenthNote(meas, 1, 1, down);
+        builder.PlaceSixteenthNote(meas, 1, 3, down);
+        builder.PlaceSixteenthNote(meas, 2, 3, down);
+        builder.PlaceSixteenthNote(meas, 3, 1, down);
+        builder.PlaceSixteenthNote(meas, 4, 1, down);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 2, 1, left);
+        builder.PlaceSixteenthNote(meas + 1, 3, 1, left);
 
         return builder.GetBeatMap();
     }
