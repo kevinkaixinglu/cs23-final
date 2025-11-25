@@ -3758,6 +3758,7 @@ MonoBehaviour:
   f_good: {fileID: 930156209}
   f_missed: {fileID: 1855912337}
   f_spacebar: {fileID: 159656841}
+  player_bird_sp: {fileID: 1789041365}
   beat_map: []
   special_beatmap: {fileID: 1738450734}
   score: {fileID: 1895305440}
