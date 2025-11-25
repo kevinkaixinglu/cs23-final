@@ -10,7 +10,7 @@ public class ManageGame : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
-    public MakeBeatmap special_beatmap; // Special script pertaining to this level
+    public MakeBeatmap special_beatmap; // COMMENTED OUT - Special script pertaining to this level
 
     [Header("Score Keeping:")]
     public GameObject score;
@@ -42,7 +42,7 @@ public class ManageGame : MonoBehaviour
     {
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
-        beat_map = special_beatmap.SpecialBeatMap();
+        beat_map = special_beatmap.SpecialBeatMap(); // COMMENTED OUT
         isPlaying = true;
     }
 
@@ -60,6 +60,7 @@ public class ManageGame : MonoBehaviour
                         Debug.Log($"[{Time.time:F2}] Key " + (i + 1) + " hit");
                         if (waiting_for_input[i]) // Are we supposed to have hit the key?
                         {
+                            currScore++;
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
                             waiting_for_input[i] = false;
                         }
@@ -86,20 +87,16 @@ public class ManageGame : MonoBehaviour
 
             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
-
-                //if (curr_note == 0) // Testing
-                //{
-                //    Debug.Log("Time: " + time_in_song + " Measure: " + curr_meas + ", Beat: " + curr_beat + ", Note: " + curr_note);
-                //}
-
                 for (int i = 0; i < 4; i++) //For all four input keys
                 {
                     if (waiting_for_input[i])
                     {
+                        currScore--;
                         Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
                         waiting_for_input[i] = false;
                     }
                 }
+
 
                 int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
                 if (next_input != 0)
@@ -110,9 +107,11 @@ public class ManageGame : MonoBehaviour
                     waiting_for_input[(next_input - 1) % 4] = true; // Make window for input
                     Debug.Log($"[{Time.time:F2}] WINDOW OPEN!"); // Missed our window
                 }
+                
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
             }
+            scoreText.SetText(currScore.ToString());
         }
     }
 

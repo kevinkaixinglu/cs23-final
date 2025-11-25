@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class BeatmapVisualizer : MonoBehaviour
 {
     [Header("Game Manager")]
-    public ManageGame gameManager;
+    public kalenGameManager gameManager;
 
     [Header("NPC Beat Map")]
     public Measure[] npcBeatMap;
