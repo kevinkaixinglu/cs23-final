@@ -17,17 +17,17 @@ public class kalenGameManager : MonoBehaviour
     public GameObject score;
     public TextMeshProUGUI scoreText;
     public int currScore = 0;
-    public int winningScore = 5; // Score needed to win
+    public int winningScore = 5;
 
-    private string victorySceneName = "LevelCompleteScene"; // Name of victory scene
-    private string failureSceneName = "LevelFailed"; // Name of failure scene
+    private string victorySceneName = "LevelCompleteScene";
+    private string failureSceneName = "LevelFailed";
     private bool hasFinished = false;
 
     [Header("Song:")]
     public double bpm;
     private double startingBPM;
     public AudioSource musicSource;
-    public float songDuration = 90f; // Set this to your song length in seconds
+    public float songDuration = 90f;
 
     [Header("Single Key Input:")]
     public KeyCode singleInputKey = KeyCode.A;
@@ -51,9 +51,14 @@ public class kalenGameManager : MonoBehaviour
     private int window_start_tick = -1;
     private int current_note_duration = 4;
     private int last_tick = -1;
-    private int inputWindowTicks = 2; // Ticks of leniency AFTER window opens
-    private int inputWindowTicksBefore = 1; // Ticks of leniency BEFORE window opens
-    private int last_key_press_tick = -1; // Track when key was last pressed
+    private int inputWindowTicks = 2;
+    private int inputWindowTicksBefore = 1;
+    private int last_key_press_tick = -1;
+
+    // BPM tracking across changes
+    private int accumulatedTicks = 0;
+    private double lastBPMChangeTime = 0;
+    private double lastBPMBeforeChange = 0;
 
     [System.Serializable]
     public class BPMChange
@@ -103,9 +108,12 @@ public class kalenGameManager : MonoBehaviour
 
         startingBPM = bpm;
         currentBPMChangeIndex = 0;
-        last_key_press_tick = -999; // Reset key press tracking
-        hasFinished = false; // Reset finish state
-        currScore = 0; // Reset score
+        accumulatedTicks = 0;
+        lastBPMChangeTime = 0;
+        lastBPMBeforeChange = 0;
+        last_key_press_tick = -999;
+        hasFinished = false;
+        currScore = 0;
 
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
@@ -113,7 +121,6 @@ public class kalenGameManager : MonoBehaviour
         
         ShowPlayerIdle();
         
-        // Start checking for song end
         StartCoroutine(CheckSongEnd());
     }
 
@@ -139,7 +146,7 @@ public class kalenGameManager : MonoBehaviour
                 if (!key_pressed)
                 {
                     key_just_pressed_this_tick = true;
-                    last_key_press_tick = curr_tick; // Track when key was pressed
+                    last_key_press_tick = curr_tick;
                     Debug.Log($"[{Time.time:F2}] Key {singleInputKey} pressed (tick: {curr_tick})");
                     key_pressed = true;
                 }
@@ -155,10 +162,17 @@ public class kalenGameManager : MonoBehaviour
                 key_pressed = false;
             }
 
-            double sec_per_tick = 60 / bpm / 4;
-            time_in_song = musicSource.time - sec_per_tick / 4;
-            curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1;
-            curr_meas = (curr_tick) / 16;
+            // Calculate current time in song
+            time_in_song = musicSource.time;
+
+            // Calculate ticks in current BPM period
+            double timeSinceLastBPMChange = time_in_song - lastBPMChangeTime;
+            int ticksInCurrentPeriod = (int)(timeSinceLastBPMChange * (bpm / 60) * 4);
+
+            // Total ticks = accumulated from previous periods + current period
+            curr_tick = accumulatedTicks + ticksInCurrentPeriod;
+
+            curr_meas = curr_tick / 16;
             curr_qNote = ((curr_tick % 16) / 4);
             curr_sNote = curr_tick % 4;
 
@@ -171,17 +185,32 @@ public class kalenGameManager : MonoBehaviour
                     ShowPlayerIdle();
                 }
 
-                if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks)
+                if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
                 {
-                    Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks - 1})");
+                    Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
                     waiting_for_input = false;
                 }
 
-                if (beat_map != null && curr_meas < beat_map.Length && curr_sNote == 0)
+                if (beat_map != null && curr_meas < beat_map.Length)
                 {
                     int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
                     
+                    bool isNewNote = false;
+                    
                     if (next_input != 0)
+                    {
+                        if (curr_sNote == 0)
+                        {
+                            isNewNote = true;
+                        }
+                        else
+                        {
+                            int prevValue = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote - 1];
+                            isNewNote = (prevValue != next_input);
+                        }
+                    }
+                    
+                    if (isNewNote)
                     {
                         window_start_tick = curr_tick;
                         current_note_duration = CalculateNoteDuration(curr_meas, curr_qNote, curr_sNote, next_input);
@@ -189,32 +218,27 @@ public class kalenGameManager : MonoBehaviour
                         
                         Debug.Log($"[{Time.time:F2}] WINDOW OPENING at tick {curr_tick} - Input window: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after, Note duration: {current_note_duration} sixteenths");
                         
-                        // Check if key was pressed in the leniency window BEFORE this tick
                         int ticksSinceLastPress = curr_tick - last_key_press_tick;
                         
                         if (key_just_pressed_this_tick)
                         {
-                            // Pressed exactly on the window opening tick
                             AddScore();
                             Debug.Log($"[{Time.time:F2}] YAY! Perfect timing (pressed exactly on opening tick)! Score: {currScore}");
                             waiting_for_input = false;
                         }
                         else if (ticksSinceLastPress > 0 && ticksSinceLastPress <= inputWindowTicksBefore)
                         {
-                            // Pressed slightly before the window (within leniency)
                             AddScore();
                             Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksSinceLastPress} tick(s) early)! Score: {currScore}");
                             waiting_for_input = false;
                         }
                         else if (key_pressed)
                         {
-                            // Key was already held from before - no points
                             Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (but key held too long - won't score)");
                             waiting_for_input = false;
                         }
                         else
                         {
-                            // No key pressed yet - window is open and waiting
                             Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (valid for {inputWindowTicks} more tick(s))");
                             waiting_for_input = true;
                         }
@@ -228,7 +252,7 @@ public class kalenGameManager : MonoBehaviour
             {
                 int ticksFromStart = curr_tick - window_start_tick;
                 
-                if (ticksFromStart < inputWindowTicks)
+                if (ticksFromStart <= inputWindowTicks)
                 {
                     AddScore();
                     Debug.Log($"[{Time.time:F2}] YAY! Correct input! (pressed {ticksFromStart} tick(s) after window opened) Score: {currScore}");
@@ -250,19 +274,30 @@ public class kalenGameManager : MonoBehaviour
         while (currentBPMChangeIndex < bpmChanges.Length && 
                currentTime >= bpmChanges[currentBPMChangeIndex].timeInSeconds)
         {
+            // Calculate ticks accumulated during the previous BPM period
+            double timeSinceLastChange = bpmChanges[currentBPMChangeIndex].timeInSeconds - lastBPMChangeTime;
+            double bpmToUse = (lastBPMBeforeChange > 0) ? lastBPMBeforeChange : startingBPM;
+            int ticksInPeriod = (int)(timeSinceLastChange * (bpmToUse / 60) * 4);
+            accumulatedTicks += ticksInPeriod;
+            
+            Debug.Log($"[BPM CHANGE] At {bpmChanges[currentBPMChangeIndex].timeInSeconds}s: " +
+                      $"Added {ticksInPeriod} ticks from previous period (BPM {bpmToUse}). " +
+                      $"Total accumulated: {accumulatedTicks}");
+            
+            lastBPMChangeTime = bpmChanges[currentBPMChangeIndex].timeInSeconds;
+            lastBPMBeforeChange = bpm;
             bpm = bpmChanges[currentBPMChangeIndex].newBPM;
-            Debug.Log($"[{Time.time:F2}] BPM changed to {bpm} at song time {currentTime:F3}");
+            
+            Debug.Log($"[{Time.time:F2}] BPM changed to {bpm}");
             currentBPMChangeIndex++;
         }
     }
 
     private IEnumerator CheckSongEnd()
     {
-        // Wait for the song duration to elapse
         Debug.Log($"[SONG] Waiting for {songDuration} seconds...");
         yield return new WaitForSeconds(songDuration);
         
-        // Song is over, check if we haven't already finished
         if (!hasFinished)
         {
             hasFinished = true;
@@ -270,7 +305,6 @@ public class kalenGameManager : MonoBehaviour
             
             Debug.Log($"[SONG END] Song finished! Final score: {currScore}");
             
-            // Determine win or loss
             if (currScore >= winningScore)
             {
                 Debug.Log($"[VICTORY] Player won with {currScore} points!");

@@ -66,13 +66,45 @@ public class kalenTrigger : BeatmapVisualizer
                    .PlaceHalfNote(21, 3, 1)
 
                    .PlaceHalfNote(22, 3, 1)
+                   .PlaceWholeNote(23, 1)
+                   .PlaceHalfNote(24, 1, 1)
+
+                   .PlaceWholeNote(25, 1)
+                   .PlaceWholeNote(26, 1)
+
+                   .PlaceWholeNote(31, 1)
+                   .PlaceHalfNote(32, 1, 1)
+                   .PlaceQuarterNote(32, 3, 1)
+
+                   .PlaceHalfNote(33, 1, 1)
+                   .PlaceQuarterNote(33, 3, 1)
+                   .PlaceEighthNote(33, 4, 1, 1)
+
+                   .PlaceHalfNote(34, 1, 1)
+                   .PlaceQuarterNote(34, 3, 1)
+                   .PlaceEighthNote(34, 4, 1, 1)
+
+                   .PlaceWholeNote(35, 1)
+                   .PlaceHalfNote(36, 1, 1)
+                   .PlaceQuarterNote(36, 3, 1)
+
+
+
+
                    
+
+                //    .PlaceEighthNote(21, 1, 3, 1)
+                //    .PlaceQuarterNote(21, 2, 1)
+                //    .PlaceHalfNote(21, 3, 1)
+
+                //    .PlaceHalfNote(22, 3, 1)
+
 
 
                    
 
             //end marker
-                   .PlaceWholeNote(30, 0);
+                   .PlaceWholeNote(50, 0);
 
 
 
