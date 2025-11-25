@@ -4,6 +4,9 @@ public class ConveyorPlayer : MonoBehaviour
 {
     private Collider2D currBeat; // Stores the beat in the zone
 
+    private bool up = false;
+    //private bool down = false;
+
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("ConveyorBeat1")) {
             Debug.Log("in zone");
@@ -53,6 +56,10 @@ public class ConveyorPlayer : MonoBehaviour
             {
                 Debug.Log("Miss — no beat in zone!");
             }
+        }
+        if (Input.GetKeyDown(KeyCode.UpArrow) && up == false) {
+            Vector2 movement = new Vector2(0f, 20f * 10 * Time.deltaTime);
+            transform.Translate(movement);
         }
     }
 }
