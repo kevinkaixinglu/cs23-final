@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 1f1bf18d6aef82e4d8dc2ae8f6519274
+guid: 939928c42a76143eb8f491c96a9134aa
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6950486346419376927
-    second: Untitled_Artwork 3_0
+      213: 1816657451649218366
+    second: FailedBanner_0
   - first:
-      213: 3625534343852238118
-    second: Untitled_Artwork 3_1
+      213: 3414615146671834097
+    second: FailedBanner_1
   - first:
-      213: 1282242758028340824
-    second: Untitled_Artwork 3_2
+      213: -4718162445581528105
+    second: FailedBanner_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -119,67 +119,67 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork 3_0
+      name: FailedBanner_0
       rect:
         serializedVersion: 2
-        x: 292
-        y: 0
-        width: 2594
-        height: 2922
+        x: 1337
+        y: 1571
+        width: 7
+        height: 9
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1ec68714e79ea8f90800000000000000
-      internalID: -6950486346419376927
+      spriteID: e373e14c350163910800000000000000
+      internalID: 1816657451649218366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 3_1
+      name: FailedBanner_1
       rect:
         serializedVersion: 2
-        x: 647
-        y: 0
-        width: 1926
-        height: 2922
+        x: 195
+        y: 524
+        width: 7
+        height: 7
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 625aa4ed64c705230800000000000000
-      internalID: 3625534343852238118
+      spriteID: 1f30b0e6266236f20800000000000000
+      internalID: 3414615146671834097
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 3_2
+      name: FailedBanner_2
       rect:
         serializedVersion: 2
-        x: 1957
-        y: 1763
-        width: 817
-        height: 1051
+        x: 217
+        y: 418
+        width: 1993
+        height: 791
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 85ea81caef07bc110800000000000000
-      internalID: 1282242758028340824
+      spriteID: 7d3568ee048b58eb0800000000000000
+      internalID: -4718162445581528105
       vertices: []
       indices: 
       edges: []
@@ -188,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 916e4350839134be9b02328a65dfee11
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +198,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Untitled_Artwork 3_0: -6950486346419376927
-      Untitled_Artwork 3_1: 3625534343852238118
-      Untitled_Artwork 3_2: 1282242758028340824
+      FailedBanner_0: 1816657451649218366
+      FailedBanner_1: 3414615146671834097
+      FailedBanner_2: -4718162445581528105
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
