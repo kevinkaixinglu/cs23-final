@@ -76,7 +76,7 @@ public class ManageGameML : MonoBehaviour
                         Debug.Log($"[{Time.time:F2}] Key " + (i + 1) + " hit");
                         if (waiting_for_input[i]) // Are we supposed to have hit the key?
                         {
-                            currScore++;
+                            addScore();
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
                             f_good.gameObject.SetActive(true);
                             f_missed.gameObject.SetActive(false);
@@ -85,7 +85,7 @@ public class ManageGameML : MonoBehaviour
                         }
                         else
                         {
-                            currScore--;
+                            subScore();
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
                             f_good.gameObject.SetActive(false);
                             f_missed.gameObject.SetActive(true);
@@ -128,7 +128,7 @@ public class ManageGameML : MonoBehaviour
                 {
                     if (waiting_for_input[i])
                     {
-                        currScore--;
+                        subScore();
                         Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
                         f_good.gameObject.SetActive(false);
                         f_missed.gameObject.SetActive(true);
@@ -150,7 +150,6 @@ public class ManageGameML : MonoBehaviour
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
             }
-            scoreText.SetText(currScore.ToString());
         }
 
         if (!musicSource.isPlaying && isPlaying)
@@ -194,6 +193,15 @@ public class ManageGameML : MonoBehaviour
     {
         currScore++;
         scoreText.text = "SCORE: " + currScore.ToString();
+    }
+
+    private void subScore()
+    {
+        if (currScore > 0)
+        {
+            currScore--;
+            scoreText.text = "SCORE: " + currScore.ToString();
+        }
     }
 
 }

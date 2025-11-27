@@ -17,16 +17,15 @@ public class BobHead : MonoBehaviour
         if (curr_qNote != last_qNote)
         {
             last_qNote = curr_qNote;
-            if (last_qNote % 2 == 0)
-            {
-                //sprite.transform.localScale = new Vector3(1.2f, 1.2f, 1f);
-                Debug.Log("Animator is on: " + animator.gameObject.name);
-                animator.Play("Pump");
-            }
-            else
-            {
-                //sprite.transform.localScale = new Vector3(1f, 1f, 1f);
-            }
+            animator.Play("Pump");
+            //if (last_qNote % 2 == 0)
+            //{
+            //    animator.Play("Pump");
+            //}
+            //else
+            //{
+            //    //sprite.transform.localScale = new Vector3(1f, 1f, 1f);
+            //}
         }
     }
 }
