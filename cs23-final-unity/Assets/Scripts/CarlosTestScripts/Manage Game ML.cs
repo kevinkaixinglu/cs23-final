@@ -15,10 +15,7 @@ public class ManageGameML : MonoBehaviour
     public TMP_Text f_spacebar;
 
     [Header("Player Bird:")]
-    public SpriteRenderer player_bird_sp;
-
-    private bool correct = false;
-    private bool key_hit = false;
+    public Animator note_spawner;
 
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
@@ -70,7 +67,6 @@ public class ManageGameML : MonoBehaviour
             {
                 if (Input.GetKey(key[i]))
                 {
-                    key_hit = true;
                     if (!key_pressed[i]) // Was this the first occurence of key 1 (No holding it down)
                     {
                         Debug.Log($"[{Time.time:F2}] Key " + (i + 1) + " hit");
@@ -81,7 +77,6 @@ public class ManageGameML : MonoBehaviour
                             f_good.gameObject.SetActive(true);
                             f_missed.gameObject.SetActive(false);
                             waiting_for_input[i] = false;
-                            correct = true;
                         }
                         else
                         {
@@ -89,17 +84,9 @@ public class ManageGameML : MonoBehaviour
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
                             f_good.gameObject.SetActive(false);
                             f_missed.gameObject.SetActive(true);
-                            correct = false;
+                            note_spawner.Play("Shake");
                         }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
-                        if (correct)
-                        {
-                            player_bird_sp.color = Color.green;
-                        }
-                        else
-                        {
-                            player_bird_sp.color = Color.red;
-                        }
                         break;
                     }
                 }
@@ -133,6 +120,7 @@ public class ManageGameML : MonoBehaviour
                         f_good.gameObject.SetActive(false);
                         f_missed.gameObject.SetActive(true);
                         waiting_for_input[i] = false;
+                        note_spawner.Play("Shake");
                     }
                 }
 
@@ -156,12 +144,6 @@ public class ManageGameML : MonoBehaviour
         {
             SceneManager.LoadScene("LevelSelect");
         }
-
-        if (!key_hit)
-        {
-            player_bird_sp.color = Color.white;
-        }
-        key_hit = false;
 
     }
 

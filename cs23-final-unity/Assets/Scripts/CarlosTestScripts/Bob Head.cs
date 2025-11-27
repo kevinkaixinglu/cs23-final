@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class BobHead : MonoBehaviour
 {
-    public SpriteRenderer sprite;
     public ManageGameML manageGameML;
     public Animator animator;
 
