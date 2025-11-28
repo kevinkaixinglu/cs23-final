@@ -69,6 +69,7 @@ public class ManageGameML : MonoBehaviour
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
                             waiting_for_input[i] = false;
                             good_input.Play("Good_Input");
+                            note_spawner.Play("Pump");
                         }
                         else
                         {
