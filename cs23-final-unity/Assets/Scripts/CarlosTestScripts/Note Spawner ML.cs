@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class NoteSpawnerML : MonoBehaviour
 {
@@ -35,39 +34,42 @@ public class NoteSpawnerML : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float offset = .11f;
-        time_in_song[0] = gameManager.musicSource.time + upNote_SpawnTime;
-        time_in_song[1] = gameManager.musicSource.time + downNote_SpawnTime;
-        time_in_song[2] = gameManager.musicSource.time + leftNote_SpawnBeat * 60 / gameManager.bpm - offset;
-        time_in_song[3] = gameManager.musicSource.time + rightNote_SpawnBeat * 2 * 60 / gameManager.bpm - offset;
-
-        for (int i = 0; i < 4; i++)
+        if (gameManager.isPlaying)
         {
-            if (time_in_song[i] >= gameManager.musicSource.clip.length)
-            {
-                curr_tick[i] = 0;
-            }
-            else
-            {
-                curr_tick[i] = ((int)(time_in_song[i] * (gameManager.bpm / 60) * 4)) - 1; // tick = note relative to whole song
-            }
-            curr_meas[i] = (curr_tick[i]) / 16;
-            curr_qNote[i] = ((curr_tick[i] % 16) / 4);
-            curr_sNote[i] = curr_tick[i] % 4;
-        }
+            float offset = .11f;
+            time_in_song[0] = gameManager.musicSource.time + upNote_SpawnTime;
+            time_in_song[1] = gameManager.musicSource.time + downNote_SpawnTime;
+            time_in_song[2] = gameManager.musicSource.time + leftNote_SpawnBeat * 60 / gameManager.bpm - offset;
+            time_in_song[3] = gameManager.musicSource.time + rightNote_SpawnBeat * 2 * 60 / gameManager.bpm - offset;
 
-        for (int i = 0; i < 4; i++)
-        {
-            if (curr_tick[i] != last_tick[i]
-                && curr_sNote[i] >= 0 && curr_qNote[i] >= 0 && curr_meas[i] >= 0)
+            for (int i = 0; i < 4; i++)
             {
-                int next_input = gameManager.beat_map[curr_meas[i]].qNotes[curr_qNote[i]].sNotes[curr_sNote[i]];
-                if (next_input == 1 + 4 * i)
+                if (time_in_song[i] >= gameManager.musicSource.clip.length)
                 {
-                    SpawnNote(i + 1);
+                    curr_tick[i] = 0;
                 }
+                else
+                {
+                    curr_tick[i] = ((int)(time_in_song[i] * (gameManager.bpm / 60) * 4)) - 1; // tick = note relative to whole song
+                }
+                curr_meas[i] = (curr_tick[i]) / 16;
+                curr_qNote[i] = ((curr_tick[i] % 16) / 4);
+                curr_sNote[i] = curr_tick[i] % 4;
+            }
 
-                last_tick[i] = curr_tick[i]; // Wait until we get to the next tick (tick defined above)
+            for (int i = 0; i < 4; i++)
+            {
+                if (curr_tick[i] != last_tick[i]
+                    && curr_sNote[i] >= 0 && curr_qNote[i] >= 0 && curr_meas[i] >= 0)
+                {
+                    int next_input = gameManager.beat_map[curr_meas[i]].qNotes[curr_qNote[i]].sNotes[curr_sNote[i]];
+                    if (next_input == 1 + 4 * i)
+                    {
+                        SpawnNote(i + 1);
+                    }
+
+                    last_tick[i] = curr_tick[i]; // Wait until we get to the next tick (tick defined above)
+                }
             }
         }
     }

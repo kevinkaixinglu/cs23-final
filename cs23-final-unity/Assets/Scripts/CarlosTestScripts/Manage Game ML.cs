@@ -9,13 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class ManageGameML : MonoBehaviour
 {
-    [Header("Feedback Texts:")]
-    public TMP_Text f_good;
-    public TMP_Text f_missed;
-    public TMP_Text f_spacebar;
-
     [Header("Player Bird:")]
     public Animator note_spawner;
+    public Animator good_input;
 
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
@@ -53,9 +49,6 @@ public class ManageGameML : MonoBehaviour
         musicSource.PlayScheduled(startTime);
         beat_map = special_beatmap.SpecialBeatMap(); // COMMENTED OUT
         isPlaying = true;
-        f_good.gameObject.SetActive(false);
-        f_missed.gameObject.SetActive(false);
-        f_spacebar.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -74,16 +67,13 @@ public class ManageGameML : MonoBehaviour
                         {
                             addScore();
                             Debug.Log($"[{Time.time:F2}] YAY!"); // We hit our window
-                            f_good.gameObject.SetActive(true);
-                            f_missed.gameObject.SetActive(false);
                             waiting_for_input[i] = false;
+                            good_input.Play("Good_Input");
                         }
                         else
                         {
                             subScore();
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
-                            f_good.gameObject.SetActive(false);
-                            f_missed.gameObject.SetActive(true);
                             note_spawner.Play("Shake");
                         }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
@@ -103,11 +93,6 @@ public class ManageGameML : MonoBehaviour
             curr_qNote = ((curr_tick % 16) / 4);
             curr_sNote = curr_tick % 4;
 
-            if (curr_meas == 3)
-            {
-                f_spacebar.gameObject.SetActive(false);
-            }
-
             // CHANGE: IGNORE when curr tick is odd
             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0 && curr_tick % 2 == 0)
             {
@@ -117,8 +102,6 @@ public class ManageGameML : MonoBehaviour
                     {
                         subScore();
                         Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
-                        f_good.gameObject.SetActive(false);
-                        f_missed.gameObject.SetActive(true);
                         waiting_for_input[i] = false;
                         note_spawner.Play("Shake");
                     }
