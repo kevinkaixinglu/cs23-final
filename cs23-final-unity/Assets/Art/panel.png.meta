@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: 2014614cdd27fb94781b6604e64e251d
+guid: 9ec041b4fd73945d5b1bb81fe400a2d6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7717450174661515925
-    second: New Project_0
+      213: 2370697680606376940
+    second: Untitled_Artwork 8 copy_0
   - first:
-      213: -360967855649407758
-    second: New Project_1
-  - first:
-      213: 5330907176485755315
-    second: New Project_2
-  - first:
-      213: 1685672896835508257
-    second: New Project_3
-  - first:
-      213: -7862715138806570537
-    second: New Project_4
+      213: -7299915712581427662
+    second: Untitled_Artwork 8 copy_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -125,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: New Project_0
+      name: Untitled_Artwork 8 copy_0
       rect:
         serializedVersion: 2
-        x: 19
-        y: 0
-        width: 25
-        height: 18
+        x: 1419
+        y: 1585
+        width: 10
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b65268774fb16e490800000000000000
-      internalID: -7717450174661515925
+      spriteID: ce3b262eaf866e020800000000000000
+      internalID: 2370697680606376940
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: New Project_1
+      name: Untitled_Artwork 8 copy_1
       rect:
         serializedVersion: 2
-        x: 43
-        y: 0
-        width: 13
-        height: 13
+        x: 1683
+        y: 761
+        width: 357
+        height: 407
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,74 +153,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fcbea4d5a59dfaf0800000000000000
-      internalID: -360967855649407758
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Project_2
-      rect:
-        serializedVersion: 2
-        x: 55
-        y: 0
-        width: 13
-        height: 18
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3b9930925df2bf940800000000000000
-      internalID: 5330907176485755315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Project_3
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 4
-        width: 7
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 128526f8196b46710800000000000000
-      internalID: 1685672896835508257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: New Project_4
-      rect:
-        serializedVersion: 2
-        x: 69
-        y: 0
-        width: 7
-        height: 5
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d1295d5d3602e290800000000000000
-      internalID: -7862715138806570537
+      spriteID: 23e9a45065d71ba90800000000000000
+      internalID: -7299915712581427662
       vertices: []
       indices: 
       edges: []
@@ -248,11 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      New Project_0: -7717450174661515925
-      New Project_1: -360967855649407758
-      New Project_2: 5330907176485755315
-      New Project_3: 1685672896835508257
-      New Project_4: -7862715138806570537
+      Untitled_Artwork 8 copy_0: 2370697680606376940
+      Untitled_Artwork 8 copy_1: -7299915712581427662
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
