@@ -20,7 +20,7 @@ public class kalenTrigger3 : BeatmapVisualizer
 
         if (npcBeatMap == null || npcBeatMap.Length == 0) 
         {
-            int totalMeasures = 52;
+            int totalMeasures = 57;
             beatmapBuilder builder = new beatmapBuilder(totalMeasures);
             
             // Place note on beat 1 of every OTHER measure starting at measure 2 (2, 4, 6, 8, etc.)
@@ -71,10 +71,11 @@ public class kalenTrigger3 : BeatmapVisualizer
                    .PlaceQuarterNote(32, 3, 1)
 
                     //speed up
-                //    .PlaceQuarterNote(33, 3, 1)
-                //    .PlaceEighthNote(33, 4, 1, 1)
+                //   .PlaceHalfNote(33, 3, 1)
+                //   .PlaceHalfNote(34, 3, 1)
 
-                  .PlaceHalfNote(33, 3, 1)
+                   .PlaceQuarterNote(33, 3, 1)
+                   .PlaceEighthNote(33, 4, 1, 1)
 
                    .PlaceQuarterNote(34, 3, 1)
                    .PlaceEighthNote(34, 4, 1, 1)
@@ -92,10 +93,38 @@ public class kalenTrigger3 : BeatmapVisualizer
                    .PlaceEighthNote(40, 2, 3, 1)
                    .PlaceQuarterNote(40, 3, 1)
 
+                   .PlaceHalfNote(42, 1, 1)
+                   .PlaceQuarterNote(42, 3, 1)
+
+                   .PlaceHalfNote(44, 1, 1)
+                   .PlaceQuarterNote(44, 3, 1)
+
+                   .PlaceEighthNote(45, 2, 3, 1)
+                   .PlaceQuarterNote(45, 3, 1)
+
+                   .PlaceEighthNote(46, 2, 3, 1)
+                   .PlaceQuarterNote(46, 3, 1)
+
+                   
+                   .PlaceEighthNote(49, 2, 1, 1)
+                   .PlaceQuarterNote(49, 2, 1)
+                //    .PlaceSixteenthNote(49, 2, 3, 1)
+
+                   .PlaceEighthNote(51, 2, 1, 1)
+                //    .PlaceSixteenthNote(51, 2, 3, 1)
+                   .PlaceQuarterNote(51, 2, 1)
+
+                   .PlaceHalfNote(54, 1, 1)
+                   .PlaceQuarterNote(54, 3, 1)
+
+                   .PlaceHalfNote(56, 1, 1)
+                   .PlaceQuarterNote(56, 3, 1)
+
+
                    
 
 
-                   .PlaceHalfNote(50, 1, 0);
+                   .PlaceHalfNote(57, 1, 0);
 
                    
 

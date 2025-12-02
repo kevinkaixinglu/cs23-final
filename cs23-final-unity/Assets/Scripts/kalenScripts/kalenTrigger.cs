@@ -20,7 +20,7 @@ public class kalenTrigger : BeatmapVisualizer
 
         if (npcBeatMap == null || npcBeatMap.Length == 0) 
         {
-            int totalMeasures = 52;
+            int totalMeasures = 57;
             beatmapBuilder builder = new beatmapBuilder(totalMeasures);
 
 
@@ -77,11 +77,13 @@ public class kalenTrigger : BeatmapVisualizer
                    .PlaceQuarterNote(32, 3, 1)
 
                     //speed up
-                //    .PlaceHalfNote(33, 1, 1)
-                //    .PlaceQuarterNote(33, 3, 1)
-                //    .PlaceEighthNote(33, 4, 1, 1)
-                   .PlaceWholeNote(33, 1)
+                //    .PlaceWholeNote(33, 1)
+                //    .PlaceWholeNote(34, 1)
 
+
+                   .PlaceHalfNote(33, 1, 1)
+                   .PlaceQuarterNote(33, 3, 1)
+                   .PlaceEighthNote(33, 4, 1, 1)
 
                    .PlaceHalfNote(34, 1, 1)
                    .PlaceQuarterNote(34, 3, 1)
@@ -105,26 +107,42 @@ public class kalenTrigger : BeatmapVisualizer
                    .PlaceQuarterNote(40, 2, 1)
                    .PlaceQuarterNote(40, 3, 1)
 
+                   .PlaceQuarterNote(41, 2, 1)
+                   .PlaceHalfNote(41, 3, 1)
+                   .PlaceHalfNote(42, 1, 1)
+                   .PlaceQuarterNote(42, 3, 1)
 
+                   .PlaceQuarterNote(43, 2, 1)
+                   .PlaceHalfNote(43, 3, 1)
+                   .PlaceHalfNote(44, 1, 1)
+                   .PlaceQuarterNote(44, 3, 1)
 
+                   .PlaceEighthNote(44, 4, 3, 1)
+                   .PlaceHalfNote(45, 1 ,1)
+                   .PlaceQuarterNote(45, 3, 1)
 
+                   .PlaceEighthNote(45, 4, 3, 1)
+                   .PlaceHalfNote(46, 1, 1)
+                   .PlaceQuarterNote(46, 3, 1)
 
+                   .PlaceHalfNote(49, 1, 1)
 
+                   .PlaceHalfNote(51, 1, 1)
 
-                   
+                   .PlaceQuarterNote(53, 2, 1)
+                   .PlaceHalfNote(53, 3, 1)
+                   .PlaceHalfNote(54, 1, 1)
+                   .PlaceQuarterNote(54, 3, 1)
 
-                //    .PlaceEighthNote(21, 1, 3, 1)
-                //    .PlaceQuarterNote(21, 2, 1)
-                //    .PlaceHalfNote(21, 3, 1)
-
-                //    .PlaceHalfNote(22, 3, 1)
-
-
+                   .PlaceQuarterNote(55, 2, 1)
+                   .PlaceHalfNote(55, 3, 1)
+                   .PlaceHalfNote(56, 1, 1)
+                   .PlaceQuarterNote(56, 3, 1)
 
                    
 
             //end marker
-                   .PlaceWholeNote(50, 0);
+                   .PlaceWholeNote(57, 0);
 
 
 
