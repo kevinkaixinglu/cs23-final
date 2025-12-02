@@ -10,27 +10,148 @@ public class kalenTrigger : BeatmapVisualizer
 
     void Start()
     {
-        Debug.Log("bird1 Start() called");
+        Debug.Log("kalenTrigger: Start() called");
         
         if (gameManager == null)
         {
-            Debug.LogError("bird1: gameManager is NOT assigned!");
+            Debug.LogError("kalenTrigger: gameManager is NOT assigned!");
             return;
         }
 
-
         if (npcBeatMap == null || npcBeatMap.Length == 0) 
         {
-            beatmapBuilder builder = new beatmapBuilder(52);
-            // builder.PlaceWholeNote(5, 1)
-            //     .PlaceWholeNote(6, 1)
-            //     .PlaceWholeNote(7, 0);
-                builder.PlaceQuarterNote(5,1,1);
-                builder.PlaceQuarterNote(5,2,0);
+            int totalMeasures = 57;
+            beatmapBuilder builder = new beatmapBuilder(totalMeasures);
+
+
+
+            builder
+                   .PlaceWholeNote(2, 1)
+                   .PlaceWholeNote(3, 0)
+
+                   .PlaceWholeNote(5, 1)
+                   .PlaceWholeNote(6, 1)
+            
+                   .PlaceWholeNote(9, 1)
+                   .PlaceWholeNote(10, 1)
+
+                   .PlaceHalfNote(12, 2, 1)
+                   .PlaceQuarterNote(12, 4, 1)
+                   .PlaceQuarterNote(13, 1, 1)
+
+                   .PlaceHalfNote(14, 2, 1)
+                   .PlaceQuarterNote(14, 4, 1)
+                   .PlaceQuarterNote(15, 1, 1)
+
+                   .PlaceSixteenthNote(15, 3, 2, 1)
+                   .PlaceEighthNote(15, 3, 2, 1)
+                   .PlaceQuarterNote(15, 4, 1)
+                   .PlaceEighthNote(16, 1, 1, 1)
+
+                   .PlaceSixteenthNote(16, 1, 4, 1)
+                   .PlaceQuarterNote(16, 2, 1)
+                   .PlaceHalfNote(16, 3, 1)
+                   .PlaceSixteenthNote(17, 1, 1, 1)
+
+                   .PlaceHalfNote(17, 3, 1)
+                   .PlaceWholeNote(18, 1)
+                   .PlaceEighthNote(19, 1, 1, 1)
+
+                   .PlaceEighthNote(20, 1, 3, 1)
+                   .PlaceQuarterNote(20, 2, 1)
+                   .PlaceHalfNote(20, 3, 1)
+
+                   .PlaceEighthNote(21, 1, 3, 1)
+                   .PlaceQuarterNote(21, 2, 1)
+                   .PlaceHalfNote(21, 3, 1)
+
+                   .PlaceHalfNote(22, 3, 1)
+                   .PlaceWholeNote(23, 1)
+                   .PlaceHalfNote(24, 1, 1)
+
+                   .PlaceWholeNote(25, 1)
+                   .PlaceWholeNote(26, 1)
+
+                   .PlaceWholeNote(31, 1)
+                   .PlaceHalfNote(32, 1, 1)
+                   .PlaceQuarterNote(32, 3, 1)
+
+                    //speed up
+                //    .PlaceWholeNote(33, 1)
+                //    .PlaceWholeNote(34, 1)
+
+
+                   .PlaceHalfNote(33, 1, 1)
+                   .PlaceQuarterNote(33, 3, 1)
+                   .PlaceEighthNote(33, 4, 1, 1)
+
+                   .PlaceHalfNote(34, 1, 1)
+                   .PlaceQuarterNote(34, 3, 1)
+                   .PlaceEighthNote(34, 4, 1, 1)
+
+                   .PlaceWholeNote(35, 1)
+                   .PlaceHalfNote(36, 1, 1)
+                   .PlaceQuarterNote(36, 3, 1)
+
+                   .PlaceEighthNote(37, 2, 3, 1)
+                   .PlaceHalfNote(37, 3, 1)
+                   .PlaceQuarterNote(38, 1, 1)
+
+                   .PlaceEighthNote(38, 4, 3, 1)
+                   .PlaceQuarterNote(39, 1, 1)
+                   .PlaceQuarterNote(39, 2, 1)
+                   .PlaceQuarterNote(39, 3, 1)
+
+                   .PlaceEighthNote(39, 4, 3, 1)
+                   .PlaceQuarterNote(40, 1, 1)
+                   .PlaceQuarterNote(40, 2, 1)
+                   .PlaceQuarterNote(40, 3, 1)
+
+                   .PlaceQuarterNote(41, 2, 1)
+                   .PlaceHalfNote(41, 3, 1)
+                   .PlaceHalfNote(42, 1, 1)
+                   .PlaceQuarterNote(42, 3, 1)
+
+                   .PlaceQuarterNote(43, 2, 1)
+                   .PlaceHalfNote(43, 3, 1)
+                   .PlaceHalfNote(44, 1, 1)
+                   .PlaceQuarterNote(44, 3, 1)
+
+                   .PlaceEighthNote(44, 4, 3, 1)
+                   .PlaceHalfNote(45, 1 ,1)
+                   .PlaceQuarterNote(45, 3, 1)
+
+                   .PlaceEighthNote(45, 4, 3, 1)
+                   .PlaceHalfNote(46, 1, 1)
+                   .PlaceQuarterNote(46, 3, 1)
+
+                   .PlaceHalfNote(49, 1, 1)
+
+                   .PlaceHalfNote(51, 1, 1)
+
+                   .PlaceQuarterNote(53, 2, 1)
+                   .PlaceHalfNote(53, 3, 1)
+                   .PlaceHalfNote(54, 1, 1)
+                   .PlaceQuarterNote(54, 3, 1)
+
+                   .PlaceQuarterNote(55, 2, 1)
+                   .PlaceHalfNote(55, 3, 1)
+                   .PlaceHalfNote(56, 1, 1)
+                   .PlaceQuarterNote(56, 3, 1)
+
+                   
+
+            //end marker
+                   .PlaceWholeNote(57, 0);
+
+
+
+
+
 
             
             npcBeatMap = builder.GetBeatMap();
-            Debug.Log($"bird1: Beatmap created");
+            Debug.Log($"kalenTrigger: Beatmap created with pattern on every other measure");
         }
 
         // Initialize to idle

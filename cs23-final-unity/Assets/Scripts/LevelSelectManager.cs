@@ -26,15 +26,8 @@ public class LevelSelectManager : MonoBehaviour
                 // Add click listener
                 levelButtons[i].onClick.AddListener(() => LoadLevel(levelIndex));
                 
-                // Check if level is unlocked
-                bool isUnlocked = IsLevelUnlocked(levelIndex);
-                levelButtons[i].interactable = isUnlocked;
-                
-                // Optional: Change appearance for locked levels
-                if (!isUnlocked)
-                {
-                    SetButtonLocked(levelButtons[i]);
-                }
+                // All levels are now unlocked
+                levelButtons[i].interactable = true;
             }
         }
         
@@ -63,35 +56,15 @@ public class LevelSelectManager : MonoBehaviour
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
-    private bool IsLevelUnlocked(int levelIndex)
+    // Optional: Call this to track level completion (for stats, stars, etc.)
+    public static void MarkLevelCompleted(int levelIndex)
     {
-        // Level 0 is always unlocked
-        if (levelIndex == 0)
-            return true;
-        
-        // Check if previous level is completed
-        int previousLevel = levelIndex - 1;
-        return PlayerPrefs.GetInt("Level_" + previousLevel + "_Completed", 0) == 1;
-    }
-
-    private void SetButtonLocked(Button button)
-    {
-        // Make locked buttons look different
-        ColorBlock colors = button.colors;
-        colors.normalColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-        colors.disabledColor = new Color(0.3f, 0.3f, 0.3f, 1f);
-        button.colors = colors;
-    }
-
-    // Call this when a level is completed
-    public static void UnlockNextLevel(int currentLevelIndex)
-    {
-        PlayerPrefs.SetInt("Level_" + currentLevelIndex + "_Completed", 1);
+        PlayerPrefs.SetInt("Level_" + levelIndex + "_Completed", 1);
         PlayerPrefs.Save();
-        Debug.Log("Level " + currentLevelIndex + " completed! Next level unlocked.");
+        Debug.Log("Level " + levelIndex + " completed!");
     }
 
-    // Optional: Reset all progress
+    // Optional: Reset completion tracking
     public void ResetAllProgress()
     {
         PlayerPrefs.DeleteAll();

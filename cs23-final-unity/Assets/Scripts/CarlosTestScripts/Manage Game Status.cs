@@ -20,6 +20,7 @@ public class Manage_Game_Status : MonoBehaviour
 
         SetVolume();
         Debug.Log("Stating Game...");
+        pauseMenuUI.SetActive(false);
         gameHandler.StartGame();
         GameisPaused = false;
         pauseMenuUI.SetActive(false);
