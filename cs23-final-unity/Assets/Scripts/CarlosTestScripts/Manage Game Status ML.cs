@@ -7,12 +7,15 @@ public class Manage_Game_Status_ML : MonoBehaviour
 {
     [Header("Puasing the Game")]
     public GameObject pauseMenuUI;
+    public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
     public static float volumeLevel = 1.0f;
 
     private ManageGameML gameHandler;
-    private static bool GameisPaused = false;
+    private bool GameisPaused = false;
+
+    private bool InfoPage = false;
 
     public void Start()
     {
@@ -21,11 +24,10 @@ public class Manage_Game_Status_ML : MonoBehaviour
         SetVolume();
         Debug.Log("Stating Game...");
         pauseMenuUI.SetActive(false);
-        gameHandler.StartGame();
-        GameisPaused = false;
-        pauseMenuUI.SetActive(false);
-
-        Pause(); // TESTING
+    
+        InfoPage = true;
+        GameisPaused = true;
+        infoPageUI.SetActive(true);
     }
 
     void OnDestroy()
@@ -36,6 +38,17 @@ public class Manage_Game_Status_ML : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (InfoPage)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                InfoPage = false;
+                GameisPaused = false;
+                infoPageUI.SetActive(false);
+                gameHandler.StartGame();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
@@ -44,17 +57,20 @@ public class Manage_Game_Status_ML : MonoBehaviour
 
     public void Pause()
     {
-        if (GameisPaused)
+        if (!InfoPage)
         {
-            pauseMenuUI.SetActive(false);
-            GameisPaused = false;
-            gameHandler.Resume();
-        }
-        else
-        {
-            pauseMenuUI.SetActive(true);
-            GameisPaused = true;
-            gameHandler.Pause();
+            if (GameisPaused)
+            {
+                pauseMenuUI.SetActive(false);
+                GameisPaused = false;
+                gameHandler.Resume();
+            }
+            else
+            {
+                pauseMenuUI.SetActive(true);
+                GameisPaused = true;
+                gameHandler.Pause();
+            }
         }
     }
 
@@ -73,4 +89,5 @@ public class Manage_Game_Status_ML : MonoBehaviour
             Debug.LogWarning("AudioMixer is not assigned in PauseMenuHandler! Please assign it in the Inspector.");
         }
     }
+
 }

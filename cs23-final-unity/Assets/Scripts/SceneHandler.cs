@@ -5,31 +5,37 @@ public class SceneHandler : MonoBehaviour
 {
     public void to_MainMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
 
     public void to_Settings()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Settings");
     }
 
     public void to_Credits()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Credits");
     }
 
     public void to_EndLevel()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("EndLevelScreen");
     }
 
     public void to_Levels()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("LevelSelect");
     }
 
     public void restart_level()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
