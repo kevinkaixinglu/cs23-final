@@ -79,60 +79,8 @@ public class beatmapBuilder
         return this;
     }
 
-    public beatmapBuilder FillMeasureWithEighthNotes(int measure, int key = 0)
-    {
-        int m = measure - 1;
-        
-        if (m >= 0 && m < beatMap.Length)
-        {
-            for (int beat = 0; beat < 4; beat++)
-            {
-                beatmapHelper.SetEighthNotes(beatMap[m], beat, 0, key);
-                beatmapHelper.SetEighthNotes(beatMap[m], beat, 1, key);
-            }
-        }
-        return this;
-    }
 
-    public beatmapBuilder FillMeasureWithQuarterNotes(int measure, int key = 0)
-    {
-        int m = measure - 1;
-        
-        if (m >= 0 && m < beatMap.Length)
-        {
-            for (int beat = 0; beat < 4; beat++)
-            {
-                beatmapHelper.SetBeatNote(beatMap[m], beat, key, beatmapHelper.QUARTER);
-            }
-        }
-        return this;
-    }
 
-    public beatmapBuilder ClearMeasure(int measure)
-    {
-        int m = measure - 1;
-        
-        if (m >= 0 && m < beatMap.Length)
-        {
-            beatmapHelper.ClearMeasure(beatMap[m]);
-        }
-        return this;
-    }
-
-    public beatmapBuilder ClearBeat(int measure, int beat)
-    {
-        int m = measure - 1;
-        int b = beat - 1;
-        
-        if (IsValid(m, b))
-        {
-            for (int i = 0; i < 4; i++)
-            {
-                beatMap[m].qNotes[b].sNotes[i] = 0;
-            }
-        }
-        return this;
-    }
 
     public Measure[] GetBeatMap()
     {
