@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2554837756101179273}
   - component: {fileID: 5094499277962185547}
   - component: {fileID: 8990197379842960908}
+  - component: {fileID: 4848682144537168447}
   m_Layer: 0
   m_Name: Wine
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 6036889464699144894}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.16, y: 2.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d066f68add561a744b225c2f0ced2e8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 4848682144537168447}
 --- !u!50 &8990197379842960908
 Rigidbody2D:
   serializedVersion: 5
@@ -73,6 +75,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &4848682144537168447
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036889464699144894}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 319308b8e8275f448953898b94943ffd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6530405640030277784
 GameObject:
   m_ObjectHideFlags: 0
@@ -84,7 +108,7 @@ GameObject:
   - component: {fileID: 2149012331625189740}
   - component: {fileID: 4269974019966290911}
   m_Layer: 0
-  m_Name: red_down_0
+  m_Name: image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +172,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 3439363824411256976, guid: 0e2367f0c5bf34fac958bdd4e06b2559, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

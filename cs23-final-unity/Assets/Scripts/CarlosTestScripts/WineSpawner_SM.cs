@@ -24,6 +24,9 @@ public class WineSpawnerML : MonoBehaviour
 
     private int last_tick = -1;
 
+    // BEAT = 2 qNotes
+    private int BEATS_AHEAD = 4;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -36,7 +39,8 @@ public class WineSpawnerML : MonoBehaviour
         if (gameManager.isPlaying)
         {
             //float offset = .11f;
-            time_in_song = gameManager.musicSource.time + (60 / gameManager.bpm) * 16;
+            time_in_song = gameManager.musicSource.time 
+                + (60 / gameManager.bpm) * (16 + 2 * BEATS_AHEAD);
 
             if (time_in_song >= gameManager.musicSource.clip.length)
             {
@@ -62,6 +66,22 @@ public class WineSpawnerML : MonoBehaviour
                 last_meas = curr_meas; // Wait until we get to the next tick (tick defined above)
             }
 
+            //float offset = .11f;
+            time_in_song = gameManager.musicSource.time
+                + (60 / gameManager.bpm) * 16;
+
+            if (time_in_song >= gameManager.musicSource.clip.length)
+            {
+                curr_tick = 0;
+            }
+            else
+            {
+                curr_tick = ((int)(time_in_song * (gameManager.bpm / 60) * 4)) - 1; // tick = note relative to whole song
+            }
+            curr_meas = (curr_tick) / 16;
+            curr_qNote = ((curr_tick % 16) / 4);
+            curr_sNote = curr_tick % 4;
+
             if (curr_tick != last_tick
                 && curr_sNote >= 0 && curr_qNote >= 0 && curr_meas >= 0)
             {
@@ -81,11 +101,15 @@ public class WineSpawnerML : MonoBehaviour
         //Create Wine
         Vector3 start = Opp.transform.position;
         Vector3 dest = Player.transform.position;
+        Vector3 step = (dest - start) / 8;
+        start = start - step * BEATS_AHEAD;
+        dest = dest + step * BEATS_AHEAD;
         GameObject note_obj = Instantiate(Wine, start, Quaternion.identity);
 
         //Send it and call its destructor
-        note_obj.GetComponent<StaticWine>().Send((60 / gameManager.bpm) * 16, dest - start);
-        Destroy(note_obj, (float)(60 / gameManager.bpm) * 16);
+        note_obj.GetComponent<StaticWine>().Send((60 / gameManager.bpm) * (16 + 4 * BEATS_AHEAD)
+                                                , dest - start);
+        Destroy(note_obj, (float)((60 / gameManager.bpm) * (16 + 4 * BEATS_AHEAD)));
     }
 
 }

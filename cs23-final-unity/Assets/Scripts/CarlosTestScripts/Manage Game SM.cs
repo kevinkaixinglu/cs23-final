@@ -87,8 +87,9 @@ public class ManageGameSM : MonoBehaviour
                 }
             }
 
+            double offset = .03;
             double sec_per_tick = 60 / bpm / 4;
-            time_in_song = musicSource.time - sec_per_tick / 4; // This subtraction allows for slightly early inputs
+            time_in_song = musicSource.time - sec_per_tick / 4 + offset; // This subtraction allows for slightly early inputs
             curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song
             curr_meas = (curr_tick) / 16;
             curr_qNote = ((curr_tick % 16) / 4);
