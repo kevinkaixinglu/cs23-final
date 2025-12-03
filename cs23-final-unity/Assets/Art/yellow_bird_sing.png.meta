@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      yellow_bird_sing_0: -5715453603807429390
+      yellow_bird_sing_1: 5144613372962254762
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
