@@ -99,7 +99,7 @@ public class GameHandlerCopy : MonoBehaviour
 
 
                 int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
-                if (next_input != 0)
+                if (next_input == 1)
                 {
                     //Note the "%4". This allows user to record any positive number, which
                     //  can allow differenciation between numbers like 4 and 8, which will
