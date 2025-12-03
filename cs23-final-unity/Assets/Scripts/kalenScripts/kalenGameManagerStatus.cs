@@ -7,12 +7,15 @@ public class kalenGameManagerStatus : MonoBehaviour
 {
     [Header("Pausing the Game")]
     public GameObject pauseMenuUI;
+    public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
     public static float volumeLevel = 1.0f;
 
     private kalenGameManager gameHandler;
     private static bool GameisPaused = false;
+
+    private bool InfoPage = false;
 
     public void Start()
     {
@@ -26,9 +29,11 @@ public class kalenGameManagerStatus : MonoBehaviour
 
         SetVolume();
         Debug.Log("Starting Game...");
-        gameHandler.StartGame();
-        GameisPaused = false;
         pauseMenuUI.SetActive(false);
+
+        InfoPage = true;
+        GameisPaused = false;
+        infoPageUI.SetActive(true);
     }
 
     void OnDestroy()
@@ -39,6 +44,18 @@ public class kalenGameManagerStatus : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (InfoPage)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                InfoPage = false;
+                GameisPaused = false;
+                infoPageUI.SetActive(false);
+                gameHandler.StartGame();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
