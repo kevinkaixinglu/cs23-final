@@ -83,14 +83,10 @@ public class ConveyorPlayer : MonoBehaviour
         Vector2 start = transform.position;
         Vector2 target = start + new Vector2(0, 1);
         
-        // Move gradually to the target
-        while ((Vector2)transform.position != target)
-        {
+        //move towards target location
+        while ((Vector2)transform.position != target) {
             transform.position = Vector2.MoveTowards(
-                transform.position,
-                target,
-                100 * Time.deltaTime
-            );
+                transform.position, target, 100 * Time.deltaTime);
             yield return null;
         }
 
@@ -107,7 +103,6 @@ public class ConveyorPlayer : MonoBehaviour
         Vector2 start = transform.position;
         Vector2 target = start + new Vector2(0, -1);
         
-        // Move gradually to the target
         while ((Vector2)transform.position != target)
         {
             transform.position = Vector2.MoveTowards(
