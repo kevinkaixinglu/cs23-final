@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 36fb5c1397c4a41638b0135697fec27c
+guid: e781b935c5792b547a68c0744b9ce31c
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8638421506506822070
-    second: Untitled_Artwork 5_0
+      213: 4532743887857244766
+    second: character_bird_sing_0
   - first:
-      213: -8582677375622298851
-    second: Untitled_Artwork 5_1
+      213: 6511515611314583666
+    second: character_bird_sing_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +40,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,7 +103,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork 5_0
+      name: character_bird_sing_0
       rect:
         serializedVersion: 2
         x: 1834
@@ -118,14 +118,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4ee09c78692e1880800000000000000
-      internalID: -8638421506506822070
+      spriteID: e5add8dec8a87ee30800000000000000
+      internalID: 4532743887857244766
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 5_1
+      name: character_bird_sing_1
       rect:
         serializedVersion: 2
         x: 746
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d13404c566434e880800000000000000
-      internalID: -8582677375622298851
+      spriteID: 278f0d1f2fc8d5a50800000000000000
+      internalID: 6511515611314583666
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +160,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Untitled_Artwork 5_0: -8638421506506822070
-      Untitled_Artwork 5_1: -8582677375622298851
+      character_bird_sing_0: 4532743887857244766
+      character_bird_sing_1: 6511515611314583666
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

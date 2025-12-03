@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 36fb5c1397c4a41638b0135697fec27c
+guid: a04c6e32a61311042a717eddc94e9b98
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8638421506506822070
-    second: Untitled_Artwork 5_0
-  - first:
-      213: -8582677375622298851
-    second: Untitled_Artwork 5_1
+      213: 683190306481092171
+    second: character_bird_default_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -40,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -49,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -103,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork 5_0
+      name: character_bird_default_0
       rect:
         serializedVersion: 2
-        x: 1834
-        y: 2916
-        width: 11
-        height: 6
+        x: 725
+        y: 14
+        width: 1640
+        height: 2190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,30 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4ee09c78692e1880800000000000000
-      internalID: -8638421506506822070
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Untitled_Artwork 5_1
-      rect:
-        serializedVersion: 2
-        x: 746
-        y: 0
-        width: 1606
-        height: 2837
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d13404c566434e880800000000000000
-      internalID: -8582677375622298851
+      spriteID: b46bbcbc6fd2b7900800000000000000
+      internalID: 683190306481092171
       vertices: []
       indices: 
       edges: []
@@ -150,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -160,8 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Untitled_Artwork 5_0: -8638421506506822070
-      Untitled_Artwork 5_1: -8582677375622298851
+      character_bird_default_0: 683190306481092171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

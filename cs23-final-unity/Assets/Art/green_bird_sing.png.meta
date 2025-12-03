@@ -1,13 +1,16 @@
 fileFormatVersion: 2
-guid: 36fb5c1397c4a41638b0135697fec27c
+guid: 9634a78c3e164024092bfc09636148a5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8638421506506822070
-    second: Untitled_Artwork 5_0
+      213: -692309077827194093
+    second: green_bird_sing_0
   - first:
-      213: -8582677375622298851
-    second: Untitled_Artwork 5_1
+      213: -8653396902380772972
+    second: green_bird_sing_1
+  - first:
+      213: 1781113845788068416
+    second: green_bird_sing_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,7 +106,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork 5_0
+      name: green_bird_sing_0
       rect:
         serializedVersion: 2
         x: 1834
@@ -118,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4ee09c78692e1880800000000000000
-      internalID: -8638421506506822070
+      spriteID: 313f45dcf8c6466f0800000000000000
+      internalID: -692309077827194093
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 5_1
+      name: green_bird_sing_1
       rect:
         serializedVersion: 2
         x: 746
@@ -140,8 +143,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d13404c566434e880800000000000000
-      internalID: -8582677375622298851
+      spriteID: 491e02d6d55f8e780800000000000000
+      internalID: -8653396902380772972
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: green_bird_sing_2
+      rect:
+        serializedVersion: 2
+        x: 3026
+        y: 2158
+        width: 16
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04a4ab22b99c7b810800000000000000
+      internalID: 1781113845788068416
       vertices: []
       indices: 
       edges: []
@@ -159,9 +184,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Untitled_Artwork 5_0: -8638421506506822070
-      Untitled_Artwork 5_1: -8582677375622298851
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

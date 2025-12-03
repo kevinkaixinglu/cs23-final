@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 36fb5c1397c4a41638b0135697fec27c
+guid: d164131ca7321e44a949139553f60cb1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8638421506506822070
-    second: Untitled_Artwork 5_0
+      213: 4057510033424916360
+    second: purple_bird_default_0
   - first:
-      213: -8582677375622298851
-    second: Untitled_Artwork 5_1
+      213: -4866490352339710956
+    second: purple_bird_default_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -103,13 +103,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Untitled_Artwork 5_0
+      name: purple_bird_default_0
       rect:
         serializedVersion: 2
-        x: 1834
-        y: 2916
-        width: 11
-        height: 6
+        x: 725
+        y: 14
+        width: 1640
+        height: 2190
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -118,20 +118,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a4ee09c78692e1880800000000000000
-      internalID: -8638421506506822070
+      spriteID: 88f10e6b0eb2f4830800000000000000
+      internalID: 4057510033424916360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Untitled_Artwork 5_1
+      name: purple_bird_default_1
       rect:
         serializedVersion: 2
-        x: 746
-        y: 0
-        width: 1606
-        height: 2837
+        x: 2511
+        y: 1658
+        width: 199
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d13404c566434e880800000000000000
-      internalID: -8582677375622298851
+      spriteID: 41c0dedeec0c67cb0800000000000000
+      internalID: -4866490352339710956
       vertices: []
       indices: 
       edges: []
@@ -159,9 +159,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Untitled_Artwork 5_0: -8638421506506822070
-      Untitled_Artwork 5_1: -8582677375622298851
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
