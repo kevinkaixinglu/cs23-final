@@ -325,7 +325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5701095404215267980, guid: 2dfc3ad310d3f4875ace5f6c38258337, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: to_Levels
+      value: to_intro_CutScene
       objectReference: {fileID: 0}
     - target: {fileID: 5701095404215267980, guid: 2dfc3ad310d3f4875ace5f6c38258337, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

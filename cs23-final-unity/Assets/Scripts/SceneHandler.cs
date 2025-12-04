@@ -3,10 +3,21 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler : MonoBehaviour
 {
+
+
+
+
     public void to_MainMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void to_intro_CutScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("IntroCutScene");
+    
     }
 
     public void to_Settings()

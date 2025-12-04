@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class Dialogue : MonoBehaviour
@@ -10,26 +11,43 @@ public class Dialogue : MonoBehaviour
     public GameObject activeSprite;
 
     public TextMeshProUGUI textComponent;
+    public GameObject dialogueBox;   // panel that holds the text / portraits
+
     public string[] lines;
     public float textSpeed;
     private int index;
+
+    [Header("Chirp Sounds")]
     public AudioSource chirp1;
     public AudioSource chirp2;
     public AudioSource chirp3;
-    
+
+    [Header("UI")]
+    public GameObject continueButton; // button to show after line 7
 
     private Coroutine blinkRoutine;
     private Coroutine chirpRoutine;
+    
+    // NEW: are we waiting for the button instead of mouse click?
+    private bool waitingForContinueButton = false;
 
     void Start()
     {
         textComponent.text = string.Empty;
+
+        if (continueButton != null) continueButton.SetActive(false);
+        if (dialogueBox != null) dialogueBox.SetActive(true);
+
         startDialogue();
     }
 
     void Update()
     {
-        if(Input.GetMouseButtonDown(0))
+        // Don't advance with mouse if we're waiting for the continue button
+        if (waitingForContinueButton)
+            return;
+
+        if (Input.GetMouseButtonDown(0))
         {
             if (textComponent.text == lines[index])
             {
@@ -38,12 +56,17 @@ public class Dialogue : MonoBehaviour
             else
             {
                 StopAllCoroutines();
-                
-                // stop blinking if skipping
+
                 if (blinkRoutine != null)
                 {
                     StopCoroutine(blinkRoutine);
                     blinkRoutine = null;
+                }
+
+                if (chirpRoutine != null)
+                {
+                    StopCoroutine(chirpRoutine);
+                    chirpRoutine = null;
                 }
 
                 activeSprite.SetActive(false);
@@ -62,6 +85,12 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
+        // Whenever we start typing, we’re not waiting for a button
+        waitingForContinueButton = false;
+
+        if (continueButton != null) continueButton.SetActive(false);
+        if (dialogueBox != null) dialogueBox.SetActive(true);
+
         blinkRoutine = StartCoroutine(BlinkSprites());
         chirpRoutine = StartCoroutine(PlayRandomChirps());
 
@@ -85,6 +114,16 @@ public class Dialogue : MonoBehaviour
 
         idleSprite.SetActive(true);
         activeSprite.SetActive(false);
+
+        // === SPECIAL CASE: AFTER LINE 7 (index 6) ===
+        // Only if there ARE more lines to show after this one.
+        if (index == 11 && index < lines.Length - 1)
+        {
+            waitingForContinueButton = true;
+
+            if (dialogueBox != null) dialogueBox.SetActive(false);
+            if (continueButton != null) continueButton.SetActive(true);
+        }
     }
 
     IEnumerator BlinkSprites()
@@ -101,6 +140,36 @@ public class Dialogue : MonoBehaviour
         }
     }
 
+    IEnumerator PlayRandomChirps()
+    {
+        AudioSource[] chirps = { chirp1, chirp2, chirp3 };
+
+        while (true)
+        {
+            AudioSource c = chirps[Random.Range(0, chirps.Length)];
+            if (c != null) c.Play();
+
+            yield return new WaitForSeconds(Random.Range(0.08f, 0.15f));
+        }
+    }
+
+    // Called by your UI button's OnClick
+    public void OnContinueButtonPressed()
+    {
+        if (!waitingForContinueButton)
+            return;
+
+        waitingForContinueButton = false;
+
+        if (continueButton != null) continueButton.SetActive(false);
+        if (dialogueBox != null) dialogueBox.SetActive(true);
+
+        // Move to next line and start typing
+        index++;
+        textComponent.text = string.Empty;
+        StartCoroutine(TypeLine());
+    }
+
     void NextLine()
     {
         if (index < lines.Length - 1)
@@ -111,21 +180,14 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
-            gameObject.SetActive(false);
+            // End of dialogue
+            StartCoroutine(LoadNextScene());
         }
     }
 
-    IEnumerator PlayRandomChirps()
-{
-    AudioSource[] chirps = { chirp1, chirp2, chirp3 };
-
-    while (true)
+    IEnumerator LoadNextScene()
     {
-        AudioSource c = chirps[Random.Range(0, chirps.Length)];
-        if (c != null) c.Play();
-
-        // small randomness to feel natural
-        yield return new WaitForSeconds(Random.Range(0.08f, 0.15f));
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene("LevelSelect");
     }
-}
 }
