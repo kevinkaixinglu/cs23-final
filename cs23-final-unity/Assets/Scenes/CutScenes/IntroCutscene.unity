@@ -178,8 +178,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
+  m_sharedMaterial: {fileID: 2524499286976547917, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -203,8 +203,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 34
+  m_fontSizeBase: 34
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -530,8 +530,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: I'll help you!
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
+  m_sharedMaterial: {fileID: 2524499286976547917, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -555,8 +555,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 35
-  m_fontSizeBase: 35
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1015,8 +1015,8 @@ MonoBehaviour:
   - .... sorry... Chirp... i mean grape juice...
   - 'I don''t know if I can get it done in time...          '
   - 
-  - THANKS!!!
-  - test
+  - WOW!!! CHIRP!! THANK YOU!!!
+  - Let's make this a night she won't forget!
   textSpeed: 0.05
   chirp1: {fileID: 975520787}
   chirp2: {fileID: 975520786}
