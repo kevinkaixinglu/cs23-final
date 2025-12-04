@@ -13,9 +13,17 @@ public class LevelSelectManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private Button backButton;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] public GameObject lvl1Clear;
 
     void Start()
     {
+        lvl1Clear.SetActive(false);
+
+        //check if level was cleared
+        if (PlayerPrefs.GetInt("Level1Passed", 0) == 1)
+        {
+            lvl1Clear.SetActive(true);
+        }
         // Setup level buttons
         for (int i = 0; i < levelButtons.Length; i++)
         {
