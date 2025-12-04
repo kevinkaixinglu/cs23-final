@@ -18,7 +18,7 @@ public class kalenGameManager : MonoBehaviour
     public GameObject score;
     public TextMeshProUGUI scoreText;
     public int currScore = 0;
-    public int winningScore = 18;
+    private int winningScore = 15;
 
     private string victorySceneName = "LevelCompleteScene";
     private string failureSceneName = "LevelFailed";
@@ -28,6 +28,7 @@ public class kalenGameManager : MonoBehaviour
     public double bpm;
     private double startingBPM;
     public AudioSource musicSource;
+    public AudioSource idleMusic;
     public float songDuration = 90f;
 
     [Header("Single Key Input:")]
@@ -52,8 +53,8 @@ public class kalenGameManager : MonoBehaviour
     private int window_start_tick = -1;
     private int current_note_duration = 4;
     private int last_tick = -1;
-    private int inputWindowTicks = 2;
-    private int inputWindowTicksBefore = 1;
+    private int inputWindowTicks;
+    private int inputWindowTicksBefore;
     private int last_key_press_tick = -1;
 
     private double accumulatedTicks = 0;
@@ -74,6 +75,9 @@ public class kalenGameManager : MonoBehaviour
     {
         ShowPlayerIdle();
         InitializeBPMChanges();
+
+        idleMusic.loop = true;
+        idleMusic.Stop();
     }
 
     void InitializeBPMChanges()
@@ -292,7 +296,7 @@ public class kalenGameManager : MonoBehaviour
             if (bpm >= 170)
             {
                 //HERE IS LENIENCY WINDOW AFTER SPEED UP
-                inputWindowTicks = 1;
+                inputWindowTicks = 0;
                 inputWindowTicksBefore = 1;
                 Debug.Log($"[INPUT WINDOW] Changed to: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after");
             }
@@ -300,7 +304,7 @@ public class kalenGameManager : MonoBehaviour
             {
                 //HERE IS LENIENCY WINDOW BEFORE SPEED UP
                 inputWindowTicks = 1;
-                inputWindowTicksBefore = 2;
+                inputWindowTicksBefore = 0;
             }
             
             currentBPMChangeIndex++;
@@ -408,6 +412,7 @@ public class kalenGameManager : MonoBehaviour
         {
             Debug.Log("Pausing...");
             musicSource.Pause();
+            idleMusic.Play();
             if (score != null) score.SetActive(false);
             isPlaying = false;
             Time.timeScale = 0f;
@@ -420,6 +425,7 @@ public class kalenGameManager : MonoBehaviour
         {
             Debug.Log("Resuming...");
             musicSource.UnPause();
+            idleMusic.Stop();
             if (score != null) score.SetActive(true);
             isPlaying = true;
             Time.timeScale = 1f;

@@ -25,6 +25,7 @@ public class ManageGameML : MonoBehaviour
     [Header("Song:")]
     public double bpm;
     public AudioSource musicSource;
+    public AudioSource idleMusic;
 
     [Header("Input Keys:")]
     public KeyCode[] key = new KeyCode[4];
@@ -49,6 +50,9 @@ public class ManageGameML : MonoBehaviour
         musicSource.PlayScheduled(startTime);
         beat_map = special_beatmap.SpecialBeatMap(); // COMMENTED OUT
         isPlaying = true;
+
+        idleMusic.loop = true;
+        idleMusic.Stop();
     }
 
     // Update is called once per frame
@@ -137,7 +141,8 @@ public class ManageGameML : MonoBehaviour
         {
             Debug.Log("Pausing...");
             musicSource.Pause();
-            score.SetActive(false);
+            idleMusic.Play();
+            if (score != null) score.SetActive(false);
             isPlaying = false;
             Time.timeScale = 0f;
         }
@@ -149,7 +154,8 @@ public class ManageGameML : MonoBehaviour
         {
             Debug.Log("Resuming...");
             musicSource.UnPause();
-            score.SetActive(true);
+            idleMusic.Stop();
+            if (score != null) score.SetActive(true);
             isPlaying = true;
             Time.timeScale = 1f;
         }

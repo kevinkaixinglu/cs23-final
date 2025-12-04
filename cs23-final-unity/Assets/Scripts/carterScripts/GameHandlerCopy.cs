@@ -20,6 +20,7 @@ public class GameHandlerCopy : MonoBehaviour
     [Header("Song:")]
     public double bpm;
     public AudioSource musicSource;
+    public AudioSource idleMusic;
 
     [Header("Input Keys:")]
     public KeyCode[] key = new KeyCode[4];
@@ -44,6 +45,9 @@ public class GameHandlerCopy : MonoBehaviour
         musicSource.PlayScheduled(startTime);
         beat_map = special_beatmap.SpecialBeatMap(); // COMMENTED OUT
         isPlaying = true;
+
+        idleMusic.loop = true;
+        idleMusic.Stop();
     }
 
     // Update is called once per frame
@@ -85,6 +89,7 @@ public class GameHandlerCopy : MonoBehaviour
             curr_qNote = ((curr_tick % 16) / 4);
             curr_sNote = curr_tick % 4;
 
+        
             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
                 for (int i = 0; i < 4; i++) //For all four input keys
@@ -121,7 +126,8 @@ public class GameHandlerCopy : MonoBehaviour
         {
             Debug.Log("Pausing...");
             musicSource.Pause();
-            score.SetActive(false);
+            idleMusic.Play();
+            if (score != null) score.SetActive(false);
             isPlaying = false;
             Time.timeScale = 0f;
         }
@@ -133,7 +139,8 @@ public class GameHandlerCopy : MonoBehaviour
         {
             Debug.Log("Resuming...");
             musicSource.UnPause();
-            score.SetActive(true);
+            idleMusic.Stop();
+            if (score != null) score.SetActive(true);
             isPlaying = true;
             Time.timeScale = 1f;
         }
