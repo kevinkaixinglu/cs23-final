@@ -326,6 +326,7 @@ public class kalenGameManager : MonoBehaviour
             if (currScore >= winningScore)
             {
                 Debug.Log($"[VICTORY] Player won with {currScore} points!");
+                PlayerPrefs.SetInt("Level1Passed", 1); 
                 ShowVictoryCinematic();
             }
             else
