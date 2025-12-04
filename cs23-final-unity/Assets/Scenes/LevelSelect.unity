@@ -2869,6 +2869,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 693264310062654535, guid: 90e15946401ff499dbc522f5a2f040ec, type: 3}
+      propertyPath: backButton
+      value: 
+      objectReference: {fileID: 1184264138}
+    - target: {fileID: 693264310062654535, guid: 90e15946401ff499dbc522f5a2f040ec, type: 3}
       propertyPath: 'levelButtons.Array.data[0]'
       value: 
       objectReference: {fileID: 1151397234}
