@@ -13,8 +13,13 @@ public class Dialogue : MonoBehaviour
     public string[] lines;
     public float textSpeed;
     private int index;
+    public AudioSource chirp1;
+    public AudioSource chirp2;
+    public AudioSource chirp3;
+    
 
     private Coroutine blinkRoutine;
+    private Coroutine chirpRoutine;
 
     void Start()
     {
@@ -58,6 +63,7 @@ public class Dialogue : MonoBehaviour
     IEnumerator TypeLine()
     {
         blinkRoutine = StartCoroutine(BlinkSprites());
+        chirpRoutine = StartCoroutine(PlayRandomChirps());
 
         foreach (char c in lines[index])
         {
@@ -69,6 +75,12 @@ public class Dialogue : MonoBehaviour
         {
             StopCoroutine(blinkRoutine);
             blinkRoutine = null;
+        }
+
+        if (chirpRoutine != null)
+        {
+            StopCoroutine(chirpRoutine);
+            chirpRoutine = null;
         }
 
         idleSprite.SetActive(true);
@@ -102,4 +114,18 @@ public class Dialogue : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    IEnumerator PlayRandomChirps()
+{
+    AudioSource[] chirps = { chirp1, chirp2, chirp3 };
+
+    while (true)
+    {
+        AudioSource c = chirps[Random.Range(0, chirps.Length)];
+        if (c != null) c.Play();
+
+        // small randomness to feel natural
+        yield return new WaitForSeconds(Random.Range(0.08f, 0.15f));
+    }
+}
 }
