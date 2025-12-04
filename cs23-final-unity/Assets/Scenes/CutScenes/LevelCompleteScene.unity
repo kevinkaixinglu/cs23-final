@@ -5160,7 +5160,8 @@ MonoBehaviour:
   overlaySound: {fileID: 0}
   bannerDropSound: {fileID: 0}
   birdChirpSound: {fileID: 0}
-  victoryMusic: {fileID: 0}
+  victoryMusic: {fileID: 8300000, guid: 646cebf7ab3a9476aae2956226b22a7d, type: 3}
+  idleMusic: {fileID: 8300000, guid: 9cbb2bd689c334fe891a01c392258e98, type: 3}
   overlayFadeTime: 0.7
   spotlightFadeTime: 0.5
   bannerDropTime: 0.5

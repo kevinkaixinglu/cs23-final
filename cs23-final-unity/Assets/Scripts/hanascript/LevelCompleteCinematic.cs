@@ -26,6 +26,7 @@ public class LevelCompleteCinematic : MonoBehaviour
     public AudioClip bannerDropSound;
     public AudioClip birdChirpSound;
     public AudioClip victoryMusic;
+    public AudioClip idleMusic;
     private AudioSource audioSource;
 
     [Header("Timings")]
@@ -132,11 +133,17 @@ public class LevelCompleteCinematic : MonoBehaviour
     {
         // Play victory music
         if (victoryMusic != null)
+    {
+        audioSource.loop = false;
+        audioSource.clip = victoryMusic;
+        audioSource.Play();
+
+        if (idleMusic != null)
         {
-            audioSource.clip = victoryMusic;
-            audioSource.loop = true;
-            audioSource.Play();
+            //plays idle music when victory music is done
+            StartCoroutine(PlayIdleMusicAfter(victoryMusic.length));
         }
+    }
 
         // 1. Fade in dark overlay
         PlaySound(overlaySound);
@@ -344,12 +351,27 @@ public class LevelCompleteCinematic : MonoBehaviour
     public void ProceedToNextScreen()
     {
         // Load next scene, show results, etc.
+        audioSource.Stop(); 
         Debug.Log("Proceeding to next screen...");
     }
     
     public void ReturnToMenu()
     {
+        audioSource.Stop(); 
         Debug.Log("Returning to menu...");
         // Load menu scene
     }
+
+    IEnumerator PlayIdleMusicAfter(float delay)
+{
+    yield return new WaitForSeconds(delay);
+
+    if (idleMusic != null && audioSource != null)
+    {
+        audioSource.loop = true;
+        audioSource.clip = idleMusic;
+        audioSource.Play();
+    }
+}
+
 }

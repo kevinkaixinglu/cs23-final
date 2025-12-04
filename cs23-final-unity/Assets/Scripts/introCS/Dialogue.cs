@@ -5,20 +5,23 @@ using TMPro;
 
 public class Dialogue : MonoBehaviour
 {
+    [Header("Sprites")]
+    public GameObject idleSprite;
+    public GameObject activeSprite;
 
     public TextMeshProUGUI textComponent;
     public string[] lines;
     public float textSpeed;
     private int index;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    private Coroutine blinkRoutine;
+
     void Start()
     {
         textComponent.text = string.Empty;
         startDialogue();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetMouseButtonDown(0))
@@ -26,9 +29,21 @@ public class Dialogue : MonoBehaviour
             if (textComponent.text == lines[index])
             {
                 NextLine();
-            } else
+            }
+            else
             {
                 StopAllCoroutines();
+                
+                // stop blinking if skipping
+                if (blinkRoutine != null)
+                {
+                    StopCoroutine(blinkRoutine);
+                    blinkRoutine = null;
+                }
+
+                activeSprite.SetActive(false);
+                idleSprite.SetActive(true);
+
                 textComponent.text = lines[index];
             }
         }
@@ -37,17 +52,40 @@ public class Dialogue : MonoBehaviour
     void startDialogue()
     {
         index = 0;
-
         StartCoroutine(TypeLine());
-
     }
 
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        blinkRoutine = StartCoroutine(BlinkSprites());
+
+        foreach (char c in lines[index])
         {
             textComponent.text += c;
             yield return new WaitForSeconds(textSpeed);
+        }
+
+        if (blinkRoutine != null)
+        {
+            StopCoroutine(blinkRoutine);
+            blinkRoutine = null;
+        }
+
+        idleSprite.SetActive(true);
+        activeSprite.SetActive(false);
+    }
+
+    IEnumerator BlinkSprites()
+    {
+        while (true)
+        {
+            idleSprite.SetActive(false);
+            activeSprite.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+
+            idleSprite.SetActive(true);
+            activeSprite.SetActive(false);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 
