@@ -6085,7 +6085,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1091168234006987145, guid: 5d109aacbf225bf41a0606c74a3f9756, type: 3}
         m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: to_Levels
+        m_MethodName: to_MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

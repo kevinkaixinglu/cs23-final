@@ -18,7 +18,7 @@ public class kalenGameManager : MonoBehaviour
     public GameObject score;
     public TextMeshProUGUI scoreText;
     public int currScore = 0;
-    private int winningScore = 15;
+    private int winningScore = 1;
 
     private string victorySceneName = "LevelCompleteScene";
     private string failureSceneName = "LevelFailed";
