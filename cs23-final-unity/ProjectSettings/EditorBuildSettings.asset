@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level1.unity
     guid: 67ff4d47382a7413db2e83071af95582
   - enabled: 1
-    path: Assets/Scenes/CutScenes/LevelCompleteScene.unity
+    path: Assets/Scenes/CutScenes/originaldesign.unity
     guid: a4918823affb44aba84488ca5463dd11
   - enabled: 1
     path: Assets/Scenes/CutScenes/LevelFailed.unity
