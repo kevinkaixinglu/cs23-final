@@ -13,20 +13,20 @@ public class LevelCompleteCinematic : MonoBehaviour
     public RectTransform raven;
     public ParticleSystem confetti;
     public ParticleSystem confetti1;
-    public GameObject nextButton; // Next/Continue button
-    public GameObject menuButton;  // Menu button
+    public GameObject nextButton; 
+    public GameObject menuButton;  
     
     private CanvasGroup femaleBirdCanvasGroup;
     private CanvasGroup ravenCanvasGroup;
     private Image[] femaleBirdImages;
     private Image[] ravenImages;
 
-    [Header("Audio (Optional)")]
-    public AudioClip overlaySound;
-    public AudioClip bannerDropSound;
-    public AudioClip birdChirpSound;
-    public AudioClip victoryMusic;
-    private AudioSource audioSource;
+    [Header("Audio Sources (drag full AudioSources here)")]
+    public AudioSource overlaySource;
+    public AudioSource bannerDropSource;
+    public AudioSource birdChirpSource;
+    public AudioSource victorySource;
+    public AudioSource idleSource;
 
     [Header("Timings")]
     public float overlayFadeTime = 1.0f;
@@ -37,7 +37,7 @@ public class LevelCompleteCinematic : MonoBehaviour
     public float stepDelay = 0.3f;
     public float idleFloatAmount = 5f;
     public float idleFloatSpeed = 2f;
-    public float buttonFadeInTime = 0.5f; // Time for buttons to fade in
+    public float buttonFadeInTime = 0.5f; 
 
     [Header("Events")]
     public UnityEvent onSequenceComplete;
@@ -47,32 +47,24 @@ public class LevelCompleteCinematic : MonoBehaviour
 
     void Start()
     {
-        // Setup audio
-        audioSource = gameObject.AddComponent<AudioSource>();
-        
-        // Setup CanvasGroups for bird fading
+        // Setup CanvasGroups
         femaleBirdCanvasGroup = GetOrAddCanvasGroup(femaleBird.gameObject);
         ravenCanvasGroup = GetOrAddCanvasGroup(raven.gameObject);
         
-        // Get all images from birds (including children)
         femaleBirdImages = femaleBird.GetComponentsInChildren<Image>();
         ravenImages = raven.GetComponentsInChildren<Image>();
         
-        // Start birds as black silhouettes
         SetBirdToBlack(femaleBirdImages);
         SetBirdToBlack(ravenImages);
         
-        // Stop confetti initially
         if (confetti != null) confetti.Stop();
         if (confetti1 != null) confetti1.Stop();
         
-        // Start invisible
         darkOverlay.color = new Color(0, 0, 0, 0);
         SetAlpha(spotlight, 0f);
         banner.gameObject.SetActive(false);
         bannerOriginalScale = banner.localScale;
         
-        // Hide buttons initially
         if (nextButton != null) nextButton.SetActive(false);
         if (menuButton != null) menuButton.SetActive(false);
 
@@ -83,29 +75,21 @@ public class LevelCompleteCinematic : MonoBehaviour
     {
         CanvasGroup cg = obj.GetComponent<CanvasGroup>();
         if (cg == null)
-        {
             cg = obj.AddComponent<CanvasGroup>();
-        }
         return cg;
     }
     
     void SetBirdToBlack(Image[] images)
     {
         foreach (Image img in images)
-        {
             img.color = Color.black;
-        }
     }
     
     IEnumerator RestoreBirdColors(Image[] images, float duration)
     {
-        // Store original colors
         Color[] originalColors = new Color[images.Length];
         for (int i = 0; i < images.Length; i++)
-        {
-            // Get the original color from the sprite or use white as default
-            originalColors[i] = Color.white; 
-        }
+            originalColors[i] = Color.white;
         
         float t = 0f;
         while (t < duration)
@@ -114,47 +98,43 @@ public class LevelCompleteCinematic : MonoBehaviour
             float p = t / duration;
             
             for (int i = 0; i < images.Length; i++)
-            {
                 images[i].color = Color.Lerp(Color.black, originalColors[i], p);
-            }
             
             yield return null;
         }
         
-        // Ensure final colors are set
         for (int i = 0; i < images.Length; i++)
-        {
             images[i].color = originalColors[i];
-        }
     }
 
     IEnumerator LevelCompleteSequence()
     {
         // Play victory music
-        if (victoryMusic != null)
+        if (victorySource != null)
         {
-            audioSource.clip = victoryMusic;
-            audioSource.loop = true;
-            audioSource.Play();
+            victorySource.loop = false;
+            victorySource.Play();
+
+            if (idleSource != null)
+                StartCoroutine(PlayIdleMusicAfter(victorySource.clip.length));
         }
 
         // 1. Fade in dark overlay
-        PlaySound(overlaySound);
+        PlaySound(overlaySource);
         yield return StartCoroutine(FadeImageAlpha(darkOverlay, 0f, 0.6f, overlayFadeTime));
         yield return new WaitForSeconds(stepDelay);
 
-        // 2. Fade in spotlight and reveal birds
+        // 2. Spotlight + reveal birds
         StartCoroutine(FadeImageAlpha(spotlight, 0f, 1f, spotlightFadeTime));
         StartCoroutine(RestoreBirdColors(femaleBirdImages, spotlightFadeTime));
         yield return StartCoroutine(RestoreBirdColors(ravenImages, spotlightFadeTime));
         yield return new WaitForSeconds(stepDelay);
 
-        // 3. Banner drop with bounce
+        // 3. Banner drop
         banner.gameObject.SetActive(true);
-        banner.localScale = bannerOriginalScale; // Ensure correct scale
-        PlaySound(bannerDropSound);
+        banner.localScale = bannerOriginalScale;
+        PlaySound(bannerDropSource);
         
-        // Trigger confetti bursts
         if (confetti != null) confetti.Play();
         if (confetti1 != null) confetti1.Play();
         
@@ -169,11 +149,9 @@ public class LevelCompleteCinematic : MonoBehaviour
             t += Time.deltaTime;
             float p = t / bannerDropTime;
             
-            // Elastic ease-out with overshoot
             float ease = ElasticEaseOut(p);
             banner.anchoredPosition = Vector3.Lerp(startPos, originalPos, ease);
             
-            // Scale pop
             float scale = 1f + 0.2f * (1f - p) * Mathf.Sin(p * Mathf.PI * 3f);
             banner.localScale = bannerOriginalScale * Mathf.Clamp(scale, 0.8f, 1.2f);
             
@@ -185,7 +163,7 @@ public class LevelCompleteCinematic : MonoBehaviour
         yield return new WaitForSeconds(stepDelay);
 
         // 4. Birds celebrate
-        PlaySound(birdChirpSound);
+        PlaySound(birdChirpSource);
         StartCoroutine(BirdCelebrate(femaleBird, 0f));
         StartCoroutine(BirdCelebrate(raven, 0.1f));
         
@@ -195,7 +173,7 @@ public class LevelCompleteCinematic : MonoBehaviour
         StartCoroutine(IdleFloat(femaleBird));
         StartCoroutine(IdleFloat(raven));
 
-        // 6. Show buttons after a brief moment
+        // 6. Show buttons
         yield return new WaitForSeconds(0.8f);
         yield return StartCoroutine(FadeInButtons());
 
@@ -210,23 +188,18 @@ public class LevelCompleteCinematic : MonoBehaviour
         Vector3 originalPos = bird.anchoredPosition;
         Vector3 originalScale = bird.localScale;
         
-        // Smooth celebratory dance
         float t = 0f;
         while (t < birdBounceTime)
         {
             t += Time.deltaTime;
             float p = t / birdBounceTime;
             
-            // Smooth bounce curve
             float bounce = Mathf.Sin(p * Mathf.PI);
-            Vector3 offset = new Vector3(0, birdBounceHeight * bounce, 0);
-            bird.anchoredPosition = originalPos + offset;
+            bird.anchoredPosition = originalPos + new Vector3(0, birdBounceHeight * bounce, 0);
             
-            // Gentle sway rotation
             float rotation = Mathf.Sin(p * Mathf.PI * 2f) * 8f;
             bird.localRotation = Quaternion.Euler(0, 0, rotation);
             
-            // Subtle scale pulse
             float scale = 1f + 0.1f * Mathf.Sin(p * Mathf.PI);
             bird.localScale = originalScale * scale;
             
@@ -254,23 +227,18 @@ public class LevelCompleteCinematic : MonoBehaviour
 
     IEnumerator FadeInButtons()
     {
-        // Activate buttons
         if (nextButton != null) nextButton.SetActive(true);
         if (menuButton != null) menuButton.SetActive(true);
         
-        // Get CanvasGroup components or add them
         CanvasGroup nextGroup = nextButton != null ? nextButton.GetComponent<CanvasGroup>() : null;
         CanvasGroup menuGroup = menuButton != null ? menuButton.GetComponent<CanvasGroup>() : null;
         
-        // Add CanvasGroup if missing
         if (nextButton != null && nextGroup == null) nextGroup = nextButton.AddComponent<CanvasGroup>();
         if (menuButton != null && menuGroup == null) menuGroup = menuButton.AddComponent<CanvasGroup>();
         
-        // Start from transparent
         if (nextGroup != null) nextGroup.alpha = 0f;
         if (menuGroup != null) menuGroup.alpha = 0f;
         
-        // Fade in
         float t = 0f;
         while (t < buttonFadeInTime)
         {
@@ -283,12 +251,10 @@ public class LevelCompleteCinematic : MonoBehaviour
             yield return null;
         }
         
-        // Ensure fully visible
         if (nextGroup != null) nextGroup.alpha = 1f;
         if (menuGroup != null) menuGroup.alpha = 1f;
     }
 
-    // Elastic ease-out for bouncy effect
     float ElasticEaseOut(float t)
     {
         if (t == 0f || t == 1f) return t;
@@ -332,24 +298,34 @@ public class LevelCompleteCinematic : MonoBehaviour
         cg.alpha = to;
     }
 
-    void PlaySound(AudioClip clip)
+    void PlaySound(AudioSource src)
     {
-        if (clip != null && audioSource != null)
-        {
-            audioSource.PlayOneShot(clip);
-        }
+        if (src != null)
+            src.Play();
     }
 
-    // Call this from a button or after a delay
     public void ProceedToNextScreen()
     {
-        // Load next scene, show results, etc.
+        if (victorySource != null) victorySource.Stop();
+        if (idleSource != null) idleSource.Stop();
         Debug.Log("Proceeding to next screen...");
     }
     
     public void ReturnToMenu()
     {
+        if (victorySource != null) victorySource.Stop();
+        if (idleSource != null) idleSource.Stop();
         Debug.Log("Returning to menu...");
-        // Load menu scene
+    }
+
+    IEnumerator PlayIdleMusicAfter(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (idleSource != null)
+        {
+            idleSource.loop = true;
+            idleSource.Play();
+        }
     }
 }

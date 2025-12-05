@@ -38,15 +38,15 @@ public class WackamoleManager : BeatmapVisualizerSimple
     public AudioSource hitSound;
     public AudioSource missSound;
 
-    [Header("Tutorial Text")]
-    public TextMeshProUGUI instructionsText;
-    public TextMeshProUGUI goodLuckText;
-    public string instructions = "Use ARROW KEYS to hit moles\nPress Z + ARROW for snakes!";
-
     [Header("Debug")]
     public bool showDebugMessages = true;
 
-    private float quarterNoteTime = 0.5f;
+    [Header("Timing Settings")]
+    public float timingOffset = 0f; // Adjust this to fix timing
+    public float inputWindowSize = 0.2f; // Total window size in seconds (centered on beat)
+
+    // This will be calculated based on BPM
+    private float quarterNoteTime;
     private int lastBouncedTick = -1;
     
     // Input tracking
@@ -57,96 +57,30 @@ public class WackamoleManager : BeatmapVisualizerSimple
     private GameObject activeSprite;
     private Coroutine inputWindowCoroutine;
 
-    // Tutorial state
-    private bool tutorialActive = true;
+    // Game state
+    private bool gameActive = false;
+    private bool waitingForFirstBeat = true;
+    private int beatsSinceStart = 0;
+    private float beatTime = 0f; // The exact time the beat should happen
 
     void Start()
     {
         if (showDebugMessages) Debug.Log("WackamoleManager Start called");
         
-        // Initialize text elements
-        InitializeTextElements();
-        
-        if (npcBeatMap == null || npcBeatMap.Length == 0) 
+        // Calculate quarter note time based on BPM
+        if (rhythmTimer != null)
         {
-            if (showDebugMessages) Debug.Log("Building simple test beatmap");
-            
-            int totalMeasures = 62;
-            beatmapBuilder builder = new beatmapBuilder(totalMeasures);
-            
-            // Measures 1-2: Empty (4-second delay)
-            
-            // Measures 3-62: Simple quarter note patterns
-            int measure = 3;
-            
-            // Pattern 1: Single notes with large gaps (measures 3-10)
-            for (int i = 0; i < 8; i++)
-            {
-                builder.PlaceQuarterNote(measure, 1, 1); // Top Snake on beat 1
-                measure++;
-            }
-            
-            // Pattern 2: Alternating top and bottom (measures 11-18)
-            for (int i = 0; i < 8; i++)
-            {
-                if (i % 2 == 0)
-                    builder.PlaceQuarterNote(measure, 1, 1); // Top Snake
-                else
-                    builder.PlaceQuarterNote(measure, 1, 2); // Bottom Snake
-                measure++;
-            }
-            
-            // Pattern 3: All holes in sequence (measures 19-26)
-            for (int i = 0; i < 8; i++)
-            {
-                int hole = (i % 4) + 1; // Cycles through 1,2,3,4
-                builder.PlaceQuarterNote(measure, 1, hole);
-                measure++;
-            }
-            
-            // Pattern 4: Simple worms (measures 27-34)
-            for (int i = 0; i < 8; i++)
-            {
-                builder.PlaceQuarterNote(measure, 1, 5); // Top Worm
-                measure++;
-            }
-            
-            // Pattern 5: Alternating snakes and worms (measures 35-42)
-            for (int i = 0; i < 8; i++)
-            {
-                if (i % 2 == 0)
-                    builder.PlaceQuarterNote(measure, 1, 1); // Top Snake
-                else
-                    builder.PlaceQuarterNote(measure, 1, 5); // Top Worm
-                measure++;
-            }
-            
-            // Pattern 6: Two notes per measure with gap (measures 43-50)
-            for (int i = 0; i < 8; i++)
-            {
-                builder.PlaceQuarterNote(measure, 1, 1); // Top Snake on beat 1
-                builder.PlaceQuarterNote(measure, 3, 2); // Bottom Snake on beat 3
-                measure++;
-            }
-            
-            // Pattern 7: All holes with worms (measures 51-58)
-            for (int i = 0; i < 8; i++)
-            {
-                int hole = (i % 4) + 5; // Cycles through 5,6,7,8 (worms)
-                builder.PlaceQuarterNote(measure, 1, hole);
-                measure++;
-            }
-            
-            // Pattern 8: Final simple pattern (measures 59-62)
-            for (int i = 0; i < 4; i++)
-            {
-                builder.PlaceQuarterNote(measure, 1, 1); // Top Snake
-                measure++;
-            }
-            
-            npcBeatMap = builder.GetBeatMap();
-            if (showDebugMessages) Debug.Log($"Simple test beatmap created with {npcBeatMap.Length} measures");
+            quarterNoteTime = 60f / (float)rhythmTimer.bpm; // 60 seconds / BPM
+            if (showDebugMessages) Debug.Log($"Quarter note time: {quarterNoteTime} seconds (BPM: {rhythmTimer.bpm})");
         }
+        else
+        {
+            quarterNoteTime = 0.5f; // Default for 120 BPM
+            if (showDebugMessages) Debug.LogWarning("RhythmTimer not found, using default quarter note time: 0.5s");
+        }
+        
+        // Create a simple beatmap with one snake at the 4th second
+        CreateSimpleBeatmap();
         
         InitializeSprites();
         lastBouncedTick = -1;
@@ -156,77 +90,63 @@ public class WackamoleManager : BeatmapVisualizerSimple
             flashPanel.SetActive(false);
         }
         
-        // Start tutorial sequence
-        StartCoroutine(TutorialSequence());
-        
-        if (showDebugMessages) Debug.Log("WackamoleManager initialized successfully");
+        if (showDebugMessages) Debug.Log("WackamoleManager initialized. Waiting for game to start...");
     }
 
-    private void InitializeTextElements()
+    private void CreateSimpleBeatmap()
+{
+    if (showDebugMessages) Debug.Log("Creating every-other-beat test beatmap");
+    
+    int totalMeasures = 16; // 16 measures at 120 BPM = 32 seconds
+    beatmapBuilder builder = new beatmapBuilder(totalMeasures);
+    
+    // 4-second delay (2 measures at 120 BPM)
+    // Then place a note on every other beat starting at measure 3, beat 1
+    
+    int noteCounter = 0;
+    
+    // Start at measure 3, beat 1 (4 seconds in)
+    for (int measure = 3; measure <= totalMeasures; measure++)
     {
-        // Hide both text elements initially
-        if (instructionsText != null)
+        // Place notes on beats 1 and 3 of each measure
+        // This creates: measure 3 beat 1, measure 3 beat 3, measure 4 beat 1, measure 4 beat 3, etc.
+        
+        for (int beat = 1; beat <= 3; beat += 2) // beat 1 and beat 3
         {
-            instructionsText.gameObject.SetActive(false);
-            instructionsText.text = instructions;
+            // Skip if we've placed enough notes
+            if (noteCounter >= 30) break;
+            
+            // Determine hole type (cycle through 1-8: snakes 1-4, worms 5-8)
+            int holeType = (noteCounter % 8) + 1;
+            
+            // Place the note
+            builder.PlaceQuarterNote(measure, beat, holeType);
+            
+            if (showDebugMessages && noteCounter < 10) // Only log first 10 for clarity
+            {
+                string creatureType = (holeType >= 5) ? "Worm" : "Snake";
+                int holeIndex = (holeType <= 4) ? holeType : holeType - 4;
+                string[] holeNames = {"Top", "Bottom", "Left", "Right"};
+                Debug.Log($"Note {noteCounter + 1}: {creatureType} at {holeNames[holeIndex - 1]} hole, measure {measure}, beat {beat}");
+            }
+            
+            noteCounter++;
         }
         
-        if (goodLuckText != null)
-        {
-            goodLuckText.gameObject.SetActive(false);
-            goodLuckText.text = "GOOD LUCK!";
-        }
+        if (noteCounter >= 30) break;
     }
-
-    private IEnumerator TutorialSequence()
+    
+    npcBeatMap = builder.GetBeatMap();
+    
+    if (showDebugMessages) 
     {
-        if (showDebugMessages) Debug.Log("Starting tutorial sequence");
-        
-        // Wait 2 seconds
-        yield return new WaitForSeconds(2f);
-        
-        // Show instructions for 8 seconds
-        if (instructionsText != null)
-        {
-            instructionsText.gameObject.SetActive(true);
-            if (showDebugMessages) Debug.Log("Showing instructions");
-        }
-        
-        yield return new WaitForSeconds(8f);
-        
-        // Hide instructions
-        if (instructionsText != null)
-        {
-            instructionsText.gameObject.SetActive(false);
-            if (showDebugMessages) Debug.Log("Hiding instructions");
-        }
-        
-        // Wait 1 second
-        yield return new WaitForSeconds(1f);
-        
-        // Show "Good Luck!" for 0.5 seconds
-        if (goodLuckText != null)
-        {
-            goodLuckText.gameObject.SetActive(true);
-            if (showDebugMessages) Debug.Log("Showing Good Luck message");
-        }
-        
-        yield return new WaitForSeconds(0.5f);
-        
-        // Hide "Good Luck!"
-        if (goodLuckText != null)
-        {
-            goodLuckText.gameObject.SetActive(false);
-            if (showDebugMessages) Debug.Log("Hiding Good Luck message");
-        }
-        
-        // Wait 0.5 seconds
-        yield return new WaitForSeconds(0.5f);
-        
-        // End tutorial and enable gameplay
-        tutorialActive = false;
-        if (showDebugMessages) Debug.Log("Tutorial complete - gameplay starting");
+        Debug.Log($"Simple every-other-beat pattern created");
+        Debug.Log($"Total measures: {totalMeasures}");
+        Debug.Log($"Total notes placed: {noteCounter}");
+        Debug.Log($"Pattern: Note every other beat starting at 4 seconds");
+        Debug.Log($"Expected timing: 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, etc.");
     }
+}
 
     private void InitializeSprites()
     {
@@ -240,13 +160,13 @@ public class WackamoleManager : BeatmapVisualizerSimple
             if (hole.snakeSprite != null)
             {
                 hole.snakeStartPos = hole.snakeSprite.transform.localPosition;
-                hole.snakeSprite.SetActive(true);
+                hole.snakeSprite.SetActive(false); // Start hidden
             }
             
             if (hole.wormSprite != null)
             {
                 hole.wormStartPos = hole.wormSprite.transform.localPosition;
-                hole.wormSprite.SetActive(true);
+                hole.wormSprite.SetActive(false); // Start hidden
             }
             
             if (hole.idleSprite != null)
@@ -258,12 +178,25 @@ public class WackamoleManager : BeatmapVisualizerSimple
         if (showDebugMessages) Debug.Log("All sprites initialized");
     }
 
+    // Call this from GameManager when game starts
+    public void StartGame()
+    {
+        gameActive = true;
+        waitingForFirstBeat = true;
+        beatsSinceStart = 0;
+        beatTime = 0f;
+        
+        if (showDebugMessages) Debug.Log("WackamoleManager: Game started!");
+    }
+
     protected override void Update()
     {
+        if (!gameActive) return;
+        
         base.Update();
         
-        // Only check for input if tutorial is complete and window is open
-        if (!tutorialActive && inputWindowOpen)
+        // Only check for input if game is active and window is open
+        if (inputWindowOpen)
         {
             CheckForInput();
         }
@@ -271,22 +204,33 @@ public class WackamoleManager : BeatmapVisualizerSimple
 
     protected override void OnBeatTriggered(int noteValue)
     {
-        // Skip beat processing during tutorial
-        if (tutorialActive) return;
+        // Skip if game isn't active
+        if (!gameActive) return;
         
-        if (showDebugMessages) Debug.Log($"OnBeatTriggered: {noteValue} at measure {rhythmTimer.curr_meas}, beat {rhythmTimer.curr_qNote}");
+        if (showDebugMessages) Debug.Log($"OnBeatTriggered: {noteValue} at measure {rhythmTimer.curr_meas}, beat {rhythmTimer.curr_qNote}, tick {rhythmTimer.curr_tick}");
         
+        // Count beats since start (for debugging)
+        beatsSinceStart++;
+        
+        // Bounce holes on every quarter note (every beat)
         if (rhythmTimer.curr_tick % 4 == 0 && rhythmTimer.curr_tick != lastBouncedTick)
         {
             BounceAllHoles();
             lastBouncedTick = rhythmTimer.curr_tick;
         }
         
+        // Skip if noteValue is 0 (no note)
         if (noteValue == 0) 
         {
+            if (waitingForFirstBeat)
+            {
+                if (showDebugMessages) Debug.Log($"Waiting... beat {beatsSinceStart}");
+            }
             return;
         }
 
+        // Note values 1-4: Snakes (Top, Bottom, Left, Right)
+        // Note values 5-8: Worms (Top, Bottom, Left, Right)
         int holeIndex = (noteValue <= 4) ? (noteValue - 1) : (noteValue - 5);
         bool isWorm = noteValue >= 5;
         
@@ -296,9 +240,14 @@ public class WackamoleManager : BeatmapVisualizerSimple
             isWormActive = isWorm;
             activeHoleIndex = holeIndex;
             
-            if (showDebugMessages) Debug.Log($"Animation starting for {(isWorm ? "Worm" : "Snake")} at hole {holeIndex}");
+            if (showDebugMessages) Debug.Log($"{(isWorm ? "Worm" : "Snake")} appearing at hole {holeIndex} (Key: {holeKeys[holeIndex]})");
+            
+            // Calculate when the beat should happen
+            // This is when the creature should be at the apex
+            beatTime = Time.unscaledTime + animationDuration;
             
             StartPopUpAnimation(holeIndex, isWorm);
+            waitingForFirstBeat = false;
         }
         else
         {
@@ -310,50 +259,69 @@ public class WackamoleManager : BeatmapVisualizerSimple
     {
         if (currentActiveNote == -1) return;
         
+        // Check each arrow key
         for (int i = 0; i < holeKeys.Length; i++)
         {
             if (Input.GetKeyDown(holeKeys[i]))
             {
-                if (i == activeHoleIndex)
+                HandleArrowKeyPress(i);
+                return; // Exit after handling one key press
+            }
+        }
+        
+        // Check for Z key press without arrow (only matters for snakes)
+        if (!isWormActive && Input.GetKeyDown(snakeActionKey))
+        {
+            if (showDebugMessages) Debug.Log("WRONG! Pressed Z key but no arrow key for snake");
+            FlashScreen(Color.red);
+            PlayMissSound();
+        }
+    }
+
+    private void HandleArrowKeyPress(int pressedHoleIndex)
+    {
+        if (pressedHoleIndex == activeHoleIndex)
+        {
+            // Correct hole pressed
+            if (isWormActive)
+            {
+                // Worm: just arrow key, NO Z key allowed!
+                if (!Input.GetKey(snakeActionKey)) // Make sure Z is NOT pressed
                 {
-                    if (isWormActive)
-                    {
-                        if (showDebugMessages) Debug.Log("SUCCESS! Correct worm input for hole " + i);
-                        FlashScreen(Color.green);
-                        PlayHitSound();
-                        CloseInputWindow();
-                        return;
-                    }
-                    else
-                    {
-                        if (Input.GetKey(snakeActionKey))
-                        {
-                            if (showDebugMessages) Debug.Log("SUCCESS! Correct snake input for hole " + i + " with Z key");
-                            FlashScreen(Color.green);
-                            PlayHitSound();
-                            CloseInputWindow();
-                            return;
-                        }
-                        else
-                        {
-                            if (showDebugMessages) Debug.Log("WRONG! Correct hole for snake but missing Z key");
-                            FlashScreen(Color.red);
-                            PlayMissSound();
-                        }
-                    }
+                    if (showDebugMessages) Debug.Log("SUCCESS! Correct worm input for hole " + pressedHoleIndex);
+                    FlashScreen(Color.green);
+                    PlayHitSound();
+                    CloseInputWindow();
                 }
                 else
                 {
-                    if (showDebugMessages) Debug.Log("WRONG! Pressed key for hole " + i + " but expected hole " + activeHoleIndex);
+                    if (showDebugMessages) Debug.Log("WRONG! Should NOT press Z for worm");
+                    FlashScreen(Color.red);
+                    PlayMissSound();
+                }
+            }
+            else
+            {
+                // Snake: need Z + arrow key
+                if (Input.GetKey(snakeActionKey))
+                {
+                    if (showDebugMessages) Debug.Log("SUCCESS! Correct snake input for hole " + pressedHoleIndex + " with Z key");
+                    FlashScreen(Color.green);
+                    PlayHitSound();
+                    CloseInputWindow();
+                }
+                else
+                {
+                    if (showDebugMessages) Debug.Log("WRONG! Correct hole for snake but missing Z key");
                     FlashScreen(Color.red);
                     PlayMissSound();
                 }
             }
         }
-        
-        if (!isWormActive && Input.GetKeyDown(snakeActionKey))
+        else
         {
-            if (showDebugMessages) Debug.Log("WRONG! Pressed Z key but no arrow key for snake");
+            // Wrong hole pressed
+            if (showDebugMessages) Debug.Log("WRONG! Pressed key for hole " + pressedHoleIndex + " but expected hole " + activeHoleIndex);
             FlashScreen(Color.red);
             PlayMissSound();
         }
@@ -387,10 +355,10 @@ public class WackamoleManager : BeatmapVisualizerSimple
         UnityEngine.UI.Image flashImage = flashPanel.GetComponent<UnityEngine.UI.Image>();
         if (flashImage != null)
         {
-            flashImage.color = new Color(color.r, color.g, color.b, 0.5f);
+            flashImage.color = new Color(color.r, color.g, color.b, 0.3f); // Lower alpha for less intense flash
         }
         
-        yield return new WaitForSeconds(flashDuration);
+        yield return new WaitForSecondsRealtime(flashDuration);
         
         flashPanel.SetActive(false);
     }
@@ -428,7 +396,7 @@ public class WackamoleManager : BeatmapVisualizerSimple
         Vector3 bouncePos = startPos + Vector3.up * holeBounceHeight;
         
         hole.idleSprite.transform.localPosition = bouncePos;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSecondsRealtime(0.05f); // Use realtime for short animations
         hole.idleSprite.transform.localPosition = startPos;
     }
 
@@ -448,7 +416,7 @@ public class WackamoleManager : BeatmapVisualizerSimple
         if (targetSprite != null)
         {
             activeSprite = targetSprite;
-            StartCoroutine(PopUpAnimation(hole, targetSprite, startPos));
+            StartCoroutine(PopUpAnimation(hole, targetSprite, startPos, isWorm));
         }
         else
         {
@@ -456,61 +424,142 @@ public class WackamoleManager : BeatmapVisualizerSimple
         }
     }
 
-    private IEnumerator PopUpAnimation(HoleSprites hole, GameObject sprite, Vector3 startPos)
+    private IEnumerator PopUpAnimation(HoleSprites hole, GameObject sprite, Vector3 startPos, bool isWorm)
     {
         hole.isAnimating = true;
         
+        // Show the sprite
+        sprite.SetActive(true);
+        sprite.transform.localPosition = startPos;
+        
         Vector3 targetPos = startPos + Vector3.up * popUpHeight;
-
-        // Move up to target position
+        
+        // Calculate exact timing
+        float currentTime = Time.unscaledTime;
+        float windowHalf = inputWindowSize / 2f;
+        
+        // When should the apex be? It should be at beatTime
+        // But we need to adjust the animation start so apex is at beatTime
+        float timeUntilBeat = beatTime - currentTime;
+        
+        if (showDebugMessages) 
+        {
+            Debug.Log($"Animation starting at: {currentTime:F3}");
+            Debug.Log($"Target beat/apex at: {beatTime:F3}");
+            Debug.Log($"Time until apex: {timeUntilBeat:F3}s");
+            Debug.Log($"Animation duration: {animationDuration}s");
+        }
+        
+        // If we have more time than needed for animation, wait before starting
+        if (timeUntilBeat > animationDuration)
+        {
+            float waitTime = timeUntilBeat - animationDuration;
+            yield return new WaitForSecondsRealtime(waitTime);
+        }
+        
+        // Now start the animation - it will take animationDuration to reach apex
+        // Should reach apex very close to beatTime
+        
+        // Move up to apex
         float elapsedTime = 0f;
         while (elapsedTime < animationDuration)
         {
             float t = elapsedTime / animationDuration;
             t = Mathf.SmoothStep(0f, 1f, t);
             sprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, t);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
         sprite.transform.localPosition = targetPos;
-
-        // Wait at apex for one beat duration (0.5 seconds at 120 BPM)
-        float apexDuration = quarterNoteTime - animationDuration;
-        yield return new WaitForSeconds(apexDuration);
-
-        // Start the input window 0.5 seconds after reaching apex
-        // This creates a window from 0.25s before to 0.25s after the target beat
-        yield return new WaitForSeconds(0.25f);
         
-        // Open input window
-        if (showDebugMessages) Debug.Log($"INPUT WINDOW OPEN for {(isWormActive ? "Worm" : "Snake")} at hole {activeHoleIndex}. Press {holeKeys[activeHoleIndex]} {(isWormActive ? "" : "+ " + snakeActionKey)}");
-        inputWindowOpen = true;
+        // We should now be at apex
+        float apexTime = Time.unscaledTime;
         
-        // Store the coroutine so we can stop it if needed
-        inputWindowCoroutine = StartCoroutine(InputWindowTimer());
-
-        // Move back down to start position
+        // Calculate input window times (centered on beatTime)
+        float windowStartTime = beatTime - windowHalf;
+        float windowEndTime = beatTime + windowHalf;
+        
+        if (showDebugMessages) 
+        {
+            Debug.Log($"Reached apex at: {apexTime:F3}");
+            Debug.Log($"Window: {windowStartTime:F3} to {windowEndTime:F3}");
+            Debug.Log($"Window center (beatTime): {beatTime:F3}");
+        }
+        
+        // Check if we're already in or past the window
+        if (apexTime < windowStartTime)
+        {
+            // Wait for window to start
+            float waitTime = windowStartTime - apexTime;
+            if (showDebugMessages) Debug.Log($"Waiting {waitTime:F3}s for window to start");
+            yield return new WaitForSecondsRealtime(waitTime);
+            
+            // Open window for full duration
+            if (showDebugMessages) Debug.Log($"INPUT WINDOW OPEN (0.2s) for {(isWorm ? "Worm" : "Snake")} at hole {activeHoleIndex}");
+            inputWindowOpen = true;
+            inputWindowCoroutine = StartCoroutine(InputWindowTimer(inputWindowSize));
+        }
+        else if (apexTime < windowEndTime)
+        {
+            // We're already in the window
+            float remainingWindow = windowEndTime - apexTime;
+            if (showDebugMessages) Debug.Log($"Already in window! Opening for remaining {remainingWindow:F3}s");
+            inputWindowOpen = true;
+            inputWindowCoroutine = StartCoroutine(InputWindowTimer(remainingWindow));
+        }
+        else
+        {
+            // Already past the window
+            if (showDebugMessages) Debug.Log("Missed window entirely!");
+            FlashScreen(Color.red);
+            PlayMissSound();
+            CloseInputWindow();
+        }
+        
+        // Stay at apex for the full beat duration
+        float timeSpentSoFar = Time.unscaledTime - (beatTime - animationDuration);
+        float remainingApexTime = quarterNoteTime - timeSpentSoFar;
+        
+        if (remainingApexTime > 0)
+        {
+            if (showDebugMessages) Debug.Log($"Staying at apex for {remainingApexTime:F3}s");
+            yield return new WaitForSecondsRealtime(remainingApexTime);
+        }
+        
+        // Close window if still open
+        CloseInputWindow();
+        
+        // Move back down
         elapsedTime = 0f;
         while (elapsedTime < animationDuration)
         {
             float t = elapsedTime / animationDuration;
             t = Mathf.SmoothStep(0f, 1f, t);
             sprite.transform.localPosition = Vector3.Lerp(targetPos, startPos, t);
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
         sprite.transform.localPosition = startPos;
+        
+        // Hide the sprite
+        sprite.SetActive(false);
 
-        // Mark this hole as no longer animating
         hole.isAnimating = false;
     }
 
-    private IEnumerator InputWindowTimer()
+    private IEnumerator InputWindowTimer(float windowDuration)
     {
-        // Wait for the input window duration (0.5 seconds total)
-        yield return new WaitForSeconds(0.5f);
+        // Use unscaled time for input window
+        float startTime = Time.unscaledTime;
+        
+        if (showDebugMessages) Debug.Log($"Input window open for {windowDuration} seconds (centered on beat)");
+        
+        while (Time.unscaledTime - startTime < windowDuration && inputWindowOpen)
+        {
+            yield return null;
+        }
         
         // Close input window and check for missed input
         if (inputWindowOpen && currentActiveNote != -1)
@@ -519,6 +568,34 @@ public class WackamoleManager : BeatmapVisualizerSimple
             FlashScreen(Color.red);
             PlayMissSound();
             CloseInputWindow();
+        }
+    }
+
+    // For debugging timing - call this method or add to OnGUI
+    void OnGUI()
+    {
+        if (showDebugMessages && rhythmTimer != null)
+        {
+            GUILayout.BeginArea(new Rect(10, 10, 350, 220));
+            GUILayout.Label($"Music Time: {rhythmTimer.musicSource.time:F3}");
+            GUILayout.Label($"Unscaled Time: {Time.unscaledTime:F3}");
+            GUILayout.Label($"Current Tick: {rhythmTimer.curr_tick}");
+            GUILayout.Label($"Quarter Note Time: {quarterNoteTime:F3}s");
+            GUILayout.Label($"Input Window Size: {inputWindowSize:F3}s");
+            GUILayout.Label($"Beats Since Start: {beatsSinceStart}");
+            
+            if (currentActiveNote != -1)
+            {
+                float timeToBeat = beatTime - Time.unscaledTime;
+                GUILayout.Label($"Active Note: {currentActiveNote}");
+                GUILayout.Label($"Active Hole: {activeHoleIndex}");
+                GUILayout.Label($"Is Worm: {isWormActive}");
+                GUILayout.Label($"Input Window: {inputWindowOpen}");
+                GUILayout.Label($"Time to Beat: {timeToBeat:F3}s");
+                GUILayout.Label($"Window Center: {beatTime:F3}");
+            }
+            
+            GUILayout.EndArea();
         }
     }
 
@@ -532,9 +609,15 @@ public class WackamoleManager : BeatmapVisualizerSimple
             if (hole.idleSprite != null)
                 hole.idleSprite.transform.localPosition = hole.idleStartPos;
             if (hole.snakeSprite != null)
+            {
                 hole.snakeSprite.transform.localPosition = hole.snakeStartPos;
+                hole.snakeSprite.SetActive(false);
+            }
             if (hole.wormSprite != null)
+            {
                 hole.wormSprite.transform.localPosition = hole.wormStartPos;
+                hole.wormSprite.SetActive(false);
+            }
         }
         
         lastBouncedTick = -1;
@@ -542,19 +625,60 @@ public class WackamoleManager : BeatmapVisualizerSimple
         inputWindowOpen = false;
         activeSprite = null;
         inputWindowCoroutine = null;
+        gameActive = false;
+        beatsSinceStart = 0;
+        beatTime = 0f;
         
         if (flashPanel != null)
         {
             flashPanel.SetActive(false);
         }
         
-        // Reset tutorial state
-        tutorialActive = true;
-        InitializeTextElements();
-        
-        // Restart tutorial sequence
-        StartCoroutine(TutorialSequence());
-        
         if (showDebugMessages) Debug.Log("All positions reset");
+    }
+    
+    // Call this when pausing
+    public void Pause()
+    {
+        gameActive = false;
+        // Also pause any running animations
+        if (inputWindowCoroutine != null)
+        {
+            StopCoroutine(inputWindowCoroutine);
+            inputWindowCoroutine = null;
+        }
+    }
+    
+    // Call this when resuming
+    public void Resume()
+    {
+        gameActive = true;
+    }
+    
+    // Test method for timing adjustment
+    public void AdjustTiming(float offset)
+    {
+        timingOffset = offset;
+        if (showDebugMessages) Debug.Log($"Timing offset set to: {timingOffset}");
+    }
+    
+    // Method to adjust input window size
+    public void AdjustWindowSize(float size)
+    {
+        inputWindowSize = size;
+        if (showDebugMessages) Debug.Log($"Input window size set to: {inputWindowSize}");
+    }
+    
+    // Method to get timing information for debugging
+    public void LogTimingInfo()
+    {
+        if (rhythmTimer != null)
+        {
+            Debug.Log($"BPM: {rhythmTimer.bpm}");
+            Debug.Log($"Quarter Note Time: {quarterNoteTime}");
+            Debug.Log($"Music Time: {rhythmTimer.musicSource.time}");
+            Debug.Log($"Current Measure: {rhythmTimer.curr_meas}");
+            Debug.Log($"Current Beat: {rhythmTimer.curr_qNote}");
+        }
     }
 }

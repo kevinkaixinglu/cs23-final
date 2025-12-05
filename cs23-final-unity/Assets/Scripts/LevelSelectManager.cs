@@ -13,9 +13,38 @@ public class LevelSelectManager : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private Button backButton;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
+    [SerializeField] public GameObject lvl1Clear;
+    // [SerializeField] public GameObject lvl2Clear;
+    // [SerializeField] public GameObject lvl3Clear;
+    // [SerializeField] public GameObject lvl4Clear;
+    // [SerializeField] public GameObject lvl5Clear;
 
     void Start()
     {
+        // lvl1Clear.SetActive(false);
+        // lvl2Clear.SetActive(false);
+        // lvl3Clear.SetActive(false);
+        // lvl14lear.SetActive(false);
+        // lvl5Clear.SetActive(false);
+
+
+        //check if level was cleared
+        if (PlayerPrefs.GetInt("Level1Passed", 0) == 1) lvl1Clear.SetActive(true);
+        // if (PlayerPrefs.GetInt("Level2Passed", 0) == 1) lvl2Clear.SetActive(true);
+        // if (PlayerPrefs.GetInt("Level3Passed", 0) == 1) lvl3Clear.SetActive(true);
+        // if (PlayerPrefs.GetInt("Level4Passed", 0) == 1) lvl4Clear.SetActive(true);
+        // if (PlayerPrefs.GetInt("Level5Passed", 0) == 1) lvl5Clear.SetActive(true);
+
+        // if ((PlayerPrefs.GetInt("Level1Passed", 0) == 1) && (PlayerPrefs.GetInt("Level2Passed", 0) == 1)
+        //     (PlayerPrefs.GetInt("Level3Passed", 0) == 1) && (PlayerPrefs.GetInt("Level4Passed", 0) == 1)
+        //     (PlayerPrefs.GetInt("Level5Passed", 0) == 1)) {
+
+        //         //code to show final ending scene
+        //     }
+        
+        
+            
+        
         // Setup level buttons
         for (int i = 0; i < levelButtons.Length; i++)
         {
