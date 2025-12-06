@@ -525,9 +525,9 @@ MonoBehaviour:
   - qNotes: []
   - qNotes: []
   - qNotes: []
-  special_beatmap: {fileID: 0}
-  score: {fileID: 0}
-  scoreText: {fileID: 0}
+  special_beatmap: {fileID: 2089209900}
+  score: {fileID: 2027142519}
+  scoreText: {fileID: 1316639391}
   currScore: 0
   bpm: 103
   musicSource: {fileID: 419988033}
@@ -563,7 +563,7 @@ AudioSource:
   m_GameObject: {fileID: 419988026}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: c5abe7382e87bd045aa13ad1dc8cc82f, type: 2}
   m_audioClip: {fileID: 8300000, guid: 0e30a8c3c65e041889c10f3e72fe707e, type: 3}
   m_Resource: {fileID: 8300000, guid: 0e30a8c3c65e041889c10f3e72fe707e, type: 3}
   m_PlayOnAwake: 0
@@ -909,14 +909,14 @@ PrefabInstance:
     - target: {fileID: 1034038265168341251, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 419988032}
     - target: {fileID: 1034038265168341251, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 1034038265168341251, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Manage_Game_Status, Assembly-CSharp
+      value: ManageGameCopy, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1379166016087188171, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_Name
@@ -929,6 +929,14 @@ PrefabInstance:
     - target: {fileID: 3454972922227420734, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 419988032}
+    - target: {fileID: 3454972922227420734, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454972922227420734, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ManageGameCopy, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3624472310106039908, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: score
@@ -973,14 +981,14 @@ PrefabInstance:
     - target: {fileID: 5127138597969391296, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 419988032}
     - target: {fileID: 5127138597969391296, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Pause
       objectReference: {fileID: 0}
     - target: {fileID: 5127138597969391296, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Manage_Game_Status, Assembly-CSharp
+      value: ManageGameCopy, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5764890957530120371, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_SizeDelta.x
@@ -1855,7 +1863,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2089209898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fc3dc4630ab9fa49800aa0d0ed81516, type: 3}
+  m_Script: {fileID: 11500000, guid: ee56008185b614bdfbaa63e469cde195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2106360459
