@@ -74,8 +74,8 @@ public class LevelFailedCinematic : MonoBehaviour
             rainCloud.anchoredPosition = cloudBasePosition;
         }
         
-        // Start invisible
-        darkOverlay.color = new Color(0, 0, 0, 0);
+        // Start invisible (custom red overlay #A90000)
+        darkOverlay.color = new Color(0.663f, 0f, 0f, 0);
         banner.gameObject.SetActive(false);
         bannerOriginalScale = banner.localScale; // Store original scale
         
