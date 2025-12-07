@@ -45,6 +45,10 @@ public class WackamoleManager : BeatmapVisualizerSimple
     public float timingOffset = 0f; // Adjust this to fix timing
     public float inputWindowSize = 0.2f; // Total window size in seconds (centered on beat)
 
+    [Header("Beatmap Settings")]
+    [Tooltip("Beat interval for notes (1 = every beat, 2 = every other beat, etc.)")]
+    public int noteBeatInterval = 2; // Set to 2 for every other beat
+
     // This will be calculated based on BPM
     private float quarterNoteTime;
     private int lastBouncedTick = -1;
@@ -75,11 +79,11 @@ public class WackamoleManager : BeatmapVisualizerSimple
         }
         else
         {
-            quarterNoteTime = 0.5f; // Default for 120 BPM
-            if (showDebugMessages) Debug.LogWarning("RhythmTimer not found, using default quarter note time: 0.5s");
+            quarterNoteTime = 0.4f; // Default for 150 BPM
+            if (showDebugMessages) Debug.LogWarning("RhythmTimer not found, using default quarter note time: 0.4s (150 BPM)");
         }
         
-        // Create a simple beatmap with one snake at the 4th second
+        // Create a simple beatmap with notes every other beat starting at beat 8
         CreateSimpleBeatmap();
         
         InitializeSprites();
@@ -94,27 +98,38 @@ public class WackamoleManager : BeatmapVisualizerSimple
     }
 
     private void CreateSimpleBeatmap()
-{
-    if (showDebugMessages) Debug.Log("Creating every-other-beat test beatmap");
-    
-    int totalMeasures = 16; // 16 measures at 120 BPM = 32 seconds
-    beatmapBuilder builder = new beatmapBuilder(totalMeasures);
-    
-    // 4-second delay (2 measures at 120 BPM)
-    // Then place a note on every other beat starting at measure 3, beat 1
-    
-    int noteCounter = 0;
-    
-    // Start at measure 3, beat 1 (4 seconds in)
-    for (int measure = 3; measure <= totalMeasures; measure++)
     {
-        // Place notes on beats 1 and 3 of each measure
-        // This creates: measure 3 beat 1, measure 3 beat 3, measure 4 beat 1, measure 4 beat 3, etc.
+        if (showDebugMessages) Debug.Log("Creating BPM-aware beatmap (every other beat)");
         
-        for (int beat = 1; beat <= 3; beat += 2) // beat 1 and beat 3
+        // Get current BPM - NOW 150 BPM!
+        float currentBPM = (rhythmTimer != null) ? (float)rhythmTimer.bpm : 150f;
+        float secondsPerBeat = 60f / currentBPM;
+        
+        if (showDebugMessages) 
         {
-            // Skip if we've placed enough notes
-            if (noteCounter >= 30) break;
+            Debug.Log($"Current BPM: {currentBPM}");
+            Debug.Log($"Seconds per beat: {secondsPerBeat:F3}");
+        }
+        
+        // MUSICAL TIMING (in beats, not seconds!)
+        float startBeat = 8f;        // Start at beat 8 (3.2 seconds at 150 BPM)
+        float beatInterval = noteBeatInterval; // Use the configurable interval (2 = every other beat)
+        int totalNotes = 32;         // Total number of notes
+        float endBeat = startBeat + (totalNotes * beatInterval);
+        
+        // Calculate total measures needed
+        int totalMeasures = Mathf.CeilToInt(endBeat / 4);
+        beatmapBuilder builder = new beatmapBuilder(totalMeasures);
+        
+        // Create notes
+        for (int noteCounter = 0; noteCounter < totalNotes; noteCounter++)
+        {
+            float beatPosition = startBeat + (noteCounter * beatInterval);
+            
+            // Convert beat position to measure and beat
+            int measure = Mathf.FloorToInt(beatPosition / 4) + 1;
+            int beatInMeasure = Mathf.FloorToInt(beatPosition % 4);
+            int beat = beatInMeasure + 1;
             
             // Determine hole type (cycle through 1-8: snakes 1-4, worms 5-8)
             int holeType = (noteCounter % 8) + 1;
@@ -122,31 +137,29 @@ public class WackamoleManager : BeatmapVisualizerSimple
             // Place the note
             builder.PlaceQuarterNote(measure, beat, holeType);
             
-            if (showDebugMessages && noteCounter < 10) // Only log first 10 for clarity
+            if (showDebugMessages && noteCounter < 10)
             {
+                float timeInSeconds = beatPosition * secondsPerBeat;
                 string creatureType = (holeType >= 5) ? "Worm" : "Snake";
                 int holeIndex = (holeType <= 4) ? holeType : holeType - 4;
                 string[] holeNames = {"Top", "Bottom", "Left", "Right"};
-                Debug.Log($"Note {noteCounter + 1}: {creatureType} at {holeNames[holeIndex - 1]} hole, measure {measure}, beat {beat}");
+                Debug.Log($"Note {noteCounter + 1}: {creatureType} at {holeNames[holeIndex - 1]} hole");
+                Debug.Log($"  Beat Position: {beatPosition:F1} -> Measure {measure}, Beat {beat}");
+                Debug.Log($"  Time: {timeInSeconds:F2}s (every {beatInterval} beats)");
             }
-            
-            noteCounter++;
         }
         
-        if (noteCounter >= 30) break;
+        npcBeatMap = builder.GetBeatMap();
+        
+        if (showDebugMessages) 
+        {
+            Debug.Log($"Beatmap created for BPM: {currentBPM}");
+            Debug.Log($"Beat interval: {beatInterval} beats");
+            Debug.Log($"Time interval: {beatInterval * secondsPerBeat:F3}s");
+            Debug.Log($"First note at: {startBeat * secondsPerBeat:F2}s");
+            Debug.Log($"Total notes: {totalNotes}");
+        }
     }
-    
-    npcBeatMap = builder.GetBeatMap();
-    
-    if (showDebugMessages) 
-    {
-        Debug.Log($"Simple every-other-beat pattern created");
-        Debug.Log($"Total measures: {totalMeasures}");
-        Debug.Log($"Total notes placed: {noteCounter}");
-        Debug.Log($"Pattern: Note every other beat starting at 4 seconds");
-        Debug.Log($"Expected timing: 4s, 5s, 6s, 7s, 8s, 9s, 10s, 11s, etc.");
-    }
-}
 
     private void InitializeSprites()
     {

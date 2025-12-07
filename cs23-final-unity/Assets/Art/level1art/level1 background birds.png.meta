@@ -347,7 +347,16 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      level1 background birds_0: -7808063308970881102
+      level1 background birds_1: 4269452688067117573
+      level1 background birds_2: 9109573592010244214
+      level1 background birds_3: -9202270284877256575
+      level1 background birds_4: -3962158189205890548
+      level1 background birds_5: -2453087867625083545
+      level1 background birds_6: 1050131525311809126
+      level1 background birds_7: -1137057018022735694
+      level1 background birds_8: -6779084662319675001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

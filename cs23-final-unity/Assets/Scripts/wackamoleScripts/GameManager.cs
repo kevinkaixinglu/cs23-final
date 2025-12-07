@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public WackamoleManager wackamoleManager;
     public RhythmTimer rhythmTimer;
     public AudioSource musicSource;
-    
+    public AudioSource idleMusic;
+
     private bool gameIsPaused = false;
     private bool infoPageActive = true;
     private bool musicStarted = false;
@@ -40,10 +41,10 @@ public class GameManager : MonoBehaviour
         {
             volumeSlider.onValueChanged.AddListener(SetVolume);
             
-            // Load saved volume
-            float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
-            volumeSlider.value = savedVolume;
-            SetVolume(savedVolume);
+            //// Load saved volume
+            //float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.75f);
+            //volumeSlider.value = savedVolume;
+            //SetVolume(savedVolume);
         }
         
         Debug.Log("Game paused for instructions. Press Enter to start.");
@@ -91,8 +92,10 @@ public class GameManager : MonoBehaviour
         {
             wackamoleManager.StartGame();
         }
-        
+
         // Start the music
+        idleMusic.loop = true;
+        idleMusic.Stop();
         StartMusic();
     }
 
@@ -121,28 +124,37 @@ public class GameManager : MonoBehaviour
     {
         if (infoPageActive || !gameStarted) return;
         
-        gameIsPaused = true;
-        if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
-        
-        Debug.Log("Game Paused");
-        
-        // DON'T use Time.timeScale = 0 for rhythm games!
-        // Instead, pause the audio and stop game logic
-        
-        if (rhythmTimer != null)
+        if (!gameIsPaused)
         {
-            rhythmTimer.Pause();
+            gameIsPaused = true;
+            if (pauseMenuUI != null) pauseMenuUI.SetActive(true);
+
+            Debug.Log("Game Paused");
+
+            // DON'T use Time.timeScale = 0 for rhythm games!
+            // Instead, pause the audio and stop game logic
+
+            if (rhythmTimer != null)
+            {
+                rhythmTimer.Pause();
+            }
+
+            if (musicSource != null && musicSource.isPlaying)
+            {
+                musicSource.Pause();
+            }
+
+            // Notify WackamoleManager
+            if (wackamoleManager != null)
+            {
+                wackamoleManager.Pause();
+            }
+
+            idleMusic.Play();
         }
-        
-        if (musicSource != null && musicSource.isPlaying)
+        else
         {
-            musicSource.Pause();
-        }
-        
-        // Notify WackamoleManager
-        if (wackamoleManager != null)
-        {
-            wackamoleManager.Pause();
+            ResumeGame();
         }
     }
 
@@ -169,12 +181,15 @@ public class GameManager : MonoBehaviour
         {
             wackamoleManager.Resume();
         }
+
+        idleMusic.Stop();
     }
 
-    public void SetVolume(float volume)
+    public void SetVolume(float ignore)
     {
         if (mixer != null)
         {
+            float volume = volumeSlider.value;
             float clampedValue = Mathf.Clamp(volume, 0.0001f, 1f);
             mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
             PlayerPrefs.SetFloat("MusicVolume", volume);
