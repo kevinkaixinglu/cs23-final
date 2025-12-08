@@ -2534,6 +2534,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: kalenGameManagerStatus, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3535399622538891916, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3535399622538891916, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 9114456821150563037, guid: bda64e19bf7f34a4c92055ff2d501bcf, type: 3}
     - target: {fileID: 3624472310106039908, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: score
       value: 
@@ -2614,6 +2622,22 @@ PrefabInstance:
       propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7627141121541959051, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627141121541959051, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627141121541959051, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7627141121541959051, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 7743190993188980425, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_SizeDelta.x
       value: 180
@@ -2642,13 +2666,17 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8702241335513660757, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -344
+      value: -342
       objectReference: {fileID: 0}
     - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 170
+      value: 193
       objectReference: {fileID: 0}
     - target: {fileID: 8911562944663770170, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_Color.a
