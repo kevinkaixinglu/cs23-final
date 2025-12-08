@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 2a8b080fabee54d419c4fc4da09996b1
+guid: 1646738d3ef5f44db8f0e479fb68c42e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2382542705151310463
-    second: note_0
+      213: -3724595753491363449
+    second: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_0
+  - first:
+      213: -4845525607034546867
+    second: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_1
+  - first:
+      213: 8642925860874560331
+    second: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_2
+  - first:
+      213: -852878264092233776
+    second: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,30 +105,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: note_0
+      name: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_0
       rect:
         serializedVersion: 2
-        x: 739
-        y: 727
-        width: 596
-        height: 639
+        x: 0
+        y: 391
+        width: 2322
+        height: 2140
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +124,74 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f7afdb297fd701120800000000000000
-      internalID: 2382542705151310463
+      spriteID: 789083d55e39f4cc0800000000000000
+      internalID: -3724595753491363449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_1
+      rect:
+        serializedVersion: 2
+        x: 2478
+        y: 1539
+        width: 590
+        height: 341
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4595a2122c31ccb0800000000000000
+      internalID: -4845525607034546867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_2
+      rect:
+        serializedVersion: 2
+        x: 2410
+        y: 997
+        width: 674
+        height: 457
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b43277d3747d1f770800000000000000
+      internalID: 8642925860874560331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1F5DC8F4-F2D0-4E34-AA87-2E16B4322FDA_3
+      rect:
+        serializedVersion: 2
+        x: 3052
+        y: 1447
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0df6120dcb7f924f0800000000000000
+      internalID: -852878264092233776
       vertices: []
       indices: 
       edges: []
@@ -147,8 +209,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      note_0: 2382542705151310463
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

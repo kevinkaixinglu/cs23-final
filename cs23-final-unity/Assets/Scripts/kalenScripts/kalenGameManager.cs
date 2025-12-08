@@ -53,8 +53,8 @@ public class kalenGameManager : MonoBehaviour
     private int window_start_tick = -1;
     private int current_note_duration = 4;
     private int last_tick = -1;
-    private int inputWindowTicks;
-    private int inputWindowTicksBefore;
+    private int inputWindowTicks = 1;
+    private int inputWindowTicksBefore = 1;
     private int last_key_press_tick = -1;
 
     private double accumulatedTicks = 0;
@@ -296,15 +296,15 @@ public class kalenGameManager : MonoBehaviour
             if (bpm >= 170)
             {
                 //HERE IS LENIENCY WINDOW AFTER SPEED UP
-                inputWindowTicks = 0;
-                inputWindowTicksBefore = 1;
+                inputWindowTicks = 1;
+                inputWindowTicksBefore = 2;
                 Debug.Log($"[INPUT WINDOW] Changed to: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after");
             }
             else
             {
                 //HERE IS LENIENCY WINDOW BEFORE SPEED UP
-                inputWindowTicks = 1;
-                inputWindowTicksBefore = 0;
+                inputWindowTicks = 2;
+                inputWindowTicksBefore = 1;
             }
             
             currentBPMChangeIndex++;
