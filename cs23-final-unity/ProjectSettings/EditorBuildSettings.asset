@@ -44,6 +44,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CutScenes/IntroCutscene.unity
     guid: e928be2155c4e4d2bb34963f67e091b2
+  - enabled: 1
+    path: Assets/Scenes/CutScenes/LevelComplete.unity
+    guid: b0ebd259792d04e36a06b71e7a0b6b8e
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
