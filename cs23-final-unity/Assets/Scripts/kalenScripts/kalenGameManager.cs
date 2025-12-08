@@ -1,4 +1,3 @@
-
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -38,7 +37,6 @@ public class kalenGameManager : MonoBehaviour
     public GameObject playerIdleSprite;
     public GameObject playerActiveSprite;
 
-    //other animations
     public Animator cloudPulse;
     public Animator linePulse;
 
@@ -139,153 +137,172 @@ public class kalenGameManager : MonoBehaviour
         if (isPlaying)
         {
             CheckBPMChanges();
-
-            key_just_pressed_this_tick = false;
-
-            if (Input.GetKey(singleInputKey))
-            {
-                if (force_idle_until_release)
-                {
-                    ShowPlayerIdle();
-                }
-                else
-                {
-                    ShowPlayerActive();
-                }
-                
-                if (!key_pressed)
-                {
-                    key_just_pressed_this_tick = true;
-                    last_key_press_tick = curr_tick;
-                    Debug.Log($"[{Time.time:F2}] Key {singleInputKey} pressed (tick: {curr_tick})");
-                    key_pressed = true;
-                }
-            }
-            else
-            {
-                if (key_pressed)
-                {
-                    Debug.Log($"[{Time.time:F2}] Key {singleInputKey} released (tick: {curr_tick})");
-                    ShowPlayerIdle();
-                    force_idle_until_release = false;
-                }
-                key_pressed = false;
-            }
-
-            time_in_song = musicSource.time;
-
-            // Calculate ticks in current BPM period
-            double timeSinceLastBPMChange = time_in_song - lastBPMChangeTime;
-            double ticksInCurrentPeriod = timeSinceLastBPMChange * (bpm / 60.0) * 4.0;
-
-            // Total ticks as DOUBLE
-            double totalTicksDouble = accumulatedTicks + ticksInCurrentPeriod;
-            curr_tick = (int)totalTicksDouble;
-
-            curr_meas = curr_tick / 16;
-            curr_qNote = ((curr_tick % 16) / 4);
-            curr_sNote = curr_tick % 4;
-
+            HandleKeyInput();
+            UpdateTiming();
+            
             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
-
-                if (curr_qNote != last_qNote)
-                {
-                    last_qNote = curr_qNote;
-
-                    //pulse birds only on even beats
-                    if (curr_qNote % 2 == 0)  linePulse.Play("slowPump", 0, 0f);
-                    
-                    cloudPulse.Play("pump", 0, 0f);
-
-                }
-
-                if (window_start_tick != -1 && curr_tick == window_start_tick + current_note_duration)
-                {
-                    Debug.Log($"[{Time.time:F2}] Note duration ended at tick {curr_tick} (duration was {current_note_duration}) - forcing idle");
-                    force_idle_until_release = true;
-                    ShowPlayerIdle();
-                }
-
-                if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
-                {
-                    Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
-                    waiting_for_input = false;
-                }
-
-                if (beat_map != null && curr_meas < beat_map.Length)
-                {
-                    int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
-                    
-                    bool isNewNote = false;
-                    
-                    if (next_input != 0)
-                    {
-                        if (curr_sNote == 0)
-                        {
-                            isNewNote = true;
-                        }
-                        else
-                        {
-                            int prevValue = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote - 1];
-                            isNewNote = (prevValue != next_input);
-                        }
-                    }
-                    
-                    if (isNewNote)
-                    {
-                        window_start_tick = curr_tick;
-                        current_note_duration = CalculateNoteDuration(curr_meas, curr_qNote, curr_sNote, next_input);
-                        force_idle_until_release = false;  
-                        
-                        Debug.Log($"[{Time.time:F2}] WINDOW OPENING at tick {curr_tick} (measure {curr_meas}, qNote {curr_qNote}, sNote {curr_sNote}) - Input window: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after, Note duration: {current_note_duration} sixteenths");
-                        
-                        int ticksSinceLastPress = curr_tick - last_key_press_tick;
-                        
-                        if (key_just_pressed_this_tick)
-                        {
-                            AddScore();
-                            Debug.Log($"[{Time.time:F2}] YAY! Perfect timing (pressed exactly on opening tick)! Score: {currScore}");
-                            waiting_for_input = false;
-                        }
-                        else if (ticksSinceLastPress > 0 && ticksSinceLastPress <= inputWindowTicksBefore)
-                        {
-                            AddScore();
-                            Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksSinceLastPress} tick(s) early)! Score: {currScore}");
-                            waiting_for_input = false;
-                        }
-                        else if (key_pressed)
-                        {
-                            Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (but key held too long - won't score)");
-                            waiting_for_input = false;
-                        }
-                        else
-                        {
-                            Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (valid for {inputWindowTicks} more tick(s))");
-                            waiting_for_input = true;
-                        }
-                    }
-                }
-
+                HandleBeatAnimations();
+                HandleNoteExpiration();
+                HandleWindowMiss();
+                CheckForNewNote();
                 last_tick = curr_tick;
             }
 
-            if (waiting_for_input && key_just_pressed_this_tick)
+            HandleInput();
+            UpdateScoreDisplay();
+        }
+    }
+
+    private void HandleKeyInput()
+    {
+        key_just_pressed_this_tick = false;
+
+        if (Input.GetKey(singleInputKey))
+        {
+            if (force_idle_until_release)
             {
-                int ticksFromStart = curr_tick - window_start_tick;
-                
-                if (ticksFromStart <= inputWindowTicks)
-                {
-                    AddScore();
-                    Debug.Log($"[{Time.time:F2}] YAY! Correct input! (pressed {ticksFromStart} tick(s) after window opened) Score: {currScore}");
-                    waiting_for_input = false;
-                }
+                ShowPlayerIdle();
             }
-                            
-            if (scoreText != null)
+            else
             {
-                scoreText.SetText($"SCORE: {currScore}");
+                ShowPlayerActive();
             }
+            
+            if (!key_pressed)
+            {
+                key_just_pressed_this_tick = true;
+                last_key_press_tick = curr_tick;
+                Debug.Log($"[{Time.time:F2}] Key {singleInputKey} pressed (tick: {curr_tick})");
+                key_pressed = true;
+            }
+        }
+        else
+        {
+            if (key_pressed)
+            {
+                Debug.Log($"[{Time.time:F2}] Key {singleInputKey} released (tick: {curr_tick})");
+                ShowPlayerIdle();
+                force_idle_until_release = false;
+            }
+            key_pressed = false;
+        }
+    }
+
+    private void UpdateTiming()
+    {
+        time_in_song = musicSource.time;
+        double timeSinceLastBPMChange = time_in_song - lastBPMChangeTime;
+        double ticksInCurrentPeriod = timeSinceLastBPMChange * (bpm / 60.0) * 4.0;
+        double totalTicksDouble = accumulatedTicks + ticksInCurrentPeriod;
+        
+        curr_tick = (int)totalTicksDouble;
+        curr_meas = curr_tick / 16;
+        curr_qNote = ((curr_tick % 16) / 4);
+        curr_sNote = curr_tick % 4;
+    }
+
+    private void HandleBeatAnimations()
+    {
+        if (curr_qNote != last_qNote)
+        {
+            last_qNote = curr_qNote;
+            
+            if (curr_qNote % 2 == 0)
+            {
+                linePulse.Play("slowPump", 0, 0f);
+            }
+            cloudPulse.Play("pump", 0, 0f);
+        }
+    }
+
+    private void HandleNoteExpiration()
+    {
+        if (window_start_tick != -1 && curr_tick == window_start_tick + current_note_duration)
+        {
+            Debug.Log($"[{Time.time:F2}] Note duration ended at tick {curr_tick} (duration was {current_note_duration}) - forcing idle");
+            force_idle_until_release = true;
+            ShowPlayerIdle();
+        }
+    }
+
+    private void HandleWindowMiss()
+    {
+        if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
+        {
+            Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
+            waiting_for_input = false;
+        }
+    }
+
+    private void CheckForNewNote()
+    {
+        if (beat_map == null || curr_meas >= beat_map.Length) return;
+        
+        int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
+        
+        if (next_input == 0) return;
+        
+        bool isNewNote = (curr_sNote == 0) || 
+                         (beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote - 1] != next_input);
+        
+        if (!isNewNote) return;
+        
+        OpenInputWindow(next_input);
+    }
+
+    private void OpenInputWindow(int noteValue)
+    {
+        window_start_tick = curr_tick;
+        current_note_duration = CalculateNoteDuration(curr_meas, curr_qNote, curr_sNote, noteValue);
+        force_idle_until_release = false;
+        
+        Debug.Log($"[{Time.time:F2}] WINDOW OPENING at tick {curr_tick} (measure {curr_meas}, qNote {curr_qNote}, sNote {curr_sNote}) - Input window: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after, Note duration: {current_note_duration} sixteenths");
+        
+        // Check for input held too long (invalid)
+        if (key_pressed && curr_tick - last_key_press_tick > inputWindowTicksBefore)
+        {
+            Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (but key held too long - won't score)");
+            waiting_for_input = false;
+        }
+        else
+        {
+            Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (valid for {inputWindowTicks} more tick(s))");
+            waiting_for_input = true;
+        }
+    }
+
+    private void HandleInput()
+    {
+        if (!waiting_for_input || !key_just_pressed_this_tick) return;
+        
+        int ticksFromWindowStart = curr_tick - window_start_tick;
+        
+        // Check if within valid window (before or after)
+        bool isEarlyInput = (ticksFromWindowStart < 0 && ticksFromWindowStart >= -inputWindowTicksBefore);
+        bool isExactInput = (ticksFromWindowStart == 0);
+        bool isLateInput = (ticksFromWindowStart > 0 && ticksFromWindowStart <= inputWindowTicks);
+        
+        if (isEarlyInput || isExactInput || isLateInput)
+        {
+            AddScore();
+            
+            if (isEarlyInput)
+                Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {-ticksFromWindowStart} tick(s) early)! Score: {currScore}");
+            else if (isExactInput)
+                Debug.Log($"[{Time.time:F2}] YAY! Perfect timing! Score: {currScore}");
+            else
+                Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksFromWindowStart} tick(s) late)! Score: {currScore}");
+            
+            waiting_for_input = false;
+        }
+    }
+
+    private void UpdateScoreDisplay()
+    {
+        if (scoreText != null)
+        {
+            scoreText.SetText($"SCORE: {currScore}");
         }
     }
 
@@ -310,17 +327,14 @@ public class kalenGameManager : MonoBehaviour
             
             Debug.Log($"[{Time.time:F2}] BPM changed to {bpm}");
             
-            // Adjust input windows when BPM reaches 170
             if (bpm >= 170)
             {
-                //HERE IS LENIENCY WINDOW AFTER SPEED UP
                 inputWindowTicks = 1;
                 inputWindowTicksBefore = 2;
                 Debug.Log($"[INPUT WINDOW] Changed to: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after");
             }
             else
             {
-                //HERE IS LENIENCY WINDOW BEFORE SPEED UP
                 inputWindowTicks = 2;
                 inputWindowTicksBefore = 1;
             }

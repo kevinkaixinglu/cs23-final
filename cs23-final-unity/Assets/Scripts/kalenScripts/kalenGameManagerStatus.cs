@@ -7,6 +7,7 @@ public class kalenGameManagerStatus : MonoBehaviour
 {
     [Header("Pausing the Game")]
     public GameObject pauseMenuUI;
+    public GameObject pauseButton;  // NEW: Add pause button reference
     public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
@@ -30,6 +31,12 @@ public class kalenGameManagerStatus : MonoBehaviour
         SetVolume();
         Debug.Log("Starting Game...");
         pauseMenuUI.SetActive(false);
+        
+        // NEW: Hide pause button at start
+        if (pauseButton != null)
+        {
+            pauseButton.SetActive(false);
+        }
 
         InfoPage = true;
         GameisPaused = false;
@@ -41,10 +48,8 @@ public class kalenGameManagerStatus : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (InfoPage)
         {
             if (Input.GetKeyDown(KeyCode.Return))
@@ -52,6 +57,13 @@ public class kalenGameManagerStatus : MonoBehaviour
                 InfoPage = false;
                 GameisPaused = false;
                 infoPageUI.SetActive(false);
+                
+                // NEW: Show pause button when game starts
+                if (pauseButton != null)
+                {
+                    pauseButton.SetActive(true);
+                }
+                
                 gameHandler.StartGame();
             }
         }
@@ -83,7 +95,6 @@ public class kalenGameManagerStatus : MonoBehaviour
         if (mixer != null)
         {
             float value = volumeSlider.value;
-            // Clamp the value to avoid Log10(0) which is undefined
             float clampedValue = Mathf.Clamp(value, 0.0001f, 1f);
             mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
             volumeLevel = value;

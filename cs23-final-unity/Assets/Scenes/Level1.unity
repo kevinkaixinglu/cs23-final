@@ -541,6 +541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1694115439}
+  pauseButton: {fileID: 284864316}
   infoPageUI: {fileID: 1967785515}
   mixer: {fileID: 24100000, guid: c5abe7382e87bd045aa13ad1dc8cc82f, type: 2}
   volumeSlider: {fileID: 2145311038}
@@ -673,6 +674,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &284864316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 748553946734004753, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+  m_PrefabInstance: {fileID: 1154064302}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &286656888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,6 +1165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1694115439}
+  pauseButton: {fileID: 0}
   infoPageUI: {fileID: 0}
   mixer: {fileID: 24100000, guid: c5abe7382e87bd045aa13ad1dc8cc82f, type: 2}
   volumeSlider: {fileID: 2145311038}
@@ -2713,11 +2720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898202355086145413, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_ReferenceResolution.x
-      value: 800
+      value: 1080
       objectReference: {fileID: 0}
     - target: {fileID: 7898202355086145413, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_ReferenceResolution.y
-      value: 600
+      value: 720
       objectReference: {fileID: 0}
     - target: {fileID: 8004488169148604616, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchorMax.x
@@ -2732,12 +2739,20 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 94.5489
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 94.5489
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -342
+      value: -464
       objectReference: {fileID: 0}
     - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 193
+      value: 226
       objectReference: {fileID: 0}
     - target: {fileID: 8911562944663770170, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_Color.a
@@ -4323,7 +4338,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3

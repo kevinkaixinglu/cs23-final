@@ -297,7 +297,14 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      jagged holes_0: -1137718585116569768
+      jagged holes_1: 3321830881874147624
+      jagged holes_2: -6996920256108351585
+      jagged holes_3: 3194028533366102438
+      jagged holes_4: 1221956623620748120
+      jagged holes_5: -6927318194258068662
+      jagged holes_6: 4458452267940813044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
