@@ -1,0 +1,5080 @@
+fileFormatVersion: 2
+guid: 51df39bec17654fae93d1230c6e97756
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7523354614287343688
+    second: grasstips_0
+  - first:
+      213: -1299971106746077706
+    second: grasstips_1
+  - first:
+      213: -6613673821164006397
+    second: grasstips_2
+  - first:
+      213: -8453729768576957309
+    second: grasstips_3
+  - first:
+      213: 8071124513080081835
+    second: grasstips_4
+  - first:
+      213: -486475278252960425
+    second: grasstips_5
+  - first:
+      213: -9144713259640667740
+    second: grasstips_6
+  - first:
+      213: -7932324197212302164
+    second: grasstips_7
+  - first:
+      213: 4872957887536967934
+    second: grasstips_8
+  - first:
+      213: -1094698138322776465
+    second: grasstips_9
+  - first:
+      213: -9155820629817090885
+    second: grasstips_10
+  - first:
+      213: 5832418258930447037
+    second: grasstips_11
+  - first:
+      213: -8564402935196911587
+    second: grasstips_12
+  - first:
+      213: -5908013597980525817
+    second: grasstips_13
+  - first:
+      213: 3786853684838032019
+    second: grasstips_14
+  - first:
+      213: -8534869672721510573
+    second: grasstips_15
+  - first:
+      213: 5532243069590778138
+    second: grasstips_16
+  - first:
+      213: -9044562608190872660
+    second: grasstips_17
+  - first:
+      213: -2045092773259836328
+    second: grasstips_18
+  - first:
+      213: -4953193502896357184
+    second: grasstips_19
+  - first:
+      213: 6017900163698192830
+    second: grasstips_20
+  - first:
+      213: -109600491732995255
+    second: grasstips_21
+  - first:
+      213: 25295699215854544
+    second: grasstips_22
+  - first:
+      213: -2129985519909563206
+    second: grasstips_23
+  - first:
+      213: 1627225110856573644
+    second: grasstips_24
+  - first:
+      213: 5749880317450951668
+    second: grasstips_25
+  - first:
+      213: -2613469448502116882
+    second: grasstips_26
+  - first:
+      213: 5203811651879234769
+    second: grasstips_27
+  - first:
+      213: -4128856366165050601
+    second: grasstips_28
+  - first:
+      213: -7129425425892218340
+    second: grasstips_29
+  - first:
+      213: -6854072705063201397
+    second: grasstips_30
+  - first:
+      213: 7449583255102863871
+    second: grasstips_31
+  - first:
+      213: 6049940700550989449
+    second: grasstips_32
+  - first:
+      213: 8338272778567205592
+    second: grasstips_33
+  - first:
+      213: 8996486233331902776
+    second: grasstips_34
+  - first:
+      213: -148662122669105236
+    second: grasstips_35
+  - first:
+      213: -6677924682423502154
+    second: grasstips_36
+  - first:
+      213: 3673428859680987618
+    second: grasstips_37
+  - first:
+      213: -4329905259771796402
+    second: grasstips_38
+  - first:
+      213: -9002076828613020844
+    second: grasstips_39
+  - first:
+      213: -1300695447601987245
+    second: grasstips_40
+  - first:
+      213: 5043194583253997171
+    second: grasstips_41
+  - first:
+      213: 263531889878857020
+    second: grasstips_42
+  - first:
+      213: 8173326715462996729
+    second: grasstips_43
+  - first:
+      213: -8145367310086756954
+    second: grasstips_44
+  - first:
+      213: 2187946734100073794
+    second: grasstips_45
+  - first:
+      213: 1873245239796948599
+    second: grasstips_46
+  - first:
+      213: -2250544974779342540
+    second: grasstips_47
+  - first:
+      213: 4378246007329233324
+    second: grasstips_48
+  - first:
+      213: 4135675671697866302
+    second: grasstips_49
+  - first:
+      213: 4419237601166484063
+    second: grasstips_50
+  - first:
+      213: 5696322086916426672
+    second: grasstips_51
+  - first:
+      213: -4892467599797032968
+    second: grasstips_52
+  - first:
+      213: 509870465839792271
+    second: grasstips_53
+  - first:
+      213: -6589877515661883429
+    second: grasstips_54
+  - first:
+      213: 309565068992032666
+    second: grasstips_55
+  - first:
+      213: 2734867740637163686
+    second: grasstips_56
+  - first:
+      213: 3124979390896021977
+    second: grasstips_57
+  - first:
+      213: 2077918081065254896
+    second: grasstips_58
+  - first:
+      213: -2084100864689793586
+    second: grasstips_59
+  - first:
+      213: 5699910177313866800
+    second: grasstips_60
+  - first:
+      213: -8526055794953574645
+    second: grasstips_61
+  - first:
+      213: -3845464750617202672
+    second: grasstips_62
+  - first:
+      213: -4346302844266137425
+    second: grasstips_63
+  - first:
+      213: -133009736497996913
+    second: grasstips_64
+  - first:
+      213: 4486065410237894160
+    second: grasstips_65
+  - first:
+      213: -933492938436050337
+    second: grasstips_66
+  - first:
+      213: 6718781423811300430
+    second: grasstips_67
+  - first:
+      213: -2626797612423921709
+    second: grasstips_68
+  - first:
+      213: -3057536467004666540
+    second: grasstips_69
+  - first:
+      213: 7989436983296775819
+    second: grasstips_70
+  - first:
+      213: -434578676063377395
+    second: grasstips_71
+  - first:
+      213: -282929099768937290
+    second: grasstips_72
+  - first:
+      213: 8215401154566217547
+    second: grasstips_73
+  - first:
+      213: -6339471783444666536
+    second: grasstips_74
+  - first:
+      213: 6204626983962759940
+    second: grasstips_75
+  - first:
+      213: 3553412741689772881
+    second: grasstips_76
+  - first:
+      213: 2707411139923203204
+    second: grasstips_77
+  - first:
+      213: -4994592995845763333
+    second: grasstips_78
+  - first:
+      213: -1752310305679746394
+    second: grasstips_79
+  - first:
+      213: -7799902086230634326
+    second: grasstips_80
+  - first:
+      213: 6713291230929083725
+    second: grasstips_81
+  - first:
+      213: -5650156555885781176
+    second: grasstips_82
+  - first:
+      213: -5958938674173706174
+    second: grasstips_83
+  - first:
+      213: -8711837696119495736
+    second: grasstips_84
+  - first:
+      213: -7342815502245578821
+    second: grasstips_85
+  - first:
+      213: -2046573241225856119
+    second: grasstips_86
+  - first:
+      213: -4718901288030310903
+    second: grasstips_87
+  - first:
+      213: 586296879642739750
+    second: grasstips_88
+  - first:
+      213: 2379302408967260737
+    second: grasstips_89
+  - first:
+      213: 4777921778607255750
+    second: grasstips_90
+  - first:
+      213: -1261820525211753931
+    second: grasstips_91
+  - first:
+      213: 630292639790412042
+    second: grasstips_92
+  - first:
+      213: 1867155923096022839
+    second: grasstips_93
+  - first:
+      213: 6401925816451417970
+    second: grasstips_94
+  - first:
+      213: -6534160934764697781
+    second: grasstips_95
+  - first:
+      213: -4608356290015477686
+    second: grasstips_96
+  - first:
+      213: -5417877512669655400
+    second: grasstips_97
+  - first:
+      213: -984718264498779597
+    second: grasstips_98
+  - first:
+      213: -4598846528233768687
+    second: grasstips_99
+  - first:
+      213: 3115604485577205336
+    second: grasstips_100
+  - first:
+      213: -7200148266761437554
+    second: grasstips_101
+  - first:
+      213: -3751678550032094608
+    second: grasstips_102
+  - first:
+      213: -8579816166929737563
+    second: grasstips_103
+  - first:
+      213: -683372302714626719
+    second: grasstips_104
+  - first:
+      213: -5063866287501676360
+    second: grasstips_105
+  - first:
+      213: 8500192061519233949
+    second: grasstips_106
+  - first:
+      213: 5410139370032816595
+    second: grasstips_107
+  - first:
+      213: 4796417532375668683
+    second: grasstips_108
+  - first:
+      213: 8654710277255801808
+    second: grasstips_109
+  - first:
+      213: -2730566000180209565
+    second: grasstips_110
+  - first:
+      213: -6190967453280631358
+    second: grasstips_111
+  - first:
+      213: 1798221288178648630
+    second: grasstips_112
+  - first:
+      213: -7206079362209726967
+    second: grasstips_113
+  - first:
+      213: -2673312609471217447
+    second: grasstips_114
+  - first:
+      213: 6224610504670638950
+    second: grasstips_115
+  - first:
+      213: 3126186190371593060
+    second: grasstips_116
+  - first:
+      213: -5951599512831662725
+    second: grasstips_117
+  - first:
+      213: -1165196135165421823
+    second: grasstips_118
+  - first:
+      213: 6361711995474044109
+    second: grasstips_119
+  - first:
+      213: -1419828822586149730
+    second: grasstips_120
+  - first:
+      213: -4352696912637450391
+    second: grasstips_121
+  - first:
+      213: 247066848379235259
+    second: grasstips_122
+  - first:
+      213: 2296808138895844860
+    second: grasstips_123
+  - first:
+      213: 6177137720260465066
+    second: grasstips_124
+  - first:
+      213: -5742327114880385383
+    second: grasstips_125
+  - first:
+      213: 9026738702286842652
+    second: grasstips_126
+  - first:
+      213: -709066547969010911
+    second: grasstips_127
+  - first:
+      213: -2606514958790633057
+    second: grasstips_128
+  - first:
+      213: -5393854106615717874
+    second: grasstips_129
+  - first:
+      213: 4774045126586040865
+    second: grasstips_130
+  - first:
+      213: 1124642119032750540
+    second: grasstips_131
+  - first:
+      213: -1890050541858949883
+    second: grasstips_132
+  - first:
+      213: 196833505926637981
+    second: grasstips_133
+  - first:
+      213: 7070421841755234749
+    second: grasstips_134
+  - first:
+      213: 6001910899351503913
+    second: grasstips_135
+  - first:
+      213: 3595960823267163308
+    second: grasstips_136
+  - first:
+      213: 6710026481001662585
+    second: grasstips_137
+  - first:
+      213: -2604877317427720365
+    second: grasstips_138
+  - first:
+      213: 1762566889926655528
+    second: grasstips_139
+  - first:
+      213: 5407747560446111414
+    second: grasstips_140
+  - first:
+      213: 6530458713376537739
+    second: grasstips_141
+  - first:
+      213: -1835778186796041440
+    second: grasstips_142
+  - first:
+      213: 1239124659242403954
+    second: grasstips_143
+  - first:
+      213: -3896383493668495548
+    second: grasstips_144
+  - first:
+      213: -6176170686538641586
+    second: grasstips_145
+  - first:
+      213: 6197378258902740240
+    second: grasstips_146
+  - first:
+      213: -4605089131040789012
+    second: grasstips_147
+  - first:
+      213: -2496170873173752211
+    second: grasstips_148
+  - first:
+      213: -9107315012859478468
+    second: grasstips_149
+  - first:
+      213: -8076885237912838782
+    second: grasstips_150
+  - first:
+      213: 4879641163642114979
+    second: grasstips_151
+  - first:
+      213: -6186439635994433546
+    second: grasstips_152
+  - first:
+      213: 4117854708312685558
+    second: grasstips_153
+  - first:
+      213: -1604502715580628933
+    second: grasstips_154
+  - first:
+      213: -8736596307278519734
+    second: grasstips_155
+  - first:
+      213: -1761598536533382338
+    second: grasstips_156
+  - first:
+      213: 3370231435282460417
+    second: grasstips_157
+  - first:
+      213: -8473668350792939833
+    second: grasstips_158
+  - first:
+      213: 8420099516920517526
+    second: grasstips_159
+  - first:
+      213: 7529024733523496412
+    second: grasstips_160
+  - first:
+      213: -2851398528247951062
+    second: grasstips_161
+  - first:
+      213: -5150357283428487828
+    second: grasstips_162
+  - first:
+      213: -8736130348668513248
+    second: grasstips_163
+  - first:
+      213: -4736861686896346146
+    second: grasstips_164
+  - first:
+      213: -8832257900027798298
+    second: grasstips_165
+  - first:
+      213: 9028780761864143364
+    second: grasstips_166
+  - first:
+      213: -4984928057847783554
+    second: grasstips_167
+  - first:
+      213: -6020990230380578231
+    second: grasstips_168
+  - first:
+      213: -4549452197144028307
+    second: grasstips_169
+  - first:
+      213: -3168733539159037965
+    second: grasstips_170
+  - first:
+      213: 5543406670591937164
+    second: grasstips_171
+  - first:
+      213: 8347260621473519205
+    second: grasstips_172
+  - first:
+      213: -1754996286570545079
+    second: grasstips_173
+  - first:
+      213: 5630909602390407266
+    second: grasstips_174
+  - first:
+      213: -3964401465123596459
+    second: grasstips_175
+  - first:
+      213: 6349266291974646380
+    second: grasstips_176
+  - first:
+      213: 7138042555282571731
+    second: grasstips_177
+  - first:
+      213: -3337853172771205048
+    second: grasstips_178
+  - first:
+      213: 8558308551433398319
+    second: grasstips_179
+  - first:
+      213: 6283748151324619257
+    second: grasstips_180
+  - first:
+      213: 2498470434662242318
+    second: grasstips_181
+  - first:
+      213: 1316957174352493465
+    second: grasstips_182
+  - first:
+      213: 6732100214725409289
+    second: grasstips_183
+  - first:
+      213: -3633570651088265649
+    second: grasstips_184
+  - first:
+      213: 6645624723765241326
+    second: grasstips_185
+  - first:
+      213: -6816181463484148523
+    second: grasstips_186
+  - first:
+      213: 1471611645516104361
+    second: grasstips_187
+  - first:
+      213: -580831485469640268
+    second: grasstips_188
+  - first:
+      213: 7308166846935935264
+    second: grasstips_189
+  - first:
+      213: -4311760693785666967
+    second: grasstips_190
+  - first:
+      213: -2671240959542109022
+    second: grasstips_191
+  - first:
+      213: -7437003934036743499
+    second: grasstips_192
+  - first:
+      213: 3747018002581746168
+    second: grasstips_193
+  - first:
+      213: 8997043763972624597
+    second: grasstips_194
+  - first:
+      213: -7878303421450446257
+    second: grasstips_195
+  - first:
+      213: -4386283069285372338
+    second: grasstips_196
+  - first:
+      213: 6785741922947213171
+    second: grasstips_197
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grasstips_0
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1556
+        width: 65
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bf5b18b6dca79790800000000000000
+      internalID: -7523354614287343688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_1
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1631
+        width: 18
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fde02c7a2395fde0800000000000000
+      internalID: -1299971106746077706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_2
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1621
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 304183d43b28734a0800000000000000
+      internalID: -6613673821164006397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_3
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 1607
+        width: 17
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38443d4b0915eaa80800000000000000
+      internalID: -8453729768576957309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_4
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 1621
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: badf5146bf4620070800000000000000
+      internalID: 8071124513080081835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_5
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 1612
+        width: 17
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75519b7df41bf39f0800000000000000
+      internalID: -486475278252960425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_6
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 1617
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a1405abdb3771180800000000000000
+      internalID: -9144713259640667740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_7
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 1625
+        width: 25
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca4dced7b29bae190800000000000000
+      internalID: -7932324197212302164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_8
+      rect:
+        serializedVersion: 2
+        x: 195
+        y: 1618
+        width: 13
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef03414716930a340800000000000000
+      internalID: 4872957887536967934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_9
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 1507
+        width: 91
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6e4df8d7d9dec0f0800000000000000
+      internalID: -1094698138322776465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_10
+      rect:
+        serializedVersion: 2
+        x: 163
+        y: 1538
+        width: 81
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbc1f8495adffe080800000000000000
+      internalID: -9155820629817090885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_11
+      rect:
+        serializedVersion: 2
+        x: 179
+        y: 1613
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db23d094189e0f050800000000000000
+      internalID: 5832418258930447037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_12
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 1594
+        width: 24
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d18764618e0252980800000000000000
+      internalID: -8564402935196911587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_13
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 1553
+        width: 34
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b71344fe4820ea0800000000000000
+      internalID: -5908013597980525817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_14
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 1579
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 392662ddc5b9d8430800000000000000
+      internalID: 3786853684838032019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_15
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 1567
+        width: 18
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35f0e29904d0e8980800000000000000
+      internalID: -8534869672721510573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_16
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 1499
+        width: 62
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a11331eb2c976cc40800000000000000
+      internalID: 5532243069590778138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_17
+      rect:
+        serializedVersion: 2
+        x: 118
+        y: 1550
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca3a00e5a324b7280800000000000000
+      internalID: -9044562608190872660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_18
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 1582
+        width: 12
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854012545fe5e93e0800000000000000
+      internalID: -2045092773259836328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_19
+      rect:
+        serializedVersion: 2
+        x: 194
+        y: 1534
+        width: 70
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c0071490c8b24bb0800000000000000
+      internalID: -4953193502896357184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_20
+      rect:
+        serializedVersion: 2
+        x: 1100
+        y: 1523
+        width: 40
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb1fefe8050e38350800000000000000
+      internalID: 6017900163698192830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_21
+      rect:
+        serializedVersion: 2
+        x: 1132
+        y: 1500
+        width: 45
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943fb07feee9a7ef0800000000000000
+      internalID: -109600491732995255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_22
+      rect:
+        serializedVersion: 2
+        x: 1141
+        y: 1448
+        width: 50
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0db2b1eed4ed95000800000000000000
+      internalID: 25295699215854544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_23
+      rect:
+        serializedVersion: 2
+        x: 1161
+        y: 1434
+        width: 89
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab4901d6475c072e0800000000000000
+      internalID: -2129985519909563206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_24
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 1498
+        width: 34
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2a33eed90159610800000000000000
+      internalID: 1627225110856573644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_25
+      rect:
+        serializedVersion: 2
+        x: 1906
+        y: 1492
+        width: 42
+        height: 104
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb9cae3fadabcf40800000000000000
+      internalID: 5749880317450951668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_26
+      rect:
+        serializedVersion: 2
+        x: 1941
+        y: 1511
+        width: 32
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eedf1b222671bbbd0800000000000000
+      internalID: -2613469448502116882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_27
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 1538
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dcec4c5027a73840800000000000000
+      internalID: 5203811651879234769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_28
+      rect:
+        serializedVersion: 2
+        x: 1920
+        y: 1468
+        width: 76
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71b3f16b20b53b6c0800000000000000
+      internalID: -4128856366165050601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_29
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 1524
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a6e0539513f0d90800000000000000
+      internalID: -7129425425892218340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_30
+      rect:
+        serializedVersion: 2
+        x: 1101
+        y: 1516
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b85d10e603171e0a0800000000000000
+      internalID: -6854072705063201397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_31
+      rect:
+        serializedVersion: 2
+        x: 578
+        y: 1321
+        width: 77
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff9ba1d308c326760800000000000000
+      internalID: 7449583255102863871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_32
+      rect:
+        serializedVersion: 2
+        x: 1126
+        y: 1472
+        width: 14
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98605806305b5f350800000000000000
+      internalID: 6049940700550989449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_33
+      rect:
+        serializedVersion: 2
+        x: 1166
+        y: 1406
+        width: 72
+        height: 107
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2cecef9ee77b370800000000000000
+      internalID: 8338272778567205592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_34
+      rect:
+        serializedVersion: 2
+        x: 1901
+        y: 1482
+        width: 11
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839a0745090f9dc70800000000000000
+      internalID: 8996486233331902776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_35
+      rect:
+        serializedVersion: 2
+        x: 1908
+        y: 1432
+        width: 94
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caf90ca4698dfedf0800000000000000
+      internalID: -148662122669105236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_36
+      rect:
+        serializedVersion: 2
+        x: 1911
+        y: 1453
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba755be1ee3353a0800000000000000
+      internalID: -6677924682423502154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_37
+      rect:
+        serializedVersion: 2
+        x: 1904
+        y: 1417
+        width: 19
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e914f0d514aaf230800000000000000
+      internalID: 3673428859680987618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_38
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1401
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e44e4386b1619e3c0800000000000000
+      internalID: -4329905259771796402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_39
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 1381
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 453feb5c1d2321380800000000000000
+      internalID: -9002076828613020844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_40
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 1397
+        width: 9
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35147bcb16003fde0800000000000000
+      internalID: -1300695447601987245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_41
+      rect:
+        serializedVersion: 2
+        x: 744
+        y: 1395
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3765704e0c60df540800000000000000
+      internalID: 5043194583253997171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_42
+      rect:
+        serializedVersion: 2
+        x: 674
+        y: 1306
+        width: 77
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c35773b8bd048a300800000000000000
+      internalID: 263531889878857020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_43
+      rect:
+        serializedVersion: 2
+        x: 1662
+        y: 1350
+        width: 33
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f2d164f75d7d6170800000000000000
+      internalID: 8173326715462996729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_44
+      rect:
+        serializedVersion: 2
+        x: 1740
+        y: 1265
+        width: 65
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a523356697d5fe80800000000000000
+      internalID: -8145367310086756954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_45
+      rect:
+        serializedVersion: 2
+        x: 2066
+        y: 1236
+        width: 76
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24dc28166f52d5e10800000000000000
+      internalID: 2187946734100073794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_46
+      rect:
+        serializedVersion: 2
+        x: 1695
+        y: 1333
+        width: 15
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ed947ee9a1ff910800000000000000
+      internalID: 1873245239796948599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_47
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 1325
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 431ac33f44574c0e0800000000000000
+      internalID: -2250544974779342540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_48
+      rect:
+        serializedVersion: 2
+        x: 2096
+        y: 1246
+        width: 49
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca99126fb87a2cc30800000000000000
+      internalID: 4378246007329233324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_49
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 1326
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3eb6c59c1fd46930800000000000000
+      internalID: 4135675671697866302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_50
+      rect:
+        serializedVersion: 2
+        x: 1715
+        y: 1315
+        width: 8
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52e3932f29445d30800000000000000
+      internalID: 4419237601166484063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_51
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 1316
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bb8dd4f1c66d0f40800000000000000
+      internalID: 5696322086916426672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_52
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 1192
+        width: 78
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f76dfea3a67a1cb0800000000000000
+      internalID: -4892467599797032968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_53
+      rect:
+        serializedVersion: 2
+        x: 2182
+        y: 1274
+        width: 30
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8008ddbc7c631700800000000000000
+      internalID: 509870465839792271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_54
+      rect:
+        serializedVersion: 2
+        x: 2178
+        y: 1261
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7c3ad605d0c84a0800000000000000
+      internalID: -6589877515661883429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_55
+      rect:
+        serializedVersion: 2
+        x: 2184
+        y: 1198
+        width: 59
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9fa3244acbcb4400800000000000000
+      internalID: 309565068992032666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_56
+      rect:
+        serializedVersion: 2
+        x: 2250
+        y: 1256
+        width: 27
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a07a5c58b334f520800000000000000
+      internalID: 2734867740637163686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_57
+      rect:
+        serializedVersion: 2
+        x: 2226
+        y: 1225
+        width: 20
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d126ccf2382e5b20800000000000000
+      internalID: 3124979390896021977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_58
+      rect:
+        serializedVersion: 2
+        x: 2241
+        y: 1242
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ff71464c7f36dc10800000000000000
+      internalID: 2077918081065254896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_59
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 1052
+        width: 74
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec5941c3e49c313e0800000000000000
+      internalID: -2084100864689793586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_60
+      rect:
+        serializedVersion: 2
+        x: 244
+        y: 1228
+        width: 11
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0344d6a5b162a1f40800000000000000
+      internalID: 5699910177313866800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_61
+      rect:
+        serializedVersion: 2
+        x: 2226
+        y: 1199
+        width: 43
+        height: 39
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07a1ae6d6d5da980800000000000000
+      internalID: -8526055794953574645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_62
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 1071
+        width: 35
+        height: 118
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 010fc27fe2a22aac0800000000000000
+      internalID: -3845464750617202672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_63
+      rect:
+        serializedVersion: 2
+        x: 2170
+        y: 1180
+        width: 14
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa83f314794dea3c0800000000000000
+      internalID: -4346302844266137425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_64
+      rect:
+        serializedVersion: 2
+        x: 2177
+        y: 1118
+        width: 57
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8b5e507954772ef0800000000000000
+      internalID: -133009736497996913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_65
+      rect:
+        serializedVersion: 2
+        x: 2179
+        y: 1196
+        width: 10
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01e8560f8b4b14e30800000000000000
+      internalID: 4486065410237894160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_66
+      rect:
+        serializedVersion: 2
+        x: 2202
+        y: 1185
+        width: 11
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f520f2c4e119b03f0800000000000000
+      internalID: -933492938436050337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_67
+      rect:
+        serializedVersion: 2
+        x: 2230
+        y: 1159
+        width: 43
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4c04c97b18ed3d50800000000000000
+      internalID: 6718781423811300430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_68
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 1046
+        width: 25
+        height: 120
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3dfb0a62d7dbb8bd0800000000000000
+      internalID: -2626797612423921709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_69
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1066
+        width: 20
+        height: 116
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45d426468c27195d0800000000000000
+      internalID: -3057536467004666540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_70
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 1098
+        width: 11
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86d5c04b9e20ee60800000000000000
+      internalID: 7989436983296775819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_71
+      rect:
+        serializedVersion: 2
+        x: 1619
+        y: 1047
+        width: 46
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0868422ff018f9f0800000000000000
+      internalID: -434578676063377395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_72
+      rect:
+        serializedVersion: 2
+        x: 1636
+        y: 1068
+        width: 47
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4c6a79b75d21cf0800000000000000
+      internalID: -282929099768937290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_73
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 1066
+        width: 67
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4fd041b2d7f20270800000000000000
+      internalID: 8215401154566217547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_74
+      rect:
+        serializedVersion: 2
+        x: 1659
+        y: 1064
+        width: 99
+        height: 110
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8572b2c300ca508a0800000000000000
+      internalID: -6339471783444666536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_75
+      rect:
+        serializedVersion: 2
+        x: 2191
+        y: 1094
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40357ee4e534b1650800000000000000
+      internalID: 6204626983962759940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_76
+      rect:
+        serializedVersion: 2
+        x: 2211
+        y: 1121
+        width: 60
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15b04c0df02405130800000000000000
+      internalID: 3553412741689772881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_77
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 1092
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484de085618a29520800000000000000
+      internalID: 2707411139923203204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_78
+      rect:
+        serializedVersion: 2
+        x: 1603
+        y: 1081
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfe85fcf124afaab0800000000000000
+      internalID: -4994592995845763333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_79
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 1061
+        width: 10
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aad3b5af0b8ea7e0800000000000000
+      internalID: -1752310305679746394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_80
+      rect:
+        serializedVersion: 2
+        x: 1598
+        y: 1028
+        width: 16
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa01563d06e21c390800000000000000
+      internalID: -7799902086230634326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_81
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 1039
+        width: 12
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4dd5455ec66a2d50800000000000000
+      internalID: 6713291230929083725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_82
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 877
+        width: 68
+        height: 135
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84f55195c8c9691b0800000000000000
+      internalID: -5650156555885781176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_83
+      rect:
+        serializedVersion: 2
+        x: 1526
+        y: 992
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2400a8ff8d89d4da0800000000000000
+      internalID: -5958938674173706174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_84
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 871
+        width: 89
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c3a0fdc5c5591780800000000000000
+      internalID: -8711837696119495736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_85
+      rect:
+        serializedVersion: 2
+        x: 1522
+        y: 950
+        width: 30
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb7bb616434191a90800000000000000
+      internalID: -7342815502245578821
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_86
+      rect:
+        serializedVersion: 2
+        x: 772
+        y: 787
+        width: 122
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98bb9e5fa7c1993e0800000000000000
+      internalID: -2046573241225856119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_87
+      rect:
+        serializedVersion: 2
+        x: 1258
+        y: 910
+        width: 30
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90ee1d4c748138eb0800000000000000
+      internalID: -4718901288030310903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_88
+      rect:
+        serializedVersion: 2
+        x: 1297
+        y: 930
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 624860cd7e1f22800800000000000000
+      internalID: 586296879642739750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_89
+      rect:
+        serializedVersion: 2
+        x: 1304
+        y: 826
+        width: 72
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a89b35feaf40120800000000000000
+      internalID: 2379302408967260737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_90
+      rect:
+        serializedVersion: 2
+        x: 1393
+        y: 825
+        width: 55
+        height: 119
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c0fc7a0b869e4240800000000000000
+      internalID: 4777921778607255750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_91
+      rect:
+        serializedVersion: 2
+        x: 1525
+        y: 816
+        width: 104
+        height: 115
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 532e470faec1d7ee0800000000000000
+      internalID: -1261820525211753931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_92
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 917
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01304301df3fb800800000000000000
+      internalID: 630292639790412042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_93
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 840
+        width: 48
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73fa7606b6879e910800000000000000
+      internalID: 1867155923096022839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_94
+      rect:
+        serializedVersion: 2
+        x: 1371
+        y: 837
+        width: 24
+        height: 89
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2774df77c9538d850800000000000000
+      internalID: 6401925816451417970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_95
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 846
+        width: 72
+        height: 83
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b47ad12df3ff155a0800000000000000
+      internalID: -6534160934764697781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_96
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 878
+        width: 15
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a40c03fce54db00c0800000000000000
+      internalID: -4608356290015477686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_97
+      rect:
+        serializedVersion: 2
+        x: 1267
+        y: 893
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e8fbc7b15dfc4b0800000000000000
+      internalID: -5417877512669655400
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_98
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 879
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33a06b8a4f39552f0800000000000000
+      internalID: -984718264498779597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_99
+      rect:
+        serializedVersion: 2
+        x: 641
+        y: 829
+        width: 36
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1197614c27d9d20c0800000000000000
+      internalID: -4598846528233768687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_100
+      rect:
+        serializedVersion: 2
+        x: 686
+        y: 852
+        width: 22
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 856617fb5c9dc3b20800000000000000
+      internalID: 3115604485577205336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_101
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 879
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8e3a85ac4fe31c90800000000000000
+      internalID: -7200148266761437554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_102
+      rect:
+        serializedVersion: 2
+        x: 1284
+        y: 871
+        width: 13
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07a62e96c3c5febc0800000000000000
+      internalID: -3751678550032094608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_103
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 852
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a8dffb67ae5ee880800000000000000
+      internalID: -8579816166929737563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_104
+      rect:
+        serializedVersion: 2
+        x: 743
+        y: 862
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d9a57e28c2486f0800000000000000
+      internalID: -683372302714626719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_105
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 842
+        width: 11
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b0f267e07889b9b0800000000000000
+      internalID: -5063866287501676360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_106
+      rect:
+        serializedVersion: 2
+        x: 677
+        y: 840
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d93037dd4afb6f570800000000000000
+      internalID: 8500192061519233949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_107
+      rect:
+        serializedVersion: 2
+        x: 699
+        y: 846
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d16928c71da41b40800000000000000
+      internalID: 5410139370032816595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_108
+      rect:
+        serializedVersion: 2
+        x: 701
+        y: 803
+        width: 33
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc715bb455c409240800000000000000
+      internalID: 4796417532375668683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_109
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 828
+        width: 7
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0db21cd7425bb1870800000000000000
+      internalID: 8654710277255801808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_110
+      rect:
+        serializedVersion: 2
+        x: 683
+        y: 799
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 368df73a0b41b1ad0800000000000000
+      internalID: -2730566000180209565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_111
+      rect:
+        serializedVersion: 2
+        x: 725
+        y: 836
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c5043307e3451aa0800000000000000
+      internalID: -6190967453280631358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_112
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 831
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6360f65fbb094f810800000000000000
+      internalID: 1798221288178648630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_113
+      rect:
+        serializedVersion: 2
+        x: 751
+        y: 833
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e3730effcdefb90800000000000000
+      internalID: -7206079362209726967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_114
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 658
+        width: 99
+        height: 175
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d045e2785c76ead0800000000000000
+      internalID: -2673312609471217447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_115
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 807
+        width: 21
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 663fe0c4642426650800000000000000
+      internalID: 6224610504670638950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_116
+      rect:
+        serializedVersion: 2
+        x: 729
+        y: 818
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b94d2e6c1726b20800000000000000
+      internalID: 3126186190371593060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_117
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 816
+        width: 12
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b75e748a6cba76da0800000000000000
+      internalID: -5951599512831662725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_118
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 827
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1079ecdd94464dfe0800000000000000
+      internalID: -1165196135165421823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_119
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 820
+        width: 9
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc46295aa57594850800000000000000
+      internalID: 6361711995474044109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_120
+      rect:
+        serializedVersion: 2
+        x: 728
+        y: 812
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9434eb5531cb4ce0800000000000000
+      internalID: -1419828822586149730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_121
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 808
+        width: 12
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9672e43383d1893c0800000000000000
+      internalID: -4352696912637450391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_122
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 804
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbb6b655df1cd6300800000000000000
+      internalID: 247066848379235259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_123
+      rect:
+        serializedVersion: 2
+        x: 1311
+        y: 793
+        width: 8
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf5ec1455d6efdf10800000000000000
+      internalID: 2296808138895844860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_124
+      rect:
+        serializedVersion: 2
+        x: 1313
+        y: 660
+        width: 43
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa19ac8570a99b550800000000000000
+      internalID: 6177137720260465066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_125
+      rect:
+        serializedVersion: 2
+        x: 213
+        y: 737
+        width: 26
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99ef575c9e72f40b0800000000000000
+      internalID: -5742327114880385383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_126
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 668
+        width: 31
+        height: 73
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1be316260b654d70800000000000000
+      internalID: 9026738702286842652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_127
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 625
+        width: 109
+        height: 154
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 123d13e3bb3e826f0800000000000000
+      internalID: -709066547969010911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_128
+      rect:
+        serializedVersion: 2
+        x: 1378
+        y: 636
+        width: 58
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f99da83747cc3dbd0800000000000000
+      internalID: -2606514958790633057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_129
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 720
+        width: 8
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0063e4944e2525b0800000000000000
+      internalID: -5393854106615717874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_130
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 704
+        width: 12
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12288d7afb0d04240800000000000000
+      internalID: 4774045126586040865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_131
+      rect:
+        serializedVersion: 2
+        x: 1366
+        y: 683
+        width: 11
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc1c3647c088b9f00800000000000000
+      internalID: 1124642119032750540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_132
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 669
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50576fccb0135c5e0800000000000000
+      internalID: -1890050541858949883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_133
+      rect:
+        serializedVersion: 2
+        x: 1370
+        y: 661
+        width: 8
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d99e6a0e70b4bb200800000000000000
+      internalID: 196833505926637981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_134
+      rect:
+        serializedVersion: 2
+        x: 638
+        y: 522
+        width: 55
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1ebf1543f2f1260800000000000000
+      internalID: 7070421841755234749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_135
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 524
+        width: 41
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9244469d9221b4350800000000000000
+      internalID: 6001910899351503913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_136
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 495
+        width: 68
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac7f09015b67e130800000000000000
+      internalID: 3595960823267163308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_137
+      rect:
+        serializedVersion: 2
+        x: 809
+        y: 621
+        width: 10
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9788191888dce1d50800000000000000
+      internalID: 6710026481001662585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_138
+      rect:
+        serializedVersion: 2
+        x: 1808
+        y: 497
+        width: 74
+        height: 124
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35f8f3b81ed99dbd0800000000000000
+      internalID: -2604877317427720365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_139
+      rect:
+        serializedVersion: 2
+        x: 1848
+        y: 613
+        width: 18
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82e71f67f35e57810800000000000000
+      internalID: 1762566889926655528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_140
+      rect:
+        serializedVersion: 2
+        x: 726
+        y: 524
+        width: 20
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be206731cd2c0b40800000000000000
+      internalID: 5407747560446111414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_141
+      rect:
+        serializedVersion: 2
+        x: 1754
+        y: 595
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8cb9279999d0aa50800000000000000
+      internalID: 6530458713376537739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_142
+      rect:
+        serializedVersion: 2
+        x: 1761
+        y: 607
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02b7c9927710686e0800000000000000
+      internalID: -1835778186796041440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_143
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 503
+        width: 78
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 278029aff41423110800000000000000
+      internalID: 1239124659242403954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_144
+      rect:
+        serializedVersion: 2
+        x: 1764
+        y: 581
+        width: 16
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44f913f3bd34de9c0800000000000000
+      internalID: -3896383493668495548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_145
+      rect:
+        serializedVersion: 2
+        x: 1877
+        y: 476
+        width: 33
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4f0facbb75d94aa0800000000000000
+      internalID: -6176170686538641586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_146
+      rect:
+        serializedVersion: 2
+        x: 1907
+        y: 558
+        width: 15
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01d60acf0b2810650800000000000000
+      internalID: 6197378258902740240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_147
+      rect:
+        serializedVersion: 2
+        x: 1902
+        y: 516
+        width: 42
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ced2d4985df6710c0800000000000000
+      internalID: -4605089131040789012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_148
+      rect:
+        serializedVersion: 2
+        x: 1941
+        y: 534
+        width: 26
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d664dcde0d1db5dd0800000000000000
+      internalID: -2496170873173752211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_149
+      rect:
+        serializedVersion: 2
+        x: 1966
+        y: 551
+        width: 11
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3ebde89f315c9180800000000000000
+      internalID: -9107315012859478468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_150
+      rect:
+        serializedVersion: 2
+        x: 736
+        y: 513
+        width: 11
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28ddb965ba329ef80800000000000000
+      internalID: -8076885237912838782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_151
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 508
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a3134ee8c7f7b340800000000000000
+      internalID: 4879641163642114979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_152
+      rect:
+        serializedVersion: 2
+        x: 1915
+        y: 513
+        width: 6
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f7a720ade9552aa0800000000000000
+      internalID: -6186439635994433546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_153
+      rect:
+        serializedVersion: 2
+        x: 1857
+        y: 492
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fbb5a53a0f852930800000000000000
+      internalID: 4117854708312685558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_154
+      rect:
+        serializedVersion: 2
+        x: 122
+        y: 295
+        width: 40
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30caacf749abb9e0800000000000000
+      internalID: -1604502715580628933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_155
+      rect:
+        serializedVersion: 2
+        x: 181
+        y: 287
+        width: 82
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a42acae62ff51c680800000000000000
+      internalID: -8736596307278519734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_156
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 292
+        width: 59
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3b6411e67b8d87e0800000000000000
+      internalID: -1761598536533382338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_157
+      rect:
+        serializedVersion: 2
+        x: 1496
+        y: 337
+        width: 29
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10fadd652a775ce20800000000000000
+      internalID: 3370231435282460417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_158
+      rect:
+        serializedVersion: 2
+        x: 1519
+        y: 321
+        width: 20
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c64486c78b776a80800000000000000
+      internalID: -8473668350792939833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_159
+      rect:
+        serializedVersion: 2
+        x: 1542
+        y: 313
+        width: 16
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6935c7726e33ad470800000000000000
+      internalID: 8420099516920517526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_160
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 285
+        width: 65
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd4ccaca187c7860800000000000000
+      internalID: 7529024733523496412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_161
+      rect:
+        serializedVersion: 2
+        x: 1616
+        y: 221
+        width: 38
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2195ba552ccd68d0800000000000000
+      internalID: -2851398528247951062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_162
+      rect:
+        serializedVersion: 2
+        x: 1675
+        y: 261
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6d26e6a6514688b0800000000000000
+      internalID: -5150357283428487828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_163
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 237
+        width: 19
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0249a10ebb703c680800000000000000
+      internalID: -8736130348668513248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_164
+      rect:
+        serializedVersion: 2
+        x: 2035
+        y: 234
+        width: 25
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edbb26a8469434eb0800000000000000
+      internalID: -4736861686896346146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_165
+      rect:
+        serializedVersion: 2
+        x: 1644
+        y: 220
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ec94383c348d6580800000000000000
+      internalID: -8832257900027798298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_166
+      rect:
+        serializedVersion: 2
+        x: 1685
+        y: 212
+        width: 20
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4020bc1344cac4d70800000000000000
+      internalID: 9028780761864143364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_167
+      rect:
+        serializedVersion: 2
+        x: 2078
+        y: 225
+        width: 12
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7fda19b75af1dab0800000000000000
+      internalID: -4984928057847783554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_168
+      rect:
+        serializedVersion: 2
+        x: 2081
+        y: 199
+        width: 8
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94a711a3945217ca0800000000000000
+      internalID: -6020990230380578231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_169
+      rect:
+        serializedVersion: 2
+        x: 2104
+        y: 207
+        width: 11
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6b1c9aa4591dd0c0800000000000000
+      internalID: -4549452197144028307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_170
+      rect:
+        serializedVersion: 2
+        x: 2106
+        y: 180
+        width: 36
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f72f8282a56604d0800000000000000
+      internalID: -3168733539159037965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_171
+      rect:
+        serializedVersion: 2
+        x: 2124
+        y: 186
+        width: 56
+        height: 70
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8ac9262ff22eec40800000000000000
+      internalID: 5543406670591937164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_172
+      rect:
+        serializedVersion: 2
+        x: 1165
+        y: 123
+        width: 62
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 566198e3f4d67d370800000000000000
+      internalID: 8347260621473519205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_173
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 101
+        width: 73
+        height: 91
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94045dcfc2005a7e0800000000000000
+      internalID: -1754996286570545079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_174
+      rect:
+        serializedVersion: 2
+        x: 1626
+        y: 189
+        width: 9
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268f0d41372052e40800000000000000
+      internalID: 5630909602390407266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_175
+      rect:
+        serializedVersion: 2
+        x: 1628
+        y: 141
+        width: 24
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 557154c2fdd9bf8c0800000000000000
+      internalID: -3964401465123596459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_176
+      rect:
+        serializedVersion: 2
+        x: 1645
+        y: 140
+        width: 37
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6aa28d7d002d1850800000000000000
+      internalID: 6349266291974646380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_177
+      rect:
+        serializedVersion: 2
+        x: 1692
+        y: 112
+        width: 33
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d14d3392eb6f0360800000000000000
+      internalID: 7138042555282571731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_178
+      rect:
+        serializedVersion: 2
+        x: 1731
+        y: 147
+        width: 18
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 840df8c59309da1d0800000000000000
+      internalID: -3337853172771205048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_179
+      rect:
+        serializedVersion: 2
+        x: 1749
+        y: 162
+        width: 16
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f28206e984835c670800000000000000
+      internalID: 8558308551433398319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_180
+      rect:
+        serializedVersion: 2
+        x: 1755
+        y: 98
+        width: 35
+        height: 93
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f1b8b1a6ab543750800000000000000
+      internalID: 6283748151324619257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_181
+      rect:
+        serializedVersion: 2
+        x: 1784
+        y: 95
+        width: 96
+        height: 103
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e08dbd37f995ca220800000000000000
+      internalID: 2498470434662242318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_182
+      rect:
+        serializedVersion: 2
+        x: 1196
+        y: 93
+        width: 111
+        height: 87
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99bbea19295c64210800000000000000
+      internalID: 1316957174352493465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_183
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 93
+        width: 53
+        height: 86
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90af9032a793d6d50800000000000000
+      internalID: 6732100214725409289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_184
+      rect:
+        serializedVersion: 2
+        x: 2117
+        y: 168
+        width: 10
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4e599b8eb6f29dc0800000000000000
+      internalID: -3633570651088265649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_185
+      rect:
+        serializedVersion: 2
+        x: 2120
+        y: 179
+        width: 13
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee5a49ae9700a3c50800000000000000
+      internalID: 6645624723765241326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_186
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 12
+        width: 95
+        height: 139
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d4dc68921f0861a0800000000000000
+      internalID: -6816181463484148523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_187
+      rect:
+        serializedVersion: 2
+        x: 1733
+        y: 130
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a2c052aef63c6410800000000000000
+      internalID: 1471611645516104361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_188
+      rect:
+        serializedVersion: 2
+        x: 1745
+        y: 143
+        width: 13
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b9383267d870f7f0800000000000000
+      internalID: -580831485469640268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_189
+      rect:
+        serializedVersion: 2
+        x: 755
+        y: 58
+        width: 41
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02927e6e603db6560800000000000000
+      internalID: 7308166846935935264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_190
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 118
+        width: 11
+        height: 13
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96ad9626e7c8924c0800000000000000
+      internalID: -4311760693785666967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_191
+      rect:
+        serializedVersion: 2
+        x: 1737
+        y: 112
+        width: 7
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2acd4090088ddead0800000000000000
+      internalID: -2671240959542109022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_192
+      rect:
+        serializedVersion: 2
+        x: 1215
+        y: 84
+        width: 16
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5baae8e23547ac890800000000000000
+      internalID: -7437003934036743499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_193
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 89
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f1f0e25505100430800000000000000
+      internalID: 3747018002581746168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_194
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 79
+        width: 13
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d05b3c82abebdc70800000000000000
+      internalID: 8997043763972624597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_195
+      rect:
+        serializedVersion: 2
+        x: 1778
+        y: 86
+        width: 10
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4a93bb77c4aaa290800000000000000
+      internalID: -7878303421450446257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_196
+      rect:
+        serializedVersion: 2
+        x: 1765
+        y: 74
+        width: 7
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e6feab9cac023c0800000000000000
+      internalID: -4386283069285372338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grasstips_197
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 52
+        width: 9
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 377aeb6935ccb2e50800000000000000
+      internalID: 6785741922947213171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable: {}
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
