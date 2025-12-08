@@ -20,7 +20,7 @@ public class kalenGameManager : MonoBehaviour
     public int currScore = 0;
     private int winningScore = 1;
 
-    private string victorySceneName = "LevelCompleteScene";
+    private string victorySceneName = "LevelComplete";
     private string failureSceneName = "LevelFailed";
     private bool hasFinished = false;
 
