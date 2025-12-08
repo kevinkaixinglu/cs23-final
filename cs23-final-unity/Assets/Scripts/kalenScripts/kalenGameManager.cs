@@ -38,6 +38,11 @@ public class kalenGameManager : MonoBehaviour
     public GameObject playerIdleSprite;
     public GameObject playerActiveSprite;
 
+
+    //other animations
+    public Animator cloudPulse;
+    private int last_qNote = -1;
+
     [Header("Song Status (FOR ACCESS ONLY)")]
     public double time_in_song;
     public int curr_tick;
@@ -182,6 +187,16 @@ public class kalenGameManager : MonoBehaviour
 
             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
             {
+
+                if (curr_qNote != last_qNote)
+                {
+                    last_qNote = curr_qNote;
+                    if (curr_qNote % 2 == 0)
+                    {
+                        cloudPulse.Play("pump", 0, 0f);
+                    }
+                }
+
                 if (window_start_tick != -1 && curr_tick == window_start_tick + current_note_duration)
                 {
                     Debug.Log($"[{Time.time:F2}] Note duration ended at tick {curr_tick} (duration was {current_note_duration}) - forcing idle");
