@@ -3037,6 +3037,14 @@ PrefabInstance:
       propertyPath: 'levelButtons.Array.data[5]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 693264310062654535, guid: 90e15946401ff499dbc522f5a2f040ec, type: 3}
+      propertyPath: 'levelSceneNames.Array.data[0]'
+      value: Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 693264310062654535, guid: 90e15946401ff499dbc522f5a2f040ec, type: 3}
+      propertyPath: 'levelSceneNames.Array.data[1]'
+      value: New_Level_SM
+      objectReference: {fileID: 0}
     - target: {fileID: 2139977596100654501, guid: 90e15946401ff499dbc522f5a2f040ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 802.9283
