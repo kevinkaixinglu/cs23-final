@@ -43,14 +43,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Moles
-    uniqueID: 3503987535
+  - name: background
+    uniqueID: 2563488879
     locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: background
-    uniqueID: 2563488879
+  - name: holes
+    uniqueID: 3503987535
     locked: 0
   m_RenderingLayers:
   - Default
