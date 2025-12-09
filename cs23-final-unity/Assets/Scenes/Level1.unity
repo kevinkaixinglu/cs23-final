@@ -2588,7 +2588,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2395616330430482232, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3454972922227420734, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2610,6 +2610,14 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 9114456821150563037, guid: bda64e19bf7f34a4c92055ff2d501bcf, type: 3}
+    - target: {fileID: 3579551076130555998, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3579551076130555998, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3624472310106039908, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: score
       value: 
@@ -2640,15 +2648,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4175010791430082173, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4175010791430082173, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4175010791430082173, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5127138597969391296, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2720,7 +2728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7898202355086145413, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_ReferenceResolution.x
-      value: 1080
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 7898202355086145413, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_ReferenceResolution.y
@@ -2728,11 +2736,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8004488169148604616, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8004488169148604616, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8702241335513660757, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2747,12 +2755,20 @@ PrefabInstance:
       value: 94.5489
       objectReference: {fileID: 0}
     - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -464
+      value: -545
       objectReference: {fileID: 0}
     - target: {fileID: 8864189941798923562, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 226
+      value: 276
       objectReference: {fileID: 0}
     - target: {fileID: 8911562944663770170, guid: 5cf98004a6bcf8e4a8e86fbb521bdc25, type: 3}
       propertyPath: m_Color.a
@@ -3768,7 +3784,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.9, y: 1.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 243883671}
@@ -4338,7 +4354,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1080, y: 720}
+  m_ReferenceResolution: {x: 1280, y: 720}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
