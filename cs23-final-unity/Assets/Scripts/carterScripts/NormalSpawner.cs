@@ -3,7 +3,7 @@ using UnityEngine;
 public class NormalSpawner : MonoBehaviour
 {
     public GameObject normalBeat;
-    public float spawnRate = 2f;
+    public float spawnRate = 0f;
     private float timer;
 
     bool pause = false;

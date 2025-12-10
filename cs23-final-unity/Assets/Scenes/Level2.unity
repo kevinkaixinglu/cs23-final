@@ -222,7 +222,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282020123}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 372ffb16550ba4e1d994506f67d05526, type: 3}
   m_Name: 
@@ -526,6 +526,10 @@ MonoBehaviour:
   - qNotes: []
   - qNotes: []
   special_beatmap: {fileID: 2089209900}
+  normalBeat: {fileID: 3320503068810753711, guid: 093bd71da104b466cb85e06e754a3bb6, type: 3}
+  r1Normal: {fileID: 517668345}
+  r2Normal: {fileID: 1206324392}
+  r3Normal: {fileID: 282020123}
   score: {fileID: 2027142519}
   scoreText: {fileID: 1316639391}
   currScore: 0
@@ -675,7 +679,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 517668345}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 372ffb16550ba4e1d994506f67d05526, type: 3}
   m_Name: 
@@ -1288,7 +1292,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206324392}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 372ffb16550ba4e1d994506f67d05526, type: 3}
   m_Name: 
@@ -1923,7 +1927,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2089209898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee56008185b614bdfbaa63e469cde195, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e3fed766235a452a99ddd3a3231c5ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2106360459
