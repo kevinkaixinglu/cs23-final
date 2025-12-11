@@ -6,8 +6,7 @@ using TMPro;
 public class kalenGameManagerStatus : MonoBehaviour
 {
     [Header("Pausing the Game")]
-    public GameObject pauseMenuUI;
-    public GameObject pauseButton;  // NEW: Add pause button reference
+    public GameObject pauseMenuUI;  
     public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
@@ -17,6 +16,7 @@ public class kalenGameManagerStatus : MonoBehaviour
     private static bool GameisPaused = false;
 
     private bool InfoPage = false;
+    private bool tutorialWasActiveWhenPaused = false; // Track if tutorial was showing when paused
 
     public void Start()
     {
@@ -31,12 +31,6 @@ public class kalenGameManagerStatus : MonoBehaviour
         SetVolume();
         Debug.Log("Starting Game...");
         pauseMenuUI.SetActive(false);
-        
-        // NEW: Hide pause button at start
-        if (pauseButton != null)
-        {
-            pauseButton.SetActive(false);
-        }
 
         InfoPage = true;
         GameisPaused = false;
@@ -58,12 +52,6 @@ public class kalenGameManagerStatus : MonoBehaviour
                 GameisPaused = false;
                 infoPageUI.SetActive(false);
                 
-                // NEW: Show pause button when game starts
-                if (pauseButton != null)
-                {
-                    pauseButton.SetActive(true);
-                }
-                
                 gameHandler.StartGame();
             }
         }
@@ -78,15 +66,52 @@ public class kalenGameManagerStatus : MonoBehaviour
     {
         if (GameisPaused)
         {
+            // Resuming
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
-            gameHandler.Resume();
+            
+            // If tutorial was active when we paused, go back to tutorial
+            if (tutorialWasActiveWhenPaused)
+            {
+                infoPageUI.SetActive(true);
+                InfoPage = true;
+                tutorialWasActiveWhenPaused = false;
+                // Stop the idle music
+                if (gameHandler.idleMusic != null)
+                {
+                    gameHandler.idleMusic.Stop();
+                }
+            }
+            else
+            {
+                // Tutorial wasn't active, so resume the game normally
+                gameHandler.Resume();
+            }
         }
         else
         {
+            // Pausing
             pauseMenuUI.SetActive(true);
             GameisPaused = true;
-            gameHandler.Pause();
+            
+            // Check if tutorial is currently active
+            if (InfoPage)
+            {
+                // Tutorial is active, hide it but remember it was showing
+                tutorialWasActiveWhenPaused = true;
+                infoPageUI.SetActive(false);
+                // Play idle music during tutorial pause
+                if (gameHandler.idleMusic != null)
+                {
+                    gameHandler.idleMusic.Play();
+                }
+            }
+            else
+            {
+                // Tutorial not active, pause the game normally
+                tutorialWasActiveWhenPaused = false;
+                gameHandler.Pause();
+            }
         }
     }
 

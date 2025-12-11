@@ -33,7 +33,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Good_Input Controller
+  m_Name: kalenGoodInput
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:

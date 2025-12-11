@@ -17,7 +17,7 @@ public class kalenGameManager : MonoBehaviour
     public GameObject score;
     public TextMeshProUGUI scoreText;
     public int currScore = 0;
-    private int winningScore = 1;
+    private int winningScore = 18;
 
     private string victorySceneName = "LevelComplete";
     private string failureSceneName = "LevelFailed";
@@ -39,6 +39,9 @@ public class kalenGameManager : MonoBehaviour
 
     public Animator cloudPulse;
     public Animator linePulse;
+
+    [Header("Good Input Animation")]
+    public Animator goodInputAnimator;
 
     private int last_qNote = -1;
 
@@ -251,7 +254,7 @@ public class kalenGameManager : MonoBehaviour
         OpenInputWindow(next_input);
     }
 
-        private void OpenInputWindow(int noteValue)
+    private void OpenInputWindow(int noteValue)
     {
         window_start_tick = curr_tick;
         current_note_duration = CalculateNoteDuration(curr_meas, curr_qNote, curr_sNote, noteValue);
@@ -269,6 +272,7 @@ public class kalenGameManager : MonoBehaviour
             {
                 Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksSincePress} tick(s) early)! Score: {currScore}");
                 AddScore();
+                TriggerGoodInputAnimation();
                 waiting_for_input = false;
             }
             else
@@ -297,6 +301,7 @@ public class kalenGameManager : MonoBehaviour
         if (isExactInput || isLateInput)
         {
             AddScore();
+            TriggerGoodInputAnimation();
             
             if (isExactInput)
                 Debug.Log($"[{Time.time:F2}] YAY! Perfect timing! Score: {currScore}");
@@ -307,7 +312,13 @@ public class kalenGameManager : MonoBehaviour
         }
     }
 
-
+    private void TriggerGoodInputAnimation()
+    {
+        if (goodInputAnimator != null)
+        {
+            goodInputAnimator.Play("Good_Input", 0, 0f);
+        }
+    }
 
     private void UpdateScoreDisplay()
     {
@@ -341,7 +352,7 @@ public class kalenGameManager : MonoBehaviour
             if (bpm >= 160)
             {
                 inputWindowTicks = 1;
-                inputWindowTicksBefore = 3;
+                inputWindowTicksBefore = 2;
                 Debug.Log($"[INPUT WINDOW] Changed to: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after");
             }
             else
