@@ -28,7 +28,7 @@ public class kalenGameManager : MonoBehaviour
     private double startingBPM;
     public AudioSource musicSource;
     public AudioSource idleMusic;
-    public float songDuration = 90f;
+    public float songDuration = 94f;
 
     [Header("Single Key Input:")]
     public KeyCode singleInputKey = KeyCode.A;
@@ -36,6 +36,10 @@ public class kalenGameManager : MonoBehaviour
     [Header("Player Animation")]
     public GameObject playerIdleSprite;
     public GameObject playerActiveSprite;
+
+    //judgy bird bools
+    public bool judgyBirds = false;
+    private int judgyBirdsEndTick = -1; // Track when to turn off judgy birds
 
     public Animator cloudPulse;
     public Animator linePulse;
@@ -67,6 +71,8 @@ public class kalenGameManager : MonoBehaviour
     private double accumulatedTicks = 0;
     private double lastBPMChangeTime = 0;
     private double lastBPMBeforeChange = 0;
+
+    
 
     [System.Serializable]
     public class BPMChange
@@ -125,6 +131,8 @@ public class kalenGameManager : MonoBehaviour
         last_key_press_tick = -999;
         hasFinished = false;
         currScore = 0;
+        judgyBirds = false;
+        judgyBirdsEndTick = -1;
 
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
@@ -148,12 +156,24 @@ public class kalenGameManager : MonoBehaviour
                 HandleBeatAnimations();
                 HandleNoteExpiration();
                 HandleWindowMiss();
+                CheckJudgyBirdsTimeout(); // Check if judgy birds should end
                 CheckForNewNote();
                 last_tick = curr_tick;
             }
 
             HandleInput();
             UpdateScoreDisplay();
+        }
+    }
+
+    private void CheckJudgyBirdsTimeout()
+    {
+        // Turn off judgy birds after 3 ticks
+        if (judgyBirds && judgyBirdsEndTick != -1 && curr_tick >= judgyBirdsEndTick)
+        {
+            judgyBirds = false;
+            judgyBirdsEndTick = -1;
+            Debug.Log($"Judgy birds deactivated at tick {curr_tick}");
         }
     }
 
@@ -234,6 +254,9 @@ public class kalenGameManager : MonoBehaviour
         if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
         {
             Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
+            judgyBirds = true;
+            judgyBirdsEndTick = curr_tick + 3; // Turn off after 3 ticks
+            Debug.Log($"MISSED INPUT - Judgy birds activated until tick {judgyBirdsEndTick}!");
             waiting_for_input = false;
         }
     }
@@ -351,14 +374,14 @@ public class kalenGameManager : MonoBehaviour
             
             if (bpm >= 160)
             {
-                inputWindowTicks = 1;
+                inputWindowTicks = 0;
                 inputWindowTicksBefore = 2;
                 Debug.Log($"[INPUT WINDOW] Changed to: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after");
             }
             else
             {
-                inputWindowTicks = 2;
-                inputWindowTicksBefore = 1;
+                inputWindowTicks = 1;
+                inputWindowTicksBefore = 0;
             }
             
             currentBPMChangeIndex++;
