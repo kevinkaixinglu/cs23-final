@@ -13,9 +13,12 @@ public class beatMap : MakeBeatmap
 
                .PlaceQuarterNote(2, 4, 1)
 
-               .PlaceWholeNote(6, 1)
+                // .PlaceQuarterNote(6, 3, 1)
+                .PlaceHalfNote(6, 3, 1)
 
-               .PlaceHalfNote(10, 3, 1)
+            
+            //    .PlaceHalfNote(10, 3, 1)
+               .PlaceQuarterNote(10, 4, 1)
 
                .PlaceQuarterNote(13, 1, 1)
 

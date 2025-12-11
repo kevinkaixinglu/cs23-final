@@ -255,7 +255,7 @@ public class kalenGameManager : MonoBehaviour
         {
             Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
             judgyBirds = true;
-            judgyBirdsEndTick = curr_tick + 3; // Turn off after 3 ticks
+            judgyBirdsEndTick = curr_tick + 5; // Turn off after 3 ticks
             Debug.Log($"MISSED INPUT - Judgy birds activated until tick {judgyBirdsEndTick}!");
             waiting_for_input = false;
         }
