@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
         // Setup volume slider
         if (volumeSlider != null && mixer != null)
         {
+            volumeSlider.value = VolumeDefiner.vol;
             volumeSlider.onValueChanged.AddListener(SetVolume);
             
             //// Load saved volume
@@ -191,7 +192,8 @@ public class GameManager : MonoBehaviour
         {
             float volume = volumeSlider.value;
             float clampedValue = Mathf.Clamp(volume, 0.0001f, 1f);
-            mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
+            VolumeDefiner.vol = clampedValue;
+            mixer.SetFloat("MusicVolume", Mathf.Log10(VolumeDefiner.vol) * 20);
             PlayerPrefs.SetFloat("MusicVolume", volume);
             PlayerPrefs.Save();
             Debug.Log("Volume set to: " + volume);
