@@ -10,7 +10,6 @@ public class kalenGameManagerStatus : MonoBehaviour
     public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
-    public static float volumeLevel = 1.0f;
 
     private kalenGameManager gameHandler;
     private static bool GameisPaused = false;
@@ -28,6 +27,7 @@ public class kalenGameManagerStatus : MonoBehaviour
             return;
         }
 
+        volumeSlider.value = VolumeDefiner.vol;
         SetVolume();
         Debug.Log("Starting Game...");
         pauseMenuUI.SetActive(false);
@@ -120,9 +120,10 @@ public class kalenGameManagerStatus : MonoBehaviour
         if (mixer != null)
         {
             float value = volumeSlider.value;
+            // Clamp the value to avoid Log10(0) which is undefined
             float clampedValue = Mathf.Clamp(value, 0.0001f, 1f);
-            mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
-            volumeLevel = value;
+            VolumeDefiner.vol = clampedValue;
+            mixer.SetFloat("MusicVolume", Mathf.Log10(VolumeDefiner.vol) * 20);
         }
         else
         {

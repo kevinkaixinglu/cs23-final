@@ -9,7 +9,6 @@ public class ManageGameCopy : MonoBehaviour
     public GameObject pauseMenuUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
-    public static float volumeLevel = 1.0f;
 
     private GameHandlerCopy gameHandler;
     private static bool GameisPaused = false;
@@ -18,6 +17,7 @@ public class ManageGameCopy : MonoBehaviour
     {
         gameHandler = GetComponent<GameHandlerCopy>();
 
+        volumeSlider.value = VolumeDefiner.vol;
         SetVolume();
         Debug.Log("Stating Game...");
         pauseMenuUI.SetActive(false);
@@ -65,8 +65,8 @@ public class ManageGameCopy : MonoBehaviour
             float value = volumeSlider.value;
             // Clamp the value to avoid Log10(0) which is undefined
             float clampedValue = Mathf.Clamp(value, 0.0001f, 1f);
-            mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
-            volumeLevel = value;
+            VolumeDefiner.vol = clampedValue;
+            mixer.SetFloat("MusicVolume", Mathf.Log10(VolumeDefiner.vol) * 20);
         }
         else
         {

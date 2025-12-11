@@ -10,7 +10,6 @@ public class Manage_Game_Status_ML : MonoBehaviour
     public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
-    public static float volumeLevel = 1.0f;
 
     private ManageGameML gameHandler;
     private bool GameisPaused = false;
@@ -21,6 +20,7 @@ public class Manage_Game_Status_ML : MonoBehaviour
     {
         gameHandler = GetComponent<ManageGameML>();
 
+        volumeSlider.value = VolumeDefiner.vol;
         SetVolume();
         Debug.Log("Stating Game...");
         pauseMenuUI.SetActive(false);
@@ -81,8 +81,8 @@ public class Manage_Game_Status_ML : MonoBehaviour
             float value = volumeSlider.value;
             // Clamp the value to avoid Log10(0) which is undefined
             float clampedValue = Mathf.Clamp(value, 0.0001f, 1f);
-            mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
-            volumeLevel = value;
+            VolumeDefiner.vol = clampedValue;
+            mixer.SetFloat("MusicVolume", Mathf.Log10(VolumeDefiner.vol) * 20);
         }
         else
         {
