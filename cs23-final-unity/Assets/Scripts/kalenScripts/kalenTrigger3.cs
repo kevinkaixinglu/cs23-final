@@ -108,10 +108,8 @@ public class kalenTrigger3 : BeatmapVisualizer
                    
                    .PlaceEighthNote(49, 2, 1, 1)
                    .PlaceQuarterNote(49, 2, 1)
-                //    .PlaceSixteenthNote(49, 2, 3, 1)
 
                    .PlaceEighthNote(51, 2, 1, 1)
-                //    .PlaceSixteenthNote(51, 2, 3, 1)
                    .PlaceQuarterNote(51, 2, 1)
 
                    .PlaceHalfNote(54, 1, 1)

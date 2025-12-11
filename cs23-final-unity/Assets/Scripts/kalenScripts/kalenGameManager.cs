@@ -17,7 +17,7 @@ public class kalenGameManager : MonoBehaviour
     public GameObject score;
     public TextMeshProUGUI scoreText;
     public int currScore = 0;
-    private int winningScore = 1;
+    private int winningScore = 18;
 
     private string victorySceneName = "LevelComplete";
     private string failureSceneName = "LevelFailed";
@@ -39,6 +39,9 @@ public class kalenGameManager : MonoBehaviour
 
     public Animator cloudPulse;
     public Animator linePulse;
+
+    [Header("Good Input Animation")]
+    public Animator goodInputAnimator;
 
     private int last_qNote = -1;
 
@@ -259,11 +262,24 @@ public class kalenGameManager : MonoBehaviour
         
         Debug.Log($"[{Time.time:F2}] WINDOW OPENING at tick {curr_tick} (measure {curr_meas}, qNote {curr_qNote}, sNote {curr_sNote}) - Input window: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after, Note duration: {current_note_duration} sixteenths");
         
-        // Check for input held too long (invalid)
-        if (key_pressed && curr_tick - last_key_press_tick > inputWindowTicksBefore)
+        // Check if key is currently being held
+        if (key_pressed)
         {
-            Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (but key held too long - won't score)");
-            waiting_for_input = false;
+            int ticksSincePress = curr_tick - last_key_press_tick;
+            
+            // Check if the press was within the valid early window
+            if (ticksSincePress >= 0 && ticksSincePress <= inputWindowTicksBefore)
+            {
+                Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksSincePress} tick(s) early)! Score: {currScore}");
+                AddScore();
+                TriggerGoodInputAnimation();
+                waiting_for_input = false;
+            }
+            else
+            {
+                Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (but key held too long - pressed {ticksSincePress} ticks ago, limit is {inputWindowTicksBefore})");
+                waiting_for_input = false;
+            }
         }
         else
         {
@@ -278,23 +294,29 @@ public class kalenGameManager : MonoBehaviour
         
         int ticksFromWindowStart = curr_tick - window_start_tick;
         
-        // Check if within valid window (before or after)
-        bool isEarlyInput = (ticksFromWindowStart < 0 && ticksFromWindowStart >= -inputWindowTicksBefore);
+        // Check if within valid window (exact or late)
         bool isExactInput = (ticksFromWindowStart == 0);
         bool isLateInput = (ticksFromWindowStart > 0 && ticksFromWindowStart <= inputWindowTicks);
         
-        if (isEarlyInput || isExactInput || isLateInput)
+        if (isExactInput || isLateInput)
         {
             AddScore();
+            TriggerGoodInputAnimation();
             
-            if (isEarlyInput)
-                Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {-ticksFromWindowStart} tick(s) early)! Score: {currScore}");
-            else if (isExactInput)
+            if (isExactInput)
                 Debug.Log($"[{Time.time:F2}] YAY! Perfect timing! Score: {currScore}");
             else
                 Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksFromWindowStart} tick(s) late)! Score: {currScore}");
             
             waiting_for_input = false;
+        }
+    }
+
+    private void TriggerGoodInputAnimation()
+    {
+        if (goodInputAnimator != null)
+        {
+            goodInputAnimator.Play("Good_Input", 0, 0f);
         }
     }
 
@@ -327,7 +349,7 @@ public class kalenGameManager : MonoBehaviour
             
             Debug.Log($"[{Time.time:F2}] BPM changed to {bpm}");
             
-            if (bpm >= 170)
+            if (bpm >= 160)
             {
                 inputWindowTicks = 1;
                 inputWindowTicksBefore = 2;

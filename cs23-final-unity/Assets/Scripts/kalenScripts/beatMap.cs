@@ -62,9 +62,12 @@ public class beatMap : MakeBeatmap
 
                .PlaceEighthNote(46, 3, 3, 1)
 
-               .PlaceEighthNote(49, 2, 3, 1)
+            //    .PlaceEighthNote(49, 2, 3, 1)
 
-               .PlaceEighthNote(51, 2, 3, 1)
+            //    .PlaceEighthNote(51, 2, 3, 1)
+
+            .PlaceEighthNote(49, 2, 2, 1)  // Beat 2, position 1 (start of quarter note)
+            .PlaceEighthNote(51, 2, 2, 1)
 
                .PlaceEighthNote(54, 2, 3, 1)
                .PlaceQuarterNote(54, 3, 1)

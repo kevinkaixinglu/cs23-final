@@ -120,9 +120,17 @@ public class kalenTrigger2 : BeatmapVisualizer
                    .PlaceQuarterNote(46, 2, 1)
                    .PlaceQuarterNote(46, 3, 1)
 
+                   //HERE
+                   .PlaceSixteenthNote(49, 1, 2, 1)
+                   .PlaceSixteenthNote(49, 1, 3, 1)
+                   .PlaceSixteenthNote(49, 1, 4, 1)
                    .PlaceEighthNote(49, 1, 3, 1)
                    .PlaceQuarterNote(49, 2, 1)
                    
+                   //HERE
+                   .PlaceSixteenthNote(51, 1, 2, 1)
+                   .PlaceSixteenthNote(51, 1, 3, 1)
+                   .PlaceSixteenthNote(51, 1, 4, 1)
                    .PlaceEighthNote(51, 1, 3, 1)
                    .PlaceQuarterNote(51, 2, 1)
                    
