@@ -5,6 +5,7 @@ public class kalenTrigger3 : BeatmapVisualizer
     [Header("Sprites")]
     public GameObject idleSprite;
     public GameObject activeSprite;
+    public GameObject judgySprite;
 
     private bool isShowingActive = false; // Track current state
 
@@ -23,12 +24,6 @@ public class kalenTrigger3 : BeatmapVisualizer
             int totalMeasures = 57;
             beatmapBuilder builder = new beatmapBuilder(totalMeasures);
             
-            // Place note on beat 1 of every OTHER measure starting at measure 2 (2, 4, 6, 8, etc.)
-            // for (int measure = 2; measure <= totalMeasures; measure += 2)
-            // {
-            //     builder.PlaceQuarterNote(measure, 1, 1); // Beat 1: active
-                // Beat 2 is automatically 0 (idle)
-            // }
             
             builder.PlaceQuarterNote(2, 3, 1)
                    .PlaceQuarterNote(2, 4, 1)
@@ -139,21 +134,32 @@ public class kalenTrigger3 : BeatmapVisualizer
 
     protected override void OnBeatTriggered(int noteValue)
     {
-        // Only change state if needed
-        if (noteValue == 0 && isShowingActive)
+        // FIRST: Check if judgy birds is active
+        if (gameManager != null && gameManager.judgyBirds)
+        {
+            ShowJudgy();
+            return;
+        }
+
+        // SECOND: Normal idle/active logic when judgy birds is OFF
+        if (noteValue == 0)
         {
             ShowIdle();
         }
-        else if (noteValue != 0 && !isShowingActive)
+        else // noteValue != 0
         {
             ShowActive();
         }
+        
+        // Update tracking
+        isShowingActive = (noteValue != 0);
     }
 
     private void ShowIdle()
     {
         if (idleSprite != null) idleSprite.SetActive(true);
         if (activeSprite != null) activeSprite.SetActive(false);
+        if (judgySprite != null) judgySprite.SetActive(false);
         isShowingActive = false;
     }
 
@@ -161,6 +167,15 @@ public class kalenTrigger3 : BeatmapVisualizer
     {
         if (idleSprite != null) idleSprite.SetActive(false);
         if (activeSprite != null) activeSprite.SetActive(true);
+        if (judgySprite != null) judgySprite.SetActive(false);
         isShowingActive = true;
+    }
+
+    private void ShowJudgy()
+    {
+        if (idleSprite != null) idleSprite.SetActive(false);
+        if (activeSprite != null) activeSprite.SetActive(false);
+        if (judgySprite != null) judgySprite.SetActive(true);
+        isShowingActive = false;
     }
 }

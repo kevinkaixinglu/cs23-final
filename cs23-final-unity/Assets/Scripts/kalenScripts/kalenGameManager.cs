@@ -374,14 +374,14 @@ public class kalenGameManager : MonoBehaviour
             
             if (bpm >= 160)
             {
-                inputWindowTicks = 0;
+                inputWindowTicks = 1;
                 inputWindowTicksBefore = 2;
                 Debug.Log($"[INPUT WINDOW] Changed to: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after");
             }
             else
             {
-                inputWindowTicks = 1;
-                inputWindowTicksBefore = 0;
+                inputWindowTicks = 2;
+                inputWindowTicksBefore = 1;
             }
             
             currentBPMChangeIndex++;
