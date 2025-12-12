@@ -13,8 +13,13 @@ public class WackamoleManager : BeatmapVisualizerSimple
         public GameObject idleSprite;
         public GameObject snakeSprite;
         public GameObject wormSprite;
+        public GameObject smileWormSprite; 
+        public GameObject ghostSprite;     
+        
         [HideInInspector] public Vector3 snakeStartPos;
         [HideInInspector] public Vector3 wormStartPos;
+        [HideInInspector] public Vector3 smileWormStartPos;
+        [HideInInspector] public Vector3 ghostStartPos;
         [HideInInspector] public Vector3 idleStartPos;
         [HideInInspector] public bool isAnimating = false;
     }
@@ -27,21 +32,25 @@ public class WackamoleManager : BeatmapVisualizerSimple
     public float animationDuration = 0.25f;
     public float holeBounceHeight = 0.5f;
 
+    [Header("Ghost Settings (Success)")]
+    public float ghostFloatHeight = 3.5f; 
+    public float ghostFloatDuration = 0.5f;
+    // NEW: How long it takes for the ghost to fade out at the end
+    public float ghostFadeDuration = 0.3f; 
+
     [Header("Input Settings")]
     public KeyCode[] holeKeys = new KeyCode[] { KeyCode.UpArrow, KeyCode.DownArrow, KeyCode.LeftArrow, KeyCode.RightArrow };
     public KeyCode actionKey = KeyCode.Space; 
 
     [Header("Screen Flash (Red/Green)")]
     public GameObject flashPanel;
-    public float flashDuration = 0.1f; // Used for hold time for both effects
+    public float flashDuration = 0.1f; 
     public float flashFadeOutDuration = 0.3f; 
     private float maxFlashAlpha = 0.3f;
 
     [Header("Worm Hit Effect Details")]
     public GameObject wormHitEffectObject;
-    [Tooltip("How fast the worm effect slams down onto screen")]
     public float wormSlamDuration = 0.15f;
-    [Tooltip("Starts this many times larger before slamming down (e.g., 2 = double size)")]
     public float wormStartScaleMultiplier = 2f;
 
     [Header("Audio")]
@@ -63,7 +72,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
     public float inputWindowSize = 0.2f; 
 
     [Header("Beatmap Settings")]
-    [Tooltip("Beat interval for notes (1 = every beat, 2 = every other beat, etc.)")]
     public int noteBeatInterval = 2; 
 
     private float quarterNoteTime;
@@ -74,10 +82,15 @@ public class WackamoleManager : BeatmapVisualizerSimple
     private bool isWormActive = false;
     private int activeHoleIndex = -1;
     private bool inputWindowOpen = false;
-    private GameObject activeSprite;
+    
+    private GameObject activeSprite; 
+    
     private Coroutine inputWindowCoroutine;
     private Coroutine flashCoroutine; 
     private Coroutine wormFlashCoroutine;
+    
+    // Track the main animation coroutine so we can stop it if the ghost takes over
+    private Coroutine currentPopUpCoroutine; 
     
     // Internal variables for worm slam effect
     private Vector3 wormTargetScale;
@@ -111,10 +124,8 @@ public class WackamoleManager : BeatmapVisualizerSimple
                 Debug.LogError("Flash Panel needs an Image component!");
         }
         
-        // Initialize worm hit object settings
         if (wormHitEffectObject != null)
         {
-            // Remember the scale you set in the inspector as the target scale
             wormTargetScale = wormHitEffectObject.transform.localScale;
             wormHitEffectObject.SetActive(false);
             
@@ -163,12 +174,24 @@ public class WackamoleManager : BeatmapVisualizerSimple
                 hole.wormStartPos = hole.wormSprite.transform.localPosition;
                 hole.wormSprite.SetActive(false); 
             }
+
+            if (hole.smileWormSprite != null)
+            {
+                hole.smileWormStartPos = hole.smileWormSprite.transform.localPosition;
+                hole.smileWormSprite.SetActive(false);
+            }
+
+            // Initialize Ghost
+            if (hole.ghostSprite != null)
+            {
+                hole.ghostStartPos = hole.ghostSprite.transform.localPosition;
+                hole.ghostSprite.SetActive(false);
+            }
             
             if (hole.idleSprite != null) hole.idleSprite.SetActive(true);
         }
     }
 
-    // Audio Helpers
     private void PlaySnakeUpSound() { if (snakeUpSound != null && snakeUpSound.enabled) snakeUpSound.Play(); }
     private void PlaySnakeDownSound() { if (snakeDownSound != null && snakeDownSound.enabled) snakeDownSound.Play(); }
     private void PlayWormUpSound() { if (wormUpSound != null && wormUpSound.enabled) wormUpSound.Play(); }
@@ -262,17 +285,127 @@ public class WackamoleManager : BeatmapVisualizerSimple
     private void SuccessInput()
     {
         if (showDebugMessages) Debug.Log("SUCCESS INPUT");
+        
+        // If it is a worm, we trigger the Ghost logic
+        if (isWormActive && activeHoleIndex != -1)
+        {
+            TriggerGhostAnimation(activeHoleIndex);
+        }
+
         FlashScreen(Color.green);
         PlayHitSound();
         CloseInputWindow();
     }
 
+    // Handles stopping the normal worm and starting the ghost
+    private void TriggerGhostAnimation(int holeIndex)
+    {
+        HoleSprites hole = holeSprites[holeIndex];
+        
+        if (hole.ghostSprite != null && hole.wormSprite != null)
+        {
+            // 1. Stop the regular PopUp/Down animation immediately
+            if (currentPopUpCoroutine != null) StopCoroutine(currentPopUpCoroutine);
+
+            // 2. Hide the regular worm
+            hole.wormSprite.SetActive(false);
+            
+            // 3. Mark hole as not animating (so it can be used again later if needed)
+            hole.isAnimating = false; 
+
+            // 4. Position ghost exactly where the worm was (at the peak)
+            hole.ghostSprite.transform.localPosition = hole.wormSprite.transform.localPosition;
+            hole.ghostSprite.SetActive(true);
+
+            // 5. Start the float animation
+            StartCoroutine(GhostFloatAnimation(hole));
+        }
+    }
+
+    // UPDATED: The specific animation for the ghost (now includes fade)
+    private IEnumerator GhostFloatAnimation(HoleSprites hole)
+    {
+        Vector3 startPos = hole.ghostSprite.transform.localPosition;
+        Vector3 targetPos = startPos + Vector3.up * ghostFloatHeight;
+        
+        // --- Setup Renderers and ensure Alpha is reset to 1 ---
+        SpriteRenderer spr = hole.ghostSprite.GetComponent<SpriteRenderer>();
+        Image img = hole.ghostSprite.GetComponent<Image>();
+        // Helper function to set alpha instantly
+        SetGhostAlpha(spr, img, 1f);
+
+        // --- Phase 1: Float Up ---
+        float elapsed = 0f;
+        while (elapsed < ghostFloatDuration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / ghostFloatDuration);
+            // "Reverse Speed Ramp" = Deceleration = Ease Out Sine
+            float easedT = Mathf.Sin(t * Mathf.PI * 0.5f);
+            hole.ghostSprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, easedT);
+            yield return null;
+        }
+
+        // --- Phase 2: Fade Out ---
+        float fadeElapsed = 0f;
+        while (fadeElapsed < ghostFadeDuration)
+        {
+            fadeElapsed += Time.unscaledDeltaTime;
+            float currentAlpha = Mathf.Lerp(1f, 0f, fadeElapsed / ghostFadeDuration);
+            SetGhostAlpha(spr, img, currentAlpha);
+            yield return null;
+        }
+
+        // --- Cleanup ---
+        hole.ghostSprite.SetActive(false);
+        hole.ghostSprite.transform.localPosition = hole.ghostStartPos;
+        // Reset alpha back to 1 for next time just in case
+        SetGhostAlpha(spr, img, 1f); 
+    }
+
+    // Helper to set alpha on either SpriteRenderer or Image
+    private void SetGhostAlpha(SpriteRenderer spr, Image img, float alpha)
+    {
+        if (spr != null)
+        {
+            Color c = spr.color;
+            c.a = alpha;
+            spr.color = c;
+        }
+        else if (img != null)
+        {
+            Color c = img.color;
+            c.a = alpha;
+            img.color = c;
+        }
+    }
+
     private void FailedInput(string reason)
     {
         if (showDebugMessages) Debug.Log($"MISS INPUT: {reason}");
+        
+        // If we failed on a worm, swap to smiling worm immediately
+        if (isWormActive && activeHoleIndex != -1)
+        {
+            SwapToSmileWorm(activeHoleIndex);
+        }
+
         FlashScreen(Color.red);
         PlayMissSound();
         CloseInputWindow();
+    }
+
+    private void SwapToSmileWorm(int holeIndex)
+    {
+        HoleSprites hole = holeSprites[holeIndex];
+        
+        if (hole.wormSprite != null && hole.smileWormSprite != null)
+        {
+            hole.smileWormSprite.transform.localPosition = hole.wormSprite.transform.localPosition;
+            hole.wormSprite.SetActive(false);
+            hole.smileWormSprite.SetActive(true);
+            activeSprite = hole.smileWormSprite;
+        }
     }
 
     private void CloseInputWindow()
@@ -287,7 +420,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
         }
     }
 
-    // --- STANDARD SCREEN FLASH ---
     private void FlashScreen(Color color)
     {
         if (flashPanel != null)
@@ -320,7 +452,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
         flashCoroutine = null;
     }
 
-    // --- NEW WORM HIT SLAM EFFECT ---
     private void FlashWormEffect()
     {
         if (wormHitEffectObject != null)
@@ -334,7 +465,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
     {
         wormHitEffectObject.SetActive(true);
         
-        // Try to get Image (UI) or SpriteRenderer (2D World)
         Image img = wormHitEffectObject.GetComponent<Image>();
         SpriteRenderer spr = wormHitEffectObject.GetComponent<SpriteRenderer>();
 
@@ -342,33 +472,25 @@ public class WackamoleManager : BeatmapVisualizerSimple
         if (img != null) baseColor = img.color;
         else if (spr != null) baseColor = spr.color;
 
-        // Calculate start scale based on multiplier
         Vector3 startScale = wormTargetScale * wormStartScaleMultiplier;
 
-        // --- PHASE 1: SLAM IN (Scale down + Fade In) ---
         float elapsedSlam = 0f;
         while (elapsedSlam < wormSlamDuration)
         {
             elapsedSlam += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsedSlam / wormSlamDuration);
-            // SmoothStep creates the "speed ramp" feel (starts fast, slows at end)
             float easedT = Mathf.SmoothStep(0f, 1f, t);
 
-            // Lerp Scale from big to target
             wormHitEffectObject.transform.localScale = Vector3.Lerp(startScale, wormTargetScale, easedT);
-            // Lerp Alpha from 0 to 1
             SetObjectAlpha(img, spr, baseColor, easedT);
 
             yield return null;
         }
-        // Ensure final state of slam
         wormHitEffectObject.transform.localScale = wormTargetScale;
         SetObjectAlpha(img, spr, baseColor, 1f);
 
-        // --- PHASE 2: HOLD ---
         yield return new WaitForSecondsRealtime(flashDuration);
 
-        // --- PHASE 3: FADE OUT ---
         float elapsedFade = 0f;
         while (elapsedFade < flashFadeOutDuration)
         {
@@ -378,10 +500,8 @@ public class WackamoleManager : BeatmapVisualizerSimple
             yield return null;
         }
 
-        // Cleanup
         SetObjectAlpha(img, spr, baseColor, 0f);
         wormHitEffectObject.SetActive(false);
-        // Reset scale for next time
         wormHitEffectObject.transform.localScale = wormTargetScale;
         wormFlashCoroutine = null;
     }
@@ -391,7 +511,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
         if (img != null) img.color = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
         else if (spr != null) spr.color = new Color(baseColor.r, baseColor.g, baseColor.b, alpha);
     }
-    // ----------------------------
 
     private void PlayHitSound() { if (hitSound != null) hitSound.Play(); }
     private void PlayMissSound() { if (missSound != null) missSound.Play(); }
@@ -424,15 +543,16 @@ public class WackamoleManager : BeatmapVisualizerSimple
         if (targetSprite != null)
         {
             activeSprite = targetSprite;
-            StartCoroutine(PopUpAnimation(hole, targetSprite, startPos, isWorm));
+            // Store the coroutine so we can stop it if the Ghost needs to take over
+            currentPopUpCoroutine = StartCoroutine(PopUpAnimation(hole, targetSprite, startPos, isWorm));
         }
     }
 
-    private IEnumerator PopUpAnimation(HoleSprites hole, GameObject sprite, Vector3 startPos, bool isWorm)
+    private IEnumerator PopUpAnimation(HoleSprites hole, GameObject originalSprite, Vector3 startPos, bool isWorm)
     {
         hole.isAnimating = true;
-        sprite.SetActive(true);
-        sprite.transform.localPosition = startPos;
+        originalSprite.SetActive(true);
+        originalSprite.transform.localPosition = startPos;
         
         Vector3 targetPos = startPos + Vector3.up * popUpHeight;
         
@@ -447,16 +567,19 @@ public class WackamoleManager : BeatmapVisualizerSimple
         
         if (isWorm) PlayWormUpSound(); else PlaySnakeUpSound();
         
+        // Go UP
         float elapsedTime = 0f;
         while (elapsedTime < animationDuration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
-            sprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, t);
+            originalSprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, t);
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        sprite.transform.localPosition = targetPos;
+        originalSprite.transform.localPosition = targetPos;
+        
+        // Apex
         float apexTime = Time.unscaledTime;
         float windowStartTime = beatTime - windowHalf;
         float windowEndTime = beatTime + windowHalf;
@@ -489,18 +612,22 @@ public class WackamoleManager : BeatmapVisualizerSimple
         
         if (isWorm) PlayWormDownSound(); else PlaySnakeDownSound();
         
+        // Go DOWN
+        GameObject spriteMovingDown = activeSprite; 
+
         elapsedTime = 0f;
         while (elapsedTime < animationDuration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
-            sprite.transform.localPosition = Vector3.Lerp(targetPos, startPos, t);
+            spriteMovingDown.transform.localPosition = Vector3.Lerp(targetPos, startPos, t);
             elapsedTime += Time.unscaledDeltaTime;
             yield return null;
         }
 
-        sprite.transform.localPosition = startPos;
-        sprite.SetActive(false);
+        spriteMovingDown.transform.localPosition = startPos;
+        spriteMovingDown.SetActive(false);
         hole.isAnimating = false;
+        currentPopUpCoroutine = null;
     }
 
     private IEnumerator InputWindowTimer(float windowDuration)
@@ -550,6 +677,18 @@ public class WackamoleManager : BeatmapVisualizerSimple
                 hole.wormSprite.transform.localPosition = hole.wormStartPos;
                 hole.wormSprite.SetActive(false);
             }
+            if (hole.smileWormSprite != null)
+            {
+                hole.smileWormSprite.transform.localPosition = hole.smileWormStartPos;
+                hole.smileWormSprite.SetActive(false);
+            }
+            if (hole.ghostSprite != null)
+            {
+                hole.ghostSprite.transform.localPosition = hole.ghostStartPos;
+                hole.ghostSprite.SetActive(false);
+                 // Ensure alpha is reset if we reset the game mid-fade
+                SetGhostAlpha(hole.ghostSprite.GetComponent<SpriteRenderer>(), hole.ghostSprite.GetComponent<Image>(), 1f);
+            }
         }
         
         lastBouncedTick = -1;
@@ -557,6 +696,7 @@ public class WackamoleManager : BeatmapVisualizerSimple
         inputWindowOpen = false;
         activeSprite = null;
         inputWindowCoroutine = null;
+        currentPopUpCoroutine = null;
         gameActive = false;
         beatsSinceStart = 0;
         beatTime = 0f;
