@@ -5,6 +5,7 @@ public class kalenTrigger2 : BeatmapVisualizer
     [Header("Sprites")]
     public GameObject idleSprite;
     public GameObject activeSprite;
+    public GameObject judgySprite;
 
     private bool isShowingActive = false; // Track current state
 
@@ -120,9 +121,17 @@ public class kalenTrigger2 : BeatmapVisualizer
                    .PlaceQuarterNote(46, 2, 1)
                    .PlaceQuarterNote(46, 3, 1)
 
+                   //HERE
+                   .PlaceSixteenthNote(49, 1, 2, 1)
+                   .PlaceSixteenthNote(49, 1, 3, 1)
+                   .PlaceSixteenthNote(49, 1, 4, 1)
                    .PlaceEighthNote(49, 1, 3, 1)
                    .PlaceQuarterNote(49, 2, 1)
                    
+                   //HERE
+                   .PlaceSixteenthNote(51, 1, 2, 1)
+                   .PlaceSixteenthNote(51, 1, 3, 1)
+                   .PlaceSixteenthNote(51, 1, 4, 1)
                    .PlaceEighthNote(51, 1, 3, 1)
                    .PlaceQuarterNote(51, 2, 1)
                    
@@ -156,21 +165,32 @@ public class kalenTrigger2 : BeatmapVisualizer
 
     protected override void OnBeatTriggered(int noteValue)
     {
-        // Only change state if needed
-        if (noteValue == 0 && isShowingActive)
+        // FIRST: Check if judgy birds is active
+        if (gameManager != null && gameManager.judgyBirds)
+        {
+            ShowJudgy();
+            return;
+        }
+
+        // SECOND: Normal idle/active logic when judgy birds is OFF
+        if (noteValue == 0)
         {
             ShowIdle();
         }
-        else if (noteValue != 0 && !isShowingActive)
+        else // noteValue != 0
         {
             ShowActive();
         }
+        
+        // Update tracking
+        isShowingActive = (noteValue != 0);
     }
 
     private void ShowIdle()
     {
         if (idleSprite != null) idleSprite.SetActive(true);
         if (activeSprite != null) activeSprite.SetActive(false);
+        if (judgySprite != null) judgySprite.SetActive(false);
         isShowingActive = false;
     }
 
@@ -178,6 +198,15 @@ public class kalenTrigger2 : BeatmapVisualizer
     {
         if (idleSprite != null) idleSprite.SetActive(false);
         if (activeSprite != null) activeSprite.SetActive(true);
+        if (judgySprite != null) judgySprite.SetActive(false);
         isShowingActive = true;
+    }
+
+    private void ShowJudgy()
+    {
+        if (idleSprite != null) idleSprite.SetActive(false);
+        if (activeSprite != null) activeSprite.SetActive(false);
+        if (judgySprite != null) judgySprite.SetActive(true);
+        isShowingActive = false;
     }
 }

@@ -13,9 +13,12 @@ public class beatMap : MakeBeatmap
 
                .PlaceQuarterNote(2, 4, 1)
 
-               .PlaceWholeNote(6, 1)
+                // .PlaceQuarterNote(6, 3, 1)
+                .PlaceHalfNote(6, 3, 1)
 
+            
                .PlaceHalfNote(10, 3, 1)
+            //    .PlaceQuarterNote(10, 4, 1)
 
                .PlaceQuarterNote(13, 1, 1)
 
@@ -62,9 +65,12 @@ public class beatMap : MakeBeatmap
 
                .PlaceEighthNote(46, 3, 3, 1)
 
-               .PlaceEighthNote(49, 2, 3, 1)
+            //    .PlaceEighthNote(49, 2, 3, 1)
 
-               .PlaceEighthNote(51, 2, 3, 1)
+            //    .PlaceEighthNote(51, 2, 3, 1)
+
+            .PlaceEighthNote(49, 2, 2, 1)  // Beat 2, position 1 (start of quarter note)
+            .PlaceEighthNote(51, 2, 2, 1)
 
                .PlaceEighthNote(54, 2, 3, 1)
                .PlaceQuarterNote(54, 3, 1)

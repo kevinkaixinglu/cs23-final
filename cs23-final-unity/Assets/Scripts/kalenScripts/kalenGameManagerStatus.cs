@@ -6,16 +6,16 @@ using TMPro;
 public class kalenGameManagerStatus : MonoBehaviour
 {
     [Header("Pausing the Game")]
-    public GameObject pauseMenuUI;
+    public GameObject pauseMenuUI;  
     public GameObject infoPageUI;
     public AudioMixer mixer;
     public Slider volumeSlider;
-    public static float volumeLevel = 1.0f;
 
     private kalenGameManager gameHandler;
     private static bool GameisPaused = false;
 
     private bool InfoPage = false;
+    private bool tutorialWasActiveWhenPaused = false; // Track if tutorial was showing when paused
 
     public void Start()
     {
@@ -27,6 +27,7 @@ public class kalenGameManagerStatus : MonoBehaviour
             return;
         }
 
+        volumeSlider.value = VolumeDefiner.vol;
         SetVolume();
         Debug.Log("Starting Game...");
         pauseMenuUI.SetActive(false);
@@ -41,10 +42,8 @@ public class kalenGameManagerStatus : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
         if (InfoPage)
         {
             if (Input.GetKeyDown(KeyCode.Return))
@@ -52,6 +51,7 @@ public class kalenGameManagerStatus : MonoBehaviour
                 InfoPage = false;
                 GameisPaused = false;
                 infoPageUI.SetActive(false);
+                
                 gameHandler.StartGame();
             }
         }
@@ -66,15 +66,52 @@ public class kalenGameManagerStatus : MonoBehaviour
     {
         if (GameisPaused)
         {
+            // Resuming
             pauseMenuUI.SetActive(false);
             GameisPaused = false;
-            gameHandler.Resume();
+            
+            // If tutorial was active when we paused, go back to tutorial
+            if (tutorialWasActiveWhenPaused)
+            {
+                infoPageUI.SetActive(true);
+                InfoPage = true;
+                tutorialWasActiveWhenPaused = false;
+                // Stop the idle music
+                if (gameHandler.idleMusic != null)
+                {
+                    gameHandler.idleMusic.Stop();
+                }
+            }
+            else
+            {
+                // Tutorial wasn't active, so resume the game normally
+                gameHandler.Resume();
+            }
         }
         else
         {
+            // Pausing
             pauseMenuUI.SetActive(true);
             GameisPaused = true;
-            gameHandler.Pause();
+            
+            // Check if tutorial is currently active
+            if (InfoPage)
+            {
+                // Tutorial is active, hide it but remember it was showing
+                tutorialWasActiveWhenPaused = true;
+                infoPageUI.SetActive(false);
+                // Play idle music during tutorial pause
+                if (gameHandler.idleMusic != null)
+                {
+                    gameHandler.idleMusic.Play();
+                }
+            }
+            else
+            {
+                // Tutorial not active, pause the game normally
+                tutorialWasActiveWhenPaused = false;
+                gameHandler.Pause();
+            }
         }
     }
 
@@ -85,8 +122,8 @@ public class kalenGameManagerStatus : MonoBehaviour
             float value = volumeSlider.value;
             // Clamp the value to avoid Log10(0) which is undefined
             float clampedValue = Mathf.Clamp(value, 0.0001f, 1f);
-            mixer.SetFloat("MusicVolume", Mathf.Log10(clampedValue) * 20);
-            volumeLevel = value;
+            VolumeDefiner.vol = clampedValue;
+            mixer.SetFloat("MusicVolume", Mathf.Log10(VolumeDefiner.vol) * 20);
         }
         else
         {

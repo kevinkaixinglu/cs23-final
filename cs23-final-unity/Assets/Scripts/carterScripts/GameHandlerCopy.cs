@@ -12,6 +12,15 @@ public class GameHandlerCopy : MonoBehaviour
     public Measure[] beat_map;
     public MakeBeatmap special_beatmap; // COMMENTED OUT - Special script pertaining to this level
 
+    [Header("Note Spawns:")]
+    public GameObject normalBeat;
+    public GameObject r1Normal;
+    private Vector2 row1;
+    public GameObject r2Normal;
+    private Vector2 row2;
+    public GameObject r3Normal;
+    private Vector2 row3;
+
     [Header("Score Keeping:")]
     public GameObject score;
     public TextMeshProUGUI scoreText;
@@ -41,6 +50,10 @@ public class GameHandlerCopy : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {
+        row1 = r1Normal.transform.position;
+        row2 = r2Normal.transform.position;
+        row3 = r3Normal.transform.position;
+
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
         beat_map = special_beatmap.SpecialBeatMap(); // COMMENTED OUT
@@ -104,13 +117,14 @@ public class GameHandlerCopy : MonoBehaviour
 
 
                 int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
-                if (next_input == 1)
-                {
-                    //Note the "%4". This allows user to record any positive number, which
-                    //  can allow differenciation between numbers like 4 and 8, which will
-                    //  map to the same input key, but may pertain to different animations.
-                    waiting_for_input[(next_input - 1) % 4] = true; // Make window for input
-                    Debug.Log($"[{Time.time:F2}] WINDOW OPEN!"); // Missed our window
+                if (next_input == 1) {
+                    Instantiate(normalBeat, row1, Quaternion.identity);
+                }
+                if (next_input == 2) {
+                    Instantiate(normalBeat, row2, Quaternion.identity);
+                }
+                if (next_input == 3) {
+                    Instantiate(normalBeat, row3, Quaternion.identity);
                 }
                 
 

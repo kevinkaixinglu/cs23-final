@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      rosebud_0: 9114456821150563037
+      rosebud_1: -2804311980883036042
+      rosebud_2: 7770899269790406252
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
