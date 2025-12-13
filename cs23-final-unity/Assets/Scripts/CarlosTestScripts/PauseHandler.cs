@@ -11,7 +11,7 @@ public class PauseHandler : MonoBehaviour
     public Slider volumeSlider;
     public AudioMixer mixer;
 
-    private bool paused = false;
+    private bool paused;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,7 +20,7 @@ public class PauseHandler : MonoBehaviour
         setVolume();
         Debug.Log("Stating Game...");
         pauseMenuUI.SetActive(false);
-        paused = true;
+        paused = false;
     }
 
     // Update is called once per frame
