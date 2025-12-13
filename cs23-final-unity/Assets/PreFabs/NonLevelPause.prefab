@@ -200,9 +200,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2707593268628307719}
-        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: restart_level
+      - m_Target: {fileID: 982726826232972603}
+        m_TargetAssemblyTypeName: PauseHandler, Assembly-CSharp
+        m_MethodName: ResetAllProgress
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -939,7 +939,7 @@ GameObject:
   - component: {fileID: 8496629454898379037}
   - component: {fileID: 982726826232972603}
   m_Layer: 0
-  m_Name: NonLevelPause 1
+  m_Name: NonLevelPause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

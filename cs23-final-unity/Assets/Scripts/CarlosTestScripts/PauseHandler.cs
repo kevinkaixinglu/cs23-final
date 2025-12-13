@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseHandler : MonoBehaviour
@@ -60,6 +61,13 @@ public class PauseHandler : MonoBehaviour
         {
             Debug.LogWarning("AudioMixer is not assigned in PauseMenuHandler! Please assign it in the Inspector.");
         }
+    }
+
+    public void ResetAllProgress()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload scene
     }
 
 }
