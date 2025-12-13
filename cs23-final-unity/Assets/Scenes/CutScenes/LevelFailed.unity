@@ -5718,6 +5718,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PuaseMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 5896794783112302371, guid: e7744e308e4afde4b8848d5eae6ce32e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7551460468601967238, guid: e7744e308e4afde4b8848d5eae6ce32e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
