@@ -12,6 +12,7 @@ public class ManageGameSM : MonoBehaviour
     [Header("Player Bird:")]
     public Animator player;
     public Animator good_input;
+    public Animator candle;
 
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
@@ -111,6 +112,11 @@ public class ManageGameSM : MonoBehaviour
                         waiting_for_input[i] = false;
                         player.Play("Shake");
                     }
+                }
+
+                if (curr_sNote == 2 && curr_qNote == 3) // Start of measure
+                {
+                    candle.Play("Swing");
                 }
 
 

@@ -100,7 +100,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -588,7 +588,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -597,7 +597,26 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      chandelier_0: 671432340607560884
+      chandelier_1: 6697846350502538087
+      chandelier_10: -8905714094066850325
+      chandelier_11: -6981151100741620495
+      chandelier_12: 4486895645118012866
+      chandelier_13: 1088052760238027604
+      chandelier_14: 7998375578593891293
+      chandelier_15: -7505463367231794633
+      chandelier_16: 7637461516786835258
+      chandelier_17: -8037687292840186806
+      chandelier_18: -4731172340789058483
+      chandelier_2: -5528652350257775897
+      chandelier_3: -7507117016328437140
+      chandelier_4: -4233468908198836717
+      chandelier_5: 8601535765634349984
+      chandelier_6: -3656232070338832954
+      chandelier_7: 746283205371165450
+      chandelier_8: -2009858240766957275
+      chandelier_9: -6182472888630599619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
