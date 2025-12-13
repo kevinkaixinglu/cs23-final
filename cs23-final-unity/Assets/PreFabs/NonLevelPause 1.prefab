@@ -1308,7 +1308,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2707593268628307719}
         m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
-        m_MethodName: to_MainMenu
+        m_MethodName: to_Levels
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1440,9 +1440,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 982726826232972603}
-        m_TargetAssemblyTypeName: PauseHandler, Assembly-CSharp
-        m_MethodName: Pause
+      - m_Target: {fileID: 2707593268628307719}
+        m_TargetAssemblyTypeName: SceneHandler, Assembly-CSharp
+        m_MethodName: to_MainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
