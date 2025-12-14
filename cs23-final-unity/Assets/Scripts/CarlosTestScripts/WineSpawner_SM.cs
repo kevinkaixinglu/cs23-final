@@ -20,8 +20,8 @@ public class WineSpawnerML : MonoBehaviour
     private int curr_meas;
     private int curr_qNote;
     private int curr_sNote;
-    private int last_meas = -1;
 
+    private int last_qNote = -1;
     private int last_tick = -1;
 
     // BEAT = 2 qNotes
@@ -54,16 +54,16 @@ public class WineSpawnerML : MonoBehaviour
             curr_qNote = ((curr_tick % 16) / 4);
             curr_sNote = curr_tick % 4;
 
-            if (curr_meas != last_meas
+            if (curr_qNote != last_qNote
                 && curr_sNote >= 0 && curr_qNote >= 0 && curr_meas >= 0)
             {
-                int next_input = gameManager.beat_map[curr_meas].qNotes[0].sNotes[1];
+                int next_input = gameManager.beat_map[curr_meas].qNotes[curr_qNote].sNotes[1];
                 if (next_input == -1) // Secret sygnal not picked up by gamehandler ideally
                 {
                     SpawnWine();
                 }
 
-                last_meas = curr_meas; // Wait until we get to the next tick (tick defined above)
+                last_qNote = curr_qNote; // Wait until we get to the next tick (tick defined above)
             }
 
             //float offset = .11f;
