@@ -7,6 +7,8 @@ public class ConveyorPlayer : MonoBehaviour
     private bool isMoving = false;
     private int indexLocation = 1;
 
+    [Header("Animation:")]
+    public Animator pop_up;
     //private bool down = false;
 
     void OnTriggerEnter2D(Collider2D other) {
@@ -42,15 +44,19 @@ public class ConveyorPlayer : MonoBehaviour
             {
                 float distanceToCenter = Mathf.Abs(currBeat.transform.position.x - transform.position.x);
 
-                if (distanceToCenter < 0.1f)
+                if (distanceToCenter < 0.1f) {
                     Debug.Log("Perfect!");
-                else if (distanceToCenter < 0.3f)
+                    pop_up.Play("Good_Input");
+                } else if (distanceToCenter < 0.3f) {
                     Debug.Log("Good!");
-                else if (distanceToCenter < 0.5f)
+                    pop_up.Play("Good_Input");
+                } else if (distanceToCenter < 0.5f) {
                     Debug.Log("Okay");
-                else
+                    pop_up.Play("Good_Input");
+                } else {
                     Debug.Log("Miss");
-
+                    pop_up.Play("Bad_Input");
+                }
                 Destroy(currBeat.gameObject); // Remove beat once hit
                 currBeat = null;
             }
