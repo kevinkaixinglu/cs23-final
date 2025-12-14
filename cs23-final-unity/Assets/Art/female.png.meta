@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 1b89f5e4b3bc34de18fa60f1b420ff2f
+guid: e218efeb036f6484788070d2a974ceb2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1182272400951800170
-    second: femalebird_0
+      213: 2704210451771139102
+    second: female_0
+  - first:
+      213: 6876698284680980700
+    second: female_1
+  - first:
+      213: -1924149110685972524
+    second: female_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: femalebird_0
+      name: female_0
       rect:
         serializedVersion: 2
-        x: 508
-        y: 200
-        width: 1828
-        height: 2105
+        x: 194
+        y: 1527
+        width: 13
+        height: 58
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +134,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 69e0589e389b79fe0800000000000000
-      internalID: -1182272400951800170
+      spriteID: e14a7bf0419478520800000000000000
+      internalID: 2704210451771139102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: female_1
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 1517
+        width: 10
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd8a2f5d7a0fe6f50800000000000000
+      internalID: 6876698284680980700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: female_2
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 203
+        width: 1820
+        height: 2102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d7cda2149c0c45e0800000000000000
+      internalID: -1924149110685972524
       vertices: []
       indices: 
       edges: []
@@ -147,8 +197,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      femalebird_0: -1182272400951800170
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

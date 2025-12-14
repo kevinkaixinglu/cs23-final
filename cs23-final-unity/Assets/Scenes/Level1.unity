@@ -199,6 +199,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: kalenGameManagerStatus, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4884318891158950861, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884318891158950861, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 346
+      objectReference: {fileID: 0}
     - target: {fileID: 6058332347072932890, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -3938,7 +3946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 602, y: 351}
+  m_AnchoredPosition: {x: 614, y: 416}
   m_SizeDelta: {x: 202.546, y: 55.092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1344977247
