@@ -1,16 +1,22 @@
 fileFormatVersion: 2
-guid: 328071d538423413da3f752398af424b
+guid: 66bb9b3ee4af18741b1c71b97b523f0e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8426310163171662099
-    second: goodsprite_0
+      213: -6167706270073057047
+    second: Good!_0
   - first:
-      213: 8919657365392206027
-    second: goodsprite_1
+      213: 5370946694454193388
+    second: Good!_1
   - first:
-      213: -7467597511054968473
-    second: goodsprite_2
+      213: -5697758445643415249
+    second: Good!_2
+  - first:
+      213: 7239288404002412053
+    second: Good!_3
+  - first:
+      213: -119233437545969032
+    second: Good!_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +49,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +87,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -107,7 +113,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,13 +125,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: goodsprite_0
+      name: Good!_0
       rect:
         serializedVersion: 2
-        x: 243
-        y: 857
-        width: 452
-        height: 469
+        x: 19
+        y: 0
+        width: 25
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3195c1be27440f470800000000000000
-      internalID: 8426310163171662099
+      spriteID: 9e0985543d7e76aa0800000000000000
+      internalID: -6167706270073057047
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goodsprite_1
+      name: Good!_1
       rect:
         serializedVersion: 2
-        x: 696
-        y: 871
-        width: 983
-        height: 432
+        x: 43
+        y: 0
+        width: 13
+        height: 13
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -156,20 +162,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bc8266e8d1df8cb70800000000000000
-      internalID: 8919657365392206027
+      spriteID: cec2086ef8f698a40800000000000000
+      internalID: 5370946694454193388
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: goodsprite_2
+      name: Good!_2
       rect:
         serializedVersion: 2
-        x: 1674
-        y: 844
-        width: 111
-        height: 458
+        x: 55
+        y: 0
+        width: 13
+        height: 18
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -178,8 +184,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7693af3f0a3cd5890800000000000000
-      internalID: -7467597511054968473
+      spriteID: f214177b1ee7de0b0800000000000000
+      internalID: -5697758445643415249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Good!_3
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 4
+        width: 7
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5161b23b27e177460800000000000000
+      internalID: 7239288404002412053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Good!_4
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 0
+        width: 7
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87a49bdf1d5685ef0800000000000000
+      internalID: -119233437545969032
       vertices: []
       indices: 
       edges: []
@@ -198,9 +248,11 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      goodsprite_0: 8426310163171662099
-      goodsprite_1: 8919657365392206027
-      goodsprite_2: -7467597511054968473
+      Good!_0: -6167706270073057047
+      Good!_1: 5370946694454193388
+      Good!_2: -5697758445643415249
+      Good!_3: 7239288404002412053
+      Good!_4: -119233437545969032
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
