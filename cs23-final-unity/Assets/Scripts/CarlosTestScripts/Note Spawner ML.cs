@@ -6,6 +6,12 @@ public class NoteSpawnerML : MonoBehaviour
     public GameObject static_note;
     public GameObject dynamic_note;
 
+    [Header("Visuals for opponent birds:")]
+    public Sprite birdDown;
+    public Sprite birdUp;
+    public Sprite birdLeft;
+    public Sprite birdRight;
+
     [Header("Game Manager:")]
     public ManageGameML gameManager;
 
@@ -89,6 +95,9 @@ public class NoteSpawnerML : MonoBehaviour
                     + (transform.up * edge_of_screen);
             GameObject note_obj = Instantiate(static_note, start + (transform.up * sno_up), Quaternion.identity);
 
+            SpriteRenderer sr = note_obj.GetComponent<SpriteRenderer>();
+            sr.sprite = birdDown;
+
             //Send it and call its destructor
             note_obj.GetComponent<StaticNote>().Send(upNote_SpawnTime, dest - start);
             Destroy(note_obj, (float)upNote_SpawnTime + .12f);
@@ -100,6 +109,9 @@ public class NoteSpawnerML : MonoBehaviour
                     - (transform.up * edge_of_screen);
             GameObject note_obj = Instantiate(static_note, start - (transform.up * sno_down), Quaternion.identity);
 
+            SpriteRenderer sr = note_obj.GetComponent<SpriteRenderer>();
+            sr.sprite = birdUp;
+
             //Send it and call its destructor
             note_obj.GetComponent<StaticNote>().Send(downNote_SpawnTime, dest - start);
             Destroy(note_obj, (float)downNote_SpawnTime + .12f);
@@ -109,6 +121,9 @@ public class NoteSpawnerML : MonoBehaviour
             //Create Note
             Vector3 start = transform.position - (transform.right * edge_of_screen);
             GameObject note_obj = Instantiate(dynamic_note, start, Quaternion.identity);
+
+            SpriteRenderer sr = note_obj.GetComponent<SpriteRenderer>();
+            sr.sprite = birdRight;
 
             //Send it and call its destructor
             int qNotes_per_beat = 1;
@@ -124,6 +139,9 @@ public class NoteSpawnerML : MonoBehaviour
             //Create Note
             Vector3 start = transform.position + (transform.right * edge_of_screen);
             GameObject note_obj = Instantiate(dynamic_note, start, Quaternion.identity);
+
+            SpriteRenderer sr = note_obj.GetComponent<SpriteRenderer>();
+            sr.sprite = birdLeft;
 
             //Send it and call its destructor
             int qNotes_per_beat = 2;
