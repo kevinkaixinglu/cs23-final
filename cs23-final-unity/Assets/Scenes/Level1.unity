@@ -199,6 +199,14 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: kalenGameManagerStatus, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4884318891158950861, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4884318891158950861, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 346
+      objectReference: {fileID: 0}
     - target: {fileID: 6058332347072932890, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -996,12 +1004,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 21300000, guid: e781b935c5792b547a68c0744b9ce31c, type: 3}
+  m_Sprite: {fileID: 4786858742417260468, guid: 3145f5ede1f5940c8b3ce5e3d23ee1d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 23.123291, y: 27.33}
+  m_Size: {x: 15.882261, y: 28.300003}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -2452,7 +2460,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: -7469740316118452663, guid: d9f7cd288ed9b4d90ae0ed3b0ecea500, type: 3}
+  m_Sprite: {fileID: -961002757245080341, guid: ec235c2cc9ef94be6b897863292ce90a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3938,7 +3946,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 602, y: 351}
+  m_AnchoredPosition: {x: 614, y: 416}
   m_SizeDelta: {x: 202.546, y: 55.092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1344977247
