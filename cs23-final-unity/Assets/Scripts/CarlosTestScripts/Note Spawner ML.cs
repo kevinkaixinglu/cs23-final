@@ -79,7 +79,7 @@ public class NoteSpawnerML : MonoBehaviour
 
         Vector3 dest = transform.position; // Go towards NoteSpawner
         float edge_of_screen = 9.5f;
-        float sno_up = .7f; // Static Note Offset
+        float sno_up = 1f; // Static Note Offset
         float sno_down = .7f; // Static Note Offset
 
         if (note == 1) // UpNote
@@ -117,7 +117,7 @@ public class NoteSpawnerML : MonoBehaviour
             note_obj.GetComponent<DynamicNoteML>().dest = dest - start;
             note_obj.GetComponent<DynamicNoteML>().gameManager = gameManager;
             note_obj.GetComponent<DynamicNoteML>().sent = true;
-            Destroy(note_obj, (float)leftNote_SpawnBeat * qNotes_per_beat * 60 / (float)gameManager.bpm);
+            Destroy(note_obj, (float)leftNote_SpawnBeat * qNotes_per_beat * 60 / (float)gameManager.bpm + .1f);
         }
         else if (note == 4) // RightNote
         {
@@ -132,7 +132,7 @@ public class NoteSpawnerML : MonoBehaviour
             note_obj.GetComponent<DynamicNoteML>().dest = dest - start;
             note_obj.GetComponent<DynamicNoteML>().gameManager = gameManager;
             note_obj.GetComponent<DynamicNoteML>().sent = true;
-            Destroy(note_obj, (float)rightNote_SpawnBeat * qNotes_per_beat * 60 / (float)gameManager.bpm);
+            Destroy(note_obj, (float)rightNote_SpawnBeat * qNotes_per_beat * 60 / (float)gameManager.bpm + .1f);
         }
     }
 
