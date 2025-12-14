@@ -6075,7 +6075,7 @@ GameObject:
   - component: {fileID: 564240240}
   - component: {fileID: 564240239}
   m_Layer: 5
-  m_Name: Crow
+  m_Name: Raven
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6097,8 +6097,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71.5, y: -93.2}
-  m_SizeDelta: {x: 103.58, y: 166.78}
+  m_AnchoredPosition: {x: -74.53, y: -88.319}
+  m_SizeDelta: {x: 109.64, y: 176.54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564240239
 MonoBehaviour:
@@ -6120,7 +6120,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2352293529851434348, guid: 351a63c53859dcd429f4eff5047d9740, type: 3}
+  m_Sprite: {fileID: 5850950854719141929, guid: 76c1bae5b626e45a9b9ae79faca1a52c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
