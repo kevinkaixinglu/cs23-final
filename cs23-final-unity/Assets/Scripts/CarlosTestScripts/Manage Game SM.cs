@@ -14,6 +14,11 @@ public class ManageGameSM : MonoBehaviour
     public Animator good_input;
     public Animator candle;
 
+    [Header("Chirp Sounds")]
+    public AudioSource chirp1;
+    public AudioSource chirp2;
+    public AudioSource chirp3;
+
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
     public MakeBeatmap special_beatmap; // COMMENTED OUT - Special script pertaining to this level
@@ -75,12 +80,21 @@ public class ManageGameSM : MonoBehaviour
                             waiting_for_input[i] = false;
                             good_input.Play("Good_Input");
                             player.Play("Pump");
+
+                            chirp2.time = 0.08f;
+                            chirp2.pitch = Random.Range(1.4f, 1.7f);
+                            chirp2.Play();
                         }
                         else
                         {
                             subScore();
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
+                            good_input.Play("Bad_Input");
                             player.Play("Shake");
+
+                            chirp1.time = 0.08f;
+                            chirp1.pitch = Random.Range(.7f, .8f);
+                            chirp1.Play();
                         }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
                         break;
@@ -92,7 +106,7 @@ public class ManageGameSM : MonoBehaviour
                 }
             }
 
-            double offset = .03;
+            double offset = .09;
             double sec_per_tick = 60 / bpm / 4;
             time_in_song = musicSource.time - sec_per_tick / 4 + offset; // This subtraction allows for slightly early inputs
             curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song

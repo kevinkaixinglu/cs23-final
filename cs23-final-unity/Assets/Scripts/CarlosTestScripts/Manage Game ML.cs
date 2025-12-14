@@ -79,6 +79,7 @@ public class ManageGameML : MonoBehaviour
                         {
                             subScore();
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
+                            good_input.Play("Bad_Input");
                             note_spawner.Play("Shake");
                         }
                         key_pressed[i] = true; // Track to not record future inputs when we hold it down
