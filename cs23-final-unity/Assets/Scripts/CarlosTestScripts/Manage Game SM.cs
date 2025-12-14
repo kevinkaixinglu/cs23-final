@@ -89,6 +89,7 @@ public class ManageGameSM : MonoBehaviour
                         {
                             subScore();
                             Debug.Log($"[{Time.time:F2}] Incorrect input!"); // We hit when there wasn't a window
+                            good_input.Play("Bad_Input");
                             player.Play("Shake");
 
                             chirp1.time = 0.08f;
@@ -105,7 +106,7 @@ public class ManageGameSM : MonoBehaviour
                 }
             }
 
-            double offset = .07;
+            double offset = .09;
             double sec_per_tick = 60 / bpm / 4;
             time_in_song = musicSource.time - sec_per_tick / 4 + offset; // This subtraction allows for slightly early inputs
             curr_tick = ((int)(time_in_song * (bpm / 60) * 4)) - 1; // tick = sixteenthNote relative to whole song
