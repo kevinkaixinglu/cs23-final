@@ -15,30 +15,28 @@ public class carterbeatmap : MakeBeatmap
         int meas;
 
         meas = 1;
-        //builder.PlaceSixteenthNote(meas, 1, 1, 1); // WINE
-        //builder.PlaceSixteenthNote(meas, 2, 1, 2);
-        builder.PlaceSixteenthNote(meas, 3, 3, 2);
-        builder.PlaceSixteenthNote(meas, 4, 3, 2);
+        builder.PlaceSixteenthNote(meas, 2, 2, 2);
+        builder.PlaceSixteenthNote(meas, 3, 2, 2);
+        builder.PlaceSixteenthNote(meas, 4, 2, 2);
         meas += 1;
         builder.PlaceSixteenthNote(meas, 4, 2, 2);
         meas += 1;
         builder.PlaceSixteenthNote(meas, 1, 2, 1); // WINE
         builder.PlaceSixteenthNote(meas, 2, 2, 2);
         builder.PlaceSixteenthNote(meas, 3, 2, 3);
-        //builder.PlaceSixteenthNote(meas, 4, 1, 1);
+        builder.PlaceSixteenthNote(meas, 4, 1, 2);
+        builder.PlaceSixteenthNote(meas, 4, 3, 2);
         meas += 1;
-        builder.PlaceSixteenthNote(meas, 1, 2, 2); // WINE
-        builder.PlaceSixteenthNote(meas, 1, 1, 1);
-        builder.PlaceSixteenthNote(meas, 1, 3, 1);
-        builder.PlaceSixteenthNote(meas, 2, 1, 1);
-        builder.PlaceSixteenthNote(meas, 3, 1, 1);
-        builder.PlaceSixteenthNote(meas, 4, 1, 1);
-        builder.PlaceSixteenthNote(meas + 1, 1, 1, 1);
-        builder.PlaceSixteenthNote(meas + 1, 2, 3, 1);
+        builder.PlaceSixteenthNote(meas, 2, 1, 2);
+        builder.PlaceSixteenthNote(meas, 2, 4, 2);
+        builder.PlaceSixteenthNote(meas, 3, 4, 2);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, 2);
+        builder.PlaceSixteenthNote(meas + 1, 2, 1, 2);
 
-        meas = 17;
+        meas += 3;
+        builder.PlaceSixteenthNote(meas, 4, 1, 2);
         builder.PlaceSixteenthNote(meas + 1, 1, 2, -1); // WINE
-        builder.PlaceSixteenthNote(meas + 1, 1, 3, 1);
+        builder.PlaceSixteenthNote(meas + 1, 1, 1, 1);
         builder.PlaceSixteenthNote(meas + 1, 2, 3, 1);
         builder.PlaceSixteenthNote(meas + 1, 3, 1, 1);
         builder.PlaceSixteenthNote(meas + 1, 4, 1, 1);
