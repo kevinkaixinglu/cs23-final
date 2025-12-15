@@ -14,11 +14,9 @@ public class LevelSelectManager : MonoBehaviour
     [SerializeField] private Button backButton;
     [SerializeField] private string mainMenuSceneName = "MainMenu";
     
-    [Header("Lock Overlays")]
-    [SerializeField] private GameObject[] lockOverlays; // Assign the dark overlay for each level button
-    
     [Header("Final Cutscene")]
     [SerializeField] private Button finalCutsceneButton;
+    [SerializeField] private GameObject finalCutsceneLockOverlay; // Lock overlay for final cutscene button
     [SerializeField] private string finalCutsceneSceneName = "FinalCutscene";
 
     void Start()
@@ -48,18 +46,10 @@ public class LevelSelectManager : MonoBehaviour
             if (levelButtons[i] != null)
             {
                 // Add click listener
-                levelButtons[i].onClick.RemoveAllListeners();
                 levelButtons[i].onClick.AddListener(() => LoadLevel(levelIndex));
                 
-                // Check if level is unlocked
-                bool isUnlocked = IsLevelUnlocked(levelIndex);
-                levelButtons[i].interactable = isUnlocked;
-                
-                // Show/hide lock overlay
-                if (lockOverlays != null && levelIndex < lockOverlays.Length && lockOverlays[levelIndex] != null)
-                {
-                    lockOverlays[levelIndex].SetActive(!isUnlocked); // Hide if unlocked, show if locked
-                }
+                // All levels are unlocked
+                levelButtons[i].interactable = true;
             }
         }
     }
@@ -71,37 +61,23 @@ public class LevelSelectManager : MonoBehaviour
             // Check if level 5 (index 4) is completed
             bool level5Completed = PlayerPrefs.GetInt("Level_4_Completed", 0) == 1;
             
-            // Show button only if level 5 is completed
-            finalCutsceneButton.gameObject.SetActive(level5Completed);
+            // Make button interactable/non-interactable
+            finalCutsceneButton.interactable = level5Completed;
+            
+            // Show/hide lock overlay
+            if (finalCutsceneLockOverlay != null)
+            {
+                finalCutsceneLockOverlay.SetActive(!level5Completed);
+            }
         }
-    }
-
-    private bool IsLevelUnlocked(int levelIndex)
-    {
-        // First level is always unlocked
-        if (levelIndex == 0)
-        {
-            return true;
-        }
-        
-        // Check if previous level is completed
-        int previousLevelCompleted = PlayerPrefs.GetInt("Level_" + (levelIndex - 1) + "_Completed", 0);
-        return previousLevelCompleted == 1;
     }
 
     public void LoadLevel(int levelIndex)
     {
         if (levelIndex >= 0 && levelIndex < levelSceneNames.Length)
         {
-            if (IsLevelUnlocked(levelIndex))
-            {
-                Debug.Log("Loading level: " + levelSceneNames[levelIndex]);
-                SceneManager.LoadScene(levelSceneNames[levelIndex]);
-            }
-            else
-            {
-                Debug.Log("Level " + levelIndex + " is locked!");
-            }
+            Debug.Log("Loading level: " + levelSceneNames[levelIndex]);
+            SceneManager.LoadScene(levelSceneNames[levelIndex]);
         }
         else
         {
