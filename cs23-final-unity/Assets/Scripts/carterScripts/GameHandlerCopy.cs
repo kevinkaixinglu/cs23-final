@@ -5,12 +5,18 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class GameHandlerCopy : MonoBehaviour
 {
     [Header("Expected Player Input Map:")]
     public Measure[] beat_map;
     public MakeBeatmap special_beatmap; // COMMENTED OUT - Special script pertaining to this level
+
+    //KALEN DO I NEED TO ADD SCENES HERE?
+    [Header("Win Routing?:")]
+    public int reqScore = 65;
+    
 
     [Header("Note Spawns:")]
     public GameObject normalBeat;
@@ -68,6 +74,17 @@ public class GameHandlerCopy : MonoBehaviour
     {
         if (isPlaying)
         {
+            //KALEN IS THIS WHERE TO ADD ROUTING?
+            //song is over
+            if (!musicSource.isPlaying) {
+                if (currScore >= reqScore) {
+                    PlayerPrefs.SetInt("Level2Passed", 1);
+                    SceneManager.LoadScene("LevelComplete");
+                } else {
+                    SceneManager.LoadScene("LevelFailed");
+                }
+            }
+
             for (int i = 0; i < 4; i++)
             {
                 if (Input.GetKey(key[i]))
@@ -129,7 +146,7 @@ public class GameHandlerCopy : MonoBehaviour
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
             }
-            scoreText.SetText(currScore.ToString());
+
         }
     }
 
@@ -162,7 +179,10 @@ public class GameHandlerCopy : MonoBehaviour
     public void addScore()
     {
         currScore++;
-        scoreText.text = "SCORE: " + currScore.ToString();
+        scoreText.text = "SCORE: " + currScore.ToString() + "/" + reqScore.ToString();
+        if (currScore >= reqScore) {
+            scoreText.color = Color.green;
+        }
     }
 
 }

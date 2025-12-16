@@ -10,6 +10,11 @@ public class BackgroundLooper : MonoBehaviour
     private Transform cloud1;
     private Transform cloud2;
 
+    private Transform cloud11;
+    private Transform cloud12;
+    private Transform cloud13;
+    private Transform cloud14;
+
     private float spriteWidth;
     private float cloudWidth;
 
@@ -21,6 +26,8 @@ public class BackgroundLooper : MonoBehaviour
 
         cloud1 = transform.GetChild(2);
         cloud2 = transform.GetChild(3);
+
+
 
         //Get their widths
         SpriteRenderer sr = background1.GetComponent<SpriteRenderer>();
