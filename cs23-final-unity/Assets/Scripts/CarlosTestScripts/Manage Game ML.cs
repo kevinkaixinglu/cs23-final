@@ -112,8 +112,8 @@ public class ManageGameML : MonoBehaviour
                     {
                         //subScore();
                         //Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
-                        //waiting_for_input[i] = false;
-                        //note_spawner.Play("Shake");
+                        waiting_for_input[i] = false;
+                        note_spawner.Play("Shake");
                     }
                 }
 

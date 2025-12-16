@@ -129,7 +129,7 @@ public class ManageGameSM : MonoBehaviour
                     {
                         //subScore();
                         //Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
-                        //waiting_for_input[i] = false;
+                        waiting_for_input[i] = false;
                         player.Play("Shake");
                     }
                 }
