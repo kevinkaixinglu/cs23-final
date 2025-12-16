@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pinkbird_0: -5430734214659061304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

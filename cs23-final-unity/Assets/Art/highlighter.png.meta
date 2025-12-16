@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      highlighter_0: 4088642283560930735
+      highlighter_1: 1355904460917636332
+      highlighter_2: 9196886399305905846
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
