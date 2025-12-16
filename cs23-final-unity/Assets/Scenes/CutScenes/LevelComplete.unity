@@ -11560,7 +11560,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -292.17}
+  m_AnchoredPosition: {x: 0, y: -292.17004}
   m_SizeDelta: {x: 0, y: -584.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1234485696
@@ -11693,6 +11693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CursorManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9011717807752451571, guid: 0775f8fecfed64ca58bb510651a95c37, type: 3}
+      propertyPath: cursorTexture
+      value: 
+      objectReference: {fileID: 2800000, guid: 1c49fab7c727244ea8960953c11964c2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -16640,7 +16644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 63.19}
+  m_AnchoredPosition: {x: 0, y: 63.190002}
   m_SizeDelta: {x: 0, y: -126.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582490639
