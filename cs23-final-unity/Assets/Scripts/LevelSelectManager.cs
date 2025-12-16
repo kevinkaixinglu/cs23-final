@@ -16,25 +16,56 @@ public class LevelSelectManager : MonoBehaviour
     
     [Header("Final Cutscene")]
     [SerializeField] private Button finalCutsceneButton;
-    [SerializeField] private GameObject finalCutsceneLockOverlay; // Lock overlay for final cutscene button
     [SerializeField] private string finalCutsceneSceneName = "FinalCutscene";
+
+    // ===================== LEVEL CLEARED FLAGS =====================
+
+    [Header("Level Cleared Flags")]
+    private bool level1Cleared;
+    private bool level2Cleared;
+    private bool level3Cleared;
+    private bool level4Cleared;
+    private bool level5Cleared;
+
+    [Header("Level Cleared UI")]
+    [SerializeField] private GameObject level1ClearedObj;
+    [SerializeField] private GameObject level2ClearedObj;
+    [SerializeField] private GameObject level3ClearedObj;
+    [SerializeField] private GameObject level4ClearedObj;
+    [SerializeField] private GameObject level5ClearedObj;
+
+    // ===============================================================
 
     void Start()
     {
         UpdateLevelButtons();
         UpdateFinalCutsceneButton();
+        UpdateLevelClearedUI();
         
-        // Setup back button
         if (backButton != null)
         {
             backButton.onClick.AddListener(BackToMainMenu);
         }
         
-        // Setup final cutscene button
         if (finalCutsceneButton != null)
         {
             finalCutsceneButton.onClick.AddListener(LoadFinalCutscene);
         }
+    }
+
+    private void UpdateLevelClearedUI()
+    {
+        level1Cleared = PlayerPrefs.GetInt("Level_0_Completed", 0) == 1;
+        level2Cleared = PlayerPrefs.GetInt("Level_1_Completed", 0) == 1;
+        level3Cleared = PlayerPrefs.GetInt("Level_2_Completed", 0) == 1;
+        level4Cleared = PlayerPrefs.GetInt("Level_3_Completed", 0) == 1;
+        level5Cleared = PlayerPrefs.GetInt("Level_4_Completed", 0) == 1;
+
+        if (level1ClearedObj != null) level1ClearedObj.SetActive(level1Cleared);
+        if (level2ClearedObj != null) level2ClearedObj.SetActive(level2Cleared);
+        if (level3ClearedObj != null) level3ClearedObj.SetActive(level3Cleared);
+        if (level4ClearedObj != null) level4ClearedObj.SetActive(level4Cleared);
+        if (level5ClearedObj != null) level5ClearedObj.SetActive(level5Cleared);
     }
 
     private void UpdateLevelButtons()
@@ -45,10 +76,7 @@ public class LevelSelectManager : MonoBehaviour
             
             if (levelButtons[i] != null)
             {
-                // Add click listener
                 levelButtons[i].onClick.AddListener(() => LoadLevel(levelIndex));
-                
-                // All levels are unlocked
                 levelButtons[i].interactable = true;
             }
         }
@@ -58,17 +86,8 @@ public class LevelSelectManager : MonoBehaviour
     {
         if (finalCutsceneButton != null)
         {
-            // Check if level 5 (index 4) is completed
             bool level5Completed = PlayerPrefs.GetInt("Level_4_Completed", 0) == 1;
-            
-            // Make button interactable/non-interactable
             finalCutsceneButton.interactable = level5Completed;
-            
-            // Show/hide lock overlay
-            if (finalCutsceneLockOverlay != null)
-            {
-                finalCutsceneLockOverlay.SetActive(!level5Completed);
-            }
         }
     }
 
@@ -76,18 +95,12 @@ public class LevelSelectManager : MonoBehaviour
     {
         if (levelIndex >= 0 && levelIndex < levelSceneNames.Length)
         {
-            Debug.Log("Loading level: " + levelSceneNames[levelIndex]);
             SceneManager.LoadScene(levelSceneNames[levelIndex]);
-        }
-        else
-        {
-            Debug.LogError("Invalid level index: " + levelIndex);
         }
     }
     
     public void LoadFinalCutscene()
     {
-        Debug.Log("Loading final cutscene: " + finalCutsceneSceneName);
         SceneManager.LoadScene(finalCutsceneSceneName);
     }
 
@@ -96,15 +109,12 @@ public class LevelSelectManager : MonoBehaviour
         SceneManager.LoadScene(mainMenuSceneName);
     }
 
-    // Call this when a level is completed
     public static void MarkLevelCompleted(int levelIndex)
     {
         PlayerPrefs.SetInt("Level_" + levelIndex + "_Completed", 1);
         PlayerPrefs.Save();
-        Debug.Log("Level " + levelIndex + " completed!");
     }
 
-    // Reset all progress
     public void ResetAllProgress()
     {
         PlayerPrefs.DeleteAll();

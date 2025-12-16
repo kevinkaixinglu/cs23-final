@@ -1,3 +1,5 @@
+
+
 // using System.Collections;
 // using TMPro;
 // using Unity.VisualScripting;
@@ -17,11 +19,12 @@
 //     public GameObject score;
 //     public TextMeshProUGUI scoreText;
 //     public int currScore = 0;
-//     private int winningScore = 18;
+//     private int winningScore = 15;
 
 //     private string victorySceneName = "LevelComplete";
 //     private string failureSceneName = "LevelFailed";
 //     private bool hasFinished = false;
+//     private Color defaultScoreColor;
 
 //     [Header("Song:")]
 //     public double bpm;
@@ -37,7 +40,7 @@
 //     public GameObject playerIdleSprite;
 //     public GameObject playerActiveSprite;
 
-//     //judgy bird bools
+//     // judgy bird bools
 //     public bool judgyBirds = false;
 //     private int judgyBirdsEndTick = -1; // Track when to turn off judgy birds
 
@@ -89,6 +92,11 @@
 
 //         idleMusic.loop = true;
 //         idleMusic.Stop();
+
+//         if (scoreText != null)
+//         {
+//             defaultScoreColor = scoreText.color;
+//         }
 //     }
 
 //     void InitializeBPMChanges()
@@ -135,9 +143,9 @@
 //         double startTime = AudioSettings.dspTime;
 //         musicSource.PlayScheduled(startTime);
 //         isPlaying = true;
-        
+
 //         ShowPlayerIdle();
-        
+
 //         StartCoroutine(CheckSongEnd());
 //     }
 
@@ -148,7 +156,7 @@
 //             CheckBPMChanges();
 //             HandleKeyInput();
 //             UpdateTiming();
-            
+
 //             if (curr_tick != last_tick && curr_qNote >= 0 && curr_sNote >= 0 && curr_meas >= 0)
 //             {
 //                 HandleBeatAnimations();
@@ -166,7 +174,7 @@
 
 //     private void CheckJudgyBirdsTimeout()
 //     {
-//         // *** CHANGED: keep judgy on while key is held, and at least 5 ticks ***
+//         // Keep judgy on for at least 5 ticks, and while key is still pressed
 //         if (judgyBirds && judgyBirdsEndTick != -1 && curr_tick >= judgyBirdsEndTick && !key_pressed)
 //         {
 //             judgyBirds = false;
@@ -189,7 +197,7 @@
 //             {
 //                 ShowPlayerActive();
 //             }
-            
+
 //             if (!key_pressed)
 //             {
 //                 key_just_pressed_this_tick = true;
@@ -216,7 +224,7 @@
 //         double timeSinceLastBPMChange = time_in_song - lastBPMChangeTime;
 //         double ticksInCurrentPeriod = timeSinceLastBPMChange * (bpm / 60.0) * 4.0;
 //         double totalTicksDouble = accumulatedTicks + ticksInCurrentPeriod;
-        
+
 //         curr_tick = (int)totalTicksDouble;
 //         curr_meas = curr_tick / 16;
 //         curr_qNote = ((curr_tick % 16) / 4);
@@ -228,7 +236,7 @@
 //         if (curr_qNote != last_qNote)
 //         {
 //             last_qNote = curr_qNote;
-            
+
 //             if (curr_qNote % 2 == 0)
 //             {
 //                 linePulse.Play("slowPump", 0, 0f);
@@ -248,30 +256,34 @@
 //     }
 
 //     private void HandleWindowMiss()
+// {
+//     if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
 //     {
-//         if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
-//         {
-//             Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
-//             judgyBirds = true;
-//             judgyBirdsEndTick = curr_tick + 5; // *** CHANGED: 5 ticks minimum ***
-//             Debug.Log($"MISSED INPUT - Judgy birds activated until tick {judgyBirdsEndTick}!");
-//             waiting_for_input = false;
-//         }
+//         Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
+
+//         SubtractScore();
+
+//         judgyBirds = true;
+//         judgyBirdsEndTick = curr_tick + 5; // 5-tick minimum
+//         Debug.Log($"MISSED INPUT - Judgy birds activated until tick {judgyBirdsEndTick}!");
+//         waiting_for_input = false;
 //     }
+// }
+
 
 //     private void CheckForNewNote()
 //     {
 //         if (beat_map == null || curr_meas >= beat_map.Length) return;
-        
+
 //         int next_input = beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote];
-        
+
 //         if (next_input == 0) return;
-        
-//         bool isNewNote = (curr_sNote == 0) || 
+
+//         bool isNewNote = (curr_sNote == 0) ||
 //                          (beat_map[curr_meas].qNotes[curr_qNote].sNotes[curr_sNote - 1] != next_input);
-        
+
 //         if (!isNewNote) return;
-        
+
 //         OpenInputWindow(next_input);
 //     }
 
@@ -280,27 +292,27 @@
 //         window_start_tick = curr_tick;
 //         current_note_duration = CalculateNoteDuration(curr_meas, curr_qNote, curr_sNote, noteValue);
 //         force_idle_until_release = false;
-        
+
 //         Debug.Log($"[{Time.time:F2}] WINDOW OPENING at tick {curr_tick} (measure {curr_meas}, qNote {curr_qNote}, sNote {curr_sNote}) - Input window: {inputWindowTicksBefore} tick(s) before + {inputWindowTicks} tick(s) after, Note duration: {current_note_duration} sixteenths");
-        
-//         // Check if key is currently being held
+
+//         // Check if key is currently being held (early hit)
 //         if (key_pressed)
 //         {
 //             int ticksSincePress = curr_tick - last_key_press_tick;
-            
+
 //             // Check if the press was within the valid early window
 //             if (ticksSincePress >= 0 && ticksSincePress <= inputWindowTicksBefore)
 //             {
 //                 Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksSincePress} tick(s) early)! Score: {currScore}");
 //                 AddScore();
 //                 TriggerGoodInputAnimation();
-//                 waiting_for_input = false;
+//                 waiting_for_input = false; // consume the window
 //             }
 //             else
 //             {
 //                 Debug.Log($"[{Time.time:F2}] WINDOW OPEN! (but key held too long - pressed {ticksSincePress} ticks ago, limit is {inputWindowTicksBefore})");
 //                 waiting_for_input = false;
-//                 // We *do not* subtract here to avoid double-penalizing
+//                 // No penalty here; HandleInput() already handles bad presses when they occur
 //             }
 //         }
 //         else
@@ -310,46 +322,112 @@
 //         }
 //     }
 
+//     /// <summary>
+//     /// Returns how many ticks from the current tick until the next note
+//     /// in the beat map. If there is no upcoming note, returns -1.
+//     /// Used to avoid penalizing early presses that are within the leniency
+//     /// window for the *next* note.
+//     /// </summary>
+//     private int GetTicksUntilNextNote()
+//     {
+//         if (beat_map == null)
+//             return -1;
+
+//         // 4 quarter notes * 4 sixteenths = 16 ticks per measure
+//         int ticksPerMeasure = 16;
+//         int currIndex = curr_meas * ticksPerMeasure + curr_qNote * 4 + curr_sNote;
+
+//         int measCount = beat_map.Length;
+
+//         int m = curr_meas;
+//         int q = curr_qNote;
+//         int s = curr_sNote;
+
+//         while (m < measCount)
+//         {
+//             int qLen = beat_map[m].qNotes.Length;
+//             while (q < qLen)
+//             {
+//                 int sLen = beat_map[m].qNotes[q].sNotes.Length;
+//                 while (s < sLen)
+//                 {
+//                     int noteVal = beat_map[m].qNotes[q].sNotes[s];
+//                     if (noteVal != 0)
+//                     {
+//                         int noteIndex = m * ticksPerMeasure + q * 4 + s;
+//                         int delta = noteIndex - currIndex;
+//                         if (delta > 0)
+//                         {
+//                             return delta;
+//                         }
+//                     }
+//                     s++;
+//                 }
+//                 s = 0;
+//                 q++;
+//             }
+//             q = 0;
+//             m++;
+//         }
+
+//         return -1; // No upcoming note
+//     }
+
 //     private void HandleInput()
 //     {
-//         // *** CHANGED: handle both correct and incorrect presses, including spam outside windows ***
+//         // Only react when a fresh press occurred this tick
 //         if (!key_just_pressed_this_tick)
 //             return;
 
-//         // If no window is open, this is an incorrect input
+//         // CASE 1: No active window yet
 //         if (!waiting_for_input)
 //         {
-//             Debug.Log($"[{Time.time:F2}] Incorrect input: no active window (tick {curr_tick})");
+//             // Look ahead: is there a note coming soon that this could be an early hit for?
+//             int ticksUntilNext = GetTicksUntilNextNote();
+
+//             // If the next note is within the early leniency window,
+//             // DO NOT penalize. Let OpenInputWindow() later treat this
+//             // as an early hit when the window opens.
+//             if (ticksUntilNext > 0 && ticksUntilNext <= inputWindowTicksBefore)
+//             {
+//                 Debug.Log($"[{Time.time:F2}] Early press within leniency (no penalty). Next note in {ticksUntilNext} tick(s).");
+//                 return;
+//             }
+
+//             // Otherwise this is real spam / off-beat input -> penalize + judgy
+//             Debug.Log($"[{Time.time:F2}] Incorrect input: no active window and no upcoming lenient note (tick {curr_tick})");
 //             SubtractScore();
 //             TriggerJudgyBirdsBadInput();
 //             return;
 //         }
-        
+
+//         // CASE 2: There *is* an active window
 //         int ticksFromWindowStart = curr_tick - window_start_tick;
-        
-//         // Check if within valid window (exact or late)
+
+//         // Valid timing: exact or late-but-within-window
 //         bool isExactInput = (ticksFromWindowStart == 0);
-//         bool isLateInput = (ticksFromWindowStart > 0 && ticksFromWindowStart <= inputWindowTicks);
-        
+//         bool isLateInput  = (ticksFromWindowStart > 0 && ticksFromWindowStart <= inputWindowTicks);
+
 //         if (isExactInput || isLateInput)
 //         {
 //             AddScore();
 //             TriggerGoodInputAnimation();
-            
+
 //             if (isExactInput)
 //                 Debug.Log($"[{Time.time:F2}] YAY! Perfect timing! Score: {currScore}");
 //             else
 //                 Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksFromWindowStart} tick(s) late)! Score: {currScore}");
-            
+
+//             // Consume this window so you can't score multiple times
 //             waiting_for_input = false;
 //         }
 //         else
 //         {
-//             // Press happened while a window exists but outside the timing window -> incorrect
+//             // Press happened while the window exists, but outside the timing window -> incorrect
 //             Debug.Log($"[{Time.time:F2}] Incorrect input: outside timing window (offset {ticksFromWindowStart})");
 //             SubtractScore();
 //             TriggerJudgyBirdsBadInput();
-//             waiting_for_input = false; // consume this window
+//             waiting_for_input = false; // consume the window
 //         }
 //     }
 
@@ -365,31 +443,36 @@
 //     {
 //         if (scoreText != null)
 //         {
-//             scoreText.SetText($"SCORE: {currScore}");
+//             scoreText.SetText($"SCORE: {currScore}/10");
+
+//             if (currScore >= 10)
+//                 scoreText.color = Color.green;
+//             else
+//                 scoreText.color = defaultScoreColor;
 //         }
 //     }
 
 //     void CheckBPMChanges()
 //     {
 //         double currentTime = musicSource.time;
-        
-//         while (currentBPMChangeIndex < bpmChanges.Length && 
+
+//         while (currentBPMChangeIndex < bpmChanges.Length &&
 //                currentTime >= bpmChanges[currentBPMChangeIndex].timeInSeconds)
 //         {
 //             double timeSinceLastChange = bpmChanges[currentBPMChangeIndex].timeInSeconds - lastBPMChangeTime;
 //             double ticksInPeriod = timeSinceLastChange * (lastBPMBeforeChange / 60.0) * 4.0;
 //             accumulatedTicks += ticksInPeriod;
-            
+
 //             Debug.Log($"[BPM CHANGE] At {bpmChanges[currentBPMChangeIndex].timeInSeconds}s: " +
 //                       $"Added {ticksInPeriod:F2} ticks from previous period (BPM {lastBPMBeforeChange}). " +
 //                       $"Total accumulated: {accumulatedTicks:F2} (measure {(int)(accumulatedTicks / 16)})");
-            
+
 //             lastBPMChangeTime = bpmChanges[currentBPMChangeIndex].timeInSeconds;
 //             lastBPMBeforeChange = bpmChanges[currentBPMChangeIndex].newBPM;
 //             bpm = bpmChanges[currentBPMChangeIndex].newBPM;
-            
+
 //             Debug.Log($"[{Time.time:F2}] BPM changed to {bpm}");
-            
+
 //             if (bpm >= 160)
 //             {
 //                 inputWindowTicks = 1;
@@ -401,7 +484,7 @@
 //                 inputWindowTicks = 2;
 //                 inputWindowTicksBefore = 1;
 //             }
-            
+
 //             currentBPMChangeIndex++;
 //         }
 //     }
@@ -410,18 +493,18 @@
 //     {
 //         Debug.Log($"[SONG] Waiting for {songDuration} seconds...");
 //         yield return new WaitForSeconds(songDuration);
-        
+
 //         if (!hasFinished)
 //         {
 //             hasFinished = true;
 //             isPlaying = false;
-            
+
 //             Debug.Log($"[SONG END] Song finished! Final score: {currScore}");
-            
+
 //             if (currScore >= winningScore)
 //             {
 //                 Debug.Log($"[VICTORY] Player won with {currScore} points!");
-//                 PlayerPrefs.SetInt("Level1Passed", 1); 
+//                 PlayerPrefs.SetInt("Level1Passed", 1);
 //                 ShowVictoryCinematic();
 //             }
 //             else
@@ -438,7 +521,6 @@
 //         Debug.Log($"[SCORE] Score increased to: {currScore}");
 //     }
 
-//     // *** NEW: subtract score on bad input ***
 //     private void SubtractScore()
 //     {
 //         int oldScore = currScore;
@@ -446,11 +528,10 @@
 //         Debug.Log($"[SCORE] Incorrect input - score decreased from {oldScore} to {currScore}");
 //     }
 
-//     // *** NEW: judgy birds for >=5 ticks, extended while key held ***
 //     private void TriggerJudgyBirdsBadInput()
 //     {
 //         judgyBirds = true;
-//         judgyBirdsEndTick = curr_tick + 5;
+//         judgyBirdsEndTick = curr_tick + 5; // at least 5 ticks
 //         Debug.Log($"[JUDGY] Bad input - judgy birds activated until at least tick {judgyBirdsEndTick}");
 //     }
 
@@ -481,7 +562,7 @@
 //                 break;
 
 //             int value = beat_map[currentMeas].qNotes[currentQNote].sNotes[currentSNote];
-            
+
 //             if (value == noteValue)
 //             {
 //                 duration++;
@@ -550,6 +631,7 @@
 //     }
 // }
 
+
 using System.Collections;
 using TMPro;
 using Unity.VisualScripting;
@@ -569,11 +651,12 @@ public class kalenGameManager : MonoBehaviour
     public GameObject score;
     public TextMeshProUGUI scoreText;
     public int currScore = 0;
-    private int winningScore = 18;
+    private int winningScore = 15;
 
     private string victorySceneName = "LevelComplete";
     private string failureSceneName = "LevelFailed";
     private bool hasFinished = false;
+    private Color defaultScoreColor;
 
     [Header("Song:")]
     public double bpm;
@@ -624,6 +707,9 @@ public class kalenGameManager : MonoBehaviour
     private double lastBPMChangeTime = 0;
     private double lastBPMBeforeChange = 0;
 
+    // NEW: prevent double-penalty (miss + wrong input)
+    private bool windowAlreadyPenalized = false;
+
     [System.Serializable]
     public class BPMChange
     {
@@ -641,6 +727,11 @@ public class kalenGameManager : MonoBehaviour
 
         idleMusic.loop = true;
         idleMusic.Stop();
+
+        if (scoreText != null)
+        {
+            defaultScoreColor = scoreText.color;
+        }
     }
 
     void InitializeBPMChanges()
@@ -683,6 +774,9 @@ public class kalenGameManager : MonoBehaviour
         currScore = 0;
         judgyBirds = false;
         judgyBirdsEndTick = -1;
+
+        // Reset score color state for new run
+        windowAlreadyPenalized = false;
 
         double startTime = AudioSettings.dspTime;
         musicSource.PlayScheduled(startTime);
@@ -801,9 +895,15 @@ public class kalenGameManager : MonoBehaviour
 
     private void HandleWindowMiss()
     {
-        if (waiting_for_input && curr_tick == window_start_tick + inputWindowTicks + 1)
+        if (waiting_for_input &&
+            !windowAlreadyPenalized &&
+            curr_tick == window_start_tick + inputWindowTicks + 1)
         {
             Debug.Log($"[{Time.time:F2}] BOO! Missed the window (ended at tick {window_start_tick + inputWindowTicks})");
+
+            SubtractScore();
+            windowAlreadyPenalized = true;
+
             judgyBirds = true;
             judgyBirdsEndTick = curr_tick + 5; // 5-tick minimum
             Debug.Log($"MISSED INPUT - Judgy birds activated until tick {judgyBirdsEndTick}!");
@@ -829,6 +929,9 @@ public class kalenGameManager : MonoBehaviour
 
     private void OpenInputWindow(int noteValue)
     {
+        // NEW: new window = penalty budget resets
+        windowAlreadyPenalized = false;
+
         window_start_tick = curr_tick;
         current_note_duration = CalculateNoteDuration(curr_meas, curr_qNote, curr_sNote, noteValue);
         force_idle_until_release = false;
@@ -862,18 +965,11 @@ public class kalenGameManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns how many ticks from the current tick until the next note
-    /// in the beat map. If there is no upcoming note, returns -1.
-    /// Used to avoid penalizing early presses that are within the leniency
-    /// window for the *next* note.
-    /// </summary>
     private int GetTicksUntilNextNote()
     {
         if (beat_map == null)
             return -1;
 
-        // 4 quarter notes * 4 sixteenths = 16 ticks per measure
         int ticksPerMeasure = 16;
         int currIndex = curr_meas * ticksPerMeasure + curr_qNote * 4 + curr_sNote;
 
@@ -910,43 +1006,42 @@ public class kalenGameManager : MonoBehaviour
             m++;
         }
 
-        return -1; // No upcoming note
+        return -1;
     }
 
     private void HandleInput()
     {
-        // Only react when a fresh press occurred this tick
         if (!key_just_pressed_this_tick)
             return;
 
         // CASE 1: No active window yet
         if (!waiting_for_input)
         {
-            // Look ahead: is there a note coming soon that this could be an early hit for?
             int ticksUntilNext = GetTicksUntilNextNote();
 
-            // If the next note is within the early leniency window,
-            // DO NOT penalize. Let OpenInputWindow() later treat this
-            // as an early hit when the window opens.
             if (ticksUntilNext > 0 && ticksUntilNext <= inputWindowTicksBefore)
             {
                 Debug.Log($"[{Time.time:F2}] Early press within leniency (no penalty). Next note in {ticksUntilNext} tick(s).");
                 return;
             }
 
-            // Otherwise this is real spam / off-beat input -> penalize + judgy
             Debug.Log($"[{Time.time:F2}] Incorrect input: no active window and no upcoming lenient note (tick {curr_tick})");
-            SubtractScore();
-            TriggerJudgyBirdsBadInput();
+
+            if (!windowAlreadyPenalized)
+            {
+                SubtractScore();
+                windowAlreadyPenalized = true;
+                TriggerJudgyBirdsBadInput();
+            }
+
             return;
         }
 
-        // CASE 2: There *is* an active window
+        // CASE 2: There is an active window
         int ticksFromWindowStart = curr_tick - window_start_tick;
 
-        // Valid timing: exact or late-but-within-window
         bool isExactInput = (ticksFromWindowStart == 0);
-        bool isLateInput  = (ticksFromWindowStart > 0 && ticksFromWindowStart <= inputWindowTicks);
+        bool isLateInput = (ticksFromWindowStart > 0 && ticksFromWindowStart <= inputWindowTicks);
 
         if (isExactInput || isLateInput)
         {
@@ -958,16 +1053,20 @@ public class kalenGameManager : MonoBehaviour
             else
                 Debug.Log($"[{Time.time:F2}] YAY! Good timing (pressed {ticksFromWindowStart} tick(s) late)! Score: {currScore}");
 
-            // Consume this window so you can't score multiple times
             waiting_for_input = false;
         }
         else
         {
-            // Press happened while the window exists, but outside the timing window -> incorrect
             Debug.Log($"[{Time.time:F2}] Incorrect input: outside timing window (offset {ticksFromWindowStart})");
-            SubtractScore();
-            TriggerJudgyBirdsBadInput();
-            waiting_for_input = false; // consume the window
+
+            if (!windowAlreadyPenalized)
+            {
+                SubtractScore();
+                windowAlreadyPenalized = true;
+                TriggerJudgyBirdsBadInput();
+            }
+
+            waiting_for_input = false;
         }
     }
 
@@ -983,7 +1082,12 @@ public class kalenGameManager : MonoBehaviour
     {
         if (scoreText != null)
         {
-            scoreText.SetText($"SCORE: {currScore}");
+            scoreText.SetText($"SCORE: {currScore}/10");
+
+            if (currScore >= 10)
+                scoreText.color = Color.green;
+            else
+                scoreText.color = defaultScoreColor;
         }
     }
 
