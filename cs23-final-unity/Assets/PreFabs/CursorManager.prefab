@@ -33,8 +33,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 0.1, y: -0.9}
+  m_SizeDelta: {x: 55.7781, y: 55.7781}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &9011717807752451571
 MonoBehaviour:
@@ -48,5 +48,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6998999a75c24db08497e09942fce98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 1c49fab7c727244ea8960953c11964c2, type: 3}
+  cursorTexture: {fileID: 2800000, guid: b6e6fb8b750194618b2d98006723001e, type: 3}
   hotspot: {x: 0, y: 0}
