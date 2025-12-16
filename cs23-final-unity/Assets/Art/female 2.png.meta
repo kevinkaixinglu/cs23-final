@@ -122,12 +122,12 @@ TextureImporter:
       name: female 2_0
       rect:
         serializedVersion: 2
-        x: 194
-        y: 1527
-        width: 13
-        height: 58
+        x: 494
+        y: 211
+        width: 1854
+        height: 2097
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -149,7 +149,7 @@ TextureImporter:
         width: 10
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -171,7 +171,7 @@ TextureImporter:
         width: 1820
         height: 2102
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -188,7 +188,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: ed12dd5359ae9499e991b4b52463a357
     internalID: 0
     vertices: []
     indices: 
@@ -197,7 +197,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      female 2_0: 5525258997958831083
+      female 2_1: -7175465135769703531
+      female 2_2: 5729347839610443658
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

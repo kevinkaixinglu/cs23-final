@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      redsquiggle_0: 4920463106508604883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      crayonraven_0: 9085078938714686831
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

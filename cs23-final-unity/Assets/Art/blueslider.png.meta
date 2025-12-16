@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      blueslider_0: 7921222198211482592
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

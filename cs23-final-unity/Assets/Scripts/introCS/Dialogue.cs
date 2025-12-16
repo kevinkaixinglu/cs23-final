@@ -12,6 +12,7 @@ public class Dialogue : MonoBehaviour
 
     public TextMeshProUGUI textComponent;
     public GameObject dialogueBox;   // panel that holds the text / portraits
+    public GameObject skipBox;
 
     public string[] lines;
     public float textSpeed;
@@ -123,6 +124,7 @@ public class Dialogue : MonoBehaviour
 
             if (dialogueBox != null) dialogueBox.SetActive(false);
             if (continueButton != null) continueButton.SetActive(true);
+            if (skipBox != null) skipBox.SetActive(false);
         }
     }
 
@@ -163,6 +165,7 @@ public class Dialogue : MonoBehaviour
 
         if (continueButton != null) continueButton.SetActive(false);
         if (dialogueBox != null) dialogueBox.SetActive(true);
+        if (skipBox != null) skipBox.SetActive(true);
 
         // Move to next line and start typing
         index++;
