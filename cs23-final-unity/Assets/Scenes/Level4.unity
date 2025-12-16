@@ -4054,7 +4054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SCORE: 0/30
+  m_text: 'SCORE: 0/25
 
 '
   m_isRightToLeft: 0
@@ -11549,7 +11549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d358dd9032eeae54987b1c6ba4abc81f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 30
+  points: 25
   note_spawner: {fileID: 1160234486}
   good_input: {fileID: 422427805}
   beat_map: []
