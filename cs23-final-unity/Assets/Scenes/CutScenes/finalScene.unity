@@ -1232,15 +1232,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3773246323897935024, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3773246323897935024, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3773246323897935024, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3966744922049158043, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_Name
@@ -1248,15 +1248,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966744922049158043, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6050031764759491798, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6050031764759491798, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8496629454898379037, guid: 7d23f5bfeb578a14f9c5735c85887bd2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1558,7 +1558,7 @@ Transform:
   m_GameObject: {fileID: 792749653}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.30516604, w: 0.9522992}
-  m_LocalPosition: {x: -7.47, y: 3.79, z: 0}
+  m_LocalPosition: {x: -4.51, y: 4.36, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2265,8 +2265,8 @@ MonoBehaviour:
   - What were you saying about our future wedding?
   textSpeed: 0.05
   chirp1: {fileID: 975520787}
-  chirp2: {fileID: 975520787}
-  chirp3: {fileID: 975520787}
+  chirp2: {fileID: 975520786}
+  chirp3: {fileID: 975520785}
 --- !u!1 &1005014096
 GameObject:
   m_ObjectHideFlags: 0
