@@ -2148,7 +2148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1409003475
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3489,15 +3489,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3768057758599450766, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3768057758599450766, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3768057758599450766, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3923947397491513774, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_fontAsset
@@ -3545,11 +3545,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6058332347072932890, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6058332347072932890, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8489960913783758658, guid: e8fabae22ca4943deb0e2fd47145b98b, type: 3}
       propertyPath: m_Name
