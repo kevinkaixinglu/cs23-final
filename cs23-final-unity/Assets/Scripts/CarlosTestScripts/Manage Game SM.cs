@@ -12,10 +12,13 @@ public class ManageGameSM : MonoBehaviour
     [Header("Points Needed to Win:")]
     public int points;
 
-    [Header("Player Bird:")]
+    [Header("Animators:")]
     public Animator player;
     public Animator good_input;
     public Animator candle;
+    public Animator bottle1;
+    public Animator bottle2;
+    public Animator bottle3;
 
     [Header("Chirp Sounds")]
     public AudioSource chirp1;
@@ -124,9 +127,9 @@ public class ManageGameSM : MonoBehaviour
                 {
                     if (waiting_for_input[i])
                     {
-                        subScore();
-                        Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
-                        waiting_for_input[i] = false;
+                        //subScore();
+                        //Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
+                        //waiting_for_input[i] = false;
                         player.Play("Shake");
                     }
                 }
@@ -134,6 +137,13 @@ public class ManageGameSM : MonoBehaviour
                 if (curr_sNote == 2 && curr_qNote == 3) // Start of measure
                 {
                     candle.Play("Swing");
+                }
+
+                if (curr_sNote == 0 && curr_qNote == 3) // Start of measure
+                {
+                    bottle1.Play("Pump_Bottle");
+                    bottle2.Play("Pump_Bottle");
+                    bottle3.Play("Pump_Bottle");
                 }
 
 
