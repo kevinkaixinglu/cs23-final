@@ -13,6 +13,11 @@ public class ManageGameCopy : MonoBehaviour
     private GameHandlerCopy gameHandler;
     private static bool GameisPaused = false;
 
+    [Header("Info Page")]
+    public GameObject infoPageUI;
+
+    private bool InfoPage = false;
+
     public void Start()
     {
         gameHandler = GetComponent<GameHandlerCopy>();
@@ -20,9 +25,9 @@ public class ManageGameCopy : MonoBehaviour
         volumeSlider.value = VolumeDefiner.vol;
         SetVolume();
         Debug.Log("Stating Game...");
-        pauseMenuUI.SetActive(false);
-        gameHandler.StartGame();
+        InfoPage = true;
         GameisPaused = false;
+        infoPageUI.SetActive(true);
         pauseMenuUI.SetActive(false);
     }
 
@@ -34,6 +39,20 @@ public class ManageGameCopy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (InfoPage)
+        {
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                InfoPage = false;
+
+                GameisPaused = false;
+                infoPageUI.SetActive(false);
+                pauseMenuUI.SetActive(false);
+
+                gameHandler.StartGame();
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Pause();
