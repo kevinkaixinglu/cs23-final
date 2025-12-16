@@ -277,6 +277,7 @@ public class WackamoleManager : BeatmapVisualizerSimple
             // Check if scene name is valid before loading to avoid crash
             if (!string.IsNullOrEmpty(winSceneName))
             {
+                PlayerPrefs.SetInt("Level3Passed", 1);
                 SceneManager.LoadScene(winSceneName);
             }
         }
