@@ -9,10 +9,16 @@ using UnityEngine.SceneManagement;
 
 public class ManageGameSM : MonoBehaviour
 {
-    [Header("Player Bird:")]
+    [Header("Points Needed to Win:")]
+    public int points;
+
+    [Header("Animators:")]
     public Animator player;
     public Animator good_input;
     public Animator candle;
+    public Animator bottle1;
+    public Animator bottle2;
+    public Animator bottle3;
 
     [Header("Chirp Sounds")]
     public AudioSource chirp1;
@@ -121,9 +127,9 @@ public class ManageGameSM : MonoBehaviour
                 {
                     if (waiting_for_input[i])
                     {
-                        subScore();
-                        Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
-                        waiting_for_input[i] = false;
+                        //subScore();
+                        //Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
+                        //waiting_for_input[i] = false;
                         player.Play("Shake");
                     }
                 }
@@ -131,6 +137,13 @@ public class ManageGameSM : MonoBehaviour
                 if (curr_sNote == 2 && curr_qNote == 3) // Start of measure
                 {
                     candle.Play("Swing");
+                }
+
+                if (curr_sNote == 0 && curr_qNote == 3) // Start of measure
+                {
+                    bottle1.Play("Pump_Bottle");
+                    bottle2.Play("Pump_Bottle");
+                    bottle3.Play("Pump_Bottle");
                 }
 
 
@@ -151,7 +164,15 @@ public class ManageGameSM : MonoBehaviour
 
         if (!musicSource.isPlaying && isPlaying)
         {
-            SceneManager.LoadScene("LevelSelect");
+            if (currScore >= points)
+            {
+                PlayerPrefs.SetInt("Level5Passed", 1);
+                SceneManager.LoadScene("LevelComplete");
+            }
+            else
+            {
+                SceneManager.LoadScene("LevelFailed");
+            }
         }
 
     }
@@ -185,7 +206,11 @@ public class ManageGameSM : MonoBehaviour
     public void addScore()
     {
         currScore++;
-        scoreText.text = "SCORE: " + currScore.ToString();
+        scoreText.text = "SCORE: " + currScore.ToString() + "/" + points.ToString();
+        if (currScore >= points)
+        {
+            scoreText.color = Color.green;
+        }
     }
 
     private void subScore()
@@ -193,7 +218,11 @@ public class ManageGameSM : MonoBehaviour
         if (currScore > 0)
         {
             currScore--;
-            scoreText.text = "SCORE: " + currScore.ToString();
+            scoreText.text = "SCORE: " + currScore.ToString() + "/" + points.ToString();
+        }
+        if (currScore < points)
+        {
+            scoreText.color = Color.black;
         }
     }
 

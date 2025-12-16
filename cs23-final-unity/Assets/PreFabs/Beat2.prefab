@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2961292630222616180}
   - component: {fileID: 1684897375392831267}
   - component: {fileID: 742472755710597410}
-  - component: {fileID: 241460977734268477}
+  - component: {fileID: -2422683016253459807}
   m_Layer: 0
   m_Name: Beat2
   m_TagString: ConveyorBeat1
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -3724595753491363449, guid: 1646738d3ef5f44db8f0e479fb68c42e, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -127,8 +127,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.21133333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 23.223307, y: 21.400002}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,7 +163,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &241460977734268477
+--- !u!114 &-2422683016253459807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5194544753341675517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 316d931a4d5404673bc321933a1f96e1, type: 3}
+  m_Script: {fileID: 11500000, guid: 04992185ffbed4469a69dc4759b973cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
+  pulseSpeed: 0.4
+  pulseAmount: 0.3

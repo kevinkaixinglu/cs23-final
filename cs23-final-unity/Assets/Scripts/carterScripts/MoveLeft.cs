@@ -3,8 +3,8 @@ using UnityEngine;
 public class MoveLeft : MonoBehaviour
 {
     public float speed = 5f;
-    public float pulseSpeed = 0.5f;     // how fast it pulses
-    public float pulseAmount = 0.2f;  // how much bigger/smaller it gets
+    public float pulseSpeed = 0.4f;     // how fast it pulses
+    public float pulseAmount = 0.3f;  // how much bigger/smaller it gets
     private Vector3 originalScale;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

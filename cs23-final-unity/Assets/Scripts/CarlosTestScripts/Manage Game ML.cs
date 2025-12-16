@@ -9,6 +9,10 @@ using UnityEngine.SceneManagement;
 
 public class ManageGameML : MonoBehaviour
 {
+
+    [Header("Points Needed to Win:")]
+    public int points;
+
     [Header("Player Bird:")]
     public Animator note_spawner;
     public Animator good_input;
@@ -106,10 +110,10 @@ public class ManageGameML : MonoBehaviour
                 {
                     if (waiting_for_input[i])
                     {
-                        subScore();
-                        Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
-                        waiting_for_input[i] = false;
-                        note_spawner.Play("Shake");
+                        //subScore();
+                        //Debug.Log($"[{Time.time:F2}] BOO!"); // Missed our window
+                        //waiting_for_input[i] = false;
+                        //note_spawner.Play("Shake");
                     }
                 }
 
@@ -131,7 +135,15 @@ public class ManageGameML : MonoBehaviour
 
         if (!musicSource.isPlaying && isPlaying)
         {
-            SceneManager.LoadScene("LevelSelect");
+            if (currScore >= points)
+            {
+                PlayerPrefs.SetInt("Level4Passed", 1);
+                SceneManager.LoadScene("LevelComplete");
+            }
+            else
+            {
+                SceneManager.LoadScene("LevelFailed");
+            }
         }
 
     }
@@ -165,7 +177,11 @@ public class ManageGameML : MonoBehaviour
     public void addScore()
     {
         currScore++;
-        scoreText.text = "SCORE: " + currScore.ToString();
+        scoreText.text = "SCORE: " + currScore.ToString() + "/" + points.ToString();
+        if (currScore >= points)
+        {
+            scoreText.color = Color.green;
+        }
     }
 
     private void subScore()
@@ -173,7 +189,11 @@ public class ManageGameML : MonoBehaviour
         if (currScore > 0)
         {
             currScore--;
-            scoreText.text = "SCORE: " + currScore.ToString();
+            scoreText.text = "SCORE: " + currScore.ToString() + "/" + points.ToString();
+        }
+        if (currScore < points)
+        {
+            scoreText.color = Color.black;
         }
     }
 
