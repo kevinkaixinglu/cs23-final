@@ -165,7 +165,7 @@ public class Dialogue : MonoBehaviour
 
         if (continueButton != null) continueButton.SetActive(false);
         if (dialogueBox != null) dialogueBox.SetActive(true);
-        if (skipBox != null) skipBox.SetActive(false);
+        if (skipBox != null) skipBox.SetActive(true);
 
         // Move to next line and start typing
         index++;

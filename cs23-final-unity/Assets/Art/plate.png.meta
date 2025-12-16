@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: edeef072aa6174678867e35213dcfbac
+guid: 26b8e44a26d794fb7b64779424f9f3af
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5525258997958831083
-    second: female 2_0
-  - first:
-      213: -7175465135769703531
-    second: female 2_1
-  - first:
-      213: 5729347839610443658
-    second: female 2_2
+      213: -4714952021414698923
+    second: wineglass 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -102,84 +96,27 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: female 2_0
+      name: wineglass 1_0
       rect:
         serializedVersion: 2
-        x: 494
-        y: 211
-        width: 1854
-        height: 2097
+        x: 152
+        y: 32
+        width: 204
+        height: 59
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bebed59d8c9adac40800000000000000
-      internalID: 5525258997958831083
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: female 2_1
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 1517
-        width: 10
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 59b2f3ce970ab6c90800000000000000
-      internalID: -7175465135769703531
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: female 2_2
-      rect:
-        serializedVersion: 2
-        x: 512
-        y: 203
-        width: 1820
-        height: 2102
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a87d1a6318bb28f40800000000000000
-      internalID: 5729347839610443658
+      spriteID: 550219e0e10219eb0800000000000000
+      internalID: -4714952021414698923
       vertices: []
       indices: 
       edges: []
@@ -188,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: ed12dd5359ae9499e991b4b52463a357
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -198,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      female 2_0: 5525258997958831083
-      female 2_1: -7175465135769703531
-      female 2_2: 5729347839610443658
+      wineglass 1_0: -4714952021414698923
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
