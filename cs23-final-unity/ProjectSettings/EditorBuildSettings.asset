@@ -50,6 +50,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/New_Level_SM.unity
     guid: 8cdc6dd1afcd3644bb7489a9d49a67ca
+  - enabled: 1
+    path: Assets/Scenes/CutScenes/finalScene.unity
+    guid: e4619f861e9054d33a0488bfde807aa9
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
