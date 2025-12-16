@@ -24,8 +24,8 @@ public class carterbeatmap : MakeBeatmap
         builder.PlaceSixteenthNote(meas, 1, 2, 1); // WINE
         builder.PlaceSixteenthNote(meas, 2, 2, 2);
         builder.PlaceSixteenthNote(meas, 3, 2, 3);
-        builder.PlaceSixteenthNote(meas, 4, 1, 2);
-        builder.PlaceSixteenthNote(meas, 4, 3, 2);
+        builder.PlaceSixteenthNote(meas, 4, 2, 2);
+        builder.PlaceSixteenthNote(meas, 4, 4, 2);
         meas += 1;
         builder.PlaceSixteenthNote(meas, 2, 1, 2);
         builder.PlaceSixteenthNote(meas, 2, 4, 2);
