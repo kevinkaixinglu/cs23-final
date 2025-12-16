@@ -5,7 +5,11 @@ public class SceneHandler : MonoBehaviour
 {
 
 
-
+    public void to_LastScene()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(LastSceneDefiner.lastScene);
+    }
 
     public void to_MainMenu()
     {
