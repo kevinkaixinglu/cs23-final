@@ -13,7 +13,7 @@ public class MuchoLoco_BeatMap : MakeBeatmap
     public override Measure[] SpecialBeatMap()
     {
         Debug.Log("MuchoLoco beatmap made");
-        int num_measures = 58;
+        int num_measures = 70;
         
         beatmapBuilder builder = new beatmapBuilder(num_measures);
         int meas;

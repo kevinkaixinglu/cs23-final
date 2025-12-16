@@ -166,7 +166,7 @@ public class ManageGameSM : MonoBehaviour
         {
             if (currScore >= points)
             {
-                PlayerPrefs.SetInt("Level5Passed", 1);
+                PlayerPrefs.SetInt("Level4Passed", 1);
                 SceneManager.LoadScene("LevelComplete");
             }
             else
