@@ -5491,8 +5491,9 @@ MonoBehaviour:
   promptFadeDuration: 0.5
   scoreText: {fileID: 889883490}
   winScene: LevelComplete
-  loseSceneName: LoseScene
-  scoreToWin: 15
+  loseScene: LevelFailed
+  scoreToWin: 20
+  secondsToCutFromEnd: 1
   popUpHeight: 1
   animationDuration: 0.25
   holeBounceHeight: 0.1
