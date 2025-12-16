@@ -51,6 +51,8 @@ public class kalenGameManager : MonoBehaviour
 
     [Header("Bad Input Animation")]
     public Animator badInputAnimator;
+    private Color defaultScoreColor;
+
 
     private int last_qNote = -1;
 
@@ -94,6 +96,11 @@ public class kalenGameManager : MonoBehaviour
 
         idleMusic.loop = true;
         idleMusic.Stop();
+
+        if (scoreText != null)
+        {
+            defaultScoreColor = scoreText.color;
+        }
     }
 
     void InitializeBPMChanges()
@@ -443,12 +450,17 @@ public class kalenGameManager : MonoBehaviour
     }
 
     private void UpdateScoreDisplay()
+{
+    if (scoreText != null)
     {
-        if (scoreText != null)
-        {
-            scoreText.SetText($"SCORE: {currScore}/10");
-        }
+        scoreText.SetText($"SCORE: {currScore}/15");
+
+        if (currScore >= winningScore)
+            scoreText.color = Color.green;
+        else
+            scoreText.color = defaultScoreColor;
     }
+}
 
     void CheckBPMChanges()
     {
