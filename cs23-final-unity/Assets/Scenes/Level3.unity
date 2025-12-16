@@ -2701,6 +2701,7 @@ RectTransform:
   - {fileID: 375204944}
   - {fileID: 1770796079}
   - {fileID: 2025415675}
+  - {fileID: 1914717298}
   - {fileID: 454699456}
   - {fileID: 1300260655}
   m_Father: {fileID: 0}
@@ -3532,8 +3533,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 614, y: 349.9}
-  m_SizeDelta: {x: 202.546, y: 55.092}
+  m_AnchoredPosition: {x: 578, y: 339}
+  m_SizeDelta: {x: 236.0578, y: 55.092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &889883490
 MonoBehaviour:
@@ -3584,8 +3585,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3622,7 +3623,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -53.464363, y: 0, z: 0, w: 0}
+  m_margin: {x: -53.464363, y: 0, z: 0.00010677358, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5201,9 +5202,8 @@ MonoBehaviour:
     ghostStartPos: {x: 0, y: 0, z: 0}
     idleStartPos: {x: 0, y: 0, z: 0}
     isAnimating: 0
-    isWormType: 0
-    targetBeatTime: 0
-    hasBeenHit: 0
+    isInputWindowOpen: 0
+    currentIsWorm: 0
   - holeName: Bottom
     idleSprite: {fileID: 564660588}
     snakeSprite: {fileID: 417741410}
@@ -5216,9 +5216,8 @@ MonoBehaviour:
     ghostStartPos: {x: 0, y: 0, z: 0}
     idleStartPos: {x: 0, y: 0, z: 0}
     isAnimating: 0
-    isWormType: 0
-    targetBeatTime: 0
-    hasBeenHit: 0
+    isInputWindowOpen: 0
+    currentIsWorm: 0
   - holeName: Left
     idleSprite: {fileID: 159989179}
     snakeSprite: {fileID: 398068453}
@@ -5231,9 +5230,8 @@ MonoBehaviour:
     ghostStartPos: {x: 0, y: 0, z: 0}
     idleStartPos: {x: 0, y: 0, z: 0}
     isAnimating: 0
-    isWormType: 0
-    targetBeatTime: 0
-    hasBeenHit: 0
+    isInputWindowOpen: 0
+    currentIsWorm: 0
   - holeName: Right
     idleSprite: {fileID: 286268187}
     snakeSprite: {fileID: 815576653}
@@ -5246,13 +5244,16 @@ MonoBehaviour:
     ghostStartPos: {x: 0, y: 0, z: 0}
     idleStartPos: {x: 0, y: 0, z: 0}
     isAnimating: 0
-    isWormType: 0
-    targetBeatTime: 0
-    hasBeenHit: 0
+    isInputWindowOpen: 0
+    currentIsWorm: 0
   promptTextUp: {fileID: 1479883650}
   promptTextDownSpace: {fileID: 462923389}
   promptDuration: 0.5
   promptFadeDuration: 0.5
+  scoreText: {fileID: 889883490}
+  winSceneName: WinScene
+  loseSceneName: LoseScene
+  scoreToWin: 15
   popUpHeight: 1
   animationDuration: 0.25
   holeBounceHeight: 0.1
@@ -5260,6 +5261,7 @@ MonoBehaviour:
   ghostFloatDuration: 0.5
   ghostFadeDuration: 0.3
   holeKeys: 11010000120100001401000013010000
+  actionKey: 32
   flashPanel: {fileID: 375204943}
   flashDuration: 0.2
   flashFadeOutDuration: 0.3
@@ -6426,8 +6428,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 569.1618, y: 346.74683}
-  m_SizeDelta: {x: 263.0133, y: 69.742}
+  m_AnchoredPosition: {x: 536.3775, y: 346.74683}
+  m_SizeDelta: {x: 319.2652, y: 69.742}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1836115646
 MonoBehaviour:
@@ -6534,7 +6536,7 @@ Transform:
   m_Children:
   - {fileID: 1836115645}
   - {fileID: 889883489}
-  m_Father: {fileID: 2025415675}
+  m_Father: {fileID: 656650474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986949528
 GameObject:
@@ -6703,8 +6705,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1914717298}
+  m_Children: []
   m_Father: {fileID: 656650474}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

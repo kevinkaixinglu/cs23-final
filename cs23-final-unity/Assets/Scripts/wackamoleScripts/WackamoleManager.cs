@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro; 
 using UnityEngine.UI;
-using UnityEngine.SceneManagement; // <--- NEW: REQUIRED FOR CHANGING SCENES
+using UnityEngine.SceneManagement;
 
 public class WackamoleManager : BeatmapVisualizerSimple
 {
@@ -40,16 +40,17 @@ public class WackamoleManager : BeatmapVisualizerSimple
     public float promptDuration = 0.5f;          
     public float promptFadeDuration = 0.5f;      
 
+
     [Header("Score Settings")]
     public TextMeshProUGUI scoreText; 
     private int currentScore = 0;
     private int maxScore = 30;
 
-    // ======== NEW: SCENE MANAGEMENT SETTINGS =========
+    // ======== KALEN IDK IF SUPPOSED TO DO THIS =========
     [Header("Win/Loss Settings")]
-    public string winSceneName = "LevelComplete";   // Type the exact name of your Win Scene here in Inspector
-    public string loseSceneName = "LevelFailed"; // Type the exact name of your Lose Scene here
-    public int scoreToWin = 15;                // How many points needed to pass?
+    public string winSceneName = "LevelComplete";  
+    public string loseSceneName = "LevelFailed"; 
+    public int scoreToWin = 30;              
 
     [Header("Animation Settings")]
     public float popUpHeight = 1f;
@@ -254,22 +255,20 @@ public class WackamoleManager : BeatmapVisualizerSimple
         base.Update();
         CheckForInput();
 
-        // --- NEW: WIN CONDITION CHECK ---
-        // 1. gameActive must be true (meaning we haven't paused via menu)
-        // 2. We must have references to the timer and audio
-        // 3. The music is NOT playing anymore
-        // 4. We check 'beatsSinceStart > 0' to make sure the game didn't *just* start and music hasn't loaded yet.
+        // gameActive must be true (meaning we haven't paused via menu)
+        // we must have references to the timer and audio
+        // The music is NOT playing anymore
+        // We check 'beatsSinceStart > 0' to make sure the game didn't *just* start and music hasn't loaded yet.
         if (rhythmTimer != null && rhythmTimer.musicSource != null && !rhythmTimer.musicSource.isPlaying && beatsSinceStart > 1)
         {
             EndLevel();
         }
     }
 
-    // ======== NEW: END LEVEL FUNCTION =========
+    // ======== KALEN IDK IF SUPPOSED TO DO THIS =========
     private void EndLevel()
     {
-        Debug.Log("Song Finished. Checking Score...");
-        gameActive = false; // Stop updates
+        gameActive = false; 
 
         // Check if score meets win condition
         if (currentScore >= scoreToWin)
