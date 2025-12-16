@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
 
 public class ConveyorPlayer : MonoBehaviour
 {
+    public GameHandlerCopy GHS;
     private Collider2D currBeat; // Stores the beat in the zone
     private bool isMoving = false;
     private int indexLocation = 1;
+    private int x = 1;
 
     [Header("Animation:")]
     public Animator pop_up;
@@ -40,21 +43,27 @@ public class ConveyorPlayer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space)) // Player pressed hit key
         {
+
+            Debug.Log(x);
+            x++;
             if (currBeat != null)
             {
                 float distanceToCenter = Mathf.Abs(currBeat.transform.position.x - transform.position.x);
 
                 if (distanceToCenter < 0.1f) {
-                    Debug.Log("Perfect!");
+                    //Debug.Log("Perfect!");
                     pop_up.Play("Good_Input");
+                    GHS.addScore();
                 } else if (distanceToCenter < 0.3f) {
-                    Debug.Log("Good!");
+                    //Debug.Log("Good!");
                     pop_up.Play("Good_Input");
-                } else if (distanceToCenter < 0.5f) {
-                    Debug.Log("Okay");
+                    GHS.addScore();
+                } else if (distanceToCenter < 0.7f) {
+                    //Debug.Log("Okay");
                     pop_up.Play("Good_Input");
+                    GHS.addScore();
                 } else {
-                    Debug.Log("Miss");
+                    //Debug.Log("Miss");
                     pop_up.Play("Bad_Input");
                 }
                 Destroy(currBeat.gameObject); // Remove beat once hit

@@ -126,7 +126,6 @@ public class GameHandlerCopy : MonoBehaviour
                 if (next_input == 3) {
                     Instantiate(normalBeat, row3, Quaternion.identity);
                 }
-                
 
                 last_tick = curr_tick; // Wait until we get to the next tick (tick defined above)
             }
