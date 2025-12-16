@@ -370,6 +370,14 @@ public class WackamoleManager : BeatmapVisualizerSimple
         {
             scoreText.text = $"SCORE: {currentScore}/{maxScore}";
         }
+        if (currentScore >= maxScore)
+        {
+            scoreText.color = Color.green;
+        }
+        else
+        {
+            scoreText.color = Color.black;
+        }
     }
 
     private void SuccessInput(HoleSprites hole)
