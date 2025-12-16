@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using TMPro; 
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // <--- NEW: REQUIRED FOR CHANGING SCENES
 
 public class WackamoleManager : BeatmapVisualizerSimple
 {
@@ -22,11 +23,12 @@ public class WackamoleManager : BeatmapVisualizerSimple
         [HideInInspector] public Vector3 ghostStartPos;
         [HideInInspector] public Vector3 idleStartPos;
         
-        // --- NEW: Per-Hole State Tracking ---
         [HideInInspector] public bool isAnimating = false;
-        [HideInInspector] public bool isHittable = false; // Replaces global inputWindowOpen
-        [HideInInspector] public bool isWormType = false; // Replaces global isWormActive
-        [HideInInspector] public Coroutine activeCoroutine; // Replaces global currentPopUpCoroutine
+        [HideInInspector] public bool isInputWindowOpen = false;
+        [HideInInspector] public bool currentIsWorm = false; 
+        
+        [HideInInspector] public Coroutine visualCoroutine;
+        [HideInInspector] public Coroutine logicCoroutine;
     }
 
     [Header("Hole Sprites")]
@@ -37,6 +39,17 @@ public class WackamoleManager : BeatmapVisualizerSimple
     public TextMeshProUGUI promptTextDownSpace;  
     public float promptDuration = 0.5f;          
     public float promptFadeDuration = 0.5f;      
+
+    [Header("Score Settings")]
+    public TextMeshProUGUI scoreText; 
+    private int currentScore = 0;
+    private int maxScore = 30;
+
+    // ======== NEW: SCENE MANAGEMENT SETTINGS =========
+    [Header("Win/Loss Settings")]
+    public string winSceneName = "LevelComplete";   // Type the exact name of your Win Scene here in Inspector
+    public string loseSceneName = "LevelFailed"; // Type the exact name of your Lose Scene here
+    public int scoreToWin = 15;                // How many points needed to pass?
 
     [Header("Animation Settings")]
     public float popUpHeight = 1f;
@@ -91,20 +104,15 @@ public class WackamoleManager : BeatmapVisualizerSimple
     private float quarterNoteTime;
     private int lastBouncedTick = -1;
     
-    // Tutorial flags
     private bool tutorialUpShown = false;
     private bool tutorialDownShown = false;
     
     private Coroutine flashCoroutine; 
     private Coroutine wormFlashCoroutine;
-    
     private Vector3 wormTargetScale;
 
     private bool gameActive = false;
     private int beatsSinceStart = 0;
-    
-    // NOTE: Removed global "activeHoleIndex", "currentActiveNote", "inputWindowOpen"
-    // effectively decoupling the holes from a single state machine.
 
     void Start()
     {
@@ -123,13 +131,21 @@ public class WackamoleManager : BeatmapVisualizerSimple
         InitializeSprites();
         lastBouncedTick = -1;
         
-        if (flashPanel != null)
+        if (scoreText == null)
         {
-            flashPanel.SetActive(false);
-            if (flashPanel.GetComponent<Image>() == null)
-                Debug.LogError("Flash Panel needs an Image component!");
+            GameObject canvasObj = GameObject.Find("canvas");
+            if (canvasObj != null)
+            {
+                Transform t = canvasObj.transform.Find("canvas_score/score_object/scoreText");
+                if (t != null)
+                {
+                    scoreText = t.GetComponent<TextMeshProUGUI>();
+                }
+            }
         }
-
+        UpdateScoreDisplay();
+        
+        if (flashPanel != null) flashPanel.SetActive(false);
         if (promptTextUp != null) promptTextUp.gameObject.SetActive(false);
         if (promptTextDownSpace != null) promptTextDownSpace.gameObject.SetActive(false);
         
@@ -137,89 +153,85 @@ public class WackamoleManager : BeatmapVisualizerSimple
         {
             wormTargetScale = wormHitEffectObject.transform.localScale;
             wormHitEffectObject.SetActive(false);
-            
-            if (wormHitEffectObject.GetComponent<Image>() == null && wormHitEffectObject.GetComponent<SpriteRenderer>() == null)
-                Debug.LogWarning("Worm Hit Object needs an Image or SpriteRenderer to fade properly!");
         }
         
         if (showDebugMessages) Debug.Log("WackamoleManager initialized. Waiting for game to start...");
     }
 
+    // ... [CreateSimpleBeatmap() stays the same] ...
     private void CreateSimpleBeatmap()
     {
-        beatmapBuilder builder = new beatmapBuilder(16);
-        
-        // --- NOTE ID KEY ---
-        // 1 = Snake Top (Up)
-        // 2 = Snake Bottom (Down)
-        // 3 = Snake Left
-        // 4 = Snake Right
-        // 5 = Worm Top (Up)
-        // 6 = Worm Bottom (Down)
-        // 7 = Worm Left
-        // 8 = Worm Right
-
+        beatmapBuilder builder = new beatmapBuilder(30); 
         // Tutorial
-        builder.PlaceQuarterNote(3, 1, 1); 
+        builder.PlaceQuarterNote(3, 1, 1);
         builder.PlaceQuarterNote(4, 1, 6);
-
         // Sequence
         builder.PlaceQuarterNote(5, 1, 3); 
-        builder.PlaceQuarterNote(5, 3, 8); 
         builder.PlaceQuarterNote(6, 1, 2); 
         builder.PlaceQuarterNote(6, 3, 5); 
         builder.PlaceQuarterNote(7, 1, 6); 
-
-        // Fast Section (The part that was glitching)
-        builder.PlaceQuarterNote(8, 1, 7); // Worm Left
-        //builder.Pl  // Snake Left
-        builder.PlaceQuarterNote(9, 2, 4); // Snake Right
-        builder.PlaceQuarterNote(9, 3, 1); // Snake Top
-        builder.PlaceQuarterNote(10, 1, 3); // Snake Left
+        builder.PlaceQuarterNote(8, 1, 7);
+        builder.PlaceQuarterNote(9, 1, 8);
+        builder.PlaceQuarterNote(9, 3, 3);
+        builder.PlaceQuarterNote(10, 1, 8);
+        builder.PlaceQuarterNote(10, 3, 2);
+        builder.PlaceQuarterNote(11, 1, 5);
+        builder.PlaceQuarterNote(12, 1, 4);
+        builder.PlaceQuarterNote(12, 3, 2);
+        builder.PlaceQuarterNote(13, 1, 5);
+        builder.PlaceQuarterNote(14, 1, 4);
+        builder.PlaceQuarterNote(14, 3, 7);
+        builder.PlaceQuarterNote(15, 1, 1);
+        builder.PlaceQuarterNote(16, 1, 5);
+        builder.PlaceQuarterNote(17, 1, 3);
+        builder.PlaceQuarterNote(17, 3, 4);
+        builder.PlaceQuarterNote(18, 1, 5);
+        // Consecutive notes
+        builder.PlaceQuarterNote(19, 1, 3);
+        builder.PlaceQuarterNote(19, 2, 1);
+        builder.PlaceQuarterNote(19, 3, 4);
+        builder.PlaceQuarterNote(19, 4, 6);
+        builder.PlaceQuarterNote(20, 3, 3);
+        builder.PlaceQuarterNote(21, 1, 4);
+        builder.PlaceQuarterNote(21, 2, 1);
+        builder.PlaceQuarterNote(21, 3, 3);
+        builder.PlaceQuarterNote(21, 4, 6);
+        builder.PlaceQuarterNote(22, 3, 4);
+        builder.PlaceQuarterNote(23, 1, 4);
+        builder.PlaceQuarterNote(23, 3, 4);
+        builder.PlaceQuarterNote(24, 1, 3);
+        builder.PlaceQuarterNote(24, 3, 3);
+        builder.PlaceQuarterNote(25, 1, 2);
+        builder.PlaceQuarterNote(25, 2, 3);
+        builder.PlaceQuarterNote(25, 3, 1);
+        builder.PlaceQuarterNote(25, 4, 4);
+        builder.PlaceQuarterNote(26, 1, 6);
+        builder.PlaceQuarterNote(26, 3, 7);
+        builder.PlaceQuarterNote(27, 1, 2);
+        builder.PlaceQuarterNote(28, 1, 1);
+        builder.PlaceQuarterNote(29, 1, 6);
 
         npcBeatMap = builder.GetBeatMap();
     }
 
+    // ... [InitializeSprites() stays the same] ...
     private void InitializeSprites()
     {
         foreach (var hole in holeSprites)
         {
-            if (hole.idleSprite != null) hole.idleStartPos = hole.idleSprite.transform.localPosition;
-            
-            if (hole.snakeSprite != null)
-            {
-                hole.snakeStartPos = hole.snakeSprite.transform.localPosition;
-                hole.snakeSprite.SetActive(false); 
-            }
-            
-            if (hole.wormSprite != null)
-            {
-                hole.wormStartPos = hole.wormSprite.transform.localPosition;
-                hole.wormSprite.SetActive(false); 
-            }
-
-            if (hole.smileWormSprite != null)
-            {
-                hole.smileWormStartPos = hole.smileWormSprite.transform.localPosition;
-                hole.smileWormSprite.SetActive(false);
-            }
-
-            if (hole.ghostSprite != null)
-            {
-                hole.ghostStartPos = hole.ghostSprite.transform.localPosition;
-                hole.ghostSprite.SetActive(false);
-            }
-            
-            if (hole.idleSprite != null) hole.idleSprite.SetActive(true);
-            
-            // Reset state
             hole.isAnimating = false;
-            hole.isHittable = false;
-            hole.activeCoroutine = null;
+            hole.isInputWindowOpen = false;
+
+            if (hole.idleSprite != null) hole.idleStartPos = hole.idleSprite.transform.localPosition;
+            if (hole.snakeSprite != null) { hole.snakeStartPos = hole.snakeSprite.transform.localPosition; hole.snakeSprite.SetActive(false); }
+            if (hole.wormSprite != null) { hole.wormStartPos = hole.wormSprite.transform.localPosition; hole.wormSprite.SetActive(false); }
+            if (hole.smileWormSprite != null) { hole.smileWormStartPos = hole.smileWormSprite.transform.localPosition; hole.smileWormSprite.SetActive(false); }
+            if (hole.ghostSprite != null) { hole.ghostStartPos = hole.ghostSprite.transform.localPosition; hole.ghostSprite.SetActive(false); }
+            if (hole.idleSprite != null) hole.idleSprite.SetActive(true);
         }
     }
 
-    // Audio Wrappers
+    // ... [Audio Helpers stay the same] ...
     private void PlaySnakeUpSound() { if (snakeUpSound != null && snakeUpSound.enabled) snakeUpSound.Play(); }
     private void PlaySnakeDownSound() { if (snakeDownSound != null && snakeDownSound.enabled) snakeDownSound.Play(); }
     private void PlaySnakeHissSound() { if (snakeHissSound != null && snakeHissSound.enabled) snakeHissSound.Play(); }
@@ -235,11 +247,48 @@ public class WackamoleManager : BeatmapVisualizerSimple
         beatsSinceStart = 0;
     }
 
+    // ======== UPDATED UPDATE FUNCTION =========
     protected override void Update()
     {
         if (!gameActive) return;
         base.Update();
-        CheckForInput(); // Always check for input
+        CheckForInput();
+
+        // --- NEW: WIN CONDITION CHECK ---
+        // 1. gameActive must be true (meaning we haven't paused via menu)
+        // 2. We must have references to the timer and audio
+        // 3. The music is NOT playing anymore
+        // 4. We check 'beatsSinceStart > 0' to make sure the game didn't *just* start and music hasn't loaded yet.
+        if (rhythmTimer != null && rhythmTimer.musicSource != null && !rhythmTimer.musicSource.isPlaying && beatsSinceStart > 1)
+        {
+            EndLevel();
+        }
+    }
+
+    // ======== NEW: END LEVEL FUNCTION =========
+    private void EndLevel()
+    {
+        Debug.Log("Song Finished. Checking Score...");
+        gameActive = false; // Stop updates
+
+        // Check if score meets win condition
+        if (currentScore >= scoreToWin)
+        {
+            Debug.Log("YOU WIN!");
+            // Check if scene name is valid before loading to avoid crash
+            if (!string.IsNullOrEmpty(winSceneName))
+            {
+                SceneManager.LoadScene(winSceneName);
+            }
+        }
+        else
+        {
+            Debug.Log("YOU LOSE!");
+            if (!string.IsNullOrEmpty(loseSceneName))
+            {
+                SceneManager.LoadScene(loseSceneName);
+            }
+        }
     }
 
     protected override void OnBeatTriggered(int noteValue)
@@ -256,15 +305,11 @@ public class WackamoleManager : BeatmapVisualizerSimple
         
         if (noteValue == 0) return;
 
-        // --- HOLE LOGIC ---
-        // 1-4 are holes 0-3 (Snake)
-        // 5-8 are holes 0-3 (Worm)
         int holeIndex = (noteValue <= 4) ? (noteValue - 1) : (noteValue - 5);
         bool isWorm = noteValue >= 5;
         
         if (holeIndex >= 0 && holeIndex < holeSprites.Count)
         {
-            // --- TUTORIAL TEXT TRIGGER ---
             if (noteValue == 1 && promptTextUp != null && !tutorialUpShown) 
             {
                 tutorialUpShown = true;
@@ -273,13 +318,221 @@ public class WackamoleManager : BeatmapVisualizerSimple
             if (noteValue == 6 && promptTextDownSpace != null && !tutorialDownShown)
             {
                 tutorialDownShown = true;
-                StartCoroutine(FlashPrompt(promptTextDownSpace, "DOWN + SPACEBAR"));
+                StartCoroutine(FlashPrompt(promptTextDownSpace, "DOWN")); 
             }
 
-            // --- ANIMATION START ---
-            // We pass the beat time relative to *now* + animation duration
             float targetBeatTime = Time.unscaledTime + animationDuration;
-            StartPopUpAnimation(holeIndex, isWorm, targetBeatTime);
+            StartPopUp(holeIndex, isWorm, targetBeatTime);
+        }
+    }
+
+    // ... [CheckForInput, HandleArrowKeyPress, etc. stay the same] ...
+    private void CheckForInput()
+    {
+        for (int i = 0; i < holeKeys.Length; i++) 
+        {
+            if (Input.GetKeyDown(holeKeys[i]))
+            {
+                if (i < holeSprites.Count && holeSprites[i].isInputWindowOpen)
+                {
+                    HandleArrowKeyPress(i, holeSprites[i]);
+                    return; 
+                }
+
+                for (int j = 0; j < holeSprites.Count; j++)
+                {
+                    if (holeSprites[j].isInputWindowOpen)
+                    {
+                        FailedInput(j, "Wrong Key Pressed"); 
+                        return; 
+                    }
+                }
+                
+                return;
+            }
+        }
+    }
+
+    private void HandleArrowKeyPress(int pressedHoleIndex, HoleSprites hole)
+    {
+        if (hole.currentIsWorm)
+        {
+            FlashWormEffect();
+            TriggerGhostAnimation(pressedHoleIndex);
+            PlayWormMunchSound();
+        }
+        SuccessInput(hole);
+    }
+
+    private void UpdateScoreDisplay()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = $"SCORE: {currentScore}/{maxScore}";
+        }
+    }
+
+    private void SuccessInput(HoleSprites hole)
+    {
+        if (showDebugMessages) Debug.Log($"SUCCESS INPUT on {hole.holeName}");
+        
+        currentScore++;
+        UpdateScoreDisplay();
+        
+        FlashScreen(Color.green);
+        PlayHitSound(); 
+        PlaySuccessSound(); 
+        
+        hole.isInputWindowOpen = false; 
+    }
+
+    private void FailedInput(int holeIndex, string reason)
+    {
+        if (showDebugMessages) Debug.Log($"MISS INPUT on Hole {holeIndex}: {reason}");
+        
+        currentScore--;
+        if (currentScore < 0) currentScore = 0; 
+        UpdateScoreDisplay();
+        
+        HoleSprites hole = holeSprites[holeIndex];
+
+        if (hole.currentIsWorm)
+        {
+            SwapToSmileWorm(holeIndex);
+        }
+
+        FlashScreen(Color.red);
+        PlayMissSound();
+        
+        hole.isInputWindowOpen = false;
+    }
+
+    // ... [Rest of the functions: TriggerGhostAnimation, StartPopUp, PopUpAnimation, InputFailureTimer, etc. stay the same] ...
+    private void TriggerGhostAnimation(int holeIndex)
+    {
+        HoleSprites hole = holeSprites[holeIndex];
+        
+        if (hole.ghostSprite != null && hole.wormSprite != null)
+        {
+            if (hole.visualCoroutine != null) StopCoroutine(hole.visualCoroutine);
+
+            hole.wormSprite.SetActive(false);
+            hole.isAnimating = false; 
+            hole.isInputWindowOpen = false;
+
+            hole.ghostSprite.transform.localPosition = hole.wormSprite.transform.localPosition;
+            hole.ghostSprite.SetActive(true);
+
+            StartCoroutine(GhostFloatAnimation(hole));
+        }
+    }
+
+    private void StartPopUp(int holeIndex, bool isWorm, float targetBeatTime)
+    {
+        var hole = holeSprites[holeIndex];
+        if (hole.isAnimating) return; 
+
+        GameObject targetSprite = isWorm ? hole.wormSprite : hole.snakeSprite;
+        Vector3 startPos = isWorm ? hole.wormStartPos : hole.snakeStartPos;
+
+        if (targetSprite != null)
+        {
+            hole.currentIsWorm = isWorm;
+            hole.visualCoroutine = StartCoroutine(PopUpAnimation(holeIndex, hole, targetSprite, startPos, isWorm, targetBeatTime));
+        }
+    }
+
+    private IEnumerator PopUpAnimation(int holeIndex, HoleSprites hole, GameObject spriteToAnimate, Vector3 startPos, bool isWorm, float targetBeatTime)
+    {
+        hole.isAnimating = true;
+        hole.isInputWindowOpen = false; 
+        
+        spriteToAnimate.SetActive(true);
+        spriteToAnimate.transform.localPosition = startPos;
+        Vector3 targetPos = startPos + Vector3.up * popUpHeight;
+        
+        float timeUntilBeat = targetBeatTime - Time.unscaledTime;
+        if (timeUntilBeat > animationDuration)
+        {
+            yield return new WaitForSecondsRealtime(timeUntilBeat - animationDuration);
+        }
+        
+        if (isWorm) PlayWormUpSound(); 
+        else { PlaySnakeUpSound(); PlaySnakeHissSound(); }
+        
+        float elapsedTime = 0f;
+        while (elapsedTime < animationDuration)
+        {
+            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
+            spriteToAnimate.transform.localPosition = Vector3.Lerp(startPos, targetPos, t);
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+        spriteToAnimate.transform.localPosition = targetPos;
+        
+        hole.isInputWindowOpen = true;
+        
+        if (hole.logicCoroutine != null) StopCoroutine(hole.logicCoroutine);
+        hole.logicCoroutine = StartCoroutine(InputFailureTimer(hole, holeIndex, quarterNoteTime));
+
+        float timeSpentSoFar = Time.unscaledTime - (targetBeatTime - animationDuration);
+        float visualHangTime = quarterNoteTime - timeSpentSoFar;
+        
+        if (visualHangTime > 0)
+        {
+            yield return new WaitForSecondsRealtime(visualHangTime);
+        }
+
+        if (isWorm) PlayWormDownSound(); else PlaySnakeDownSound();
+        
+        GameObject currentVisibleSprite = spriteToAnimate;
+        if(hole.smileWormSprite != null && hole.smileWormSprite.activeSelf) 
+            currentVisibleSprite = hole.smileWormSprite;
+
+        elapsedTime = 0f;
+        while (elapsedTime < animationDuration)
+        {
+            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
+            currentVisibleSprite.transform.localPosition = Vector3.Lerp(targetPos, startPos, t);
+            elapsedTime += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        currentVisibleSprite.transform.localPosition = startPos;
+        currentVisibleSprite.SetActive(false);
+        
+        hole.isAnimating = false;
+        hole.visualCoroutine = null;
+    }
+
+    private IEnumerator InputFailureTimer(HoleSprites hole, int holeIndex, float duration)
+    {
+        float elapsed = 0f;
+        while(elapsed < duration)
+        {
+            if (!hole.isInputWindowOpen) yield break;
+            elapsed += Time.unscaledDeltaTime;
+            yield return null;
+        }
+
+        if (hole.isInputWindowOpen)
+        {
+            FailedInput(holeIndex, "Timed out");
+        }
+
+        hole.isInputWindowOpen = false;
+        hole.logicCoroutine = null;
+    }
+
+    private void SwapToSmileWorm(int holeIndex)
+    {
+        HoleSprites hole = holeSprites[holeIndex];
+        
+        if (hole.wormSprite != null && hole.smileWormSprite != null)
+        {
+            hole.smileWormSprite.transform.localPosition = hole.wormSprite.transform.localPosition;
+            hole.wormSprite.SetActive(false);
+            hole.smileWormSprite.SetActive(true);
         }
     }
 
@@ -300,178 +553,7 @@ public class WackamoleManager : BeatmapVisualizerSimple
         tmpText.alpha = 0f;
         tmpText.gameObject.SetActive(false);
     }
-
-    // --- REFACTORED INPUT LOGIC ---
-    private void CheckForInput()
-    {
-        // Iterate through all possible hole keys
-        for (int i = 0; i < holeKeys.Length; i++)
-        {
-            if (Input.GetKeyDown(holeKeys[i]))
-            {
-                // Verify bounds
-                if (i < holeSprites.Count)
-                {
-                    HandleInputForHole(i);
-                }
-                return; // Only handle one hole press per frame to prevent spamming
-            }
-        }
-    }
-
-    private void HandleInputForHole(int index)
-    {
-        HoleSprites hole = holeSprites[index];
-
-        // Only process if the hole is currently in its hittable window
-        if (hole.isHittable)
-        {
-            bool isActionKeyPressed = Input.GetKey(actionKey);
-
-            if (hole.isWormType)
-            {
-                // WORM: Requires Action Key (Space)
-                if (isActionKeyPressed) 
-                { 
-                    FlashWormEffect(); 
-                    SuccessInput(hole, index); 
-                }
-                else 
-                { 
-                    FailedInput(hole, index, "Worm requires Space key held"); 
-                }
-            }
-            else
-            {
-                // SNAKE: Requires NO Action Key
-                if (!isActionKeyPressed) 
-                { 
-                    SuccessInput(hole, index); 
-                }
-                else 
-                { 
-                    FailedInput(hole, index, "Snake requires NO Space key"); 
-                }
-            }
-        }
-        else
-        {
-            // Optional: You can uncomment this if you want a penalty for hitting empty holes,
-            // but for 1-beat intervals, it's safer to just ignore stray clicks or log them.
-            // FailedInput(hole, index, "Hole not active or missed window");
-        }
-    }
-
-    private void SuccessInput(HoleSprites hole, int index)
-    {
-        if (showDebugMessages) Debug.Log($"SUCCESS INPUT on Hole {index}");
-        
-        // Immediately mark as handled so we don't hit it twice
-        hole.isHittable = false;
-
-        if (hole.isWormType)
-        {
-            TriggerGhostAnimation(hole);
-            PlayWormMunchSound(); 
-        }
-
-        FlashScreen(Color.green);
-        PlayHitSound(); 
-        PlaySuccessSound(); 
-    }
-
-    private void FailedInput(HoleSprites hole, int index, string reason)
-    {
-        if (showDebugMessages) Debug.Log($"MISS INPUT on Hole {index}: {reason}");
-        
-        hole.isHittable = false; // Close window
-
-        if (hole.isWormType)
-        {
-            SwapToSmileWorm(hole);
-        }
-
-        FlashScreen(Color.red);
-        PlayMissSound();
-    }
-
-    private void TriggerGhostAnimation(HoleSprites hole)
-    {
-        if (hole.ghostSprite != null && hole.wormSprite != null)
-        {
-            // Stop the main animation coroutine for this specific hole
-            if (hole.activeCoroutine != null) StopCoroutine(hole.activeCoroutine);
-
-            hole.wormSprite.SetActive(false);
-            hole.isAnimating = false; 
-
-            hole.ghostSprite.transform.localPosition = hole.wormSprite.transform.localPosition;
-            hole.ghostSprite.SetActive(true);
-
-            StartCoroutine(GhostFloatAnimation(hole));
-        }
-    }
-
-    private IEnumerator GhostFloatAnimation(HoleSprites hole)
-    {
-        Vector3 startPos = hole.ghostSprite.transform.localPosition;
-        Vector3 targetPos = startPos + Vector3.up * ghostFloatHeight;
-        
-        SpriteRenderer spr = hole.ghostSprite.GetComponent<SpriteRenderer>();
-        Image img = hole.ghostSprite.GetComponent<Image>();
-        SetGhostAlpha(spr, img, 1f);
-
-        float elapsed = 0f;
-        while (elapsed < ghostFloatDuration)
-        {
-            elapsed += Time.unscaledDeltaTime;
-            float t = Mathf.Clamp01(elapsed / ghostFloatDuration);
-            float easedT = Mathf.Sin(t * Mathf.PI * 0.5f);
-            hole.ghostSprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, easedT);
-            yield return null;
-        }
-
-        float fadeElapsed = 0f;
-        while (fadeElapsed < ghostFadeDuration)
-        {
-            fadeElapsed += Time.unscaledDeltaTime;
-            float currentAlpha = Mathf.Lerp(1f, 0f, fadeElapsed / ghostFadeDuration);
-            SetGhostAlpha(spr, img, currentAlpha);
-            yield return null;
-        }
-
-        hole.ghostSprite.SetActive(false);
-        hole.ghostSprite.transform.localPosition = hole.ghostStartPos;
-        SetGhostAlpha(spr, img, 1f); 
-    }
-
-    private void SetGhostAlpha(SpriteRenderer spr, Image img, float alpha)
-    {
-        if (spr != null)
-        {
-            Color c = spr.color;
-            c.a = alpha;
-            spr.color = c;
-        }
-        else if (img != null)
-        {
-            Color c = img.color;
-            c.a = alpha;
-            img.color = c;
-        }
-    }
-
-    private void SwapToSmileWorm(HoleSprites hole)
-    {
-        if (hole.wormSprite != null && hole.smileWormSprite != null)
-        {
-            hole.smileWormSprite.transform.localPosition = hole.wormSprite.transform.localPosition;
-            hole.wormSprite.SetActive(false);
-            hole.smileWormSprite.SetActive(true);
-            // Note: The main PopUpAnimation coroutine will handle bringing this down
-        }
-    }
-
+    
     private void FlashScreen(Color color)
     {
         if (flashPanel != null)
@@ -516,7 +598,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
     private IEnumerator DoWormFlashFade()
     {
         wormHitEffectObject.SetActive(true);
-        
         Image img = wormHitEffectObject.GetComponent<Image>();
         SpriteRenderer spr = wormHitEffectObject.GetComponent<SpriteRenderer>();
 
@@ -525,17 +606,14 @@ public class WackamoleManager : BeatmapVisualizerSimple
         else if (spr != null) baseColor = spr.color;
 
         Vector3 startScale = wormTargetScale * wormStartScaleMultiplier;
-
         float elapsedSlam = 0f;
         while (elapsedSlam < wormSlamDuration)
         {
             elapsedSlam += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(elapsedSlam / wormSlamDuration);
             float easedT = Mathf.SmoothStep(0f, 1f, t);
-
             wormHitEffectObject.transform.localScale = Vector3.Lerp(startScale, wormTargetScale, easedT);
             SetObjectAlpha(img, spr, baseColor, easedT);
-
             yield return null;
         }
         wormHitEffectObject.transform.localScale = wormTargetScale;
@@ -584,139 +662,44 @@ public class WackamoleManager : BeatmapVisualizerSimple
         yield return new WaitForSecondsRealtime(0.05f); 
         hole.idleSprite.transform.localPosition = startPos;
     }
-
-    // --- REFACTORED ANIMATION ---
-    private void StartPopUpAnimation(int holeIndex, bool isWorm, float targetBeatTime)
+    
+    private IEnumerator GhostFloatAnimation(HoleSprites hole)
     {
-        var hole = holeSprites[holeIndex];
+        Vector3 startPos = hole.ghostSprite.transform.localPosition;
+        Vector3 targetPos = startPos + Vector3.up * ghostFloatHeight;
         
-        // Safety check: Don't interrupt if it's already busy 
-        // (unless you want to allow spamming the same hole faster than animation speed)
-        if (hole.isAnimating) return; 
+        SpriteRenderer spr = hole.ghostSprite.GetComponent<SpriteRenderer>();
+        Image img = hole.ghostSprite.GetComponent<Image>();
+        SetGhostAlpha(spr, img, 1f);
 
-        GameObject targetSprite = isWorm ? hole.wormSprite : hole.snakeSprite;
-        Vector3 startPos = isWorm ? hole.wormStartPos : hole.snakeStartPos;
-
-        if (targetSprite != null)
+        float elapsed = 0f;
+        while (elapsed < ghostFloatDuration)
         {
-            // Set Per-Hole State
-            hole.isWormType = isWorm;
-            
-            // Start independent coroutine
-            hole.activeCoroutine = StartCoroutine(PopUpAnimation(hole, targetSprite, startPos, isWorm, targetBeatTime));
-        }
-    }
-
-    private IEnumerator PopUpAnimation(HoleSprites hole, GameObject originalSprite, Vector3 startPos, bool isWorm, float targetBeatTime)
-    {
-        hole.isAnimating = true;
-        originalSprite.SetActive(true);
-        originalSprite.transform.localPosition = startPos;
-        
-        Vector3 targetPos = startPos + Vector3.up * popUpHeight;
-        
-        float currentTime = Time.unscaledTime;
-        float windowHalf = inputWindowSize / 2f;
-        float timeUntilBeat = targetBeatTime - currentTime;
-        
-        // Wait until we need to start moving up
-        if (timeUntilBeat > animationDuration)
-        {
-            yield return new WaitForSecondsRealtime(timeUntilBeat - animationDuration);
-        }
-        
-        if (isWorm) PlayWormUpSound(); 
-        else { PlaySnakeUpSound(); PlaySnakeHissSound(); }
-        
-        // Go UP
-        float elapsedTime = 0f;
-        while (elapsedTime < animationDuration)
-        {
-            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
-            originalSprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, t);
-            elapsedTime += Time.unscaledDeltaTime;
+            elapsed += Time.unscaledDeltaTime;
+            float t = Mathf.Clamp01(elapsed / ghostFloatDuration);
+            float easedT = Mathf.Sin(t * Mathf.PI * 0.5f);
+            hole.ghostSprite.transform.localPosition = Vector3.Lerp(startPos, targetPos, easedT);
             yield return null;
         }
 
-        originalSprite.transform.localPosition = targetPos;
-        
-        // --- INPUT WINDOW LOGIC (Inside Coroutine) ---
-        // Calculate how long we wait at the top before the window closes
-        // The window centers on 'targetBeatTime'.
-        
-        float now = Time.unscaledTime;
-        float windowEndTime = targetBeatTime + windowHalf;
-        float windowStartTime = targetBeatTime - windowHalf;
-
-        // If we arrived early (due to frame rate), wait for window start
-        if (now < windowStartTime)
+        float fadeElapsed = 0f;
+        while (fadeElapsed < ghostFadeDuration)
         {
-            yield return new WaitForSecondsRealtime(windowStartTime - now);
-        }
-
-        // OPEN WINDOW
-        hole.isHittable = true;
-
-        // Wait for Window Duration
-        now = Time.unscaledTime;
-        if (now < windowEndTime)
-        {
-            yield return new WaitForSecondsRealtime(windowEndTime - now);
-        }
-
-        // CLOSE WINDOW
-        // If it was still hittable, that means the player missed the timing
-        if (hole.isHittable)
-        {
-             FailedInput(hole, holeSprites.IndexOf(hole), "Timed out");
-        }
-        
-        hole.isHittable = false;
-        
-        // Wait out the rest of the beat (if quarter note is long)
-        // This makes sure it stays up for a moment before going down
-        // Optional: you can remove this if you want it to go down immediately after window closes
-        float timeSpentTotal = Time.unscaledTime - (targetBeatTime - animationDuration);
-        if (timeSpentTotal < quarterNoteTime)
-        {
-            // yield return new WaitForSecondsRealtime(quarterNoteTime - timeSpentTotal);
-        }
-
-        if (isWorm) PlayWormDownSound(); else PlaySnakeDownSound();
-        
-        // Go DOWN
-        // Note: Check what is currently active (could have swapped to SmileWorm)
-        GameObject spriteMovingDown = originalSprite;
-        if (hole.smileWormSprite != null && hole.smileWormSprite.activeSelf) 
-            spriteMovingDown = hole.smileWormSprite;
-
-        elapsedTime = 0f;
-        while (elapsedTime < animationDuration)
-        {
-            float t = Mathf.SmoothStep(0f, 1f, elapsedTime / animationDuration);
-            spriteMovingDown.transform.localPosition = Vector3.Lerp(targetPos, startPos, t);
-            elapsedTime += Time.unscaledDeltaTime;
+            fadeElapsed += Time.unscaledDeltaTime;
+            float currentAlpha = Mathf.Lerp(1f, 0f, fadeElapsed / ghostFadeDuration);
+            SetGhostAlpha(spr, img, currentAlpha);
             yield return null;
         }
 
-        spriteMovingDown.transform.localPosition = startPos;
-        spriteMovingDown.SetActive(false);
-        
-        // Reset Logic
-        if (hole.smileWormSprite != null) hole.smileWormSprite.SetActive(false);
-        
-        hole.isAnimating = false;
-        hole.activeCoroutine = null;
+        hole.ghostSprite.SetActive(false);
+        hole.ghostSprite.transform.localPosition = hole.ghostStartPos;
+        SetGhostAlpha(spr, img, 1f); 
     }
 
-    void OnGUI()
+    private void SetGhostAlpha(SpriteRenderer spr, Image img, float alpha)
     {
-        if (showDebugMessages && rhythmTimer != null)
-        {
-            GUILayout.BeginArea(new Rect(10, 10, 350, 300));
-            GUILayout.Label($"BPM: {rhythmTimer.bpm}");
-            GUILayout.EndArea();
-        }
+        if (spr != null) { Color c = spr.color; c.a = alpha; spr.color = c; }
+        else if (img != null) { Color c = img.color; c.a = alpha; img.color = c; }
     }
 
     public void ResetAllPositions()
@@ -726,48 +709,29 @@ public class WackamoleManager : BeatmapVisualizerSimple
         foreach (var hole in holeSprites)
         {
             hole.isAnimating = false;
-            hole.isHittable = false;
-            hole.activeCoroutine = null;
+            hole.isInputWindowOpen = false;
+            hole.visualCoroutine = null;
+            hole.logicCoroutine = null;
 
             if (hole.idleSprite != null) hole.idleSprite.transform.localPosition = hole.idleStartPos;
-            
-            if (hole.snakeSprite != null)
-            {
-                hole.snakeSprite.transform.localPosition = hole.snakeStartPos;
-                hole.snakeSprite.SetActive(false);
-            }
-            if (hole.wormSprite != null)
-            {
-                hole.wormSprite.transform.localPosition = hole.wormStartPos;
-                hole.wormSprite.SetActive(false);
-            }
-            if (hole.smileWormSprite != null)
-            {
-                hole.smileWormSprite.transform.localPosition = hole.smileWormStartPos;
-                hole.smileWormSprite.SetActive(false);
-            }
-            if (hole.ghostSprite != null)
-            {
-                hole.ghostSprite.transform.localPosition = hole.ghostStartPos;
-                hole.ghostSprite.SetActive(false);
-                SetGhostAlpha(hole.ghostSprite.GetComponent<SpriteRenderer>(), hole.ghostSprite.GetComponent<Image>(), 1f);
-            }
+            if (hole.snakeSprite != null) { hole.snakeSprite.transform.localPosition = hole.snakeStartPos; hole.snakeSprite.SetActive(false); }
+            if (hole.wormSprite != null) { hole.wormSprite.transform.localPosition = hole.wormStartPos; hole.wormSprite.SetActive(false); }
+            if (hole.smileWormSprite != null) { hole.smileWormSprite.transform.localPosition = hole.smileWormStartPos; hole.smileWormSprite.SetActive(false); }
+            if (hole.ghostSprite != null) { hole.ghostSprite.transform.localPosition = hole.ghostStartPos; hole.ghostSprite.SetActive(false); SetGhostAlpha(hole.ghostSprite.GetComponent<SpriteRenderer>(), hole.ghostSprite.GetComponent<Image>(), 1f); }
         }
         
         lastBouncedTick = -1;
         gameActive = false;
         beatsSinceStart = 0;
         
+        currentScore = 0;
+        UpdateScoreDisplay();
+        
         tutorialUpShown = false;
         tutorialDownShown = false;
         
         if (flashPanel != null) flashPanel.SetActive(false);
-        if (wormHitEffectObject != null) 
-        {
-             wormHitEffectObject.transform.localScale = wormTargetScale;
-             wormHitEffectObject.SetActive(false);
-        }
-        
+        if (wormHitEffectObject != null) { wormHitEffectObject.transform.localScale = wormTargetScale; wormHitEffectObject.SetActive(false); }
         if (snakeUpSound != null) snakeUpSound.Stop();
         if (snakeDownSound != null) snakeDownSound.Stop();
         if (snakeHissSound != null) snakeHissSound.Stop();
@@ -776,7 +740,6 @@ public class WackamoleManager : BeatmapVisualizerSimple
         if (holeBounceSound != null) holeBounceSound.Stop();
         if (successSound != null) successSound.Stop();
         if (wormMunchSound != null) wormMunchSound.Stop();
-        
         if (promptTextUp != null) promptTextUp.gameObject.SetActive(false);
         if (promptTextDownSpace != null) promptTextDownSpace.gameObject.SetActive(false);
     }

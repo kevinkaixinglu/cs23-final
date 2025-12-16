@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      purplebird_0: -4618575782245264278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

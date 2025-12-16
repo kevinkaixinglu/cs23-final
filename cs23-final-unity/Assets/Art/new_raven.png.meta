@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      new_raven_0: 1730926063198295987
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
