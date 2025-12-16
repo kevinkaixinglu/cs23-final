@@ -4914,13 +4914,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1675589089}
     m_Modifications:
+    - target: {fileID: 1336325095070757581, guid: dfb42fc38df1c2746b1ee4268073f02c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 328071d538423413da3f752398af424b, type: 3}
     - target: {fileID: 3288971772028027234, guid: dfb42fc38df1c2746b1ee4268073f02c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3288971772028027234, guid: dfb42fc38df1c2746b1ee4268073f02c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 20
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3288971772028027234, guid: dfb42fc38df1c2746b1ee4268073f02c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4962,6 +4966,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4634610121427305134, guid: dfb42fc38df1c2746b1ee4268073f02c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 47bbe3a093e1949378e90f1cdea4a1b9, type: 3}
     - target: {fileID: 5104166155424984869, guid: dfb42fc38df1c2746b1ee4268073f02c, type: 3}
       propertyPath: m_Name
       value: PopUps
