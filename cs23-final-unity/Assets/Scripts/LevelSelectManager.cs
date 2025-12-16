@@ -97,6 +97,7 @@ public class LevelSelectManager : MonoBehaviour
     {
         if (levelIndex >= 0 && levelIndex < levelSceneNames.Length)
         {
+            LastSceneDefiner.lastScene = levelSceneNames[levelIndex];
             SceneManager.LoadScene(levelSceneNames[levelIndex]);
         }
     }
