@@ -2629,7 +2629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2785163df5a612d47b61f20fd35af3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  points: 15
+  points: 12
   player: {fileID: 90743934}
   good_input: {fileID: 1318049394}
   candle: {fileID: 1098884529}
@@ -3596,7 +3596,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Score: 0/15'
+  m_text: 'Score: 0/12'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
   m_sharedMaterial: {fileID: 2524499286976547917, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
