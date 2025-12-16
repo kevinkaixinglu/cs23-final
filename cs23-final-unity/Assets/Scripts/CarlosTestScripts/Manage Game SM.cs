@@ -9,6 +9,9 @@ using UnityEngine.SceneManagement;
 
 public class ManageGameSM : MonoBehaviour
 {
+    [Header("Points Needed to Win:")]
+    public int points;
+
     [Header("Player Bird:")]
     public Animator player;
     public Animator good_input;
@@ -151,7 +154,14 @@ public class ManageGameSM : MonoBehaviour
 
         if (!musicSource.isPlaying && isPlaying)
         {
-            SceneManager.LoadScene("LevelSelect");
+            if (currScore >= points)
+            {
+                SceneManager.LoadScene("LevelComplete");
+            }
+            else
+            {
+                SceneManager.LoadScene("LevelFailed");
+            }
         }
 
     }
@@ -185,7 +195,11 @@ public class ManageGameSM : MonoBehaviour
     public void addScore()
     {
         currScore++;
-        scoreText.text = "SCORE: " + currScore.ToString();
+        scoreText.text = "SCORE: " + currScore.ToString() + "/" + points.ToString();
+        if (currScore >= points)
+        {
+            scoreText.color = Color.green;
+        }
     }
 
     private void subScore()
@@ -193,7 +207,11 @@ public class ManageGameSM : MonoBehaviour
         if (currScore > 0)
         {
             currScore--;
-            scoreText.text = "SCORE: " + currScore.ToString();
+            scoreText.text = "SCORE: " + currScore.ToString() + "/" + points.ToString();
+        }
+        if (currScore < points)
+        {
+            scoreText.color = Color.black;
         }
     }
 

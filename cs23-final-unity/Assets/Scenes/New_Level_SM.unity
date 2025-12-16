@@ -2278,6 +2278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2785163df5a612d47b61f20fd35af3f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 15
   player: {fileID: 90743934}
   good_input: {fileID: 1318049394}
   candle: {fileID: 1098884529}
@@ -3076,7 +3077,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 615, y: 349}
+  m_AnchoredPosition: {x: 615, y: 341}
   m_SizeDelta: {x: 202.546, y: 55.092}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774090007
@@ -3099,9 +3100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'SCORE: 0
-
-'
+  m_text: 'Score: 0/15'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
   m_sharedMaterial: {fileID: 2524499286976547917, guid: bf60c506ede6a457787d6ad5f53705ca, type: 2}
@@ -3128,8 +3127,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 37
+  m_fontSizeBase: 37
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
