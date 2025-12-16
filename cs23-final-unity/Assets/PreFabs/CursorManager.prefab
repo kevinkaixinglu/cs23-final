@@ -48,5 +48,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6998999a75c24db08497e09942fce98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: b6e6fb8b750194618b2d98006723001e, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 3b4735eea138842d58fdf151483d799a, type: 3}
   hotspot: {x: 0, y: 0}
