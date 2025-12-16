@@ -48,7 +48,7 @@ public class WackamoleManager : BeatmapVisualizerSimple
 
     // ======== KALEN IDK IF SUPPOSED TO DO THIS =========
     [Header("Win/Loss Settings")]
-    public string winSceneName = "LevelComplete";  
+    public string winScene = "LevelComplete";  
     public string loseSceneName = "LevelFailed"; 
     public int scoreToWin = 30;              
 
@@ -275,10 +275,10 @@ public class WackamoleManager : BeatmapVisualizerSimple
         {
             Debug.Log("YOU WIN!");
             // Check if scene name is valid before loading to avoid crash
-            if (!string.IsNullOrEmpty(winSceneName))
+            if (!string.IsNullOrEmpty(winScene))
             {
                 PlayerPrefs.SetInt("Level3Passed", 1);
-                SceneManager.LoadScene(winSceneName);
+                SceneManager.LoadScene(winScene);
             }
         }
         else
